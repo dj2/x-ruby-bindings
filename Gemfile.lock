@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    x-ruby-bindings (0.0.1)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    nokogiri (1.5.3)
+    redcarpet (2.1.1)
+    yard (0.8.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri
+  redcarpet
+  x-ruby-bindings!
+  yard
