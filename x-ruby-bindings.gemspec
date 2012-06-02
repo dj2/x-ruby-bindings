@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'redcarpet'
 
   ignores = File.readlines(".gitignore").grep(/\S+/).map { |i| i.chomp }
+  ignores << 'lib/xrb/generator.rb'
+
   dotfiles = [".gitignore", ".yardopts"]
 
   s.files = dotfiles + Dir["**/*"].reject do |f|
