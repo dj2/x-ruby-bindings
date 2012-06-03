@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
 
   ignores = File.readlines(".gitignore").grep(/\S+/).map { |i| i.chomp }
   ignores << 'lib/xrb/generator.rb'
+  ignores << Dir['lib/xrb/generator/*']
+  ignores.flatten!
 
   dotfiles = [".gitignore", ".yardopts"]
 
