@@ -11,9 +11,9 @@ class Xrb
     ffi_lib 'composite'
     MAJOR_VERSION = 0
     MINOR_VERSION = 3
-    XRB_REDIRECT_AUTOMATIC = 1
-    XRB_REDIRECT_MANUAL = 2
-    class XrbQueryVersionRequest < FFI::Struct
+    REDIRECT_AUTOMATIC = 1
+    REDIRECT_MANUAL = 2
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -23,12 +23,12 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -39,143 +39,143 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbRedirectWindowRequest < FFI::Struct
+    class RedirectWindowRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :update, :uint8,
           :pad1, [:uint8, 3]
     end
 
-    class XrbRedirectWindowCookie < FFI::Struct
+    class RedirectWindowCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_redirect_window_checked, [:pointer,:uint8,:xrb_window_t,:uint8], XrbRedirectWindowCookie
-    attach_function :xcb_redirect_window, [:pointer,:uint8,:xrb_window_t,:uint8], XrbRedirectWindowCookie
-    class XrbRedirectSubwindowsRequest < FFI::Struct
+    attach_function :xcb_redirect_window_checked, [:pointer,:uint8,:window_t,:uint8], RedirectWindowCookie
+    attach_function :xcb_redirect_window, [:pointer,:uint8,:window_t,:uint8], RedirectWindowCookie
+    class RedirectSubwindowsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :update, :uint8,
           :pad1, [:uint8, 3]
     end
 
-    class XrbRedirectSubwindowsCookie < FFI::Struct
+    class RedirectSubwindowsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_redirect_subwindows_checked, [:pointer,:uint8,:xrb_window_t,:uint8], XrbRedirectSubwindowsCookie
-    attach_function :xcb_redirect_subwindows, [:pointer,:uint8,:xrb_window_t,:uint8], XrbRedirectSubwindowsCookie
-    class XrbUnredirectWindowRequest < FFI::Struct
+    attach_function :xcb_redirect_subwindows_checked, [:pointer,:uint8,:window_t,:uint8], RedirectSubwindowsCookie
+    attach_function :xcb_redirect_subwindows, [:pointer,:uint8,:window_t,:uint8], RedirectSubwindowsCookie
+    class UnredirectWindowRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :update, :uint8,
           :pad1, [:uint8, 3]
     end
 
-    class XrbUnredirectWindowCookie < FFI::Struct
+    class UnredirectWindowCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_unredirect_window_checked, [:pointer,:uint8,:xrb_window_t,:uint8], XrbUnredirectWindowCookie
-    attach_function :xcb_unredirect_window, [:pointer,:uint8,:xrb_window_t,:uint8], XrbUnredirectWindowCookie
-    class XrbUnredirectSubwindowsRequest < FFI::Struct
+    attach_function :xcb_unredirect_window_checked, [:pointer,:uint8,:window_t,:uint8], UnredirectWindowCookie
+    attach_function :xcb_unredirect_window, [:pointer,:uint8,:window_t,:uint8], UnredirectWindowCookie
+    class UnredirectSubwindowsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :update, :uint8,
           :pad1, [:uint8, 3]
     end
 
-    class XrbUnredirectSubwindowsCookie < FFI::Struct
+    class UnredirectSubwindowsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_unredirect_subwindows_checked, [:pointer,:uint8,:xrb_window_t,:uint8], XrbUnredirectSubwindowsCookie
-    attach_function :xcb_unredirect_subwindows, [:pointer,:uint8,:xrb_window_t,:uint8], XrbUnredirectSubwindowsCookie
-    class XrbCreateRegionFromBorderClipRequest < FFI::Struct
+    attach_function :xcb_unredirect_subwindows_checked, [:pointer,:uint8,:window_t,:uint8], UnredirectSubwindowsCookie
+    attach_function :xcb_unredirect_subwindows, [:pointer,:uint8,:window_t,:uint8], UnredirectSubwindowsCookie
+    class CreateRegionFromBorderClipRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :region, :xrb_region_t,
-          :window, :xrb_window_t
+          :region, :region_t,
+          :window, :window_t
     end
 
-    class XrbCreateRegionFromBorderClipCookie < FFI::Struct
+    class CreateRegionFromBorderClipCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_from_border_clip_checked, [:pointer,:uint8,:xrb_region_t,:xrb_window_t], XrbCreateRegionFromBorderClipCookie
-    attach_function :xcb_create_region_from_border_clip, [:pointer,:uint8,:xrb_region_t,:xrb_window_t], XrbCreateRegionFromBorderClipCookie
-    class XrbNameWindowPixmapRequest < FFI::Struct
+    attach_function :xcb_create_region_from_border_clip_checked, [:pointer,:uint8,:region_t,:window_t], CreateRegionFromBorderClipCookie
+    attach_function :xcb_create_region_from_border_clip, [:pointer,:uint8,:region_t,:window_t], CreateRegionFromBorderClipCookie
+    class NameWindowPixmapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
-          :pixmap, :xrb_pixmap_t
+          :window, :window_t,
+          :pixmap, :pixmap_t
     end
 
-    class XrbNameWindowPixmapCookie < FFI::Struct
+    class NameWindowPixmapCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_name_window_pixmap_checked, [:pointer,:uint8,:xrb_window_t,:xrb_pixmap_t], XrbNameWindowPixmapCookie
-    attach_function :xcb_name_window_pixmap, [:pointer,:uint8,:xrb_window_t,:xrb_pixmap_t], XrbNameWindowPixmapCookie
-    class XrbGetOverlayWindowRequest < FFI::Struct
+    attach_function :xcb_name_window_pixmap_checked, [:pointer,:uint8,:window_t,:pixmap_t], NameWindowPixmapCookie
+    attach_function :xcb_name_window_pixmap, [:pointer,:uint8,:window_t,:pixmap_t], NameWindowPixmapCookie
+    class GetOverlayWindowRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :overlay_win, :xrb_window_t,
+          :overlay_win, :window_t,
           :pad2, [:uint8, 20]
     end
 
-    class XrbGetOverlayWindowCookie < FFI::Struct
+    class GetOverlayWindowCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_overlay_window, [:pointer,:uint8,:xrb_window_t], XrbGetOverlayWindowCookie
-    class XrbGetOverlayWindowReply < FFI::Struct
+    attach_function :xcb_get_overlay_window, [:pointer,:uint8,:window_t], GetOverlayWindowCookie
+    class GetOverlayWindowReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
           :sequence, :uint16,
           :length, :uint32,
-          :overlay_win, :xrb_window_t,
+          :overlay_win, :window_t,
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_overlay_window_reply, [:pointer, XrbGetOverlayWindowCookie, :pointer], :pointer
+    attach_function :xcb_get_overlay_window_reply, [:pointer, GetOverlayWindowCookie, :pointer], :pointer
 
         
-    class XrbReleaseOverlayWindowRequest < FFI::Struct
+    class ReleaseOverlayWindowRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t
+          :window, :window_t
     end
 
-    class XrbReleaseOverlayWindowCookie < FFI::Struct
+    class ReleaseOverlayWindowCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_release_overlay_window_checked, [:pointer,:uint8,:xrb_window_t], XrbReleaseOverlayWindowCookie
-    attach_function :xcb_release_overlay_window, [:pointer,:uint8,:xrb_window_t], XrbReleaseOverlayWindowCookie
+    attach_function :xcb_release_overlay_window_checked, [:pointer,:uint8,:window_t], ReleaseOverlayWindowCookie
+    attach_function :xcb_release_overlay_window, [:pointer,:uint8,:window_t], ReleaseOverlayWindowCookie
   end
 end

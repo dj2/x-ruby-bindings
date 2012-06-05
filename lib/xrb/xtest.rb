@@ -10,9 +10,9 @@ class Xrb
     ffi_lib 'xtest'
     MAJOR_VERSION = 2
     MINOR_VERSION = 1
-    XRB_CURSOR_NONE = 0
-    XRB_CURSOR_CURRENT = 1
-    class XrbGetVersionRequest < FFI::Struct
+    CURSOR_NONE = 0
+    CURSOR_CURRENT = 1
+    class GetVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -20,12 +20,12 @@ class Xrb
           :minor_version, :uint16
     end
 
-    class XrbGetVersionCookie < FFI::Struct
+    class GetVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint16], XrbGetVersionCookie
-    class XrbGetVersionReply < FFI::Struct
+    attach_function :xcb_get_version, [:pointer,:uint8,:uint16], GetVersionCookie
+    class GetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :major_version, :uint8,
@@ -34,22 +34,22 @@ class Xrb
           :minor_version, :uint16
     end
 
-    attach_function :xcb_get_version_reply, [:pointer, XrbGetVersionCookie, :pointer], :pointer
+    attach_function :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
 
         
-    class XrbCompareCursorRequest < FFI::Struct
+    class CompareCursorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16
     end
 
-    class XrbCompareCursorCookie < FFI::Struct
+    class CompareCursorCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_compare_cursor, [:pointer,:uint8], XrbCompareCursorCookie
-    class XrbCompareCursorReply < FFI::Struct
+    attach_function :xcb_compare_cursor, [:pointer,:uint8], CompareCursorCookie
+    class CompareCursorReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :same, :bool,
@@ -57,10 +57,10 @@ class Xrb
           :length, :uint32
     end
 
-    attach_function :xcb_compare_cursor_reply, [:pointer, XrbCompareCursorCookie, :pointer], :pointer
+    attach_function :xcb_compare_cursor_reply, [:pointer, CompareCursorCookie, :pointer], :pointer
 
         
-    class XrbFakeInputRequest < FFI::Struct
+    class FakeInputRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -69,7 +69,7 @@ class Xrb
           :detail, :uint8,
           :pad1, [:uint8, 2],
           :time, :uint32,
-          :root, :xrb_window_t,
+          :root, :window_t,
           :pad2, [:uint8, 8],
           :rootX, :int16,
           :rootY, :int16,
@@ -77,13 +77,13 @@ class Xrb
           :deviceid, :uint8
     end
 
-    class XrbFakeInputCookie < FFI::Struct
+    class FakeInputCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_fake_input_checked, [:pointer,:uint8,:uint8,:uint8,:uint32,:xrb_window_t,:int16,:int16,:uint8], XrbFakeInputCookie
-    attach_function :xcb_fake_input, [:pointer,:uint8,:uint8,:uint8,:uint32,:xrb_window_t,:int16,:int16,:uint8], XrbFakeInputCookie
-    class XrbGrabControlRequest < FFI::Struct
+    attach_function :xcb_fake_input_checked, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
+    attach_function :xcb_fake_input, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
+    class GrabControlRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -92,11 +92,11 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbGrabControlCookie < FFI::Struct
+    class GrabControlCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_control_checked, [:pointer,:uint8,:bool], XrbGrabControlCookie
-    attach_function :xcb_grab_control, [:pointer,:uint8,:bool], XrbGrabControlCookie
+    attach_function :xcb_grab_control_checked, [:pointer,:uint8,:bool], GrabControlCookie
+    attach_function :xcb_grab_control, [:pointer,:uint8,:bool], GrabControlCookie
   end
 end

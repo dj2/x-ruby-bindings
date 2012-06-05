@@ -10,36 +10,36 @@ class Xrb
     ffi_lib 'xvmc'
     MAJOR_VERSION = 1
     MINOR_VERSION = 1
-    typedef :uint32, :xrb_context_t
-    class XrbContextIterator < FFI::Struct
+    typedef :uint32, :context_t
+    class ContextIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_context_next, [:pointer], :void
-    attach_function :xcb_context_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_surface_t
-    class XrbSurfaceIterator < FFI::Struct
+    attach_function :xcb_context_end, [:pointer], GenericIterator
+    typedef :uint32, :surface_t
+    class SurfaceIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_surface_next, [:pointer], :void
-    attach_function :xcb_surface_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_subpicture_t
-    class XrbSubpictureIterator < FFI::Struct
+    attach_function :xcb_surface_end, [:pointer], GenericIterator
+    typedef :uint32, :subpicture_t
+    class SubpictureIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_subpicture_next, [:pointer], :void
-    attach_function :xcb_subpicture_end, [:pointer], XrbGenericIterator
-    class XrbSurfaceInfo < FFI::Struct
+    attach_function :xcb_subpicture_end, [:pointer], GenericIterator
+    class SurfaceInfo < FFI::Struct
       layout \
-          :id, :xrb_surface_t,
+          :id, :surface_t,
           :chroma_format, :uint16,
           :pad0, :uint16,
           :max_width, :uint16,
@@ -50,15 +50,15 @@ class Xrb
           :flags, :uint32
     end
 
-    class XrbSurfaceInfoIterator < FFI::Struct
+    class SurfaceInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_surface_info_next, [:pointer], :void
-    attach_function :xcb_surface_info_end, [:pointer], XrbGenericIterator
-    class XrbQueryVersionRequest < FFI::Struct
+    attach_function :xcb_surface_info_end, [:pointer], GenericIterator
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -67,12 +67,12 @@ class Xrb
           :minor, :uint32
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -82,10 +82,10 @@ class Xrb
           :minor, :uint32
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbListSurfaceTypesRequest < FFI::Struct
+    class ListSurfaceTypesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -94,12 +94,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbListSurfaceTypesCookie < FFI::Struct
+    class ListSurfaceTypesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_surface_types, [:pointer,:uint8,:uint32,:uint32], XrbListSurfaceTypesCookie
-    class XrbListSurfaceTypesReply < FFI::Struct
+    attach_function :xcb_list_surface_types, [:pointer,:uint8,:uint32,:uint32], ListSurfaceTypesCookie
+    class ListSurfaceTypesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -109,10 +109,10 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_surface_types_reply, [:pointer, XrbListSurfaceTypesCookie, :pointer], :pointer
+    attach_function :xcb_list_surface_types_reply, [:pointer, ListSurfaceTypesCookie, :pointer], :pointer
 
         
-    class XrbCreateContextRequest < FFI::Struct
+    class CreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -123,12 +123,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbCreateContextCookie < FFI::Struct
+    class CreateContextCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_context, [:pointer,:uint8,:uint16,:uint16,:uint32,:uint32], XrbCreateContextCookie
-    class XrbCreateContextReply < FFI::Struct
+    attach_function :xcb_create_context, [:pointer,:uint8,:uint16,:uint16,:uint32,:uint32], CreateContextCookie
+    class CreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -140,24 +140,24 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_create_context_reply, [:pointer, XrbCreateContextCookie, :pointer], :pointer
+    attach_function :xcb_create_context_reply, [:pointer, CreateContextCookie, :pointer], :pointer
 
         
-    class XrbDestroyContextRequest < FFI::Struct
+    class DestroyContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :context_id, :xrb_context_t
+          :context_id, :context_t
     end
 
-    class XrbDestroyContextCookie < FFI::Struct
+    class DestroyContextCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_context_checked, [:pointer,:uint8,:xrb_context_t], XrbDestroyContextCookie
-    attach_function :xcb_destroy_context, [:pointer,:uint8,:xrb_context_t], XrbDestroyContextCookie
-    class XrbCreateSurfaceRequest < FFI::Struct
+    attach_function :xcb_destroy_context_checked, [:pointer,:uint8,:context_t], DestroyContextCookie
+    attach_function :xcb_destroy_context, [:pointer,:uint8,:context_t], DestroyContextCookie
+    class CreateSurfaceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -165,12 +165,12 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    class XrbCreateSurfaceCookie < FFI::Struct
+    class CreateSurfaceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_surface, [:pointer,:uint8,:uint32], XrbCreateSurfaceCookie
-    class XrbCreateSurfaceReply < FFI::Struct
+    attach_function :xcb_create_surface, [:pointer,:uint8,:uint32], CreateSurfaceCookie
+    class CreateSurfaceReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -179,24 +179,24 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    attach_function :xcb_create_surface_reply, [:pointer, XrbCreateSurfaceCookie, :pointer], :pointer
+    attach_function :xcb_create_surface_reply, [:pointer, CreateSurfaceCookie, :pointer], :pointer
 
         
-    class XrbDestroySurfaceRequest < FFI::Struct
+    class DestroySurfaceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :surface_id, :xrb_surface_t
+          :surface_id, :surface_t
     end
 
-    class XrbDestroySurfaceCookie < FFI::Struct
+    class DestroySurfaceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_surface_checked, [:pointer,:uint8,:xrb_surface_t], XrbDestroySurfaceCookie
-    attach_function :xcb_destroy_surface, [:pointer,:uint8,:xrb_surface_t], XrbDestroySurfaceCookie
-    class XrbCreateSubpictureRequest < FFI::Struct
+    attach_function :xcb_destroy_surface_checked, [:pointer,:uint8,:surface_t], DestroySurfaceCookie
+    attach_function :xcb_destroy_surface, [:pointer,:uint8,:surface_t], DestroySurfaceCookie
+    class CreateSubpictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -209,12 +209,12 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    class XrbCreateSubpictureCookie < FFI::Struct
+    class CreateSubpictureCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_subpicture, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], XrbCreateSubpictureCookie
-    class XrbCreateSubpictureReply < FFI::Struct
+    attach_function :xcb_create_subpicture, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], CreateSubpictureCookie
+    class CreateSubpictureReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -228,24 +228,24 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    attach_function :xcb_create_subpicture_reply, [:pointer, XrbCreateSubpictureCookie, :pointer], :pointer
+    attach_function :xcb_create_subpicture_reply, [:pointer, CreateSubpictureCookie, :pointer], :pointer
 
         
-    class XrbDestroySubpictureRequest < FFI::Struct
+    class DestroySubpictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :subpicture_id, :xrb_subpicture_t
+          :subpicture_id, :subpicture_t
     end
 
-    class XrbDestroySubpictureCookie < FFI::Struct
+    class DestroySubpictureCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_subpicture_checked, [:pointer,:uint8,:xrb_subpicture_t], XrbDestroySubpictureCookie
-    attach_function :xcb_destroy_subpicture, [:pointer,:uint8,:xrb_subpicture_t], XrbDestroySubpictureCookie
-    class XrbListSubpictureTypesRequest < FFI::Struct
+    attach_function :xcb_destroy_subpicture_checked, [:pointer,:uint8,:subpicture_t], DestroySubpictureCookie
+    attach_function :xcb_destroy_subpicture, [:pointer,:uint8,:subpicture_t], DestroySubpictureCookie
+    class ListSubpictureTypesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -254,12 +254,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbListSubpictureTypesCookie < FFI::Struct
+    class ListSubpictureTypesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_subpicture_types, [:pointer,:uint8,:uint32,:uint32], XrbListSubpictureTypesCookie
-    class XrbListSubpictureTypesReply < FFI::Struct
+    attach_function :xcb_list_subpicture_types, [:pointer,:uint8,:uint32,:uint32], ListSubpictureTypesCookie
+    class ListSubpictureTypesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -269,7 +269,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_subpicture_types_reply, [:pointer, XrbListSubpictureTypesCookie, :pointer], :pointer
+    attach_function :xcb_list_subpicture_types_reply, [:pointer, ListSubpictureTypesCookie, :pointer], :pointer
 
         
   end

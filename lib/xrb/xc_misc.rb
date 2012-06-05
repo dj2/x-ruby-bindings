@@ -9,7 +9,7 @@ class Xrb
     ffi_lib 'xc_misc'
     MAJOR_VERSION = 1
     MINOR_VERSION = 1
-    class XrbGetVersionRequest < FFI::Struct
+    class GetVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -18,12 +18,12 @@ class Xrb
           :server_minor_version, :uint16
     end
 
-    class XrbGetVersionCookie < FFI::Struct
+    class GetVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], XrbGetVersionCookie
-    class XrbGetVersionReply < FFI::Struct
+    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], GetVersionCookie
+    class GetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -33,10 +33,10 @@ class Xrb
           :server_minor_version, :uint16
     end
 
-    attach_function :xcb_get_version_reply, [:pointer, XrbGetVersionCookie, :pointer], :pointer
+    attach_function :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
 
         
-    class XrbGetXIDRangeRequest < FFI::Struct
+    class GetXIDRangeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -45,12 +45,12 @@ class Xrb
           :count, :uint32
     end
 
-    class XrbGetXIDRangeCookie < FFI::Struct
+    class GetXIDRangeCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_range, [:pointer,:uint8,:uint32,:uint32], XrbGetXIDRangeCookie
-    class XrbGetXIDRangeReply < FFI::Struct
+    attach_function :xcb_get_xid_range, [:pointer,:uint8,:uint32,:uint32], GetXIDRangeCookie
+    class GetXIDRangeReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -60,10 +60,10 @@ class Xrb
           :count, :uint32
     end
 
-    attach_function :xcb_get_xid_range_reply, [:pointer, XrbGetXIDRangeCookie, :pointer], :pointer
+    attach_function :xcb_get_xid_range_reply, [:pointer, GetXIDRangeCookie, :pointer], :pointer
 
         
-    class XrbGetXIDListRequest < FFI::Struct
+    class GetXIDListRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -72,12 +72,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbGetXIDListCookie < FFI::Struct
+    class GetXIDListCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_list, [:pointer,:uint8,:uint32,:uint32], XrbGetXIDListCookie
-    class XrbGetXIDListReply < FFI::Struct
+    attach_function :xcb_get_xid_list, [:pointer,:uint8,:uint32,:uint32], GetXIDListCookie
+    class GetXIDListReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -87,7 +87,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_xid_list_reply, [:pointer, XrbGetXIDListCookie, :pointer], :pointer
+    attach_function :xcb_get_xid_list_reply, [:pointer, GetXIDListCookie, :pointer], :pointer
 
         
   end

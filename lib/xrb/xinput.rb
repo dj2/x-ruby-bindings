@@ -10,120 +10,120 @@ class Xrb
     ffi_lib 'xinput'
     MAJOR_VERSION = 1
     MINOR_VERSION = 4
-    typedef :uint8, :xrb_keycode_t
-    class XrbKeyCodeIterator < FFI::Struct
+    typedef :uint8, :keycode_t
+    class KeyCodeIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_key_code_next, [:pointer], :void
-    attach_function :xcb_key_code_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_eventclass_t
-    class XrbEventClassIterator < FFI::Struct
+    attach_function :xcb_key_code_end, [:pointer], GenericIterator
+    typedef :uint32, :eventclass_t
+    class EventClassIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_event_class_next, [:pointer], :void
-    attach_function :xcb_event_class_end, [:pointer], XrbGenericIterator
-    XRB_VALUATOR_MODE_RELATIVE = 0
-    XRB_VALUATOR_MODE_ABSOLUTE = 1
-    XRB_PROPAGATE_MODE_ADD_TO_LIST = 0
-    XRB_PROPAGATE_MODE_DELETE_FROM_LIST = 1
-    XRB_DEVICE_USE_IS_X_POINTER = 0
-    XRB_DEVICE_USE_IS_X_KEYBOARD = 1
-    XRB_DEVICE_USE_IS_X_EXTENSION_DEVICE = 2
-    XRB_DEVICE_USE_IS_X_EXTENSION_KEYBOARD = 3
-    XRB_DEVICE_USE_IS_X_EXTENSION_POINTER = 4
-    class XrbDeviceInfo < FFI::Struct
+    attach_function :xcb_event_class_end, [:pointer], GenericIterator
+    VALUATOR_MODE_RELATIVE = 0
+    VALUATOR_MODE_ABSOLUTE = 1
+    PROPAGATE_MODE_ADD_TO_LIST = 0
+    PROPAGATE_MODE_DELETE_FROM_LIST = 1
+    DEVICE_USE_IS_X_POINTER = 0
+    DEVICE_USE_IS_X_KEYBOARD = 1
+    DEVICE_USE_IS_X_EXTENSION_DEVICE = 2
+    DEVICE_USE_IS_X_EXTENSION_KEYBOARD = 3
+    DEVICE_USE_IS_X_EXTENSION_POINTER = 4
+    class DeviceInfo < FFI::Struct
       layout \
-          :device_type, :xrb_atom_t,
+          :device_type, :atom_t,
           :device_id, :uint8,
           :num_class_info, :uint8,
           :device_use, :uint8,
           :pad1, [:uint8, 1]
     end
 
-    class XrbDeviceInfoIterator < FFI::Struct
+    class DeviceInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_info_next, [:pointer], :void
-    attach_function :xcb_device_info_end, [:pointer], XrbGenericIterator
-    XRB_INPUT_CLASS_KEY = 0
-    XRB_INPUT_CLASS_BUTTON = 1
-    XRB_INPUT_CLASS_VALUATOR = 2
-    XRB_INPUT_CLASS_FEEDBACK = 3
-    XRB_INPUT_CLASS_PROXIMITY = 4
-    XRB_INPUT_CLASS_FOCUS = 5
-    XRB_INPUT_CLASS_OTHER = 6
-    class XrbInputInfo < FFI::Struct
+    attach_function :xcb_device_info_end, [:pointer], GenericIterator
+    INPUT_CLASS_KEY = 0
+    INPUT_CLASS_BUTTON = 1
+    INPUT_CLASS_VALUATOR = 2
+    INPUT_CLASS_FEEDBACK = 3
+    INPUT_CLASS_PROXIMITY = 4
+    INPUT_CLASS_FOCUS = 5
+    INPUT_CLASS_OTHER = 6
+    class InputInfo < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8
     end
 
-    class XrbInputInfoIterator < FFI::Struct
+    class InputInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_input_info_next, [:pointer], :void
-    attach_function :xcb_input_info_end, [:pointer], XrbGenericIterator
-    class XrbKeyInfo < FFI::Struct
+    attach_function :xcb_input_info_end, [:pointer], GenericIterator
+    class KeyInfo < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
-          :min_keycode, :xrb_keycode_t,
-          :max_keycode, :xrb_keycode_t,
+          :min_keycode, :keycode_t,
+          :max_keycode, :keycode_t,
           :num_keys, :uint16,
           :pad1, [:uint8, 2]
     end
 
-    class XrbKeyInfoIterator < FFI::Struct
+    class KeyInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_key_info_next, [:pointer], :void
-    attach_function :xcb_key_info_end, [:pointer], XrbGenericIterator
-    class XrbButtonInfo < FFI::Struct
+    attach_function :xcb_key_info_end, [:pointer], GenericIterator
+    class ButtonInfo < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
           :num_buttons, :uint16
     end
 
-    class XrbButtonInfoIterator < FFI::Struct
+    class ButtonInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_button_info_next, [:pointer], :void
-    attach_function :xcb_button_info_end, [:pointer], XrbGenericIterator
-    class XrbAxisInfo < FFI::Struct
+    attach_function :xcb_button_info_end, [:pointer], GenericIterator
+    class AxisInfo < FFI::Struct
       layout \
           :resolution, :uint32,
           :minimum, :int32,
           :maximum, :int32
     end
 
-    class XrbAxisInfoIterator < FFI::Struct
+    class AxisInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_axis_info_next, [:pointer], :void
-    attach_function :xcb_axis_info_end, [:pointer], XrbGenericIterator
-    class XrbValuatorInfo < FFI::Struct
+    attach_function :xcb_axis_info_end, [:pointer], GenericIterator
+    class ValuatorInfo < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
@@ -132,72 +132,72 @@ class Xrb
           :motion_size, :uint32
     end
 
-    class XrbValuatorInfoIterator < FFI::Struct
+    class ValuatorInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_valuator_info_next, [:pointer], :void
-    attach_function :xcb_valuator_info_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_valuator_info_end, [:pointer], GenericIterator
     attach_function :xcb_valuator_info_sizeof, [:pointer], :int
-    attach_function :xcb_valuator_info_axes_iterator, [:pointer], XrbValuatorInfoIterator
+    attach_function :xcb_valuator_info_axes_iterator, [:pointer], ValuatorInfoIterator
     attach_function :xcb_valuator_info_axes_length, [:pointer], :int
-    class XrbInputClassInfo < FFI::Struct
+    class InputClassInfo < FFI::Struct
       layout \
           :class_id, :uint8,
           :event_type_base, :uint8
     end
 
-    class XrbInputClassInfoIterator < FFI::Struct
+    class InputClassInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_input_class_info_next, [:pointer], :void
-    attach_function :xcb_input_class_info_end, [:pointer], XrbGenericIterator
-    class XrbDeviceTimeCoord < FFI::Struct
+    attach_function :xcb_input_class_info_end, [:pointer], GenericIterator
+    class DeviceTimeCoord < FFI::Struct
       layout \
-          :time, :xrb_timestamp_t
+          :time, :timestamp_t
     end
 
-    class XrbDeviceTimeCoordIterator < FFI::Struct
+    class DeviceTimeCoordIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_time_coord_next, [:pointer], :void
-    attach_function :xcb_device_time_coord_end, [:pointer], XrbGenericIterator
-    XRB_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE = 1
-    XRB_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE = 2
-    XRB_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE = 3
-    XRB_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES = 4
-    XRB_DEVICE_INPUT_MODE_ASYNC_ALL = 5
-    XRB_DEVICE_INPUT_MODE_SYNC_ALL = 6
-    XRB_FEEDBACK_CLASS_KEYBOARD = 1
-    XRB_FEEDBACK_CLASS_POINTER = 2
-    XRB_FEEDBACK_CLASS_STRING = 3
-    XRB_FEEDBACK_CLASS_INTEGER = 4
-    XRB_FEEDBACK_CLASS_LED = 5
-    XRB_FEEDBACK_CLASS_BELL = 6
-    class XrbFeedbackState < FFI::Struct
+    attach_function :xcb_device_time_coord_end, [:pointer], GenericIterator
+    DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE = 1
+    DEVICE_INPUT_MODE_SYNC_THIS_DEVICE = 2
+    DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE = 3
+    DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES = 4
+    DEVICE_INPUT_MODE_ASYNC_ALL = 5
+    DEVICE_INPUT_MODE_SYNC_ALL = 6
+    FEEDBACK_CLASS_KEYBOARD = 1
+    FEEDBACK_CLASS_POINTER = 2
+    FEEDBACK_CLASS_STRING = 3
+    FEEDBACK_CLASS_INTEGER = 4
+    FEEDBACK_CLASS_LED = 5
+    FEEDBACK_CLASS_BELL = 6
+    class FeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
           :len, :uint16
     end
 
-    class XrbFeedbackStateIterator < FFI::Struct
+    class FeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_feedback_state_next, [:pointer], :void
-    attach_function :xcb_feedback_state_end, [:pointer], XrbGenericIterator
-    class XrbKbdFeedbackState < FFI::Struct
+    attach_function :xcb_feedback_state_end, [:pointer], GenericIterator
+    class KbdFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -213,18 +213,18 @@ class Xrb
           :auto_repeats_len, [:uint32 , 32]
     end
 
-    class XrbKbdFeedbackStateIterator < FFI::Struct
+    class KbdFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_kbd_feedback_state_next, [:pointer], :void
-    attach_function :xcb_kbd_feedback_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_kbd_feedback_state_end, [:pointer], GenericIterator
     attach_function :xcb_kbd_feedback_state_sizeof, [:pointer], :int
     attach_function :xcb_kbd_feedback_state_auto_repeats, [:pointer], :pointer
     attach_function :xcb_kbd_feedback_state_auto_repeats_length, [:pointer], :int
-    class XrbPtrFeedbackState < FFI::Struct
+    class PtrFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -235,15 +235,15 @@ class Xrb
           :threshold, :uint16
     end
 
-    class XrbPtrFeedbackStateIterator < FFI::Struct
+    class PtrFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_ptr_feedback_state_next, [:pointer], :void
-    attach_function :xcb_ptr_feedback_state_end, [:pointer], XrbGenericIterator
-    class XrbIntegerFeedbackState < FFI::Struct
+    attach_function :xcb_ptr_feedback_state_end, [:pointer], GenericIterator
+    class IntegerFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -253,15 +253,15 @@ class Xrb
           :max_value, :int32
     end
 
-    class XrbIntegerFeedbackStateIterator < FFI::Struct
+    class IntegerFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_integer_feedback_state_next, [:pointer], :void
-    attach_function :xcb_integer_feedback_state_end, [:pointer], XrbGenericIterator
-    class XrbStringFeedbackState < FFI::Struct
+    attach_function :xcb_integer_feedback_state_end, [:pointer], GenericIterator
+    class StringFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -270,18 +270,18 @@ class Xrb
           :num_keysyms, :uint16
     end
 
-    class XrbStringFeedbackStateIterator < FFI::Struct
+    class StringFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_string_feedback_state_next, [:pointer], :void
-    attach_function :xcb_string_feedback_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_string_feedback_state_end, [:pointer], GenericIterator
     attach_function :xcb_string_feedback_state_sizeof, [:pointer], :int
     attach_function :xcb_string_feedback_state_keysyms, [:pointer], :pointer
     attach_function :xcb_string_feedback_state_keysyms_length, [:pointer], :int
-    class XrbBellFeedbackState < FFI::Struct
+    class BellFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -292,15 +292,15 @@ class Xrb
           :duration, :uint16
     end
 
-    class XrbBellFeedbackStateIterator < FFI::Struct
+    class BellFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_bell_feedback_state_next, [:pointer], :void
-    attach_function :xcb_bell_feedback_state_end, [:pointer], XrbGenericIterator
-    class XrbLedFeedbackState < FFI::Struct
+    attach_function :xcb_bell_feedback_state_end, [:pointer], GenericIterator
+    class LedFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -309,35 +309,35 @@ class Xrb
           :led_values, :uint32
     end
 
-    class XrbLedFeedbackStateIterator < FFI::Struct
+    class LedFeedbackStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_led_feedback_state_next, [:pointer], :void
-    attach_function :xcb_led_feedback_state_end, [:pointer], XrbGenericIterator
-    class XrbFeedbackCtl < FFI::Struct
+    attach_function :xcb_led_feedback_state_end, [:pointer], GenericIterator
+    class FeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
           :len, :uint16
     end
 
-    class XrbFeedbackCtlIterator < FFI::Struct
+    class FeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbKbdFeedbackCtl < FFI::Struct
+    attach_function :xcb_feedback_ctl_end, [:pointer], GenericIterator
+    class KbdFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
           :len, :uint16,
-          :key, :xrb_keycode_t,
+          :key, :keycode_t,
           :auto_repeat_mode, :uint8,
           :key_click_percent, :int8,
           :bell_percent, :int8,
@@ -347,15 +347,15 @@ class Xrb
           :led_values, :uint32
     end
 
-    class XrbKbdFeedbackCtlIterator < FFI::Struct
+    class KbdFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_kbd_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_kbd_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbPtrFeedbackCtl < FFI::Struct
+    attach_function :xcb_kbd_feedback_ctl_end, [:pointer], GenericIterator
+    class PtrFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -366,15 +366,15 @@ class Xrb
           :threshold, :int16
     end
 
-    class XrbPtrFeedbackCtlIterator < FFI::Struct
+    class PtrFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_ptr_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_ptr_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbIntegerFeedbackCtl < FFI::Struct
+    attach_function :xcb_ptr_feedback_ctl_end, [:pointer], GenericIterator
+    class IntegerFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -382,15 +382,15 @@ class Xrb
           :int_to_display, :int32
     end
 
-    class XrbIntegerFeedbackCtlIterator < FFI::Struct
+    class IntegerFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_integer_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_integer_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbStringFeedbackCtl < FFI::Struct
+    attach_function :xcb_integer_feedback_ctl_end, [:pointer], GenericIterator
+    class StringFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -399,18 +399,18 @@ class Xrb
           :num_keysyms, :uint16
     end
 
-    class XrbStringFeedbackCtlIterator < FFI::Struct
+    class StringFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_string_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_string_feedback_ctl_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_string_feedback_ctl_end, [:pointer], GenericIterator
     attach_function :xcb_string_feedback_ctl_sizeof, [:pointer], :int
     attach_function :xcb_string_feedback_ctl_keysyms, [:pointer], :pointer
     attach_function :xcb_string_feedback_ctl_keysyms_length, [:pointer], :int
-    class XrbBellFeedbackCtl < FFI::Struct
+    class BellFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -421,15 +421,15 @@ class Xrb
           :duration, :int16
     end
 
-    class XrbBellFeedbackCtlIterator < FFI::Struct
+    class BellFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_bell_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_bell_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbLedFeedbackCtl < FFI::Struct
+    attach_function :xcb_bell_feedback_ctl_end, [:pointer], GenericIterator
+    class LedFeedbackCtl < FFI::Struct
       layout \
           :class_id, :uint8,
           :id, :uint8,
@@ -438,30 +438,30 @@ class Xrb
           :led_values, :uint32
     end
 
-    class XrbLedFeedbackCtlIterator < FFI::Struct
+    class LedFeedbackCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_led_feedback_ctl_next, [:pointer], :void
-    attach_function :xcb_led_feedback_ctl_end, [:pointer], XrbGenericIterator
-    class XrbInputState < FFI::Struct
+    attach_function :xcb_led_feedback_ctl_end, [:pointer], GenericIterator
+    class InputState < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
           :num_items, :uint8
     end
 
-    class XrbInputStateIterator < FFI::Struct
+    class InputStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_input_state_next, [:pointer], :void
-    attach_function :xcb_input_state_end, [:pointer], XrbGenericIterator
-    class XrbKeyState < FFI::Struct
+    attach_function :xcb_input_state_end, [:pointer], GenericIterator
+    class KeyState < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
@@ -470,18 +470,18 @@ class Xrb
           :keys_len, [:uint32 , 32]
     end
 
-    class XrbKeyStateIterator < FFI::Struct
+    class KeyStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_key_state_next, [:pointer], :void
-    attach_function :xcb_key_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_key_state_end, [:pointer], GenericIterator
     attach_function :xcb_key_state_sizeof, [:pointer], :int
     attach_function :xcb_key_state_keys, [:pointer], :pointer
     attach_function :xcb_key_state_keys_length, [:pointer], :int
-    class XrbButtonState < FFI::Struct
+    class ButtonState < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
@@ -490,18 +490,18 @@ class Xrb
           :buttons_len, [:uint32 , 32]
     end
 
-    class XrbButtonStateIterator < FFI::Struct
+    class ButtonStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_button_state_next, [:pointer], :void
-    attach_function :xcb_button_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_button_state_end, [:pointer], GenericIterator
     attach_function :xcb_button_state_sizeof, [:pointer], :int
     attach_function :xcb_button_state_buttons, [:pointer], :pointer
     attach_function :xcb_button_state_buttons_length, [:pointer], :int
-    class XrbValuatorState < FFI::Struct
+    class ValuatorState < FFI::Struct
       layout \
           :class_id, :uint8,
           :len, :uint8,
@@ -509,46 +509,46 @@ class Xrb
           :mode, :uint8
     end
 
-    class XrbValuatorStateIterator < FFI::Struct
+    class ValuatorStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_valuator_state_next, [:pointer], :void
-    attach_function :xcb_valuator_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_valuator_state_end, [:pointer], GenericIterator
     attach_function :xcb_valuator_state_sizeof, [:pointer], :int
     attach_function :xcb_valuator_state_valuators, [:pointer], :pointer
     attach_function :xcb_valuator_state_valuators_length, [:pointer], :int
-    class XrbDeviceState < FFI::Struct
+    class DeviceState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16
     end
 
-    class XrbDeviceStateIterator < FFI::Struct
+    class DeviceStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_state_next, [:pointer], :void
-    attach_function :xcb_device_state_end, [:pointer], XrbGenericIterator
-    class XrbDeviceResolutionState < FFI::Struct
+    attach_function :xcb_device_state_end, [:pointer], GenericIterator
+    class DeviceResolutionState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
           :num_valuators, :uint32
     end
 
-    class XrbDeviceResolutionStateIterator < FFI::Struct
+    class DeviceResolutionStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_resolution_state_next, [:pointer], :void
-    attach_function :xcb_device_resolution_state_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_device_resolution_state_end, [:pointer], GenericIterator
     attach_function :xcb_device_resolution_state_sizeof, [:pointer], :int
     attach_function :xcb_device_resolution_state_resolution_values, [:pointer], :pointer
     attach_function :xcb_device_resolution_state_resolution_values_length, [:pointer], :int
@@ -556,7 +556,7 @@ class Xrb
     attach_function :xcb_device_resolution_state_resolution_min_length, [:pointer], :int
     attach_function :xcb_device_resolution_state_resolution_max, [:pointer], :pointer
     attach_function :xcb_device_resolution_state_resolution_max_length, [:pointer], :int
-    class XrbDeviceAbsCalibState < FFI::Struct
+    class DeviceAbsCalibState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -570,15 +570,15 @@ class Xrb
           :button_threshold, :uint32
     end
 
-    class XrbDeviceAbsCalibStateIterator < FFI::Struct
+    class DeviceAbsCalibStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_abs_calib_state_next, [:pointer], :void
-    attach_function :xcb_device_abs_calib_state_end, [:pointer], XrbGenericIterator
-    class XrbDeviceAbsAreaState < FFI::Struct
+    attach_function :xcb_device_abs_calib_state_end, [:pointer], GenericIterator
+    class DeviceAbsAreaState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -590,15 +590,15 @@ class Xrb
           :following, :uint32
     end
 
-    class XrbDeviceAbsAreaStateIterator < FFI::Struct
+    class DeviceAbsAreaStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_abs_area_state_next, [:pointer], :void
-    attach_function :xcb_device_abs_area_state_end, [:pointer], XrbGenericIterator
-    class XrbDeviceCoreState < FFI::Struct
+    attach_function :xcb_device_abs_area_state_end, [:pointer], GenericIterator
+    class DeviceCoreState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -607,15 +607,15 @@ class Xrb
           :pad1, [:uint8, 2]
     end
 
-    class XrbDeviceCoreStateIterator < FFI::Struct
+    class DeviceCoreStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_core_state_next, [:pointer], :void
-    attach_function :xcb_device_core_state_end, [:pointer], XrbGenericIterator
-    class XrbDeviceEnableState < FFI::Struct
+    attach_function :xcb_device_core_state_end, [:pointer], GenericIterator
+    class DeviceEnableState < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -623,29 +623,29 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbDeviceEnableStateIterator < FFI::Struct
+    class DeviceEnableStateIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_enable_state_next, [:pointer], :void
-    attach_function :xcb_device_enable_state_end, [:pointer], XrbGenericIterator
-    class XrbDeviceCtl < FFI::Struct
+    attach_function :xcb_device_enable_state_end, [:pointer], GenericIterator
+    class DeviceCtl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16
     end
 
-    class XrbDeviceCtlIterator < FFI::Struct
+    class DeviceCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_ctl_next, [:pointer], :void
-    attach_function :xcb_device_ctl_end, [:pointer], XrbGenericIterator
-    class XrbDeviceResolutionCtl < FFI::Struct
+    attach_function :xcb_device_ctl_end, [:pointer], GenericIterator
+    class DeviceResolutionCtl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -653,18 +653,18 @@ class Xrb
           :num_valuators, :uint8
     end
 
-    class XrbDeviceResolutionCtlIterator < FFI::Struct
+    class DeviceResolutionCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_resolution_ctl_next, [:pointer], :void
-    attach_function :xcb_device_resolution_ctl_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_device_resolution_ctl_end, [:pointer], GenericIterator
     attach_function :xcb_device_resolution_ctl_sizeof, [:pointer], :int
     attach_function :xcb_device_resolution_ctl_resolution_values, [:pointer], :pointer
     attach_function :xcb_device_resolution_ctl_resolution_values_length, [:pointer], :int
-    class XrbDeviceAbsCalibCtl < FFI::Struct
+    class DeviceAbsCalibCtl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -678,15 +678,15 @@ class Xrb
           :button_threshold, :uint32
     end
 
-    class XrbDeviceAbsCalibCtlIterator < FFI::Struct
+    class DeviceAbsCalibCtlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_abs_calib_ctl_next, [:pointer], :void
-    attach_function :xcb_device_abs_calib_ctl_end, [:pointer], XrbGenericIterator
-    class XrbDeviceAbsAreaCtrl < FFI::Struct
+    attach_function :xcb_device_abs_calib_ctl_end, [:pointer], GenericIterator
+    class DeviceAbsAreaCtrl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -698,15 +698,15 @@ class Xrb
           :following, :uint32
     end
 
-    class XrbDeviceAbsAreaCtrlIterator < FFI::Struct
+    class DeviceAbsAreaCtrlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_abs_area_ctrl_next, [:pointer], :void
-    attach_function :xcb_device_abs_area_ctrl_end, [:pointer], XrbGenericIterator
-    class XrbDeviceCoreCtrl < FFI::Struct
+    attach_function :xcb_device_abs_area_ctrl_end, [:pointer], GenericIterator
+    class DeviceCoreCtrl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -714,15 +714,15 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbDeviceCoreCtrlIterator < FFI::Struct
+    class DeviceCoreCtrlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_core_ctrl_next, [:pointer], :void
-    attach_function :xcb_device_core_ctrl_end, [:pointer], XrbGenericIterator
-    class XrbDeviceEnableCtrl < FFI::Struct
+    attach_function :xcb_device_core_ctrl_end, [:pointer], GenericIterator
+    class DeviceEnableCtrl < FFI::Struct
       layout \
           :control_id, :uint16,
           :len, :uint16,
@@ -730,15 +730,15 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbDeviceEnableCtrlIterator < FFI::Struct
+    class DeviceEnableCtrlIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_device_enable_ctrl_next, [:pointer], :void
-    attach_function :xcb_device_enable_ctrl_end, [:pointer], XrbGenericIterator
-    class XrbDeviceValuatorEvent < FFI::Struct
+    attach_function :xcb_device_enable_ctrl_end, [:pointer], GenericIterator
+    class DeviceValuatorEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
@@ -748,14 +748,14 @@ class Xrb
           :valuators_len, [:uint32 , 6]
     end
 
-    class XrbDeviceKeyPressEvent < FFI::Struct
+    class DeviceKeyPressEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -765,14 +765,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbDeviceKeyReleaseEvent < FFI::Struct
+    class DeviceKeyReleaseEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -782,14 +782,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbDeviceButtonPressEvent < FFI::Struct
+    class DeviceButtonPressEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -799,14 +799,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbDeviceButtonReleaseEvent < FFI::Struct
+    class DeviceButtonReleaseEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -816,14 +816,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbDeviceMotionNotifyEvent < FFI::Struct
+    class DeviceMotionNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -833,14 +833,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbProximityInEvent < FFI::Struct
+    class ProximityInEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -850,14 +850,14 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbProximityOutEvent < FFI::Struct
+    class ProximityOutEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :root, :xrb_window_t,
-          :event, :xrb_window_t,
-          :child, :xrb_window_t,
+          :time, :timestamp_t,
+          :root, :window_t,
+          :event, :window_t,
+          :child, :window_t,
           :root_x, :int16,
           :root_y, :int16,
           :event_x, :int16,
@@ -867,33 +867,33 @@ class Xrb
           :device_id, :uint8
     end
 
-    class XrbFocusInEvent < FFI::Struct
+    class FocusInEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :window, :xrb_window_t,
+          :time, :timestamp_t,
+          :window, :window_t,
           :mode, :uint8,
           :device_id, :uint8,
           :pad1, [:uint8, 18]
     end
 
-    class XrbFocusOutEvent < FFI::Struct
+    class FocusOutEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :detail, :uint8,
-          :time, :xrb_timestamp_t,
-          :window, :xrb_window_t,
+          :time, :timestamp_t,
+          :window, :window_t,
           :mode, :uint8,
           :device_id, :uint8,
           :pad1, [:uint8, 18]
     end
 
-    class XrbDeviceStateNotifyEvent < FFI::Struct
+    class DeviceStateNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :num_keys, :uint8,
           :num_buttons, :uint8,
           :num_valuators, :uint8,
@@ -903,88 +903,88 @@ class Xrb
           :valuators_len, [:uint32 , 3]
     end
 
-    class XrbDeviceMappingNotifyEvent < FFI::Struct
+    class DeviceMappingNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
           :request, :uint8,
-          :first_keycode, :xrb_keycode_t,
+          :first_keycode, :keycode_t,
           :count, :uint8,
           :pad1, [:uint8, 1],
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :pad2, [:uint8, 20]
     end
 
-    class XrbChangeDeviceNotifyEvent < FFI::Struct
+    class ChangeDeviceNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :request, :uint8,
           :pad1, [:uint8, 23]
     end
 
-    class XrbDeviceKeyStateNotifyEvent < FFI::Struct
+    class DeviceKeyStateNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
           :keys_len, [:uint32 , 28]
     end
 
-    class XrbDeviceButtonStateNotifyEvent < FFI::Struct
+    class DeviceButtonStateNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :device_id, :uint8,
           :buttons_len, [:uint32 , 28]
     end
 
-    class XrbDevicePresenceNotifyEvent < FFI::Struct
+    class DevicePresenceNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :devchange, :uint8,
           :device_id, :uint8,
           :control, :uint16,
           :pad2, [:uint8, 20]
     end
 
-    class XrbDeviceError < FFI::Struct
+    class DeviceError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbEventError < FFI::Struct
+    class EventError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbModeError < FFI::Struct
+    class ModeError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbDeviceBusyError < FFI::Struct
+    class DeviceBusyError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbClassError < FFI::Struct
+    class ClassError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbGetExtensionVersionRequest < FFI::Struct
+    class GetExtensionVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -995,12 +995,12 @@ class Xrb
           :pad2, [:uint8, 19]
     end
 
-    class XrbGetExtensionVersionCookie < FFI::Struct
+    class GetExtensionVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_extension_version, [:pointer,:uint8,:uint16,:uint16,:bool], XrbGetExtensionVersionCookie
-    class XrbGetExtensionVersionReply < FFI::Struct
+    attach_function :xcb_get_extension_version, [:pointer,:uint8,:uint16,:uint16,:bool], GetExtensionVersionCookie
+    class GetExtensionVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1012,10 +1012,10 @@ class Xrb
           :pad2, [:uint8, 19]
     end
 
-    attach_function :xcb_get_extension_version_reply, [:pointer, XrbGetExtensionVersionCookie, :pointer], :pointer
+    attach_function :xcb_get_extension_version_reply, [:pointer, GetExtensionVersionCookie, :pointer], :pointer
 
         
-    class XrbListInputDevicesRequest < FFI::Struct
+    class ListInputDevicesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1024,12 +1024,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbListInputDevicesCookie < FFI::Struct
+    class ListInputDevicesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_input_devices, [:pointer,:uint8,:uint8,:uint32], XrbListInputDevicesCookie
-    class XrbListInputDevicesReply < FFI::Struct
+    attach_function :xcb_list_input_devices, [:pointer,:uint8,:uint8,:uint32], ListInputDevicesCookie
+    class ListInputDevicesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1039,10 +1039,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_list_input_devices_reply, [:pointer, XrbListInputDevicesCookie, :pointer], :pointer
+    attach_function :xcb_list_input_devices_reply, [:pointer, ListInputDevicesCookie, :pointer], :pointer
 
         
-    class XrbOpenDeviceRequest < FFI::Struct
+    class OpenDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1051,12 +1051,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbOpenDeviceCookie < FFI::Struct
+    class OpenDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_open_device, [:pointer,:uint8,:uint8,:uint32], XrbOpenDeviceCookie
-    class XrbOpenDeviceReply < FFI::Struct
+    attach_function :xcb_open_device, [:pointer,:uint8,:uint8,:uint32], OpenDeviceCookie
+    class OpenDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1066,10 +1066,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_open_device_reply, [:pointer, XrbOpenDeviceCookie, :pointer], :pointer
+    attach_function :xcb_open_device_reply, [:pointer, OpenDeviceCookie, :pointer], :pointer
 
         
-    class XrbCloseDeviceRequest < FFI::Struct
+    class CloseDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1078,13 +1078,13 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbCloseDeviceCookie < FFI::Struct
+    class CloseDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_close_device_checked, [:pointer,:uint8,:uint8], XrbCloseDeviceCookie
-    attach_function :xcb_close_device, [:pointer,:uint8,:uint8], XrbCloseDeviceCookie
-    class XrbSetDeviceModeRequest < FFI::Struct
+    attach_function :xcb_close_device_checked, [:pointer,:uint8,:uint8], CloseDeviceCookie
+    attach_function :xcb_close_device, [:pointer,:uint8,:uint8], CloseDeviceCookie
+    class SetDeviceModeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1093,12 +1093,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbSetDeviceModeCookie < FFI::Struct
+    class SetDeviceModeCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_mode, [:pointer,:uint8,:uint8], XrbSetDeviceModeCookie
-    class XrbSetDeviceModeReply < FFI::Struct
+    attach_function :xcb_set_device_mode, [:pointer,:uint8,:uint8], SetDeviceModeCookie
+    class SetDeviceModeReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1108,26 +1108,26 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_set_device_mode_reply, [:pointer, XrbSetDeviceModeCookie, :pointer], :pointer
+    attach_function :xcb_set_device_mode_reply, [:pointer, SetDeviceModeCookie, :pointer], :pointer
 
         
-    class XrbSelectExtensionEventRequest < FFI::Struct
+    class SelectExtensionEventRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :num_classes, :uint16,
           :pad1, [:uint8, 2]
     end
 
-    class XrbSelectExtensionEventCookie < FFI::Struct
+    class SelectExtensionEventCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_extension_event_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
-    attach_function :xcb_select_extension_event, [:pointer,:uint8,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
-    class XrbGetSelectedExtensionEventsRequest < FFI::Struct
+    attach_function :xcb_select_extension_event_checked, [:pointer,:uint8,:window_t,:uint16,:uint32], SelectExtensionEventCookie
+    attach_function :xcb_select_extension_event, [:pointer,:uint8,:window_t,:uint16,:uint32], SelectExtensionEventCookie
+    class GetSelectedExtensionEventsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1137,12 +1137,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbGetSelectedExtensionEventsCookie < FFI::Struct
+    class GetSelectedExtensionEventsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selected_extension_events, [:pointer,:uint8,:uint16,:uint16,:uint32,:uint32], XrbGetSelectedExtensionEventsCookie
-    class XrbGetSelectedExtensionEventsReply < FFI::Struct
+    attach_function :xcb_get_selected_extension_events, [:pointer,:uint8,:uint16,:uint16,:uint32,:uint32], GetSelectedExtensionEventsCookie
+    class GetSelectedExtensionEventsReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1153,27 +1153,27 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_selected_extension_events_reply, [:pointer, XrbGetSelectedExtensionEventsCookie, :pointer], :pointer
+    attach_function :xcb_get_selected_extension_events_reply, [:pointer, GetSelectedExtensionEventsCookie, :pointer], :pointer
 
         
-    class XrbChangeDeviceDontPropagateListRequest < FFI::Struct
+    class ChangeDeviceDontPropagateListRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :num_classes, :uint16,
           :mode, :uint8,
           :pad1, [:uint8, 1]
     end
 
-    class XrbChangeDeviceDontPropagateListCookie < FFI::Struct
+    class ChangeDeviceDontPropagateListCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_device_dont_propagate_list_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
-    attach_function :xcb_change_device_dont_propagate_list, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
-    class XrbGetDeviceDontPropagateListRequest < FFI::Struct
+    attach_function :xcb_change_device_dont_propagate_list_checked, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint32], ChangeDeviceDontPropagateListCookie
+    attach_function :xcb_change_device_dont_propagate_list, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint32], ChangeDeviceDontPropagateListCookie
+    class GetDeviceDontPropagateListRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1182,12 +1182,12 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    class XrbGetDeviceDontPropagateListCookie < FFI::Struct
+    class GetDeviceDontPropagateListCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_dont_propagate_list, [:pointer,:uint8,:uint16,:uint32], XrbGetDeviceDontPropagateListCookie
-    class XrbGetDeviceDontPropagateListReply < FFI::Struct
+    attach_function :xcb_get_device_dont_propagate_list, [:pointer,:uint8,:uint16,:uint32], GetDeviceDontPropagateListCookie
+    class GetDeviceDontPropagateListReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1197,10 +1197,10 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_get_device_dont_propagate_list_reply, [:pointer, XrbGetDeviceDontPropagateListCookie, :pointer], :pointer
+    attach_function :xcb_get_device_dont_propagate_list_reply, [:pointer, GetDeviceDontPropagateListCookie, :pointer], :pointer
 
         
-    class XrbGetDeviceMotionEventsRequest < FFI::Struct
+    class GetDeviceMotionEventsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1211,12 +1211,12 @@ class Xrb
           :pad2, [:uint8, 18]
     end
 
-    class XrbGetDeviceMotionEventsCookie < FFI::Struct
+    class GetDeviceMotionEventsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_motion_events, [:pointer,:uint8,:uint32,:uint8,:uint8], XrbGetDeviceMotionEventsCookie
-    class XrbGetDeviceMotionEventsReply < FFI::Struct
+    attach_function :xcb_get_device_motion_events, [:pointer,:uint8,:uint32,:uint8,:uint8], GetDeviceMotionEventsCookie
+    class GetDeviceMotionEventsReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1228,10 +1228,10 @@ class Xrb
           :pad2, [:uint8, 18]
     end
 
-    attach_function :xcb_get_device_motion_events_reply, [:pointer, XrbGetDeviceMotionEventsCookie, :pointer], :pointer
+    attach_function :xcb_get_device_motion_events_reply, [:pointer, GetDeviceMotionEventsCookie, :pointer], :pointer
 
         
-    class XrbChangeKeyboardDeviceRequest < FFI::Struct
+    class ChangeKeyboardDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1240,12 +1240,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbChangeKeyboardDeviceCookie < FFI::Struct
+    class ChangeKeyboardDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_keyboard_device, [:pointer,:uint8,:uint8], XrbChangeKeyboardDeviceCookie
-    class XrbChangeKeyboardDeviceReply < FFI::Struct
+    attach_function :xcb_change_keyboard_device, [:pointer,:uint8,:uint8], ChangeKeyboardDeviceCookie
+    class ChangeKeyboardDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1255,10 +1255,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_change_keyboard_device_reply, [:pointer, XrbChangeKeyboardDeviceCookie, :pointer], :pointer
+    attach_function :xcb_change_keyboard_device_reply, [:pointer, ChangeKeyboardDeviceCookie, :pointer], :pointer
 
         
-    class XrbChangePointerDeviceRequest < FFI::Struct
+    class ChangePointerDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1267,12 +1267,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbChangePointerDeviceCookie < FFI::Struct
+    class ChangePointerDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_pointer_device, [:pointer,:uint8,:uint8], XrbChangePointerDeviceCookie
-    class XrbChangePointerDeviceReply < FFI::Struct
+    attach_function :xcb_change_pointer_device, [:pointer,:uint8,:uint8], ChangePointerDeviceCookie
+    class ChangePointerDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1282,10 +1282,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_change_pointer_device_reply, [:pointer, XrbChangePointerDeviceCookie, :pointer], :pointer
+    attach_function :xcb_change_pointer_device_reply, [:pointer, ChangePointerDeviceCookie, :pointer], :pointer
 
         
-    class XrbGrabDeviceRequest < FFI::Struct
+    class GrabDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1294,12 +1294,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbGrabDeviceCookie < FFI::Struct
+    class GrabDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device, [:pointer,:uint8,:uint8], XrbGrabDeviceCookie
-    class XrbGrabDeviceReply < FFI::Struct
+    attach_function :xcb_grab_device, [:pointer,:uint8,:uint8], GrabDeviceCookie
+    class GrabDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1309,30 +1309,30 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_grab_device_reply, [:pointer, XrbGrabDeviceCookie, :pointer], :pointer
+    attach_function :xcb_grab_device_reply, [:pointer, GrabDeviceCookie, :pointer], :pointer
 
         
-    class XrbUngrabDeviceRequest < FFI::Struct
+    class UngrabDeviceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :device_id, :uint8
     end
 
-    class XrbUngrabDeviceCookie < FFI::Struct
+    class UngrabDeviceCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_checked, [:pointer,:uint8,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
-    attach_function :xcb_ungrab_device, [:pointer,:uint8,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
-    class XrbGrabDeviceKeyRequest < FFI::Struct
+    attach_function :xcb_ungrab_device_checked, [:pointer,:uint8,:timestamp_t,:uint8], UngrabDeviceCookie
+    attach_function :xcb_ungrab_device, [:pointer,:uint8,:timestamp_t,:uint8], UngrabDeviceCookie
+    class GrabDeviceKeyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :grab_window, :xrb_window_t,
+          :grab_window, :window_t,
           :num_classes, :uint16,
           :modifiers, :uint16,
           :modifier_device, :uint8,
@@ -1344,36 +1344,36 @@ class Xrb
           :pad1, [:uint8, 2]
     end
 
-    class XrbGrabDeviceKeyCookie < FFI::Struct
+    class GrabDeviceKeyCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device_key_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
-    attach_function :xcb_grab_device_key, [:pointer,:uint8,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
-    class XrbUngrabDeviceKeyRequest < FFI::Struct
+    attach_function :xcb_grab_device_key_checked, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], GrabDeviceKeyCookie
+    attach_function :xcb_grab_device_key, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], GrabDeviceKeyCookie
+    class UngrabDeviceKeyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :grabWindow, :xrb_window_t,
+          :grabWindow, :window_t,
           :modifiers, :uint16,
           :modifier_device, :uint8,
           :key, :uint8,
           :grabbed_device, :uint8
     end
 
-    class XrbUngrabDeviceKeyCookie < FFI::Struct
+    class UngrabDeviceKeyCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_key_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
-    attach_function :xcb_ungrab_device_key, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
-    class XrbGrabDeviceButtonRequest < FFI::Struct
+    attach_function :xcb_ungrab_device_key_checked, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint8,:uint8], UngrabDeviceKeyCookie
+    attach_function :xcb_ungrab_device_key, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint8,:uint8], UngrabDeviceKeyCookie
+    class GrabDeviceButtonRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :grab_window, :xrb_window_t,
+          :grab_window, :window_t,
           :grabbed_device, :uint8,
           :modifier_device, :uint8,
           :num_classes, :uint16,
@@ -1385,95 +1385,95 @@ class Xrb
           :pad1, [:uint8, 2]
     end
 
-    class XrbGrabDeviceButtonCookie < FFI::Struct
+    class GrabDeviceButtonCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device_button_checked, [:pointer,:uint8,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
-    attach_function :xcb_grab_device_button, [:pointer,:uint8,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
-    class XrbUngrabDeviceButtonRequest < FFI::Struct
+    attach_function :xcb_grab_device_button_checked, [:pointer,:uint8,:window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], GrabDeviceButtonCookie
+    attach_function :xcb_grab_device_button, [:pointer,:uint8,:window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], GrabDeviceButtonCookie
+    class UngrabDeviceButtonRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :grab_window, :xrb_window_t,
+          :grab_window, :window_t,
           :modifiers, :uint16,
           :modifier_device, :uint8,
           :button, :uint8,
           :grabbed_device, :uint8
     end
 
-    class XrbUngrabDeviceButtonCookie < FFI::Struct
+    class UngrabDeviceButtonCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_button_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
-    attach_function :xcb_ungrab_device_button, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
-    class XrbAllowDeviceEventsRequest < FFI::Struct
+    attach_function :xcb_ungrab_device_button_checked, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint8,:uint8], UngrabDeviceButtonCookie
+    attach_function :xcb_ungrab_device_button, [:pointer,:uint8,:window_t,:uint16,:uint8,:uint8,:uint8], UngrabDeviceButtonCookie
+    class AllowDeviceEventsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :time, :xrb_timestamp_t,
+          :time, :timestamp_t,
           :mode, :uint8,
           :device_id, :uint8
     end
 
-    class XrbAllowDeviceEventsCookie < FFI::Struct
+    class AllowDeviceEventsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_allow_device_events_checked, [:pointer,:uint8,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
-    attach_function :xcb_allow_device_events, [:pointer,:uint8,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
-    class XrbGetDeviceFocusRequest < FFI::Struct
+    attach_function :xcb_allow_device_events_checked, [:pointer,:uint8,:timestamp_t,:uint8,:uint8], AllowDeviceEventsCookie
+    attach_function :xcb_allow_device_events, [:pointer,:uint8,:timestamp_t,:uint8,:uint8], AllowDeviceEventsCookie
+    class GetDeviceFocusRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :focus, :xrb_window_t,
-          :time, :xrb_timestamp_t,
+          :focus, :window_t,
+          :time, :timestamp_t,
           :revert_to, :uint8,
           :pad2, [:uint8, 15]
     end
 
-    class XrbGetDeviceFocusCookie < FFI::Struct
+    class GetDeviceFocusCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_focus, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8], XrbGetDeviceFocusCookie
-    class XrbGetDeviceFocusReply < FFI::Struct
+    attach_function :xcb_get_device_focus, [:pointer,:uint8,:window_t,:timestamp_t,:uint8], GetDeviceFocusCookie
+    class GetDeviceFocusReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
           :sequence, :uint16,
           :length, :uint32,
-          :focus, :xrb_window_t,
-          :time, :xrb_timestamp_t,
+          :focus, :window_t,
+          :time, :timestamp_t,
           :revert_to, :uint8,
           :pad2, [:uint8, 15]
     end
 
-    attach_function :xcb_get_device_focus_reply, [:pointer, XrbGetDeviceFocusCookie, :pointer], :pointer
+    attach_function :xcb_get_device_focus_reply, [:pointer, GetDeviceFocusCookie, :pointer], :pointer
 
         
-    class XrbSetDeviceFocusRequest < FFI::Struct
+    class SetDeviceFocusRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :focus, :xrb_window_t,
-          :time, :xrb_timestamp_t,
+          :focus, :window_t,
+          :time, :timestamp_t,
           :revert_to, :uint8,
           :device_id, :uint8
     end
 
-    class XrbSetDeviceFocusCookie < FFI::Struct
+    class SetDeviceFocusCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_focus_checked, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
-    attach_function :xcb_set_device_focus, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
-    class XrbGetFeedbackControlRequest < FFI::Struct
+    attach_function :xcb_set_device_focus_checked, [:pointer,:uint8,:window_t,:timestamp_t,:uint8,:uint8], SetDeviceFocusCookie
+    attach_function :xcb_set_device_focus, [:pointer,:uint8,:window_t,:timestamp_t,:uint8,:uint8], SetDeviceFocusCookie
+    class GetFeedbackControlRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1482,12 +1482,12 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    class XrbGetFeedbackControlCookie < FFI::Struct
+    class GetFeedbackControlCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_feedback_control, [:pointer,:uint8,:uint16], XrbGetFeedbackControlCookie
-    class XrbGetFeedbackControlReply < FFI::Struct
+    attach_function :xcb_get_feedback_control, [:pointer,:uint8,:uint16], GetFeedbackControlCookie
+    class GetFeedbackControlReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1497,10 +1497,10 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_get_feedback_control_reply, [:pointer, XrbGetFeedbackControlCookie, :pointer], :pointer
+    attach_function :xcb_get_feedback_control_reply, [:pointer, GetFeedbackControlCookie, :pointer], :pointer
 
         
-    class XrbGetDeviceKeyMappingRequest < FFI::Struct
+    class GetDeviceKeyMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1509,12 +1509,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbGetDeviceKeyMappingCookie < FFI::Struct
+    class GetDeviceKeyMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_key_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceKeyMappingCookie
-    class XrbGetDeviceKeyMappingReply < FFI::Struct
+    attach_function :xcb_get_device_key_mapping, [:pointer,:uint8,:uint8,:uint32], GetDeviceKeyMappingCookie
+    class GetDeviceKeyMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1524,27 +1524,27 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_get_device_key_mapping_reply, [:pointer, XrbGetDeviceKeyMappingCookie, :pointer], :pointer
+    attach_function :xcb_get_device_key_mapping_reply, [:pointer, GetDeviceKeyMappingCookie, :pointer], :pointer
 
         
-    class XrbChangeDeviceKeyMappingRequest < FFI::Struct
+    class ChangeDeviceKeyMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :device_id, :uint8,
-          :first_keycode, :xrb_keycode_t,
+          :first_keycode, :keycode_t,
           :keysyms_per_keycode, :uint8,
           :keycode_count, :uint8
     end
 
-    class XrbChangeDeviceKeyMappingCookie < FFI::Struct
+    class ChangeDeviceKeyMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_device_key_mapping_checked, [:pointer,:uint8,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
-    attach_function :xcb_change_device_key_mapping, [:pointer,:uint8,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
-    class XrbGetDeviceModifierMappingRequest < FFI::Struct
+    attach_function :xcb_change_device_key_mapping_checked, [:pointer,:uint8,:uint8,:keycode_t,:uint8,:uint8,:uint32], ChangeDeviceKeyMappingCookie
+    attach_function :xcb_change_device_key_mapping, [:pointer,:uint8,:uint8,:keycode_t,:uint8,:uint8,:uint32], ChangeDeviceKeyMappingCookie
+    class GetDeviceModifierMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1553,12 +1553,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbGetDeviceModifierMappingCookie < FFI::Struct
+    class GetDeviceModifierMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_modifier_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceModifierMappingCookie
-    class XrbGetDeviceModifierMappingReply < FFI::Struct
+    attach_function :xcb_get_device_modifier_mapping, [:pointer,:uint8,:uint8,:uint32], GetDeviceModifierMappingCookie
+    class GetDeviceModifierMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1568,10 +1568,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_get_device_modifier_mapping_reply, [:pointer, XrbGetDeviceModifierMappingCookie, :pointer], :pointer
+    attach_function :xcb_get_device_modifier_mapping_reply, [:pointer, GetDeviceModifierMappingCookie, :pointer], :pointer
 
         
-    class XrbSetDeviceModifierMappingRequest < FFI::Struct
+    class SetDeviceModifierMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1580,12 +1580,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbSetDeviceModifierMappingCookie < FFI::Struct
+    class SetDeviceModifierMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_modifier_mapping, [:pointer,:uint8,:uint8], XrbSetDeviceModifierMappingCookie
-    class XrbSetDeviceModifierMappingReply < FFI::Struct
+    attach_function :xcb_set_device_modifier_mapping, [:pointer,:uint8,:uint8], SetDeviceModifierMappingCookie
+    class SetDeviceModifierMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1595,10 +1595,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_set_device_modifier_mapping_reply, [:pointer, XrbSetDeviceModifierMappingCookie, :pointer], :pointer
+    attach_function :xcb_set_device_modifier_mapping_reply, [:pointer, SetDeviceModifierMappingCookie, :pointer], :pointer
 
         
-    class XrbGetDeviceButtonMappingRequest < FFI::Struct
+    class GetDeviceButtonMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1607,12 +1607,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbGetDeviceButtonMappingCookie < FFI::Struct
+    class GetDeviceButtonMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_button_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceButtonMappingCookie
-    class XrbGetDeviceButtonMappingReply < FFI::Struct
+    attach_function :xcb_get_device_button_mapping, [:pointer,:uint8,:uint8,:uint32], GetDeviceButtonMappingCookie
+    class GetDeviceButtonMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1622,10 +1622,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_get_device_button_mapping_reply, [:pointer, XrbGetDeviceButtonMappingCookie, :pointer], :pointer
+    attach_function :xcb_get_device_button_mapping_reply, [:pointer, GetDeviceButtonMappingCookie, :pointer], :pointer
 
         
-    class XrbSetDeviceButtonMappingRequest < FFI::Struct
+    class SetDeviceButtonMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1634,12 +1634,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbSetDeviceButtonMappingCookie < FFI::Struct
+    class SetDeviceButtonMappingCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_button_mapping, [:pointer,:uint8,:uint8], XrbSetDeviceButtonMappingCookie
-    class XrbSetDeviceButtonMappingReply < FFI::Struct
+    attach_function :xcb_set_device_button_mapping, [:pointer,:uint8,:uint8], SetDeviceButtonMappingCookie
+    class SetDeviceButtonMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1649,10 +1649,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_set_device_button_mapping_reply, [:pointer, XrbSetDeviceButtonMappingCookie, :pointer], :pointer
+    attach_function :xcb_set_device_button_mapping_reply, [:pointer, SetDeviceButtonMappingCookie, :pointer], :pointer
 
         
-    class XrbQueryDeviceStateRequest < FFI::Struct
+    class QueryDeviceStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1661,12 +1661,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbQueryDeviceStateCookie < FFI::Struct
+    class QueryDeviceStateCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_device_state, [:pointer,:uint8,:uint8], XrbQueryDeviceStateCookie
-    class XrbQueryDeviceStateReply < FFI::Struct
+    attach_function :xcb_query_device_state, [:pointer,:uint8,:uint8], QueryDeviceStateCookie
+    class QueryDeviceStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1676,15 +1676,15 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_query_device_state_reply, [:pointer, XrbQueryDeviceStateCookie, :pointer], :pointer
+    attach_function :xcb_query_device_state_reply, [:pointer, QueryDeviceStateCookie, :pointer], :pointer
 
         
-    class XrbSendExtensionEventRequest < FFI::Struct
+    class SendExtensionEventRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :destination, :xrb_window_t,
+          :destination, :window_t,
           :device_id, :uint8,
           :propagate, :bool,
           :num_classes, :uint16,
@@ -1692,13 +1692,13 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    class XrbSendExtensionEventCookie < FFI::Struct
+    class SendExtensionEventCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_send_extension_event_checked, [:pointer,:uint8,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
-    attach_function :xcb_send_extension_event, [:pointer,:uint8,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
-    class XrbDeviceBellRequest < FFI::Struct
+    attach_function :xcb_send_extension_event_checked, [:pointer,:uint8,:window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], SendExtensionEventCookie
+    attach_function :xcb_send_extension_event, [:pointer,:uint8,:window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], SendExtensionEventCookie
+    class DeviceBellRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1709,13 +1709,13 @@ class Xrb
           :percent, :int8
     end
 
-    class XrbDeviceBellCookie < FFI::Struct
+    class DeviceBellCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_device_bell_checked, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
-    attach_function :xcb_device_bell, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
-    class XrbSetDeviceValuatorsRequest < FFI::Struct
+    attach_function :xcb_device_bell_checked, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], DeviceBellCookie
+    attach_function :xcb_device_bell, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], DeviceBellCookie
+    class SetDeviceValuatorsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1724,12 +1724,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbSetDeviceValuatorsCookie < FFI::Struct
+    class SetDeviceValuatorsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_valuators, [:pointer,:uint8,:uint8], XrbSetDeviceValuatorsCookie
-    class XrbSetDeviceValuatorsReply < FFI::Struct
+    attach_function :xcb_set_device_valuators, [:pointer,:uint8,:uint8], SetDeviceValuatorsCookie
+    class SetDeviceValuatorsReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1739,10 +1739,10 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_set_device_valuators_reply, [:pointer, XrbSetDeviceValuatorsCookie, :pointer], :pointer
+    attach_function :xcb_set_device_valuators_reply, [:pointer, SetDeviceValuatorsCookie, :pointer], :pointer
 
         
-    class XrbGetDeviceControlRequest < FFI::Struct
+    class GetDeviceControlRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -1751,12 +1751,12 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    class XrbGetDeviceControlCookie < FFI::Struct
+    class GetDeviceControlCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_control, [:pointer,:uint8,:uint8], XrbGetDeviceControlCookie
-    class XrbGetDeviceControlReply < FFI::Struct
+    attach_function :xcb_get_device_control, [:pointer,:uint8,:uint8], GetDeviceControlCookie
+    class GetDeviceControlReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -1766,7 +1766,7 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_get_device_control_reply, [:pointer, XrbGetDeviceControlCookie, :pointer], :pointer
+    attach_function :xcb_get_device_control_reply, [:pointer, GetDeviceControlCookie, :pointer], :pointer
 
         
   end

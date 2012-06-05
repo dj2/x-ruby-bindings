@@ -11,38 +11,38 @@ class Xrb
     ffi_lib 'damage'
     MAJOR_VERSION = 1
     MINOR_VERSION = 1
-    typedef :uint32, :xrb_damage_t
-    class XrbDamageIterator < FFI::Struct
+    typedef :uint32, :damage_t
+    class DamageIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_damage_next, [:pointer], :void
-    attach_function :xcb_damage_end, [:pointer], XrbGenericIterator
-    XRB_REPORT_LEVEL_RAW_RECTANGLES = 1
-    XRB_REPORT_LEVEL_DELTA_RECTANGLES = 2
-    XRB_REPORT_LEVEL_BOUNDING_BOX = 3
-    XRB_REPORT_LEVEL_NON_EMPTY = 4
-    class XrbNotifyEvent < FFI::Struct
+    attach_function :xcb_damage_end, [:pointer], GenericIterator
+    REPORT_LEVEL_RAW_RECTANGLES = 1
+    REPORT_LEVEL_DELTA_RECTANGLES = 2
+    REPORT_LEVEL_BOUNDING_BOX = 3
+    REPORT_LEVEL_NON_EMPTY = 4
+    class NotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
           :level, :uint8,
-          :drawable, :xrb_drawable_t,
-          :damage, :xrb_damage_t,
-          :timestamp, :xrb_timestamp_t,
-          :area, XrbRectangle,
-          :geometry, XrbRectangle
+          :drawable, :drawable_t,
+          :damage, :damage_t,
+          :timestamp, :timestamp_t,
+          :area, Rectangle,
+          :geometry, Rectangle
     end
 
-    class XrbBadDamageError < FFI::Struct
+    class BadDamageError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbQueryVersionRequest < FFI::Struct
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -52,12 +52,12 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -68,70 +68,70 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbCreateRequest < FFI::Struct
+    class CreateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :damage, :xrb_damage_t,
-          :drawable, :xrb_drawable_t,
+          :damage, :damage_t,
+          :drawable, :drawable_t,
           :level, :uint8,
           :pad1, [:uint8, 3]
     end
 
-    class XrbCreateCookie < FFI::Struct
+    class CreateCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_checked, [:pointer,:uint8,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
-    attach_function :xcb_create, [:pointer,:uint8,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
-    class XrbDestroyRequest < FFI::Struct
+    attach_function :xcb_create_checked, [:pointer,:uint8,:damage_t,:drawable_t,:uint8], CreateCookie
+    attach_function :xcb_create, [:pointer,:uint8,:damage_t,:drawable_t,:uint8], CreateCookie
+    class DestroyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :damage, :xrb_damage_t
+          :damage, :damage_t
     end
 
-    class XrbDestroyCookie < FFI::Struct
+    class DestroyCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_checked, [:pointer,:uint8,:xrb_damage_t], XrbDestroyCookie
-    attach_function :xcb_destroy, [:pointer,:uint8,:xrb_damage_t], XrbDestroyCookie
-    class XrbSubtractRequest < FFI::Struct
+    attach_function :xcb_destroy_checked, [:pointer,:uint8,:damage_t], DestroyCookie
+    attach_function :xcb_destroy, [:pointer,:uint8,:damage_t], DestroyCookie
+    class SubtractRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :damage, :xrb_damage_t,
-          :repair, :xrb_region_t,
-          :parts, :xrb_region_t
+          :damage, :damage_t,
+          :repair, :region_t,
+          :parts, :region_t
     end
 
-    class XrbSubtractCookie < FFI::Struct
+    class SubtractCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_subtract_checked, [:pointer,:uint8,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
-    attach_function :xcb_subtract, [:pointer,:uint8,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
-    class XrbAddRequest < FFI::Struct
+    attach_function :xcb_subtract_checked, [:pointer,:uint8,:damage_t,:region_t,:region_t], SubtractCookie
+    attach_function :xcb_subtract, [:pointer,:uint8,:damage_t,:region_t,:region_t], SubtractCookie
+    class AddRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :drawable, :xrb_drawable_t,
-          :region, :xrb_region_t
+          :drawable, :drawable_t,
+          :region, :region_t
     end
 
-    class XrbAddCookie < FFI::Struct
+    class AddCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_add_checked, [:pointer,:uint8,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
-    attach_function :xcb_add, [:pointer,:uint8,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
+    attach_function :xcb_add_checked, [:pointer,:uint8,:drawable_t,:region_t], AddCookie
+    attach_function :xcb_add, [:pointer,:uint8,:drawable_t,:region_t], AddCookie
   end
 end

@@ -9,7 +9,7 @@ class Xrb
     ffi_lib 'xf86dri'
     MAJOR_VERSION = 4
     MINOR_VERSION = 1
-    class XrbDrmClipRect < FFI::Struct
+    class DrmClipRect < FFI::Struct
       layout \
           :x1, :int16,
           :y1, :int16,
@@ -17,15 +17,15 @@ class Xrb
           :x3, :int16
     end
 
-    class XrbDrmClipRectIterator < FFI::Struct
+    class DrmClipRectIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_drm_clip_rect_next, [:pointer], :void
-    attach_function :xcb_drm_clip_rect_end, [:pointer], XrbGenericIterator
-    class XrbQueryVersionRequest < FFI::Struct
+    attach_function :xcb_drm_clip_rect_end, [:pointer], GenericIterator
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -35,12 +35,12 @@ class Xrb
           :dri_minor_patch, :uint32
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16,:uint32], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16,:uint32], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -51,10 +51,10 @@ class Xrb
           :dri_minor_patch, :uint32
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbQueryDirectRenderingCapableRequest < FFI::Struct
+    class QueryDirectRenderingCapableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -62,12 +62,12 @@ class Xrb
           :is_capable, :bool
     end
 
-    class XrbQueryDirectRenderingCapableCookie < FFI::Struct
+    class QueryDirectRenderingCapableCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_direct_rendering_capable, [:pointer,:uint8,:bool], XrbQueryDirectRenderingCapableCookie
-    class XrbQueryDirectRenderingCapableReply < FFI::Struct
+    attach_function :xcb_query_direct_rendering_capable, [:pointer,:uint8,:bool], QueryDirectRenderingCapableCookie
+    class QueryDirectRenderingCapableReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -76,10 +76,10 @@ class Xrb
           :is_capable, :bool
     end
 
-    attach_function :xcb_query_direct_rendering_capable_reply, [:pointer, XrbQueryDirectRenderingCapableCookie, :pointer], :pointer
+    attach_function :xcb_query_direct_rendering_capable_reply, [:pointer, QueryDirectRenderingCapableCookie, :pointer], :pointer
 
         
-    class XrbOpenConnectionRequest < FFI::Struct
+    class OpenConnectionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -90,12 +90,12 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    class XrbOpenConnectionCookie < FFI::Struct
+    class OpenConnectionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_open_connection, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], XrbOpenConnectionCookie
-    class XrbOpenConnectionReply < FFI::Struct
+    attach_function :xcb_open_connection, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], OpenConnectionCookie
+    class OpenConnectionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -107,10 +107,10 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    attach_function :xcb_open_connection_reply, [:pointer, XrbOpenConnectionCookie, :pointer], :pointer
+    attach_function :xcb_open_connection_reply, [:pointer, OpenConnectionCookie, :pointer], :pointer
 
         
-    class XrbCloseConnectionRequest < FFI::Struct
+    class CloseConnectionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -118,13 +118,13 @@ class Xrb
           :screen, :uint32
     end
 
-    class XrbCloseConnectionCookie < FFI::Struct
+    class CloseConnectionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_close_connection_checked, [:pointer,:uint8,:uint32], XrbCloseConnectionCookie
-    attach_function :xcb_close_connection, [:pointer,:uint8,:uint32], XrbCloseConnectionCookie
-    class XrbGetClientDriverNameRequest < FFI::Struct
+    attach_function :xcb_close_connection_checked, [:pointer,:uint8,:uint32], CloseConnectionCookie
+    attach_function :xcb_close_connection, [:pointer,:uint8,:uint32], CloseConnectionCookie
+    class GetClientDriverNameRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -136,12 +136,12 @@ class Xrb
           :pad2, [:uint8, 8]
     end
 
-    class XrbGetClientDriverNameCookie < FFI::Struct
+    class GetClientDriverNameCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_client_driver_name, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetClientDriverNameCookie
-    class XrbGetClientDriverNameReply < FFI::Struct
+    attach_function :xcb_get_client_driver_name, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], GetClientDriverNameCookie
+    class GetClientDriverNameReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -154,10 +154,10 @@ class Xrb
           :pad2, [:uint8, 8]
     end
 
-    attach_function :xcb_get_client_driver_name_reply, [:pointer, XrbGetClientDriverNameCookie, :pointer], :pointer
+    attach_function :xcb_get_client_driver_name_reply, [:pointer, GetClientDriverNameCookie, :pointer], :pointer
 
         
-    class XrbCreateContextRequest < FFI::Struct
+    class CreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -165,12 +165,12 @@ class Xrb
           :hw_context, :uint32
     end
 
-    class XrbCreateContextCookie < FFI::Struct
+    class CreateContextCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_context, [:pointer,:uint8,:uint32], XrbCreateContextCookie
-    class XrbCreateContextReply < FFI::Struct
+    attach_function :xcb_create_context, [:pointer,:uint8,:uint32], CreateContextCookie
+    class CreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -179,10 +179,10 @@ class Xrb
           :hw_context, :uint32
     end
 
-    attach_function :xcb_create_context_reply, [:pointer, XrbCreateContextCookie, :pointer], :pointer
+    attach_function :xcb_create_context_reply, [:pointer, CreateContextCookie, :pointer], :pointer
 
         
-    class XrbDestroyContextRequest < FFI::Struct
+    class DestroyContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -191,13 +191,13 @@ class Xrb
           :context, :uint32
     end
 
-    class XrbDestroyContextCookie < FFI::Struct
+    class DestroyContextCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_context_checked, [:pointer,:uint8,:uint32,:uint32], XrbDestroyContextCookie
-    attach_function :xcb_destroy_context, [:pointer,:uint8,:uint32,:uint32], XrbDestroyContextCookie
-    class XrbCreateDrawableRequest < FFI::Struct
+    attach_function :xcb_destroy_context_checked, [:pointer,:uint8,:uint32,:uint32], DestroyContextCookie
+    attach_function :xcb_destroy_context, [:pointer,:uint8,:uint32,:uint32], DestroyContextCookie
+    class CreateDrawableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -205,12 +205,12 @@ class Xrb
           :hw_drawable_handle, :uint32
     end
 
-    class XrbCreateDrawableCookie < FFI::Struct
+    class CreateDrawableCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_drawable, [:pointer,:uint8,:uint32], XrbCreateDrawableCookie
-    class XrbCreateDrawableReply < FFI::Struct
+    attach_function :xcb_create_drawable, [:pointer,:uint8,:uint32], CreateDrawableCookie
+    class CreateDrawableReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -219,10 +219,10 @@ class Xrb
           :hw_drawable_handle, :uint32
     end
 
-    attach_function :xcb_create_drawable_reply, [:pointer, XrbCreateDrawableCookie, :pointer], :pointer
+    attach_function :xcb_create_drawable_reply, [:pointer, CreateDrawableCookie, :pointer], :pointer
 
         
-    class XrbDestroyDrawableRequest < FFI::Struct
+    class DestroyDrawableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -231,13 +231,13 @@ class Xrb
           :drawable, :uint32
     end
 
-    class XrbDestroyDrawableCookie < FFI::Struct
+    class DestroyDrawableCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_drawable_checked, [:pointer,:uint8,:uint32,:uint32], XrbDestroyDrawableCookie
-    attach_function :xcb_destroy_drawable, [:pointer,:uint8,:uint32,:uint32], XrbDestroyDrawableCookie
-    class XrbGetDrawableInfoRequest < FFI::Struct
+    attach_function :xcb_destroy_drawable_checked, [:pointer,:uint8,:uint32,:uint32], DestroyDrawableCookie
+    attach_function :xcb_destroy_drawable, [:pointer,:uint8,:uint32,:uint32], DestroyDrawableCookie
+    class GetDrawableInfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -254,12 +254,12 @@ class Xrb
           :num_back_clip_rects, :uint32
     end
 
-    class XrbGetDrawableInfoCookie < FFI::Struct
+    class GetDrawableInfoCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_drawable_info, [:pointer,:uint8,:uint32,:uint32,:int16,:int16,:int16,:int16,:uint32,:int16,:int16,:uint32,:uint32,:uint32], XrbGetDrawableInfoCookie
-    class XrbGetDrawableInfoReply < FFI::Struct
+    attach_function :xcb_get_drawable_info, [:pointer,:uint8,:uint32,:uint32,:int16,:int16,:int16,:int16,:uint32,:int16,:int16,:uint32,:uint32,:uint32], GetDrawableInfoCookie
+    class GetDrawableInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -277,10 +277,10 @@ class Xrb
           :num_back_clip_rects, :uint32
     end
 
-    attach_function :xcb_get_drawable_info_reply, [:pointer, XrbGetDrawableInfoCookie, :pointer], :pointer
+    attach_function :xcb_get_drawable_info_reply, [:pointer, GetDrawableInfoCookie, :pointer], :pointer
 
         
-    class XrbGetDeviceInfoRequest < FFI::Struct
+    class GetDeviceInfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -293,12 +293,12 @@ class Xrb
           :device_private_size, :uint32
     end
 
-    class XrbGetDeviceInfoCookie < FFI::Struct
+    class GetDeviceInfoCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_info, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetDeviceInfoCookie
-    class XrbGetDeviceInfoReply < FFI::Struct
+    attach_function :xcb_get_device_info, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], GetDeviceInfoCookie
+    class GetDeviceInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -312,10 +312,10 @@ class Xrb
           :device_private_size, :uint32
     end
 
-    attach_function :xcb_get_device_info_reply, [:pointer, XrbGetDeviceInfoCookie, :pointer], :pointer
+    attach_function :xcb_get_device_info_reply, [:pointer, GetDeviceInfoCookie, :pointer], :pointer
 
         
-    class XrbAuthConnectionRequest < FFI::Struct
+    class AuthConnectionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -323,12 +323,12 @@ class Xrb
           :authenticated, :uint32
     end
 
-    class XrbAuthConnectionCookie < FFI::Struct
+    class AuthConnectionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_auth_connection, [:pointer,:uint8,:uint32], XrbAuthConnectionCookie
-    class XrbAuthConnectionReply < FFI::Struct
+    attach_function :xcb_auth_connection, [:pointer,:uint8,:uint32], AuthConnectionCookie
+    class AuthConnectionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -337,7 +337,7 @@ class Xrb
           :authenticated, :uint32
     end
 
-    attach_function :xcb_auth_connection_reply, [:pointer, XrbAuthConnectionCookie, :pointer], :pointer
+    attach_function :xcb_auth_connection_reply, [:pointer, AuthConnectionCookie, :pointer], :pointer
 
         
   end

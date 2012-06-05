@@ -23,7 +23,7 @@ class Xrb
 
       def ffi_name
         return @ffi_name unless @ffi_name.nil?
-        ":xrb_#{@name.downcase}_t"
+        ":#{@name.downcase}_t"
       end
 
       def to_ffi(indent = 0)
@@ -32,14 +32,14 @@ class Xrb
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
 
-        out << "#{' ' * indent}class Xrb#{n}Iterator < FFI::Struct"
+        out << "#{' ' * indent}class #{n}Iterator < FFI::Struct"
         out << "#{' ' * (indent + 2)}layout \\"
-        out << "#{' ' * (indent + 6)}:data, :xrb_window_t,"
+        out << "#{' ' * (indent + 6)}:data, :window_t,"
         out << "#{' ' * (indent + 6)}:rem, :int,"
         out << "#{' ' * (indent + 6)}:indent, :int"
         out << "#{' ' * indent}end"
         out << "#{' ' * indent}attach_function :xcb_#{name.to_s.camel_case}_next, [:pointer], :void"
-        out << "#{' ' * indent}attach_function :xcb_#{name.to_s.camel_case}_end, [:pointer], XrbGenericIterator"
+        out << "#{' ' * indent}attach_function :xcb_#{name.to_s.camel_case}_end, [:pointer], GenericIterator"
 
         out.join("\n")
       end
@@ -62,7 +62,7 @@ class Xrb
       end
 
       def ffi_name
-        ":xrb_#{@name.camel_case}_t"
+        ":#{@name.camel_case}_t"
       end
 
       def to_ffi(indent = 0)
@@ -114,7 +114,7 @@ class Xrb
       def ffi_name
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}"
+        n
       end
 
       def to_ffi(indent = 0)
@@ -139,7 +139,7 @@ class Xrb
         out << "#{' ' * (indent + 6)}:indent, :int"
         out << "#{' ' * indent}end"
         out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_next, [:pointer], :void"
-        out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_end, [:pointer], XrbGenericIterator"
+        out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_end, [:pointer], GenericIterator"
 
         lists = []
         fields.each { |f| lists << f if f.is_a?(ListField) }
@@ -184,7 +184,7 @@ class Xrb
       def ffi_name
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}"
+        n
       end
 
       def to_ffi(indent = 0)
@@ -230,7 +230,7 @@ class Xrb
       def ffi_name(name)
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}Error"
+        "#{n}Error"
       end
 
       def to_ffi(indent = 0)
@@ -284,7 +284,7 @@ class Xrb
       def ffi_name(name)
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}Event"
+        "#{n}Event"
       end
 
       def to_ffi(indent = 0)
@@ -349,7 +349,7 @@ class Xrb
       def base_ffi_name
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}"
+        n
       end
 
       def ffi_name
@@ -437,7 +437,7 @@ class Xrb
       def parent_ffi_name
         n = name
         n = name.downcase.capitalize if name =~ /^[A-Z0-9]+$/
-        "Xrb#{n}"
+        n
       end
 
       def ffi_name

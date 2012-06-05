@@ -10,7 +10,7 @@ class Xrb
     ffi_lib 'xinerama'
     MAJOR_VERSION = 1
     MINOR_VERSION = 1
-    class XrbScreenInfo < FFI::Struct
+    class ScreenInfo < FFI::Struct
       layout \
           :x_org, :int16,
           :y_org, :int16,
@@ -18,15 +18,15 @@ class Xrb
           :height, :uint16
     end
 
-    class XrbScreenInfoIterator < FFI::Struct
+    class ScreenInfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_screen_info_next, [:pointer], :void
-    attach_function :xcb_screen_info_end, [:pointer], XrbGenericIterator
-    class XrbQueryVersionRequest < FFI::Struct
+    attach_function :xcb_screen_info_end, [:pointer], GenericIterator
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -35,12 +35,12 @@ class Xrb
           :minor, :uint16
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -50,76 +50,76 @@ class Xrb
           :minor, :uint16
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbGetStateRequest < FFI::Struct
+    class GetStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t
+          :window, :window_t
     end
 
-    class XrbGetStateCookie < FFI::Struct
+    class GetStateCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_state, [:pointer,:uint8,:xrb_window_t], XrbGetStateCookie
-    class XrbGetStateReply < FFI::Struct
+    attach_function :xcb_get_state, [:pointer,:uint8,:window_t], GetStateCookie
+    class GetStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :state, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :window, :xrb_window_t
+          :window, :window_t
     end
 
-    attach_function :xcb_get_state_reply, [:pointer, XrbGetStateCookie, :pointer], :pointer
+    attach_function :xcb_get_state_reply, [:pointer, GetStateCookie, :pointer], :pointer
 
         
-    class XrbGetScreenCountRequest < FFI::Struct
+    class GetScreenCountRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :window, :xrb_window_t
+          :window, :window_t
     end
 
-    class XrbGetScreenCountCookie < FFI::Struct
+    class GetScreenCountCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_count, [:pointer,:uint8,:xrb_window_t], XrbGetScreenCountCookie
-    class XrbGetScreenCountReply < FFI::Struct
+    attach_function :xcb_get_screen_count, [:pointer,:uint8,:window_t], GetScreenCountCookie
+    class GetScreenCountReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :screen_count, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :window, :xrb_window_t
+          :window, :window_t
     end
 
-    attach_function :xcb_get_screen_count_reply, [:pointer, XrbGetScreenCountCookie, :pointer], :pointer
+    attach_function :xcb_get_screen_count_reply, [:pointer, GetScreenCountCookie, :pointer], :pointer
 
         
-    class XrbGetScreenSizeRequest < FFI::Struct
+    class GetScreenSizeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :width, :uint32,
           :height, :uint32,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :screen, :uint32
     end
 
-    class XrbGetScreenSizeCookie < FFI::Struct
+    class GetScreenSizeCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_size, [:pointer,:uint8,:uint32,:uint32,:xrb_window_t,:uint32], XrbGetScreenSizeCookie
-    class XrbGetScreenSizeReply < FFI::Struct
+    attach_function :xcb_get_screen_size, [:pointer,:uint8,:uint32,:uint32,:window_t,:uint32], GetScreenSizeCookie
+    class GetScreenSizeReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -127,14 +127,14 @@ class Xrb
           :length, :uint32,
           :width, :uint32,
           :height, :uint32,
-          :window, :xrb_window_t,
+          :window, :window_t,
           :screen, :uint32
     end
 
-    attach_function :xcb_get_screen_size_reply, [:pointer, XrbGetScreenSizeCookie, :pointer], :pointer
+    attach_function :xcb_get_screen_size_reply, [:pointer, GetScreenSizeCookie, :pointer], :pointer
 
         
-    class XrbIsActiveRequest < FFI::Struct
+    class IsActiveRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -142,12 +142,12 @@ class Xrb
           :state, :uint32
     end
 
-    class XrbIsActiveCookie < FFI::Struct
+    class IsActiveCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_is_active, [:pointer,:uint8,:uint32], XrbIsActiveCookie
-    class XrbIsActiveReply < FFI::Struct
+    attach_function :xcb_is_active, [:pointer,:uint8,:uint32], IsActiveCookie
+    class IsActiveReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -156,10 +156,10 @@ class Xrb
           :state, :uint32
     end
 
-    attach_function :xcb_is_active_reply, [:pointer, XrbIsActiveCookie, :pointer], :pointer
+    attach_function :xcb_is_active_reply, [:pointer, IsActiveCookie, :pointer], :pointer
 
         
-    class XrbQueryScreensRequest < FFI::Struct
+    class QueryScreensRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -168,12 +168,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbQueryScreensCookie < FFI::Struct
+    class QueryScreensCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_screens, [:pointer,:uint8,:uint32,:uint32], XrbQueryScreensCookie
-    class XrbQueryScreensReply < FFI::Struct
+    attach_function :xcb_query_screens, [:pointer,:uint8,:uint32,:uint32], QueryScreensCookie
+    class QueryScreensReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -183,7 +183,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_screens_reply, [:pointer, XrbQueryScreensCookie, :pointer], :pointer
+    attach_function :xcb_query_screens_reply, [:pointer, QueryScreensCookie, :pointer], :pointer
 
         
   end

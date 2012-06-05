@@ -10,135 +10,135 @@ class Xrb
     ffi_lib 'render'
     MAJOR_VERSION = 0
     MINOR_VERSION = 11
-    XRB_PICT_TYPE_INDEXED = 1
-    XRB_PICT_TYPE_DIRECT = 2
-    XRB_PICTURE_NONE = 1
-    XRB_PICT_OP_CLEAR = 1
-    XRB_PICT_OP_SRC = 2
-    XRB_PICT_OP_DST = 3
-    XRB_PICT_OP_OVER = 4
-    XRB_PICT_OP_OVER_REVERSE = 5
-    XRB_PICT_OP_IN = 6
-    XRB_PICT_OP_IN_REVERSE = 7
-    XRB_PICT_OP_OUT = 8
-    XRB_PICT_OP_OUT_REVERSE = 9
-    XRB_PICT_OP_ATOP = 10
-    XRB_PICT_OP_ATOP_REVERSE = 11
-    XRB_PICT_OP_XOR = 12
-    XRB_PICT_OP_ADD = 13
-    XRB_PICT_OP_SATURATE = 14
-    XRB_PICT_OP_DISJOINT_CLEAR = 16
-    XRB_PICT_OP_DISJOINT_SRC = 17
-    XRB_PICT_OP_DISJOINT_DST = 18
-    XRB_PICT_OP_DISJOINT_OVER = 19
-    XRB_PICT_OP_DISJOINT_OVER_REVERSE = 20
-    XRB_PICT_OP_DISJOINT_IN = 21
-    XRB_PICT_OP_DISJOINT_IN_REVERSE = 22
-    XRB_PICT_OP_DISJOINT_OUT = 23
-    XRB_PICT_OP_DISJOINT_OUT_REVERSE = 24
-    XRB_PICT_OP_DISJOINT_ATOP = 25
-    XRB_PICT_OP_DISJOINT_ATOP_REVERSE = 26
-    XRB_PICT_OP_DISJOINT_XOR = 27
-    XRB_PICT_OP_CONJOINT_CLEAR = 32
-    XRB_PICT_OP_CONJOINT_SRC = 33
-    XRB_PICT_OP_CONJOINT_DST = 34
-    XRB_PICT_OP_CONJOINT_OVER = 35
-    XRB_PICT_OP_CONJOINT_OVER_REVERSE = 36
-    XRB_PICT_OP_CONJOINT_IN = 37
-    XRB_PICT_OP_CONJOINT_IN_REVERSE = 38
-    XRB_PICT_OP_CONJOINT_OUT = 39
-    XRB_PICT_OP_CONJOINT_OUT_REVERSE = 40
-    XRB_PICT_OP_CONJOINT_ATOP = 41
-    XRB_PICT_OP_CONJOINT_ATOP_REVERSE = 42
-    XRB_PICT_OP_CONJOINT_XOR = 43
-    XRB_PICT_OP_MULTIPLY = 48
-    XRB_PICT_OP_SCREEN = 49
-    XRB_PICT_OP_OVERLAY = 50
-    XRB_PICT_OP_DARKEN = 51
-    XRB_PICT_OP_LIGHTEN = 52
-    XRB_PICT_OP_COLOR_DODGE = 53
-    XRB_PICT_OP_COLOR_BURN = 54
-    XRB_PICT_OP_HARD_LIGHT = 55
-    XRB_PICT_OP_SOFT_LIGHT = 56
-    XRB_PICT_OP_DIFFERENCE = 57
-    XRB_PICT_OP_EXCLUSION = 58
-    XRB_PICT_OP_HSL_HUE = 59
-    XRB_PICT_OP_HSL_SATURATION = 60
-    XRB_PICT_OP_HSL_COLOR = 61
-    XRB_PICT_OP_HSL_LUMINOSITY = 62
-    XRB_POLY_EDGE_SHARP = 1
-    XRB_POLY_EDGE_SMOOTH = 2
-    XRB_POLY_MODE_PRECISE = 1
-    XRB_POLY_MODE_IMPRECISE = 2
-    XRB_CP_REPEAT = 1 << 0
-    XRB_CP_ALPHA_MAP = 1 << 1
-    XRB_CP_ALPHA_X_ORIGIN = 1 << 2
-    XRB_CP_ALPHA_Y_ORIGIN = 1 << 3
-    XRB_CP_CLIP_X_ORIGIN = 1 << 4
-    XRB_CP_CLIP_Y_ORIGIN = 1 << 5
-    XRB_CP_CLIP_MASK = 1 << 6
-    XRB_CP_GRAPHICS_EXPOSURE = 1 << 7
-    XRB_CP_SUBWINDOW_MODE = 1 << 8
-    XRB_CP_POLY_EDGE = 1 << 9
-    XRB_CP_POLY_MODE = 1 << 10
-    XRB_CP_DITHER = 1 << 11
-    XRB_CP_COMPONENT_ALPHA = 1 << 12
-    XRB_SUB_PIXEL_UNKNOWN = 1
-    XRB_SUB_PIXEL_HORIZONTAL_RGB = 2
-    XRB_SUB_PIXEL_HORIZONTAL_BGR = 3
-    XRB_SUB_PIXEL_VERTICAL_RGB = 4
-    XRB_SUB_PIXEL_VERTICAL_BGR = 5
-    XRB_SUB_PIXEL_NONE = 6
-    XRB_REPEAT_NONE = 1
-    XRB_REPEAT_NORMAL = 2
-    XRB_REPEAT_PAD = 3
-    XRB_REPEAT_REFLECT = 4
-    typedef :uint32, :xrb_glyph_t
-    class XrbGlyphIterator < FFI::Struct
+    PICT_TYPE_INDEXED = 1
+    PICT_TYPE_DIRECT = 2
+    PICTURE_NONE = 1
+    PICT_OP_CLEAR = 1
+    PICT_OP_SRC = 2
+    PICT_OP_DST = 3
+    PICT_OP_OVER = 4
+    PICT_OP_OVER_REVERSE = 5
+    PICT_OP_IN = 6
+    PICT_OP_IN_REVERSE = 7
+    PICT_OP_OUT = 8
+    PICT_OP_OUT_REVERSE = 9
+    PICT_OP_ATOP = 10
+    PICT_OP_ATOP_REVERSE = 11
+    PICT_OP_XOR = 12
+    PICT_OP_ADD = 13
+    PICT_OP_SATURATE = 14
+    PICT_OP_DISJOINT_CLEAR = 16
+    PICT_OP_DISJOINT_SRC = 17
+    PICT_OP_DISJOINT_DST = 18
+    PICT_OP_DISJOINT_OVER = 19
+    PICT_OP_DISJOINT_OVER_REVERSE = 20
+    PICT_OP_DISJOINT_IN = 21
+    PICT_OP_DISJOINT_IN_REVERSE = 22
+    PICT_OP_DISJOINT_OUT = 23
+    PICT_OP_DISJOINT_OUT_REVERSE = 24
+    PICT_OP_DISJOINT_ATOP = 25
+    PICT_OP_DISJOINT_ATOP_REVERSE = 26
+    PICT_OP_DISJOINT_XOR = 27
+    PICT_OP_CONJOINT_CLEAR = 32
+    PICT_OP_CONJOINT_SRC = 33
+    PICT_OP_CONJOINT_DST = 34
+    PICT_OP_CONJOINT_OVER = 35
+    PICT_OP_CONJOINT_OVER_REVERSE = 36
+    PICT_OP_CONJOINT_IN = 37
+    PICT_OP_CONJOINT_IN_REVERSE = 38
+    PICT_OP_CONJOINT_OUT = 39
+    PICT_OP_CONJOINT_OUT_REVERSE = 40
+    PICT_OP_CONJOINT_ATOP = 41
+    PICT_OP_CONJOINT_ATOP_REVERSE = 42
+    PICT_OP_CONJOINT_XOR = 43
+    PICT_OP_MULTIPLY = 48
+    PICT_OP_SCREEN = 49
+    PICT_OP_OVERLAY = 50
+    PICT_OP_DARKEN = 51
+    PICT_OP_LIGHTEN = 52
+    PICT_OP_COLOR_DODGE = 53
+    PICT_OP_COLOR_BURN = 54
+    PICT_OP_HARD_LIGHT = 55
+    PICT_OP_SOFT_LIGHT = 56
+    PICT_OP_DIFFERENCE = 57
+    PICT_OP_EXCLUSION = 58
+    PICT_OP_HSL_HUE = 59
+    PICT_OP_HSL_SATURATION = 60
+    PICT_OP_HSL_COLOR = 61
+    PICT_OP_HSL_LUMINOSITY = 62
+    POLY_EDGE_SHARP = 1
+    POLY_EDGE_SMOOTH = 2
+    POLY_MODE_PRECISE = 1
+    POLY_MODE_IMPRECISE = 2
+    CP_REPEAT = 1 << 0
+    CP_ALPHA_MAP = 1 << 1
+    CP_ALPHA_X_ORIGIN = 1 << 2
+    CP_ALPHA_Y_ORIGIN = 1 << 3
+    CP_CLIP_X_ORIGIN = 1 << 4
+    CP_CLIP_Y_ORIGIN = 1 << 5
+    CP_CLIP_MASK = 1 << 6
+    CP_GRAPHICS_EXPOSURE = 1 << 7
+    CP_SUBWINDOW_MODE = 1 << 8
+    CP_POLY_EDGE = 1 << 9
+    CP_POLY_MODE = 1 << 10
+    CP_DITHER = 1 << 11
+    CP_COMPONENT_ALPHA = 1 << 12
+    SUB_PIXEL_UNKNOWN = 1
+    SUB_PIXEL_HORIZONTAL_RGB = 2
+    SUB_PIXEL_HORIZONTAL_BGR = 3
+    SUB_PIXEL_VERTICAL_RGB = 4
+    SUB_PIXEL_VERTICAL_BGR = 5
+    SUB_PIXEL_NONE = 6
+    REPEAT_NONE = 1
+    REPEAT_NORMAL = 2
+    REPEAT_PAD = 3
+    REPEAT_REFLECT = 4
+    typedef :uint32, :glyph_t
+    class GlyphIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_glyph_next, [:pointer], :void
-    attach_function :xcb_glyph_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_glyphset_t
-    class XrbGlyphsetIterator < FFI::Struct
+    attach_function :xcb_glyph_end, [:pointer], GenericIterator
+    typedef :uint32, :glyphset_t
+    class GlyphsetIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_glyphset_next, [:pointer], :void
-    attach_function :xcb_glyphset_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_picture_t
-    class XrbPictureIterator < FFI::Struct
+    attach_function :xcb_glyphset_end, [:pointer], GenericIterator
+    typedef :uint32, :picture_t
+    class PictureIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_picture_next, [:pointer], :void
-    attach_function :xcb_picture_end, [:pointer], XrbGenericIterator
-    typedef :uint32, :xrb_pictformat_t
-    class XrbPictformatIterator < FFI::Struct
+    attach_function :xcb_picture_end, [:pointer], GenericIterator
+    typedef :uint32, :pictformat_t
+    class PictformatIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pictformat_next, [:pointer], :void
-    attach_function :xcb_pictformat_end, [:pointer], XrbGenericIterator
-    typedef :int32, :xrb_fixed_t
-    class XrbFixedIterator < FFI::Struct
+    attach_function :xcb_pictformat_end, [:pointer], GenericIterator
+    typedef :int32, :fixed_t
+    class FixedIterator < FFI::Struct
       layout \
-          :data, :xrb_window_t,
+          :data, :window_t,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_fixed_next, [:pointer], :void
-    attach_function :xcb_fixed_end, [:pointer], XrbGenericIterator
-    class XrbDirectformat < FFI::Struct
+    attach_function :xcb_fixed_end, [:pointer], GenericIterator
+    class Directformat < FFI::Struct
       layout \
           :red_shift, :uint16,
           :red_mask, :uint16,
@@ -150,47 +150,47 @@ class Xrb
           :alpha_mask, :uint16
     end
 
-    class XrbDirectformatIterator < FFI::Struct
+    class DirectformatIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_directformat_next, [:pointer], :void
-    attach_function :xcb_directformat_end, [:pointer], XrbGenericIterator
-    class XrbPictforminfo < FFI::Struct
+    attach_function :xcb_directformat_end, [:pointer], GenericIterator
+    class Pictforminfo < FFI::Struct
       layout \
-          :id, :xrb_pictformat_t,
+          :id, :pictformat_t,
           :type, :uint8,
           :depth, :uint8,
           :pad1, [:uint8, 2],
-          :direct, XrbDirectformat,
-          :colormap, :xrb_colormap_t
+          :direct, Directformat,
+          :colormap, :colormap_t
     end
 
-    class XrbPictforminfoIterator < FFI::Struct
+    class PictforminfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pictforminfo_next, [:pointer], :void
-    attach_function :xcb_pictforminfo_end, [:pointer], XrbGenericIterator
-    class XrbPictvisual < FFI::Struct
+    attach_function :xcb_pictforminfo_end, [:pointer], GenericIterator
+    class Pictvisual < FFI::Struct
       layout \
-          :visual, :xrb_visualid_t,
-          :format, :xrb_pictformat_t
+          :visual, :visualid_t,
+          :format, :pictformat_t
     end
 
-    class XrbPictvisualIterator < FFI::Struct
+    class PictvisualIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pictvisual_next, [:pointer], :void
-    attach_function :xcb_pictvisual_end, [:pointer], XrbGenericIterator
-    class XrbPictdepth < FFI::Struct
+    attach_function :xcb_pictvisual_end, [:pointer], GenericIterator
+    class Pictdepth < FFI::Struct
       layout \
           :depth, :uint8,
           :pad1, [:uint8, 1],
@@ -198,35 +198,35 @@ class Xrb
           :pad2, [:uint8, 4]
     end
 
-    class XrbPictdepthIterator < FFI::Struct
+    class PictdepthIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pictdepth_next, [:pointer], :void
-    attach_function :xcb_pictdepth_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_pictdepth_end, [:pointer], GenericIterator
     attach_function :xcb_pictdepth_sizeof, [:pointer], :int
-    attach_function :xcb_pictdepth_visuals_iterator, [:pointer], XrbPictdepthIterator
+    attach_function :xcb_pictdepth_visuals_iterator, [:pointer], PictdepthIterator
     attach_function :xcb_pictdepth_visuals_length, [:pointer], :int
-    class XrbPictscreen < FFI::Struct
+    class Pictscreen < FFI::Struct
       layout \
           :num_depths, :uint32,
-          :fallback, :xrb_pictformat_t
+          :fallback, :pictformat_t
     end
 
-    class XrbPictscreenIterator < FFI::Struct
+    class PictscreenIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pictscreen_next, [:pointer], :void
-    attach_function :xcb_pictscreen_end, [:pointer], XrbGenericIterator
+    attach_function :xcb_pictscreen_end, [:pointer], GenericIterator
     attach_function :xcb_pictscreen_sizeof, [:pointer], :int
-    attach_function :xcb_pictscreen_depths_iterator, [:pointer], XrbPictscreenIterator
+    attach_function :xcb_pictscreen_depths_iterator, [:pointer], PictscreenIterator
     attach_function :xcb_pictscreen_depths_length, [:pointer], :int
-    class XrbIndexvalue < FFI::Struct
+    class Indexvalue < FFI::Struct
       layout \
           :pixel, :uint32,
           :red, :uint16,
@@ -235,15 +235,15 @@ class Xrb
           :alpha, :uint16
     end
 
-    class XrbIndexvalueIterator < FFI::Struct
+    class IndexvalueIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_indexvalue_next, [:pointer], :void
-    attach_function :xcb_indexvalue_end, [:pointer], XrbGenericIterator
-    class XrbColor < FFI::Struct
+    attach_function :xcb_indexvalue_end, [:pointer], GenericIterator
+    class Color < FFI::Struct
       layout \
           :red, :uint16,
           :green, :uint16,
@@ -251,74 +251,74 @@ class Xrb
           :alpha, :uint16
     end
 
-    class XrbColorIterator < FFI::Struct
+    class ColorIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_color_next, [:pointer], :void
-    attach_function :xcb_color_end, [:pointer], XrbGenericIterator
-    class XrbPointfix < FFI::Struct
+    attach_function :xcb_color_end, [:pointer], GenericIterator
+    class Pointfix < FFI::Struct
       layout \
-          :x, :xrb_fixed_t,
-          :y, :xrb_fixed_t
+          :x, :fixed_t,
+          :y, :fixed_t
     end
 
-    class XrbPointfixIterator < FFI::Struct
+    class PointfixIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_pointfix_next, [:pointer], :void
-    attach_function :xcb_pointfix_end, [:pointer], XrbGenericIterator
-    class XrbLinefix < FFI::Struct
+    attach_function :xcb_pointfix_end, [:pointer], GenericIterator
+    class Linefix < FFI::Struct
       layout \
-          :p1, XrbPointfix,
-          :p2, XrbPointfix
+          :p1, Pointfix,
+          :p2, Pointfix
     end
 
-    class XrbLinefixIterator < FFI::Struct
+    class LinefixIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_linefix_next, [:pointer], :void
-    attach_function :xcb_linefix_end, [:pointer], XrbGenericIterator
-    class XrbTriangle < FFI::Struct
+    attach_function :xcb_linefix_end, [:pointer], GenericIterator
+    class Triangle < FFI::Struct
       layout \
-          :p1, XrbPointfix,
-          :p2, XrbPointfix,
-          :p3, XrbPointfix
+          :p1, Pointfix,
+          :p2, Pointfix,
+          :p3, Pointfix
     end
 
-    class XrbTriangleIterator < FFI::Struct
+    class TriangleIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_triangle_next, [:pointer], :void
-    attach_function :xcb_triangle_end, [:pointer], XrbGenericIterator
-    class XrbTrapezoid < FFI::Struct
+    attach_function :xcb_triangle_end, [:pointer], GenericIterator
+    class Trapezoid < FFI::Struct
       layout \
-          :top, :xrb_fixed_t,
-          :bottom, :xrb_fixed_t,
-          :left, XrbLinefix,
-          :right, XrbLinefix
+          :top, :fixed_t,
+          :bottom, :fixed_t,
+          :left, Linefix,
+          :right, Linefix
     end
 
-    class XrbTrapezoidIterator < FFI::Struct
+    class TrapezoidIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_trapezoid_next, [:pointer], :void
-    attach_function :xcb_trapezoid_end, [:pointer], XrbGenericIterator
-    class XrbGlyphinfo < FFI::Struct
+    attach_function :xcb_trapezoid_end, [:pointer], GenericIterator
+    class Glyphinfo < FFI::Struct
       layout \
           :width, :uint16,
           :height, :uint16,
@@ -328,114 +328,114 @@ class Xrb
           :y_off, :int16
     end
 
-    class XrbGlyphinfoIterator < FFI::Struct
+    class GlyphinfoIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_glyphinfo_next, [:pointer], :void
-    attach_function :xcb_glyphinfo_end, [:pointer], XrbGenericIterator
-    class XrbTransform < FFI::Struct
+    attach_function :xcb_glyphinfo_end, [:pointer], GenericIterator
+    class Transform < FFI::Struct
       layout \
-          :matrix11, :xrb_fixed_t,
-          :matrix12, :xrb_fixed_t,
-          :matrix13, :xrb_fixed_t,
-          :matrix21, :xrb_fixed_t,
-          :matrix22, :xrb_fixed_t,
-          :matrix23, :xrb_fixed_t,
-          :matrix31, :xrb_fixed_t,
-          :matrix32, :xrb_fixed_t,
-          :matrix33, :xrb_fixed_t
+          :matrix11, :fixed_t,
+          :matrix12, :fixed_t,
+          :matrix13, :fixed_t,
+          :matrix21, :fixed_t,
+          :matrix22, :fixed_t,
+          :matrix23, :fixed_t,
+          :matrix31, :fixed_t,
+          :matrix32, :fixed_t,
+          :matrix33, :fixed_t
     end
 
-    class XrbTransformIterator < FFI::Struct
+    class TransformIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_transform_next, [:pointer], :void
-    attach_function :xcb_transform_end, [:pointer], XrbGenericIterator
-    class XrbAnimcursorelt < FFI::Struct
+    attach_function :xcb_transform_end, [:pointer], GenericIterator
+    class Animcursorelt < FFI::Struct
       layout \
-          :cursor, :xrb_cursor_t,
+          :cursor, :cursor_t,
           :delay, :uint32
     end
 
-    class XrbAnimcursoreltIterator < FFI::Struct
+    class AnimcursoreltIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_animcursorelt_next, [:pointer], :void
-    attach_function :xcb_animcursorelt_end, [:pointer], XrbGenericIterator
-    class XrbSpanfix < FFI::Struct
+    attach_function :xcb_animcursorelt_end, [:pointer], GenericIterator
+    class Spanfix < FFI::Struct
       layout \
-          :l, :xrb_fixed_t,
-          :r, :xrb_fixed_t,
-          :y, :xrb_fixed_t
+          :l, :fixed_t,
+          :r, :fixed_t,
+          :y, :fixed_t
     end
 
-    class XrbSpanfixIterator < FFI::Struct
+    class SpanfixIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_spanfix_next, [:pointer], :void
-    attach_function :xcb_spanfix_end, [:pointer], XrbGenericIterator
-    class XrbTrap < FFI::Struct
+    attach_function :xcb_spanfix_end, [:pointer], GenericIterator
+    class Trap < FFI::Struct
       layout \
-          :top, XrbSpanfix,
-          :bot, XrbSpanfix
+          :top, Spanfix,
+          :bot, Spanfix
     end
 
-    class XrbTrapIterator < FFI::Struct
+    class TrapIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_trap_next, [:pointer], :void
-    attach_function :xcb_trap_end, [:pointer], XrbGenericIterator
-    class XrbPictFormatError < FFI::Struct
+    attach_function :xcb_trap_end, [:pointer], GenericIterator
+    class PictFormatError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbPictureError < FFI::Struct
+    class PictureError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbPictOpError < FFI::Struct
+    class PictOpError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbGlyphSetError < FFI::Struct
+    class GlyphSetError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbGlyphError < FFI::Struct
+    class GlyphError < FFI::Struct
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
           :sequence, :uint16
     end
 
-    class XrbQueryVersionRequest < FFI::Struct
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -445,12 +445,12 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -461,10 +461,10 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbQueryPictFormatsRequest < FFI::Struct
+    class QueryPictFormatsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -477,12 +477,12 @@ class Xrb
           :pad2, [:uint8, 4]
     end
 
-    class XrbQueryPictFormatsCookie < FFI::Struct
+    class QueryPictFormatsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_pict_formats, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbQueryPictFormatsCookie
-    class XrbQueryPictFormatsReply < FFI::Struct
+    attach_function :xcb_query_pict_formats, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], QueryPictFormatsCookie
+    class QueryPictFormatsReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -496,10 +496,10 @@ class Xrb
           :pad2, [:uint8, 4]
     end
 
-    attach_function :xcb_query_pict_formats_reply, [:pointer, XrbQueryPictFormatsCookie, :pointer], :pointer
+    attach_function :xcb_query_pict_formats_reply, [:pointer, QueryPictFormatsCookie, :pointer], :pointer
 
         
-    class XrbQueryPictIndexValuesRequest < FFI::Struct
+    class QueryPictIndexValuesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -508,12 +508,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbQueryPictIndexValuesCookie < FFI::Struct
+    class QueryPictIndexValuesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_pict_index_values, [:pointer,:uint8,:uint32,:uint32], XrbQueryPictIndexValuesCookie
-    class XrbQueryPictIndexValuesReply < FFI::Struct
+    attach_function :xcb_query_pict_index_values, [:pointer,:uint8,:uint32,:uint32], QueryPictIndexValuesCookie
+    class QueryPictIndexValuesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -523,81 +523,81 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_pict_index_values_reply, [:pointer, XrbQueryPictIndexValuesCookie, :pointer], :pointer
+    attach_function :xcb_query_pict_index_values_reply, [:pointer, QueryPictIndexValuesCookie, :pointer], :pointer
 
         
-    class XrbCreatePictureRequest < FFI::Struct
+    class CreatePictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :pid, :xrb_picture_t,
-          :drawable, :xrb_drawable_t,
-          :format, :xrb_pictformat_t,
+          :pid, :picture_t,
+          :drawable, :drawable_t,
+          :format, :pictformat_t,
           :value_mask, :uint32
     end
 
-    class XrbCreatePictureCookie < FFI::Struct
+    class CreatePictureCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_picture_checked, [:pointer,:uint8,:xrb_picture_t,:xrb_drawable_t,:xrb_pictformat_t,:uint32,:pointer], XrbCreatePictureCookie
-    attach_function :xcb_create_picture, [:pointer,:uint8,:xrb_picture_t,:xrb_drawable_t,:xrb_pictformat_t,:uint32,:pointer], XrbCreatePictureCookie
-    class XrbChangePictureRequest < FFI::Struct
+    attach_function :xcb_create_picture_checked, [:pointer,:uint8,:picture_t,:drawable_t,:pictformat_t,:uint32,:pointer], CreatePictureCookie
+    attach_function :xcb_create_picture, [:pointer,:uint8,:picture_t,:drawable_t,:pictformat_t,:uint32,:pointer], CreatePictureCookie
+    class ChangePictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
+          :picture, :picture_t,
           :value_mask, :uint32
     end
 
-    class XrbChangePictureCookie < FFI::Struct
+    class ChangePictureCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_picture_checked, [:pointer,:uint8,:xrb_picture_t,:uint32,:pointer], XrbChangePictureCookie
-    attach_function :xcb_change_picture, [:pointer,:uint8,:xrb_picture_t,:uint32,:pointer], XrbChangePictureCookie
-    class XrbSetPictureClipRectanglesRequest < FFI::Struct
+    attach_function :xcb_change_picture_checked, [:pointer,:uint8,:picture_t,:uint32,:pointer], ChangePictureCookie
+    attach_function :xcb_change_picture, [:pointer,:uint8,:picture_t,:uint32,:pointer], ChangePictureCookie
+    class SetPictureClipRectanglesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
+          :picture, :picture_t,
           :clip_x_origin, :int16,
           :clip_y_origin, :int16
     end
 
-    class XrbSetPictureClipRectanglesCookie < FFI::Struct
+    class SetPictureClipRectanglesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_picture_clip_rectangles_checked, [:pointer,:uint8,:xrb_picture_t,:int16,:int16,:uint32], XrbSetPictureClipRectanglesCookie
-    attach_function :xcb_set_picture_clip_rectangles, [:pointer,:uint8,:xrb_picture_t,:int16,:int16,:uint32], XrbSetPictureClipRectanglesCookie
-    class XrbFreePictureRequest < FFI::Struct
+    attach_function :xcb_set_picture_clip_rectangles_checked, [:pointer,:uint8,:picture_t,:int16,:int16,:uint32], SetPictureClipRectanglesCookie
+    attach_function :xcb_set_picture_clip_rectangles, [:pointer,:uint8,:picture_t,:int16,:int16,:uint32], SetPictureClipRectanglesCookie
+    class FreePictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t
+          :picture, :picture_t
     end
 
-    class XrbFreePictureCookie < FFI::Struct
+    class FreePictureCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_free_picture_checked, [:pointer,:uint8,:xrb_picture_t], XrbFreePictureCookie
-    attach_function :xcb_free_picture, [:pointer,:uint8,:xrb_picture_t], XrbFreePictureCookie
-    class XrbCompositeRequest < FFI::Struct
+    attach_function :xcb_free_picture_checked, [:pointer,:uint8,:picture_t], FreePictureCookie
+    attach_function :xcb_free_picture, [:pointer,:uint8,:picture_t], FreePictureCookie
+    class CompositeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :mask, :xrb_picture_t,
-          :dst, :xrb_picture_t,
+          :src, :picture_t,
+          :mask, :picture_t,
+          :dst, :picture_t,
           :src_x, :int16,
           :src_y, :int16,
           :mask_x, :int16,
@@ -608,278 +608,278 @@ class Xrb
           :height, :uint16
     end
 
-    class XrbCompositeCookie < FFI::Struct
+    class CompositeCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_composite_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_picture_t,:int16,:int16,:int16,:int16,:int16,:int16,:uint16,:uint16], XrbCompositeCookie
-    attach_function :xcb_composite, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_picture_t,:int16,:int16,:int16,:int16,:int16,:int16,:uint16,:uint16], XrbCompositeCookie
-    class XrbTrapezoidsRequest < FFI::Struct
+    attach_function :xcb_composite_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:picture_t,:int16,:int16,:int16,:int16,:int16,:int16,:uint16,:uint16], CompositeCookie
+    attach_function :xcb_composite, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:picture_t,:int16,:int16,:int16,:int16,:int16,:int16,:uint16,:uint16], CompositeCookie
+    class TrapezoidsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbTrapezoidsCookie < FFI::Struct
+    class TrapezoidsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_trapezoids_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTrapezoidsCookie
-    attach_function :xcb_trapezoids, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTrapezoidsCookie
-    class XrbTrianglesRequest < FFI::Struct
+    attach_function :xcb_trapezoids_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TrapezoidsCookie
+    attach_function :xcb_trapezoids, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TrapezoidsCookie
+    class TrianglesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbTrianglesCookie < FFI::Struct
+    class TrianglesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_triangles_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTrianglesCookie
-    attach_function :xcb_triangles, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTrianglesCookie
-    class XrbTriStripRequest < FFI::Struct
+    attach_function :xcb_triangles_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TrianglesCookie
+    attach_function :xcb_triangles, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TrianglesCookie
+    class TriStripRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbTriStripCookie < FFI::Struct
+    class TriStripCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_tri_strip_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTriStripCookie
-    attach_function :xcb_tri_strip, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTriStripCookie
-    class XrbTriFanRequest < FFI::Struct
+    attach_function :xcb_tri_strip_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TriStripCookie
+    attach_function :xcb_tri_strip, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TriStripCookie
+    class TriFanRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbTriFanCookie < FFI::Struct
+    class TriFanCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_tri_fan_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTriFanCookie
-    attach_function :xcb_tri_fan, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:int16,:int16,:uint32], XrbTriFanCookie
-    class XrbCreateGlyphSetRequest < FFI::Struct
+    attach_function :xcb_tri_fan_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TriFanCookie
+    attach_function :xcb_tri_fan, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:int16,:int16,:uint32], TriFanCookie
+    class CreateGlyphSetRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :gsid, :xrb_glyphset_t,
-          :format, :xrb_pictformat_t
+          :gsid, :glyphset_t,
+          :format, :pictformat_t
     end
 
-    class XrbCreateGlyphSetCookie < FFI::Struct
+    class CreateGlyphSetCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_glyph_set_checked, [:pointer,:uint8,:xrb_glyphset_t,:xrb_pictformat_t], XrbCreateGlyphSetCookie
-    attach_function :xcb_create_glyph_set, [:pointer,:uint8,:xrb_glyphset_t,:xrb_pictformat_t], XrbCreateGlyphSetCookie
-    class XrbReferenceGlyphSetRequest < FFI::Struct
+    attach_function :xcb_create_glyph_set_checked, [:pointer,:uint8,:glyphset_t,:pictformat_t], CreateGlyphSetCookie
+    attach_function :xcb_create_glyph_set, [:pointer,:uint8,:glyphset_t,:pictformat_t], CreateGlyphSetCookie
+    class ReferenceGlyphSetRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :gsid, :xrb_glyphset_t,
-          :existing, :xrb_glyphset_t
+          :gsid, :glyphset_t,
+          :existing, :glyphset_t
     end
 
-    class XrbReferenceGlyphSetCookie < FFI::Struct
+    class ReferenceGlyphSetCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_reference_glyph_set_checked, [:pointer,:uint8,:xrb_glyphset_t,:xrb_glyphset_t], XrbReferenceGlyphSetCookie
-    attach_function :xcb_reference_glyph_set, [:pointer,:uint8,:xrb_glyphset_t,:xrb_glyphset_t], XrbReferenceGlyphSetCookie
-    class XrbFreeGlyphSetRequest < FFI::Struct
+    attach_function :xcb_reference_glyph_set_checked, [:pointer,:uint8,:glyphset_t,:glyphset_t], ReferenceGlyphSetCookie
+    attach_function :xcb_reference_glyph_set, [:pointer,:uint8,:glyphset_t,:glyphset_t], ReferenceGlyphSetCookie
+    class FreeGlyphSetRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :glyphset, :xrb_glyphset_t
+          :glyphset, :glyphset_t
     end
 
-    class XrbFreeGlyphSetCookie < FFI::Struct
+    class FreeGlyphSetCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_free_glyph_set_checked, [:pointer,:uint8,:xrb_glyphset_t], XrbFreeGlyphSetCookie
-    attach_function :xcb_free_glyph_set, [:pointer,:uint8,:xrb_glyphset_t], XrbFreeGlyphSetCookie
-    class XrbAddGlyphsRequest < FFI::Struct
+    attach_function :xcb_free_glyph_set_checked, [:pointer,:uint8,:glyphset_t], FreeGlyphSetCookie
+    attach_function :xcb_free_glyph_set, [:pointer,:uint8,:glyphset_t], FreeGlyphSetCookie
+    class AddGlyphsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :glyphset, :xrb_glyphset_t,
+          :glyphset, :glyphset_t,
           :glyphs_len, :uint32
     end
 
-    class XrbAddGlyphsCookie < FFI::Struct
+    class AddGlyphsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_add_glyphs_checked, [:pointer,:uint8,:xrb_glyphset_t,:uint32,:uint32,:uint32,:uint32], XrbAddGlyphsCookie
-    attach_function :xcb_add_glyphs, [:pointer,:uint8,:xrb_glyphset_t,:uint32,:uint32,:uint32,:uint32], XrbAddGlyphsCookie
-    class XrbFreeGlyphsRequest < FFI::Struct
+    attach_function :xcb_add_glyphs_checked, [:pointer,:uint8,:glyphset_t,:uint32,:uint32,:uint32,:uint32], AddGlyphsCookie
+    attach_function :xcb_add_glyphs, [:pointer,:uint8,:glyphset_t,:uint32,:uint32,:uint32,:uint32], AddGlyphsCookie
+    class FreeGlyphsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :glyphset, :xrb_glyphset_t
+          :glyphset, :glyphset_t
     end
 
-    class XrbFreeGlyphsCookie < FFI::Struct
+    class FreeGlyphsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_free_glyphs_checked, [:pointer,:uint8,:xrb_glyphset_t,:uint32], XrbFreeGlyphsCookie
-    attach_function :xcb_free_glyphs, [:pointer,:uint8,:xrb_glyphset_t,:uint32], XrbFreeGlyphsCookie
-    class XrbCompositeGlyphs8Request < FFI::Struct
+    attach_function :xcb_free_glyphs_checked, [:pointer,:uint8,:glyphset_t,:uint32], FreeGlyphsCookie
+    attach_function :xcb_free_glyphs, [:pointer,:uint8,:glyphset_t,:uint32], FreeGlyphsCookie
+    class CompositeGlyphs8Request < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
-          :glyphset, :xrb_glyphset_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
+          :glyphset, :glyphset_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbCompositeGlyphs8Cookie < FFI::Struct
+    class CompositeGlyphs8Cookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_composite_glyphs_8_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs8Cookie
-    attach_function :xcb_composite_glyphs_8, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs8Cookie
-    class XrbCompositeGlyphs16Request < FFI::Struct
+    attach_function :xcb_composite_glyphs_8_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs8Cookie
+    attach_function :xcb_composite_glyphs_8, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs8Cookie
+    class CompositeGlyphs16Request < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
-          :glyphset, :xrb_glyphset_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
+          :glyphset, :glyphset_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbCompositeGlyphs16Cookie < FFI::Struct
+    class CompositeGlyphs16Cookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_composite_glyphs_16_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs16Cookie
-    attach_function :xcb_composite_glyphs_16, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs16Cookie
-    class XrbCompositeGlyphs32Request < FFI::Struct
+    attach_function :xcb_composite_glyphs_16_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs16Cookie
+    attach_function :xcb_composite_glyphs_16, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs16Cookie
+    class CompositeGlyphs32Request < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :src, :xrb_picture_t,
-          :dst, :xrb_picture_t,
-          :mask_format, :xrb_pictformat_t,
-          :glyphset, :xrb_glyphset_t,
+          :src, :picture_t,
+          :dst, :picture_t,
+          :mask_format, :pictformat_t,
+          :glyphset, :glyphset_t,
           :src_x, :int16,
           :src_y, :int16
     end
 
-    class XrbCompositeGlyphs32Cookie < FFI::Struct
+    class CompositeGlyphs32Cookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_composite_glyphs_32_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs32Cookie
-    attach_function :xcb_composite_glyphs_32, [:pointer,:uint8,:uint8,:xrb_picture_t,:xrb_picture_t,:xrb_pictformat_t,:xrb_glyphset_t,:int16,:int16,:uint32], XrbCompositeGlyphs32Cookie
-    class XrbFillRectanglesRequest < FFI::Struct
+    attach_function :xcb_composite_glyphs_32_checked, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs32Cookie
+    attach_function :xcb_composite_glyphs_32, [:pointer,:uint8,:uint8,:picture_t,:picture_t,:pictformat_t,:glyphset_t,:int16,:int16,:uint32], CompositeGlyphs32Cookie
+    class FillRectanglesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
           :op, :uint8,
           :pad1, [:uint8, 3],
-          :dst, :xrb_picture_t,
-          :color, XrbColor
+          :dst, :picture_t,
+          :color, Color
     end
 
-    class XrbFillRectanglesCookie < FFI::Struct
+    class FillRectanglesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_fill_rectangles_checked, [:pointer,:uint8,:uint8,:xrb_picture_t,XrbColor,:uint32], XrbFillRectanglesCookie
-    attach_function :xcb_fill_rectangles, [:pointer,:uint8,:uint8,:xrb_picture_t,XrbColor,:uint32], XrbFillRectanglesCookie
-    class XrbCreateCursorRequest < FFI::Struct
+    attach_function :xcb_fill_rectangles_checked, [:pointer,:uint8,:uint8,:picture_t,Color,:uint32], FillRectanglesCookie
+    attach_function :xcb_fill_rectangles, [:pointer,:uint8,:uint8,:picture_t,Color,:uint32], FillRectanglesCookie
+    class CreateCursorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :cid, :xrb_cursor_t,
-          :source, :xrb_picture_t,
+          :cid, :cursor_t,
+          :source, :picture_t,
           :x, :uint16,
           :y, :uint16
     end
 
-    class XrbCreateCursorCookie < FFI::Struct
+    class CreateCursorCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_cursor_checked, [:pointer,:uint8,:xrb_cursor_t,:xrb_picture_t,:uint16,:uint16], XrbCreateCursorCookie
-    attach_function :xcb_create_cursor, [:pointer,:uint8,:xrb_cursor_t,:xrb_picture_t,:uint16,:uint16], XrbCreateCursorCookie
-    class XrbSetPictureTransformRequest < FFI::Struct
+    attach_function :xcb_create_cursor_checked, [:pointer,:uint8,:cursor_t,:picture_t,:uint16,:uint16], CreateCursorCookie
+    attach_function :xcb_create_cursor, [:pointer,:uint8,:cursor_t,:picture_t,:uint16,:uint16], CreateCursorCookie
+    class SetPictureTransformRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
-          :transform, XrbTransform
+          :picture, :picture_t,
+          :transform, Transform
     end
 
-    class XrbSetPictureTransformCookie < FFI::Struct
+    class SetPictureTransformCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_picture_transform_checked, [:pointer,:uint8,:xrb_picture_t,XrbTransform], XrbSetPictureTransformCookie
-    attach_function :xcb_set_picture_transform, [:pointer,:uint8,:xrb_picture_t,XrbTransform], XrbSetPictureTransformCookie
-    class XrbQueryFiltersRequest < FFI::Struct
+    attach_function :xcb_set_picture_transform_checked, [:pointer,:uint8,:picture_t,Transform], SetPictureTransformCookie
+    attach_function :xcb_set_picture_transform, [:pointer,:uint8,:picture_t,Transform], SetPictureTransformCookie
+    class QueryFiltersRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -889,12 +889,12 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    class XrbQueryFiltersCookie < FFI::Struct
+    class QueryFiltersCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_filters, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], XrbQueryFiltersCookie
-    class XrbQueryFiltersReply < FFI::Struct
+    attach_function :xcb_query_filters, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], QueryFiltersCookie
+    class QueryFiltersReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -905,122 +905,122 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_filters_reply, [:pointer, XrbQueryFiltersCookie, :pointer], :pointer
+    attach_function :xcb_query_filters_reply, [:pointer, QueryFiltersCookie, :pointer], :pointer
 
         
-    class XrbSetPictureFilterRequest < FFI::Struct
+    class SetPictureFilterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
+          :picture, :picture_t,
           :filter_len, :uint16,
           :pad1, [:uint8, 2]
     end
 
-    class XrbSetPictureFilterCookie < FFI::Struct
+    class SetPictureFilterCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_picture_filter_checked, [:pointer,:uint8,:xrb_picture_t,:uint16,:uint32,:uint32], XrbSetPictureFilterCookie
-    attach_function :xcb_set_picture_filter, [:pointer,:uint8,:xrb_picture_t,:uint16,:uint32,:uint32], XrbSetPictureFilterCookie
-    class XrbCreateAnimCursorRequest < FFI::Struct
+    attach_function :xcb_set_picture_filter_checked, [:pointer,:uint8,:picture_t,:uint16,:uint32,:uint32], SetPictureFilterCookie
+    attach_function :xcb_set_picture_filter, [:pointer,:uint8,:picture_t,:uint16,:uint32,:uint32], SetPictureFilterCookie
+    class CreateAnimCursorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :cid, :xrb_cursor_t
+          :cid, :cursor_t
     end
 
-    class XrbCreateAnimCursorCookie < FFI::Struct
+    class CreateAnimCursorCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_anim_cursor_checked, [:pointer,:uint8,:xrb_cursor_t,:uint32], XrbCreateAnimCursorCookie
-    attach_function :xcb_create_anim_cursor, [:pointer,:uint8,:xrb_cursor_t,:uint32], XrbCreateAnimCursorCookie
-    class XrbAddTrapsRequest < FFI::Struct
+    attach_function :xcb_create_anim_cursor_checked, [:pointer,:uint8,:cursor_t,:uint32], CreateAnimCursorCookie
+    attach_function :xcb_create_anim_cursor, [:pointer,:uint8,:cursor_t,:uint32], CreateAnimCursorCookie
+    class AddTrapsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
+          :picture, :picture_t,
           :x_off, :int16,
           :y_off, :int16
     end
 
-    class XrbAddTrapsCookie < FFI::Struct
+    class AddTrapsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_add_traps_checked, [:pointer,:uint8,:xrb_picture_t,:int16,:int16,:uint32], XrbAddTrapsCookie
-    attach_function :xcb_add_traps, [:pointer,:uint8,:xrb_picture_t,:int16,:int16,:uint32], XrbAddTrapsCookie
-    class XrbCreateSolidFillRequest < FFI::Struct
+    attach_function :xcb_add_traps_checked, [:pointer,:uint8,:picture_t,:int16,:int16,:uint32], AddTrapsCookie
+    attach_function :xcb_add_traps, [:pointer,:uint8,:picture_t,:int16,:int16,:uint32], AddTrapsCookie
+    class CreateSolidFillRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
-          :color, XrbColor
+          :picture, :picture_t,
+          :color, Color
     end
 
-    class XrbCreateSolidFillCookie < FFI::Struct
+    class CreateSolidFillCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_solid_fill_checked, [:pointer,:uint8,:xrb_picture_t,XrbColor], XrbCreateSolidFillCookie
-    attach_function :xcb_create_solid_fill, [:pointer,:uint8,:xrb_picture_t,XrbColor], XrbCreateSolidFillCookie
-    class XrbCreateLinearGradientRequest < FFI::Struct
+    attach_function :xcb_create_solid_fill_checked, [:pointer,:uint8,:picture_t,Color], CreateSolidFillCookie
+    attach_function :xcb_create_solid_fill, [:pointer,:uint8,:picture_t,Color], CreateSolidFillCookie
+    class CreateLinearGradientRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
-          :p1, XrbPointfix,
-          :p2, XrbPointfix,
+          :picture, :picture_t,
+          :p1, Pointfix,
+          :p2, Pointfix,
           :num_stops, :uint32
     end
 
-    class XrbCreateLinearGradientCookie < FFI::Struct
+    class CreateLinearGradientCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_linear_gradient_checked, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,XrbPointfix,:uint32,:uint32,:uint32], XrbCreateLinearGradientCookie
-    attach_function :xcb_create_linear_gradient, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,XrbPointfix,:uint32,:uint32,:uint32], XrbCreateLinearGradientCookie
-    class XrbCreateRadialGradientRequest < FFI::Struct
+    attach_function :xcb_create_linear_gradient_checked, [:pointer,:uint8,:picture_t,Pointfix,Pointfix,:uint32,:uint32,:uint32], CreateLinearGradientCookie
+    attach_function :xcb_create_linear_gradient, [:pointer,:uint8,:picture_t,Pointfix,Pointfix,:uint32,:uint32,:uint32], CreateLinearGradientCookie
+    class CreateRadialGradientRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
-          :inner, XrbPointfix,
-          :outer, XrbPointfix,
-          :inner_radius, :xrb_fixed_t,
-          :outer_radius, :xrb_fixed_t,
+          :picture, :picture_t,
+          :inner, Pointfix,
+          :outer, Pointfix,
+          :inner_radius, :fixed_t,
+          :outer_radius, :fixed_t,
           :num_stops, :uint32
     end
 
-    class XrbCreateRadialGradientCookie < FFI::Struct
+    class CreateRadialGradientCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_radial_gradient_checked, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,XrbPointfix,:xrb_fixed_t,:xrb_fixed_t,:uint32,:uint32,:uint32], XrbCreateRadialGradientCookie
-    attach_function :xcb_create_radial_gradient, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,XrbPointfix,:xrb_fixed_t,:xrb_fixed_t,:uint32,:uint32,:uint32], XrbCreateRadialGradientCookie
-    class XrbCreateConicalGradientRequest < FFI::Struct
+    attach_function :xcb_create_radial_gradient_checked, [:pointer,:uint8,:picture_t,Pointfix,Pointfix,:fixed_t,:fixed_t,:uint32,:uint32,:uint32], CreateRadialGradientCookie
+    attach_function :xcb_create_radial_gradient, [:pointer,:uint8,:picture_t,Pointfix,Pointfix,:fixed_t,:fixed_t,:uint32,:uint32,:uint32], CreateRadialGradientCookie
+    class CreateConicalGradientRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
           :length, :uint16,
-          :picture, :xrb_picture_t,
-          :center, XrbPointfix,
-          :angle, :xrb_fixed_t,
+          :picture, :picture_t,
+          :center, Pointfix,
+          :angle, :fixed_t,
           :num_stops, :uint32
     end
 
-    class XrbCreateConicalGradientCookie < FFI::Struct
+    class CreateConicalGradientCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_conical_gradient_checked, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,:xrb_fixed_t,:uint32,:uint32,:uint32], XrbCreateConicalGradientCookie
-    attach_function :xcb_create_conical_gradient, [:pointer,:uint8,:xrb_picture_t,XrbPointfix,:xrb_fixed_t,:uint32,:uint32,:uint32], XrbCreateConicalGradientCookie
+    attach_function :xcb_create_conical_gradient_checked, [:pointer,:uint8,:picture_t,Pointfix,:fixed_t,:uint32,:uint32,:uint32], CreateConicalGradientCookie
+    attach_function :xcb_create_conical_gradient, [:pointer,:uint8,:picture_t,Pointfix,:fixed_t,:uint32,:uint32,:uint32], CreateConicalGradientCookie
   end
 end

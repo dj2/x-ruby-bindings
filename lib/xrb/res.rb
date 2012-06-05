@@ -10,35 +10,35 @@ class Xrb
     ffi_lib 'res'
     MAJOR_VERSION = 1
     MINOR_VERSION = 0
-    class XrbClient < FFI::Struct
+    class Client < FFI::Struct
       layout \
           :resource_base, :uint32,
           :resource_mask, :uint32
     end
 
-    class XrbClientIterator < FFI::Struct
+    class ClientIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_client_next, [:pointer], :void
-    attach_function :xcb_client_end, [:pointer], XrbGenericIterator
-    class XrbType < FFI::Struct
+    attach_function :xcb_client_end, [:pointer], GenericIterator
+    class Type < FFI::Struct
       layout \
-          :resource_type, :xrb_atom_t,
+          :resource_type, :atom_t,
           :count, :uint32
     end
 
-    class XrbTypeIterator < FFI::Struct
+    class TypeIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_type_next, [:pointer], :void
-    attach_function :xcb_type_end, [:pointer], XrbGenericIterator
-    class XrbQueryVersionRequest < FFI::Struct
+    attach_function :xcb_type_end, [:pointer], GenericIterator
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -47,12 +47,12 @@ class Xrb
           :server_minor, :uint16
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -62,10 +62,10 @@ class Xrb
           :server_minor, :uint16
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbQueryClientsRequest < FFI::Struct
+    class QueryClientsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -74,12 +74,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbQueryClientsCookie < FFI::Struct
+    class QueryClientsCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_clients, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientsCookie
-    class XrbQueryClientsReply < FFI::Struct
+    attach_function :xcb_query_clients, [:pointer,:uint8,:uint32,:uint32], QueryClientsCookie
+    class QueryClientsReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -89,10 +89,10 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_clients_reply, [:pointer, XrbQueryClientsCookie, :pointer], :pointer
+    attach_function :xcb_query_clients_reply, [:pointer, QueryClientsCookie, :pointer], :pointer
 
         
-    class XrbQueryClientResourcesRequest < FFI::Struct
+    class QueryClientResourcesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -101,12 +101,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbQueryClientResourcesCookie < FFI::Struct
+    class QueryClientResourcesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_client_resources, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientResourcesCookie
-    class XrbQueryClientResourcesReply < FFI::Struct
+    attach_function :xcb_query_client_resources, [:pointer,:uint8,:uint32,:uint32], QueryClientResourcesCookie
+    class QueryClientResourcesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -116,10 +116,10 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_client_resources_reply, [:pointer, XrbQueryClientResourcesCookie, :pointer], :pointer
+    attach_function :xcb_query_client_resources_reply, [:pointer, QueryClientResourcesCookie, :pointer], :pointer
 
         
-    class XrbQueryClientPixmapBytesRequest < FFI::Struct
+    class QueryClientPixmapBytesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -128,12 +128,12 @@ class Xrb
           :bytes_overflow, :uint32
     end
 
-    class XrbQueryClientPixmapBytesCookie < FFI::Struct
+    class QueryClientPixmapBytesCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_client_pixmap_bytes, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientPixmapBytesCookie
-    class XrbQueryClientPixmapBytesReply < FFI::Struct
+    attach_function :xcb_query_client_pixmap_bytes, [:pointer,:uint8,:uint32,:uint32], QueryClientPixmapBytesCookie
+    class QueryClientPixmapBytesReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -143,7 +143,7 @@ class Xrb
           :bytes_overflow, :uint32
     end
 
-    attach_function :xcb_query_client_pixmap_bytes_reply, [:pointer, XrbQueryClientPixmapBytesCookie, :pointer], :pointer
+    attach_function :xcb_query_client_pixmap_bytes_reply, [:pointer, QueryClientPixmapBytesCookie, :pointer], :pointer
 
         
   end

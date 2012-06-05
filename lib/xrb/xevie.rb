@@ -9,22 +9,22 @@ class Xrb
     ffi_lib 'xevie'
     MAJOR_VERSION = 1
     MINOR_VERSION = 0
-    XRB_DATATYPE_UNMODIFIED = 1
-    XRB_DATATYPE_MODIFIED = 2
-    class XrbEvent < FFI::Struct
+    DATATYPE_UNMODIFIED = 1
+    DATATYPE_MODIFIED = 2
+    class Event < FFI::Struct
       layout \
           :pad1, [:uint8, 32]
     end
 
-    class XrbEventIterator < FFI::Struct
+    class EventIterator < FFI::Struct
       layout \
           :data, :pointer,
           :rem, :int,
           :indent, :int
     end
     attach_function :xcb_event_next, [:pointer], :void
-    attach_function :xcb_event_end, [:pointer], XrbGenericIterator
-    class XrbQueryVersionRequest < FFI::Struct
+    attach_function :xcb_event_end, [:pointer], GenericIterator
+    class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -34,12 +34,12 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    class XrbQueryVersionCookie < FFI::Struct
+    class QueryVersionCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
-    class XrbQueryVersionReply < FFI::Struct
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
+    class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -50,10 +50,10 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, XrbQueryVersionCookie, :pointer], :pointer
+    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
-    class XrbStartRequest < FFI::Struct
+    class StartRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -61,12 +61,12 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    class XrbStartCookie < FFI::Struct
+    class StartCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_start, [:pointer,:uint8], XrbStartCookie
-    class XrbStartReply < FFI::Struct
+    attach_function :xcb_start, [:pointer,:uint8], StartCookie
+    class StartReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -75,10 +75,10 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    attach_function :xcb_start_reply, [:pointer, XrbStartCookie, :pointer], :pointer
+    attach_function :xcb_start_reply, [:pointer, StartCookie, :pointer], :pointer
 
         
-    class XrbEndRequest < FFI::Struct
+    class EndRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -86,12 +86,12 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    class XrbEndCookie < FFI::Struct
+    class EndCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_end, [:pointer,:uint8], XrbEndCookie
-    class XrbEndReply < FFI::Struct
+    attach_function :xcb_end, [:pointer,:uint8], EndCookie
+    class EndReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -100,10 +100,10 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    attach_function :xcb_end_reply, [:pointer, XrbEndCookie, :pointer], :pointer
+    attach_function :xcb_end_reply, [:pointer, EndCookie, :pointer], :pointer
 
         
-    class XrbSendRequest < FFI::Struct
+    class SendRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -111,12 +111,12 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    class XrbSendCookie < FFI::Struct
+    class SendCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_send, [:pointer,:uint8], XrbSendCookie
-    class XrbSendReply < FFI::Struct
+    attach_function :xcb_send, [:pointer,:uint8], SendCookie
+    class SendReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -125,10 +125,10 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    attach_function :xcb_send_reply, [:pointer, XrbSendCookie, :pointer], :pointer
+    attach_function :xcb_send_reply, [:pointer, SendCookie, :pointer], :pointer
 
         
-    class XrbSelectInputRequest < FFI::Struct
+    class SelectInputRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -136,12 +136,12 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    class XrbSelectInputCookie < FFI::Struct
+    class SelectInputCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_input, [:pointer,:uint8], XrbSelectInputCookie
-    class XrbSelectInputReply < FFI::Struct
+    attach_function :xcb_select_input, [:pointer,:uint8], SelectInputCookie
+    class SelectInputReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -150,7 +150,7 @@ class Xrb
           :pad2, [:uint8, 24]
     end
 
-    attach_function :xcb_select_input_reply, [:pointer, XrbSelectInputCookie, :pointer], :pointer
+    attach_function :xcb_select_input_reply, [:pointer, SelectInputCookie, :pointer], :pointer
 
         
   end

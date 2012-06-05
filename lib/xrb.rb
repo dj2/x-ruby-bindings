@@ -18,14 +18,14 @@ class Xrb
   CONN_CLOSED_REQ_LEN_EXCEED = 4
   CONN_CLOSED_PARSE_ERR = 5
 
-  class XrbGenericIterator < FFI::Struct
+  class GenericIterator < FFI::Struct
     layout \
         :data, :pointer,
         :rem, :int,
         :index, :int
   end
 
-  class XrbGenricReply < FFI::Struct
+  class GenricReply < FFI::Struct
     layout \
         :response_type, :uint8,
         :pad0, :uint8,
@@ -33,7 +33,7 @@ class Xrb
         :length, :uint32
   end
 
-  class XrbGenericEvent < FFI::Struct
+  class GenericEvent < FFI::Struct
     layout \
         :response_type, :uint8,
         :pad0, :uint8,
@@ -42,7 +42,7 @@ class Xrb
         :full_sequence, :uint32
   end
 
-  class XrbGeEvent < FFI::Struct
+  class GeEvent < FFI::Struct
     layout \
         :response_type, :uint8,
         :pad0, :uint8,
@@ -54,7 +54,7 @@ class Xrb
         :full_sequence, :uint32
   end
 
-  class XrbGenericError < FFI::Struct
+  class GenericError < FFI::Struct
     layout \
         :response_type, :uint8,
         :error_code, :uint8,
@@ -67,12 +67,12 @@ class Xrb
         :full_sequence, :uint32
   end
 
-  class XrbVoidCookie < FFI::Struct
+  class VoidCookie < FFI::Struct
     layout \
         :sequence, :int
   end
 
-  class XrbAuthInfo < FFI::Struct
+  class AuthInfo < FFI::Struct
     layout \
         :namelen, :int,
         :name, :string,
@@ -84,26 +84,26 @@ end
 require 'xrb/xproto'
 
 class Xrb
-  typedef :pointer, :xrb_connection_t
-  typedef :pointer, :xrb_extension_t
+  typedef :pointer, :connection_t
+  typedef :pointer, :extension_t
 
-  attach_function :xcb_flush, [:xrb_connection_t], :int
-  attach_function :xcb_get_maximum_request_length, [:xrb_connection_t], :uint32
-  attach_function :xcb_prefetch_maximum_request_length, [:xrb_connection_t], :void
-  attach_function :xcb_wait_for_event, [:xrb_connection_t], :pointer
-  attach_function :xcb_poll_for_event, [:xrb_connection_t], :pointer
-  attach_function :xcb_poll_for_queued_event, [:xrb_connection_t], :pointer
-  attach_function :xcb_request_check, [:xrb_connection_t, XrbVoidCookie], :pointer
-  attach_function :xcb_discard_reply, [:xrb_connection_t, :uint], :void
-  attach_function :xcb_get_extension_data, [:xrb_connection_t, :xrb_extension_t], :pointer
-  attach_function :xcb_prefetch_extension_data, [:xrb_connection_t, :xrb_extension_t], :void
-  attach_function :xcb_get_setup, [:xrb_connection_t], :pointer
-  attach_function :xcb_get_file_descriptor, [:xrb_connection_t], :int
-  attach_function :xcb_connection_has_error, [:xrb_connection_t], :int
-  attach_function :xcb_connect_to_fd, [:int, :pointer], :xrb_connection_t
-  attach_function :xcb_disconnect, [:xrb_connection_t], :void
+  attach_function :xcb_flush, [:connection_t], :int
+  attach_function :xcb_get_maximum_request_length, [:connection_t], :uint32
+  attach_function :xcb_prefetch_maximum_request_length, [:connection_t], :void
+  attach_function :xcb_wait_for_event, [:connection_t], :pointer
+  attach_function :xcb_poll_for_event, [:connection_t], :pointer
+  attach_function :xcb_poll_for_queued_event, [:connection_t], :pointer
+  attach_function :xcb_request_check, [:connection_t, VoidCookie], :pointer
+  attach_function :xcb_discard_reply, [:connection_t, :uint], :void
+  attach_function :xcb_get_extension_data, [:connection_t, :extension_t], :pointer
+  attach_function :xcb_prefetch_extension_data, [:connection_t, :extension_t], :void
+  attach_function :xcb_get_setup, [:connection_t], :pointer
+  attach_function :xcb_get_file_descriptor, [:connection_t], :int
+  attach_function :xcb_connection_has_error, [:connection_t], :int
+  attach_function :xcb_connect_to_fd, [:int, :pointer], :connection_t
+  attach_function :xcb_disconnect, [:connection_t], :void
   attach_function :xcb_parse_display, [:string, :pointer, :pointer, :pointer], :int
-  attach_function :xcb_connect, [:string, :pointer], :xrb_connection_t
-  attach_function :xcb_connect_to_display_with_auth_info, [:string, :pointer, :pointer], :xrb_connection_t
-  attach_function :xcb_generate_id, [:xrb_connection_t], :uint32
+  attach_function :xcb_connect, [:string, :pointer], :connection_t
+  attach_function :xcb_connect_to_display_with_auth_info, [:string, :pointer, :pointer], :connection_t
+  attach_function :xcb_generate_id, [:connection_t], :uint32
 end

@@ -9,7 +9,7 @@ class Xrb
     ffi_lib 'bigreq'
     MAJOR_VERSION = 0
     MINOR_VERSION = 0
-    class XrbEnableRequest < FFI::Struct
+    class EnableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
           :minor_opcode, :uint8,
@@ -17,12 +17,12 @@ class Xrb
           :maximum_request_length, :uint32
     end
 
-    class XrbEnableCookie < FFI::Struct
+    class EnableCookie < FFI::Struct
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable, [:pointer,:uint8,:uint32], XrbEnableCookie
-    class XrbEnableReply < FFI::Struct
+    attach_function :xcb_enable, [:pointer,:uint8,:uint32], EnableCookie
+    class EnableReply < FFI::Struct
       layout \
           :response_type, :uint8,
           :pad1, [:uint8, 1],
@@ -31,7 +31,7 @@ class Xrb
           :maximum_request_length, :uint32
     end
 
-    attach_function :xcb_enable_reply, [:pointer, XrbEnableCookie, :pointer], :pointer
+    attach_function :xcb_enable_reply, [:pointer, EnableCookie, :pointer], :pointer
 
         
   end

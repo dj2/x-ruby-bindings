@@ -9,16 +9,16 @@ conn = Xrb.xcb_connect(nil, nil)
 setup = Xrb.xcb_get_setup(conn)
 iter = Xrb.xcb_setup_roots_iterator(setup)
 
-screen = Xrb::XrbScreen.new(iter)
+screen = Xrb::Screen.new(iter)
 
 window = Xrb.xcb_generate_id(conn)
 
-mask = Xrb::XRB_CW_BACK_PIXEL | Xrb::XRB_CW_EVENT_MASK
-values = [screen[:white_pixel], :xrb_event_mask_exposure]
+mask = Xrb::CW_BACK_PIXEL | Xrb::CW_EVENT_MASK
+values = [screen[:white_pixel], Xrb::EVENT_MASK_EXPOSURE]
 ptr = FFI::MemoryPointer.new(:uint32, values.size)
 
 Xrb.xcb_create_window(conn, Xrb::COPY_FROM_PARENT, window, screen[:root],
-    0, 0, 150, 150, 10, Xrb::XRB_WINDOW_CLASS_INPUT_OUTPUT, screen[:root_visual],
+    0, 0, 150, 150, 10, Xrb::WINDOW_CLASS_INPUT_OUTPUT, screen[:root_visual],
     mask, ptr)
 
 Xrb.xcb_map_window(conn, window)
