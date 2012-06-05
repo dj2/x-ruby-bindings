@@ -28,21 +28,15 @@ class Xrb
     end
     attach_function :xcb_event_class_next, [:pointer], :void
     attach_function :xcb_event_class_end, [:pointer], XrbGenericIterator
-    enum :xrb_valuator_mode_t, [
-        :xrb_valuator_mode_relative, 0,
-        :xrb_valuator_mode_absolute, 1
-    ]
-    enum :xrb_propagate_mode_t, [
-        :xrb_propagate_mode_add_to_list, 0,
-        :xrb_propagate_mode_delete_from_list, 1
-    ]
-    enum :xrb_device_use_t, [
-        :xrb_device_use_is_x_pointer, 0,
-        :xrb_device_use_is_x_keyboard, 1,
-        :xrb_device_use_is_x_extension_device, 2,
-        :xrb_device_use_is_x_extension_keyboard, 3,
-        :xrb_device_use_is_x_extension_pointer, 4
-    ]
+    XRB_VALUATOR_MODE_RELATIVE = 0
+    XRB_VALUATOR_MODE_ABSOLUTE = 1
+    XRB_PROPAGATE_MODE_ADD_TO_LIST = 0
+    XRB_PROPAGATE_MODE_DELETE_FROM_LIST = 1
+    XRB_DEVICE_USE_IS_X_POINTER = 0
+    XRB_DEVICE_USE_IS_X_KEYBOARD = 1
+    XRB_DEVICE_USE_IS_X_EXTENSION_DEVICE = 2
+    XRB_DEVICE_USE_IS_X_EXTENSION_KEYBOARD = 3
+    XRB_DEVICE_USE_IS_X_EXTENSION_POINTER = 4
     class XrbDeviceInfo < FFI::Struct
       layout \
           :device_type, :xrb_atom_t,
@@ -60,15 +54,13 @@ class Xrb
     end
     attach_function :xcb_device_info_next, [:pointer], :void
     attach_function :xcb_device_info_end, [:pointer], XrbGenericIterator
-    enum :xrb_input_class_t, [
-        :xrb_input_class_key, 0,
-        :xrb_input_class_button, 1,
-        :xrb_input_class_valuator, 2,
-        :xrb_input_class_feedback, 3,
-        :xrb_input_class_proximity, 4,
-        :xrb_input_class_focus, 5,
-        :xrb_input_class_other, 6
-    ]
+    XRB_INPUT_CLASS_KEY = 0
+    XRB_INPUT_CLASS_BUTTON = 1
+    XRB_INPUT_CLASS_VALUATOR = 2
+    XRB_INPUT_CLASS_FEEDBACK = 3
+    XRB_INPUT_CLASS_PROXIMITY = 4
+    XRB_INPUT_CLASS_FOCUS = 5
+    XRB_INPUT_CLASS_OTHER = 6
     class XrbInputInfo < FFI::Struct
       layout \
           :class_id, :uint8,
@@ -149,6 +141,7 @@ class Xrb
     attach_function :xcb_valuator_info_next, [:pointer], :void
     attach_function :xcb_valuator_info_end, [:pointer], XrbGenericIterator
     attach_function :xcb_valuator_info_sizeof, [:pointer], :int
+    attach_function :xcb_valuator_info_axes_iterator, [:pointer], XrbValuatorInfoIterator
     attach_function :xcb_valuator_info_axes_length, [:pointer], :int
     class XrbInputClassInfo < FFI::Struct
       layout \
@@ -177,22 +170,18 @@ class Xrb
     end
     attach_function :xcb_device_time_coord_next, [:pointer], :void
     attach_function :xcb_device_time_coord_end, [:pointer], XrbGenericIterator
-    enum :xrb_device_input_mode_t, [
-        :xrb_device_input_mode_async_this_device, 1,
-        :xrb_device_input_mode_sync_this_device, 2,
-        :xrb_device_input_mode_replay_this_device, 3,
-        :xrb_device_input_mode_async_other_devices, 4,
-        :xrb_device_input_mode_async_all, 5,
-        :xrb_device_input_mode_sync_all, 6
-    ]
-    enum :xrb_feedback_class_t, [
-        :xrb_feedback_class_keyboard, 1,
-        :xrb_feedback_class_pointer, 2,
-        :xrb_feedback_class_string, 3,
-        :xrb_feedback_class_integer, 4,
-        :xrb_feedback_class_led, 5,
-        :xrb_feedback_class_bell, 6
-    ]
+    XRB_DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE = 1
+    XRB_DEVICE_INPUT_MODE_SYNC_THIS_DEVICE = 2
+    XRB_DEVICE_INPUT_MODE_REPLAY_THIS_DEVICE = 3
+    XRB_DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES = 4
+    XRB_DEVICE_INPUT_MODE_ASYNC_ALL = 5
+    XRB_DEVICE_INPUT_MODE_SYNC_ALL = 6
+    XRB_FEEDBACK_CLASS_KEYBOARD = 1
+    XRB_FEEDBACK_CLASS_POINTER = 2
+    XRB_FEEDBACK_CLASS_STRING = 3
+    XRB_FEEDBACK_CLASS_INTEGER = 4
+    XRB_FEEDBACK_CLASS_LED = 5
+    XRB_FEEDBACK_CLASS_BELL = 6
     class XrbFeedbackState < FFI::Struct
       layout \
           :class_id, :uint8,
@@ -1010,7 +999,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_extension_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:bool], XrbGetExtensionVersionCookie
+    attach_function :xcb_get_extension_version, [:pointer,:uint8,:uint16,:uint16,:bool], XrbGetExtensionVersionCookie
     class XrbGetExtensionVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1039,7 +1028,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_input_devices, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint32], XrbListInputDevicesCookie
+    attach_function :xcb_list_input_devices, [:pointer,:uint8,:uint8,:uint32], XrbListInputDevicesCookie
     class XrbListInputDevicesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1066,7 +1055,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_open_device, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint32], XrbOpenDeviceCookie
+    attach_function :xcb_open_device, [:pointer,:uint8,:uint8,:uint32], XrbOpenDeviceCookie
     class XrbOpenDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1093,8 +1082,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_close_device_checked, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbCloseDeviceCookie
-    attach_function :xcb_close_device, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbCloseDeviceCookie
+    attach_function :xcb_close_device_checked, [:pointer,:uint8,:uint8], XrbCloseDeviceCookie
+    attach_function :xcb_close_device, [:pointer,:uint8,:uint8], XrbCloseDeviceCookie
     class XrbSetDeviceModeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1108,7 +1097,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_mode, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbSetDeviceModeCookie
+    attach_function :xcb_set_device_mode, [:pointer,:uint8,:uint8], XrbSetDeviceModeCookie
     class XrbSetDeviceModeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1136,8 +1125,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_extension_event_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
-    attach_function :xcb_select_extension_event, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
+    attach_function :xcb_select_extension_event_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
+    attach_function :xcb_select_extension_event, [:pointer,:uint8,:xrb_window_t,:uint16,:uint32], XrbSelectExtensionEventCookie
     class XrbGetSelectedExtensionEventsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1152,7 +1141,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selected_extension_events, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint32,:uint32], XrbGetSelectedExtensionEventsCookie
+    attach_function :xcb_get_selected_extension_events, [:pointer,:uint8,:uint16,:uint16,:uint32,:uint32], XrbGetSelectedExtensionEventsCookie
     class XrbGetSelectedExtensionEventsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1182,8 +1171,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_device_dont_propagate_list_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
-    attach_function :xcb_change_device_dont_propagate_list, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
+    attach_function :xcb_change_device_dont_propagate_list_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
+    attach_function :xcb_change_device_dont_propagate_list, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint32], XrbChangeDeviceDontPropagateListCookie
     class XrbGetDeviceDontPropagateListRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1197,7 +1186,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_dont_propagate_list, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint32], XrbGetDeviceDontPropagateListCookie
+    attach_function :xcb_get_device_dont_propagate_list, [:pointer,:uint8,:uint16,:uint32], XrbGetDeviceDontPropagateListCookie
     class XrbGetDeviceDontPropagateListReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1226,7 +1215,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_motion_events, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint8,:uint8], XrbGetDeviceMotionEventsCookie
+    attach_function :xcb_get_device_motion_events, [:pointer,:uint8,:uint32,:uint8,:uint8], XrbGetDeviceMotionEventsCookie
     class XrbGetDeviceMotionEventsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1255,7 +1244,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_keyboard_device, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbChangeKeyboardDeviceCookie
+    attach_function :xcb_change_keyboard_device, [:pointer,:uint8,:uint8], XrbChangeKeyboardDeviceCookie
     class XrbChangeKeyboardDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1282,7 +1271,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_pointer_device, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbChangePointerDeviceCookie
+    attach_function :xcb_change_pointer_device, [:pointer,:uint8,:uint8], XrbChangePointerDeviceCookie
     class XrbChangePointerDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1309,7 +1298,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbGrabDeviceCookie
+    attach_function :xcb_grab_device, [:pointer,:uint8,:uint8], XrbGrabDeviceCookie
     class XrbGrabDeviceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1336,8 +1325,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
-    attach_function :xcb_ungrab_device, [:pointer,:uint8,:uint8,:uint16,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
+    attach_function :xcb_ungrab_device_checked, [:pointer,:uint8,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
+    attach_function :xcb_ungrab_device, [:pointer,:uint8,:xrb_timestamp_t,:uint8], XrbUngrabDeviceCookie
     class XrbGrabDeviceKeyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1359,8 +1348,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device_key_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
-    attach_function :xcb_grab_device_key, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
+    attach_function :xcb_grab_device_key_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
+    attach_function :xcb_grab_device_key, [:pointer,:uint8,:xrb_window_t,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint32], XrbGrabDeviceKeyCookie
     class XrbUngrabDeviceKeyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1377,8 +1366,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_key_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
-    attach_function :xcb_ungrab_device_key, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
+    attach_function :xcb_ungrab_device_key_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
+    attach_function :xcb_ungrab_device_key, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceKeyCookie
     class XrbGrabDeviceButtonRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1400,8 +1389,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_device_button_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
-    attach_function :xcb_grab_device_button, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
+    attach_function :xcb_grab_device_button_checked, [:pointer,:uint8,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
+    attach_function :xcb_grab_device_button, [:pointer,:uint8,:xrb_window_t,:uint8,:uint8,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint32], XrbGrabDeviceButtonCookie
     class XrbUngrabDeviceButtonRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1418,8 +1407,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_device_button_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
-    attach_function :xcb_ungrab_device_button, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
+    attach_function :xcb_ungrab_device_button_checked, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
+    attach_function :xcb_ungrab_device_button, [:pointer,:uint8,:xrb_window_t,:uint16,:uint8,:uint8,:uint8], XrbUngrabDeviceButtonCookie
     class XrbAllowDeviceEventsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1434,8 +1423,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_allow_device_events_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
-    attach_function :xcb_allow_device_events, [:pointer,:uint8,:uint8,:uint16,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
+    attach_function :xcb_allow_device_events_checked, [:pointer,:uint8,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
+    attach_function :xcb_allow_device_events, [:pointer,:uint8,:xrb_timestamp_t,:uint8,:uint8], XrbAllowDeviceEventsCookie
     class XrbGetDeviceFocusRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1451,7 +1440,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_focus, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_timestamp_t,:uint8], XrbGetDeviceFocusCookie
+    attach_function :xcb_get_device_focus, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8], XrbGetDeviceFocusCookie
     class XrbGetDeviceFocusReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1482,8 +1471,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_focus_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
-    attach_function :xcb_set_device_focus, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
+    attach_function :xcb_set_device_focus_checked, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
+    attach_function :xcb_set_device_focus, [:pointer,:uint8,:xrb_window_t,:xrb_timestamp_t,:uint8,:uint8], XrbSetDeviceFocusCookie
     class XrbGetFeedbackControlRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1497,7 +1486,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_feedback_control, [:pointer,:uint8,:uint8,:uint16,:uint16], XrbGetFeedbackControlCookie
+    attach_function :xcb_get_feedback_control, [:pointer,:uint8,:uint16], XrbGetFeedbackControlCookie
     class XrbGetFeedbackControlReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1524,7 +1513,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_key_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint32], XrbGetDeviceKeyMappingCookie
+    attach_function :xcb_get_device_key_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceKeyMappingCookie
     class XrbGetDeviceKeyMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1553,8 +1542,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_device_key_mapping_checked, [:pointer,:uint8,:uint8,:uint16,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
-    attach_function :xcb_change_device_key_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
+    attach_function :xcb_change_device_key_mapping_checked, [:pointer,:uint8,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
+    attach_function :xcb_change_device_key_mapping, [:pointer,:uint8,:uint8,:xrb_keycode_t,:uint8,:uint8,:uint32], XrbChangeDeviceKeyMappingCookie
     class XrbGetDeviceModifierMappingRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1568,7 +1557,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_modifier_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint32], XrbGetDeviceModifierMappingCookie
+    attach_function :xcb_get_device_modifier_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceModifierMappingCookie
     class XrbGetDeviceModifierMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1595,7 +1584,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_modifier_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbSetDeviceModifierMappingCookie
+    attach_function :xcb_set_device_modifier_mapping, [:pointer,:uint8,:uint8], XrbSetDeviceModifierMappingCookie
     class XrbSetDeviceModifierMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1622,7 +1611,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_button_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint32], XrbGetDeviceButtonMappingCookie
+    attach_function :xcb_get_device_button_mapping, [:pointer,:uint8,:uint8,:uint32], XrbGetDeviceButtonMappingCookie
     class XrbGetDeviceButtonMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1649,7 +1638,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_button_mapping, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbSetDeviceButtonMappingCookie
+    attach_function :xcb_set_device_button_mapping, [:pointer,:uint8,:uint8], XrbSetDeviceButtonMappingCookie
     class XrbSetDeviceButtonMappingReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1676,7 +1665,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_device_state, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbQueryDeviceStateCookie
+    attach_function :xcb_query_device_state, [:pointer,:uint8,:uint8], XrbQueryDeviceStateCookie
     class XrbQueryDeviceStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1707,8 +1696,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_send_extension_event_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
-    attach_function :xcb_send_extension_event, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
+    attach_function :xcb_send_extension_event_checked, [:pointer,:uint8,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
+    attach_function :xcb_send_extension_event, [:pointer,:uint8,:xrb_window_t,:uint8,:bool,:uint16,:uint8,:uint32,:uint32], XrbSendExtensionEventCookie
     class XrbDeviceBellRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1724,8 +1713,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_device_bell_checked, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
-    attach_function :xcb_device_bell, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
+    attach_function :xcb_device_bell_checked, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
+    attach_function :xcb_device_bell, [:pointer,:uint8,:uint8,:uint8,:uint8,:int8], XrbDeviceBellCookie
     class XrbSetDeviceValuatorsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1739,7 +1728,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_valuators, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbSetDeviceValuatorsCookie
+    attach_function :xcb_set_device_valuators, [:pointer,:uint8,:uint8], XrbSetDeviceValuatorsCookie
     class XrbSetDeviceValuatorsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1766,7 +1755,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_control, [:pointer,:uint8,:uint8,:uint16,:uint8], XrbGetDeviceControlCookie
+    attach_function :xcb_get_device_control, [:pointer,:uint8,:uint8], XrbGetDeviceControlCookie
     class XrbGetDeviceControlReply < FFI::Struct
       layout \
           :response_type, :uint8,

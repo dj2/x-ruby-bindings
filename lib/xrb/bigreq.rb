@@ -21,7 +21,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbEnableCookie
+    attach_function :xcb_enable, [:pointer,:uint8,:uint32], XrbEnableCookie
     class XrbEnableReply < FFI::Struct
       layout \
           :response_type, :uint8,

@@ -67,7 +67,6 @@ class Xrb
 
       def to_ffi(indent = 0)
         out = []
-        out << "#{' ' * indent}enum #{ffi_name}, ["
 
         prev_value = 0
         field_list = []
@@ -79,11 +78,11 @@ class Xrb
             prev_value = field.value
           end
 
-          field_list << "#{' ' * (indent + 4)}#{field.to_ffi(@name)}"
+          field_list << "#{' ' * indent}#{field.to_ffi(@name)}"
         end
         field_list.delete_if { |x| x == nil }
-        out << field_list.join(",\n")
-        out << "#{' ' * indent}]"
+
+        out << field_list.join("\n")
         out.join("\n")
       end
 
@@ -153,9 +152,10 @@ class Xrb
 
             if list.fixed_size?
               out << "#{' ' * indent}attach_function #{n}, [:pointer], :pointer"
+            else
+              out << "#{' ' * indent}attach_function #{n}_iterator, [:pointer], #{ffi_name}Iterator"
             end
             out << "#{' ' * indent}attach_function #{n}_length, [:pointer], :int"
-#            out << "#{' ' * indent}attach_function #{n}_iterator, [:pointer], #{ffi_name}Iterator"
           end
         end
 
@@ -372,10 +372,14 @@ class Xrb
         out << ""
 
         body = [":pointer"]
-        fields.each do |field|
+        fields.each_with_index do |field, idx|
           next if field.is_a?(PadField)
+          next if idx == 0 || idx == 2
 
           body << field.type.ffi_name
+          if field.is_a?(ValueParamField)
+            body << ":pointer"
+          end
         end
 
         out << "#{' ' * indent}class #{base_ffi_name}Cookie < FFI::Struct"

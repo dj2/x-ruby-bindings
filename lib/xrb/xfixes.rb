@@ -12,34 +12,20 @@ class Xrb
     ffi_lib 'xfixes'
     MAJOR_VERSION = 4
     MINOR_VERSION = 0
-    enum :xrb_save_set_mode_t, [
-        :xrb_save_set_mode_insert, 1,
-        :xrb_save_set_mode_delete, 2
-    ]
-    enum :xrb_save_set_target_t, [
-        :xrb_save_set_target_nearest, 1,
-        :xrb_save_set_target_root, 2
-    ]
-    enum :xrb_save_set_mapping_t, [
-        :xrb_save_set_mapping_map, 1,
-        :xrb_save_set_mapping_unmap, 2
-    ]
-    enum :xrb_selection_event_t, [
-        :xrb_selection_event_set_selection_owner, 1,
-        :xrb_selection_event_selection_window_destroy, 2,
-        :xrb_selection_event_selection_client_close, 3
-    ]
-    enum :xrb_selection_event_mask_t, [
-        :xrb_selection_event_mask_set_selection_owner, 1 << 0,
-        :xrb_selection_event_mask_selection_window_destroy, 1 << 1,
-        :xrb_selection_event_mask_selection_client_close, 1 << 2
-    ]
-    enum :xrb_cursor_notify_t, [
-        :xrb_cursor_notify_display_cursor, 1
-    ]
-    enum :xrb_cursor_notify_mask_t, [
-        :xrb_cursor_notify_mask_display_cursor, 1 << 0
-    ]
+    XRB_SAVE_SET_MODE_INSERT = 1
+    XRB_SAVE_SET_MODE_DELETE = 2
+    XRB_SAVE_SET_TARGET_NEAREST = 1
+    XRB_SAVE_SET_TARGET_ROOT = 2
+    XRB_SAVE_SET_MAPPING_MAP = 1
+    XRB_SAVE_SET_MAPPING_UNMAP = 2
+    XRB_SELECTION_EVENT_SET_SELECTION_OWNER = 1
+    XRB_SELECTION_EVENT_SELECTION_WINDOW_DESTROY = 2
+    XRB_SELECTION_EVENT_SELECTION_CLIENT_CLOSE = 3
+    XRB_SELECTION_EVENT_MASK_SET_SELECTION_OWNER = 1 << 0
+    XRB_SELECTION_EVENT_MASK_SELECTION_WINDOW_DESTROY = 1 << 1
+    XRB_SELECTION_EVENT_MASK_SELECTION_CLIENT_CLOSE = 1 << 2
+    XRB_CURSOR_NOTIFY_DISPLAY_CURSOR = 1
+    XRB_CURSOR_NOTIFY_MASK_DISPLAY_CURSOR = 1 << 0
     typedef :uint32, :xrb_region_t
     class XrbRegionIterator < FFI::Struct
       layout \
@@ -49,9 +35,7 @@ class Xrb
     end
     attach_function :xcb_region_next, [:pointer], :void
     attach_function :xcb_region_end, [:pointer], XrbGenericIterator
-    enum :xrb_region_t, [
-        :xrb_region_none, 1
-    ]
+    XRB_REGION_NONE = 1
     class XrbSelectionNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -96,7 +80,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -127,8 +111,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_save_set_checked, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:xrb_window_t], XrbChangeSaveSetCookie
-    attach_function :xcb_change_save_set, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:xrb_window_t], XrbChangeSaveSetCookie
+    attach_function :xcb_change_save_set_checked, [:pointer,:uint8,:uint8,:uint8,:uint8,:xrb_window_t], XrbChangeSaveSetCookie
+    attach_function :xcb_change_save_set, [:pointer,:uint8,:uint8,:uint8,:uint8,:xrb_window_t], XrbChangeSaveSetCookie
     class XrbSelectSelectionInputRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -143,8 +127,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_selection_input_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_atom_t,:uint32], XrbSelectSelectionInputCookie
-    attach_function :xcb_select_selection_input, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_atom_t,:uint32], XrbSelectSelectionInputCookie
+    attach_function :xcb_select_selection_input_checked, [:pointer,:uint8,:xrb_window_t,:xrb_atom_t,:uint32], XrbSelectSelectionInputCookie
+    attach_function :xcb_select_selection_input, [:pointer,:uint8,:xrb_window_t,:xrb_atom_t,:uint32], XrbSelectSelectionInputCookie
     class XrbSelectCursorInputRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -158,8 +142,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_cursor_input_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint32], XrbSelectCursorInputCookie
-    attach_function :xcb_select_cursor_input, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:uint32], XrbSelectCursorInputCookie
+    attach_function :xcb_select_cursor_input_checked, [:pointer,:uint8,:xrb_window_t,:uint32], XrbSelectCursorInputCookie
+    attach_function :xcb_select_cursor_input, [:pointer,:uint8,:xrb_window_t,:uint32], XrbSelectCursorInputCookie
     class XrbGetCursorImageRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -179,7 +163,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_cursor_image, [:pointer,:uint8,:uint8,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], XrbGetCursorImageCookie
+    attach_function :xcb_get_cursor_image, [:pointer,:uint8,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], XrbGetCursorImageCookie
     class XrbGetCursorImageReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -211,8 +195,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:uint32], XrbCreateRegionCookie
-    attach_function :xcb_create_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:uint32], XrbCreateRegionCookie
+    attach_function :xcb_create_region_checked, [:pointer,:uint8,:xrb_region_t,:uint32], XrbCreateRegionCookie
+    attach_function :xcb_create_region, [:pointer,:uint8,:xrb_region_t,:uint32], XrbCreateRegionCookie
     class XrbCreateRegionFromBitmapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -226,8 +210,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_from_bitmap_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_pixmap_t], XrbCreateRegionFromBitmapCookie
-    attach_function :xcb_create_region_from_bitmap, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_pixmap_t], XrbCreateRegionFromBitmapCookie
+    attach_function :xcb_create_region_from_bitmap_checked, [:pointer,:uint8,:xrb_region_t,:xrb_pixmap_t], XrbCreateRegionFromBitmapCookie
+    attach_function :xcb_create_region_from_bitmap, [:pointer,:uint8,:xrb_region_t,:xrb_pixmap_t], XrbCreateRegionFromBitmapCookie
     class XrbCreateRegionFromWindowRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -243,8 +227,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_from_window_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_window_t,:xrb_kind_t], XrbCreateRegionFromWindowCookie
-    attach_function :xcb_create_region_from_window, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_window_t,:xrb_kind_t], XrbCreateRegionFromWindowCookie
+    attach_function :xcb_create_region_from_window_checked, [:pointer,:uint8,:xrb_region_t,:xrb_window_t,:xrb_kind_t], XrbCreateRegionFromWindowCookie
+    attach_function :xcb_create_region_from_window, [:pointer,:uint8,:xrb_region_t,:xrb_window_t,:xrb_kind_t], XrbCreateRegionFromWindowCookie
     class XrbCreateRegionFromGCRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -258,8 +242,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_from_gc_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_gcontext_t], XrbCreateRegionFromGCCookie
-    attach_function :xcb_create_region_from_gc, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_gcontext_t], XrbCreateRegionFromGCCookie
+    attach_function :xcb_create_region_from_gc_checked, [:pointer,:uint8,:xrb_region_t,:xrb_gcontext_t], XrbCreateRegionFromGCCookie
+    attach_function :xcb_create_region_from_gc, [:pointer,:uint8,:xrb_region_t,:xrb_gcontext_t], XrbCreateRegionFromGCCookie
     class XrbCreateRegionFromPictureRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -273,8 +257,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_region_from_picture_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_picture_t], XrbCreateRegionFromPictureCookie
-    attach_function :xcb_create_region_from_picture, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_picture_t], XrbCreateRegionFromPictureCookie
+    attach_function :xcb_create_region_from_picture_checked, [:pointer,:uint8,:xrb_region_t,:xrb_picture_t], XrbCreateRegionFromPictureCookie
+    attach_function :xcb_create_region_from_picture, [:pointer,:uint8,:xrb_region_t,:xrb_picture_t], XrbCreateRegionFromPictureCookie
     class XrbDestroyRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -287,8 +271,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t], XrbDestroyRegionCookie
-    attach_function :xcb_destroy_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t], XrbDestroyRegionCookie
+    attach_function :xcb_destroy_region_checked, [:pointer,:uint8,:xrb_region_t], XrbDestroyRegionCookie
+    attach_function :xcb_destroy_region, [:pointer,:uint8,:xrb_region_t], XrbDestroyRegionCookie
     class XrbSetRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -301,8 +285,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:uint32], XrbSetRegionCookie
-    attach_function :xcb_set_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:uint32], XrbSetRegionCookie
+    attach_function :xcb_set_region_checked, [:pointer,:uint8,:xrb_region_t,:uint32], XrbSetRegionCookie
+    attach_function :xcb_set_region, [:pointer,:uint8,:xrb_region_t,:uint32], XrbSetRegionCookie
     class XrbCopyRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -316,8 +300,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_copy_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t], XrbCopyRegionCookie
-    attach_function :xcb_copy_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t], XrbCopyRegionCookie
+    attach_function :xcb_copy_region_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t], XrbCopyRegionCookie
+    attach_function :xcb_copy_region, [:pointer,:uint8,:xrb_region_t,:xrb_region_t], XrbCopyRegionCookie
     class XrbUnionRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -332,8 +316,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_union_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbUnionRegionCookie
-    attach_function :xcb_union_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbUnionRegionCookie
+    attach_function :xcb_union_region_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbUnionRegionCookie
+    attach_function :xcb_union_region, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbUnionRegionCookie
     class XrbIntersectRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -348,8 +332,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_intersect_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbIntersectRegionCookie
-    attach_function :xcb_intersect_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbIntersectRegionCookie
+    attach_function :xcb_intersect_region_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbIntersectRegionCookie
+    attach_function :xcb_intersect_region, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbIntersectRegionCookie
     class XrbSubtractRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -364,8 +348,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_subtract_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbSubtractRegionCookie
-    attach_function :xcb_subtract_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbSubtractRegionCookie
+    attach_function :xcb_subtract_region_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbSubtractRegionCookie
+    attach_function :xcb_subtract_region, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:xrb_region_t], XrbSubtractRegionCookie
     class XrbInvertRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -380,8 +364,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_invert_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,XrbRectangle,:xrb_region_t], XrbInvertRegionCookie
-    attach_function :xcb_invert_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,XrbRectangle,:xrb_region_t], XrbInvertRegionCookie
+    attach_function :xcb_invert_region_checked, [:pointer,:uint8,:xrb_region_t,XrbRectangle,:xrb_region_t], XrbInvertRegionCookie
+    attach_function :xcb_invert_region, [:pointer,:uint8,:xrb_region_t,XrbRectangle,:xrb_region_t], XrbInvertRegionCookie
     class XrbTranslateRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -396,8 +380,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_translate_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:int16,:int16], XrbTranslateRegionCookie
-    attach_function :xcb_translate_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:int16,:int16], XrbTranslateRegionCookie
+    attach_function :xcb_translate_region_checked, [:pointer,:uint8,:xrb_region_t,:int16,:int16], XrbTranslateRegionCookie
+    attach_function :xcb_translate_region, [:pointer,:uint8,:xrb_region_t,:int16,:int16], XrbTranslateRegionCookie
     class XrbRegionExtentsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -411,8 +395,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_region_extents_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t], XrbRegionExtentsCookie
-    attach_function :xcb_region_extents, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t], XrbRegionExtentsCookie
+    attach_function :xcb_region_extents_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t], XrbRegionExtentsCookie
+    attach_function :xcb_region_extents, [:pointer,:uint8,:xrb_region_t,:xrb_region_t], XrbRegionExtentsCookie
     class XrbFetchRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -426,7 +410,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_fetch_region, [:pointer,:uint8,:uint8,:uint16,XrbRectangle,:uint32], XrbFetchRegionCookie
+    attach_function :xcb_fetch_region, [:pointer,:uint8,XrbRectangle,:uint32], XrbFetchRegionCookie
     class XrbFetchRegionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -455,8 +439,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_gc_clip_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_gcontext_t,:xrb_region_t,:int16,:int16], XrbSetGCClipRegionCookie
-    attach_function :xcb_set_gc_clip_region, [:pointer,:uint8,:uint8,:uint16,:xrb_gcontext_t,:xrb_region_t,:int16,:int16], XrbSetGCClipRegionCookie
+    attach_function :xcb_set_gc_clip_region_checked, [:pointer,:uint8,:xrb_gcontext_t,:xrb_region_t,:int16,:int16], XrbSetGCClipRegionCookie
+    attach_function :xcb_set_gc_clip_region, [:pointer,:uint8,:xrb_gcontext_t,:xrb_region_t,:int16,:int16], XrbSetGCClipRegionCookie
     class XrbSetWindowShapeRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -474,8 +458,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_window_shape_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_kind_t,:int16,:int16,:xrb_region_t], XrbSetWindowShapeRegionCookie
-    attach_function :xcb_set_window_shape_region, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:xrb_kind_t,:int16,:int16,:xrb_region_t], XrbSetWindowShapeRegionCookie
+    attach_function :xcb_set_window_shape_region_checked, [:pointer,:uint8,:xrb_window_t,:xrb_kind_t,:int16,:int16,:xrb_region_t], XrbSetWindowShapeRegionCookie
+    attach_function :xcb_set_window_shape_region, [:pointer,:uint8,:xrb_window_t,:xrb_kind_t,:int16,:int16,:xrb_region_t], XrbSetWindowShapeRegionCookie
     class XrbSetPictureClipRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -491,8 +475,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_picture_clip_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_picture_t,:xrb_region_t,:int16,:int16], XrbSetPictureClipRegionCookie
-    attach_function :xcb_set_picture_clip_region, [:pointer,:uint8,:uint8,:uint16,:xrb_picture_t,:xrb_region_t,:int16,:int16], XrbSetPictureClipRegionCookie
+    attach_function :xcb_set_picture_clip_region_checked, [:pointer,:uint8,:xrb_picture_t,:xrb_region_t,:int16,:int16], XrbSetPictureClipRegionCookie
+    attach_function :xcb_set_picture_clip_region, [:pointer,:uint8,:xrb_picture_t,:xrb_region_t,:int16,:int16], XrbSetPictureClipRegionCookie
     class XrbSetCursorNameRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -507,8 +491,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_cursor_name_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:uint16,:uint32], XrbSetCursorNameCookie
-    attach_function :xcb_set_cursor_name, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:uint16,:uint32], XrbSetCursorNameCookie
+    attach_function :xcb_set_cursor_name_checked, [:pointer,:uint8,:xrb_cursor_t,:uint16,:uint32], XrbSetCursorNameCookie
+    attach_function :xcb_set_cursor_name, [:pointer,:uint8,:xrb_cursor_t,:uint16,:uint32], XrbSetCursorNameCookie
     class XrbGetCursorNameRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -523,7 +507,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_cursor_name, [:pointer,:uint8,:uint8,:uint16,:xrb_atom_t,:uint16,:uint32], XrbGetCursorNameCookie
+    attach_function :xcb_get_cursor_name, [:pointer,:uint8,:xrb_atom_t,:uint16,:uint32], XrbGetCursorNameCookie
     class XrbGetCursorNameReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -559,7 +543,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_cursor_image_and_name, [:pointer,:uint8,:uint8,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32,:xrb_atom_t,:uint16,:uint32,:uint32], XrbGetCursorImageAndNameCookie
+    attach_function :xcb_get_cursor_image_and_name, [:pointer,:uint8,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32,:xrb_atom_t,:uint16,:uint32,:uint32], XrbGetCursorImageAndNameCookie
     class XrbGetCursorImageAndNameReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -594,8 +578,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_cursor_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:xrb_cursor_t], XrbChangeCursorCookie
-    attach_function :xcb_change_cursor, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:xrb_cursor_t], XrbChangeCursorCookie
+    attach_function :xcb_change_cursor_checked, [:pointer,:uint8,:xrb_cursor_t,:xrb_cursor_t], XrbChangeCursorCookie
+    attach_function :xcb_change_cursor, [:pointer,:uint8,:xrb_cursor_t,:xrb_cursor_t], XrbChangeCursorCookie
     class XrbChangeCursorByNameRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -610,8 +594,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_cursor_by_name_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:uint16,:uint32], XrbChangeCursorByNameCookie
-    attach_function :xcb_change_cursor_by_name, [:pointer,:uint8,:uint8,:uint16,:xrb_cursor_t,:uint16,:uint32], XrbChangeCursorByNameCookie
+    attach_function :xcb_change_cursor_by_name_checked, [:pointer,:uint8,:xrb_cursor_t,:uint16,:uint32], XrbChangeCursorByNameCookie
+    attach_function :xcb_change_cursor_by_name, [:pointer,:uint8,:xrb_cursor_t,:uint16,:uint32], XrbChangeCursorByNameCookie
     class XrbExpandRegionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -629,8 +613,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_expand_region_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:uint16,:uint16,:uint16,:uint16], XrbExpandRegionCookie
-    attach_function :xcb_expand_region, [:pointer,:uint8,:uint8,:uint16,:xrb_region_t,:xrb_region_t,:uint16,:uint16,:uint16,:uint16], XrbExpandRegionCookie
+    attach_function :xcb_expand_region_checked, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:uint16,:uint16,:uint16,:uint16], XrbExpandRegionCookie
+    attach_function :xcb_expand_region, [:pointer,:uint8,:xrb_region_t,:xrb_region_t,:uint16,:uint16,:uint16,:uint16], XrbExpandRegionCookie
     class XrbHideCursorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -643,8 +627,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_hide_cursor_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbHideCursorCookie
-    attach_function :xcb_hide_cursor, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbHideCursorCookie
+    attach_function :xcb_hide_cursor_checked, [:pointer,:uint8,:xrb_window_t], XrbHideCursorCookie
+    attach_function :xcb_hide_cursor, [:pointer,:uint8,:xrb_window_t], XrbHideCursorCookie
     class XrbShowCursorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -657,7 +641,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_show_cursor_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbShowCursorCookie
-    attach_function :xcb_show_cursor, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbShowCursorCookie
+    attach_function :xcb_show_cursor_checked, [:pointer,:uint8,:xrb_window_t], XrbShowCursorCookie
+    attach_function :xcb_show_cursor, [:pointer,:uint8,:xrb_window_t], XrbShowCursorCookie
   end
 end

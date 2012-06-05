@@ -10,107 +10,85 @@ class Xrb
     ffi_lib 'xkb'
     MAJOR_VERSION = 1
     MINOR_VERSION = 0
-    enum :xrb_const_t, [
-        :xrb_const_max_legal_key_code, 255,
-        :xrb_const_per_key_bit_array_size, 32,
-        :xrb_const_key_name_length, 4
-    ]
-    enum :xrb_event_type_t, [
-        :xrb_event_type_new_keyboard_notify, 1 << 0,
-        :xrb_event_type_map_notify, 1 << 1,
-        :xrb_event_type_state_notify, 1 << 2,
-        :xrb_event_type_controls_notify, 1 << 3,
-        :xrb_event_type_indicator_state_notify, 1 << 4,
-        :xrb_event_type_indicator_map_notify, 1 << 5,
-        :xrb_event_type_names_notify, 1 << 6,
-        :xrb_event_type_compat_map_notify, 1 << 7,
-        :xrb_event_type_bell_notify, 1 << 8,
-        :xrb_event_type_action_message, 1 << 9,
-        :xrb_event_type_access_x_notify, 1 << 10,
-        :xrb_event_type_extension_device_notify, 1 << 11
-    ]
-    enum :xrb_nkn_detail_t, [
-        :xrb_nkn_detail_keycodes, 1 << 0,
-        :xrb_nkn_detail_geometry, 1 << 1,
-        :xrb_nkn_detail_device_id, 1 << 2
-    ]
-    enum :xrb_axn_detail_t, [
-        :xrb_axn_detail_sk_press, 1 << 0,
-        :xrb_axn_detail_sk_accept, 1 << 1,
-        :xrb_axn_detail_sk_reject, 1 << 2,
-        :xrb_axn_detail_sk_release, 1 << 3,
-        :xrb_axn_detail_bk_accept, 1 << 4,
-        :xrb_axn_detail_bk_reject, 1 << 5,
-        :xrb_axn_detail_axk_warning, 1 << 6
-    ]
-    enum :xrb_map_part_t, [
-        :xrb_map_part_key_types, 1 << 0,
-        :xrb_map_part_key_syms, 1 << 1,
-        :xrb_map_part_modifier_map, 1 << 2,
-        :xrb_map_part_explicit_components, 1 << 3,
-        :xrb_map_part_key_actions, 1 << 4,
-        :xrb_map_part_key_behaviors, 1 << 5,
-        :xrb_map_part_virtual_mods, 1 << 6,
-        :xrb_map_part_virtual_mod_map, 1 << 7
-    ]
-    enum :xrb_set_map_flags_t, [
-        :xrb_set_map_flags_resize_types, 1 << 0,
-        :xrb_set_map_flags_recompute_actions, 1 << 1
-    ]
-    enum :xrb_state_part_t, [
-        :xrb_state_part_modifier_state, 1 << 0,
-        :xrb_state_part_modifier_base, 1 << 1,
-        :xrb_state_part_modifier_latch, 1 << 2,
-        :xrb_state_part_modifier_lock, 1 << 3,
-        :xrb_state_part_group_state, 1 << 4,
-        :xrb_state_part_group_base, 1 << 5,
-        :xrb_state_part_group_latch, 1 << 6,
-        :xrb_state_part_group_lock, 1 << 7,
-        :xrb_state_part_compat_state, 1 << 8,
-        :xrb_state_part_grab_mods, 1 << 9,
-        :xrb_state_part_compat_grab_mods, 1 << 10,
-        :xrb_state_part_lookup_mods, 1 << 11,
-        :xrb_state_part_compat_lookup_mods, 1 << 12,
-        :xrb_state_part_pointer_buttons, 1 << 13
-    ]
-    enum :xrb_bool_ctrl_t, [
-        :xrb_bool_ctrl_repeat_keys, 1 << 0,
-        :xrb_bool_ctrl_slow_keys, 1 << 1,
-        :xrb_bool_ctrl_bounce_keys, 1 << 2,
-        :xrb_bool_ctrl_sticky_keys, 1 << 3,
-        :xrb_bool_ctrl_mouse_keys, 1 << 4,
-        :xrb_bool_ctrl_mouse_keys_accel, 1 << 5,
-        :xrb_bool_ctrl_access_x_keys, 1 << 6,
-        :xrb_bool_ctrl_access_x_timeout_mask, 1 << 7,
-        :xrb_bool_ctrl_access_x_feedback_mask, 1 << 8,
-        :xrb_bool_ctrl_audible_bell_mask, 1 << 9,
-        :xrb_bool_ctrl_overlay_1mask, 1 << 10,
-        :xrb_bool_ctrl_overlay_2mask, 1 << 11,
-        :xrb_bool_ctrl_ignore_group_lock_mask, 1 << 12
-    ]
-    enum :xrb_control_t, [
-        :xrb_control_groups_wrap, 1 << 27,
-        :xrb_control_internal_mods, 1 << 28,
-        :xrb_control_ignore_lock_mods, 1 << 29,
-        :xrb_control_per_key_repeat, 1 << 30,
-        :xrb_control_controls_enabled, 1 << 31
-    ]
-    enum :xrb_axfb_opt_t, [
-        :xrb_axfb_opt_sk_press_fb, 1 << 0,
-        :xrb_axfb_opt_sk_accept_fb, 1 << 1,
-        :xrb_axfb_opt_feature_fb, 1 << 2,
-        :xrb_axfb_opt_slow_warn_fb, 1 << 3,
-        :xrb_axfb_opt_indicator_fb, 1 << 4,
-        :xrb_axfb_opt_sticky_keys_fb, 1 << 5,
-        :xrb_axfb_opt_sk_release_fb, 1 << 6,
-        :xrb_axfb_opt_sk_reject_fb, 1 << 7,
-        :xrb_axfb_opt_bk_reject_fb, 1 << 8,
-        :xrb_axfb_opt_dumb_bell, 1 << 9
-    ]
-    enum :xrb_axsk_opt_t, [
-        :xrb_axsk_opt_two_keys, 1 << 6,
-        :xrb_axsk_opt_latch_to_lock, 1 << 7
-    ]
+    XRB_CONST_MAX_LEGAL_KEY_CODE = 255
+    XRB_CONST_PER_KEY_BIT_ARRAY_SIZE = 32
+    XRB_CONST_KEY_NAME_LENGTH = 4
+    XRB_EVENT_TYPE_NEW_KEYBOARD_NOTIFY = 1 << 0
+    XRB_EVENT_TYPE_MAP_NOTIFY = 1 << 1
+    XRB_EVENT_TYPE_STATE_NOTIFY = 1 << 2
+    XRB_EVENT_TYPE_CONTROLS_NOTIFY = 1 << 3
+    XRB_EVENT_TYPE_INDICATOR_STATE_NOTIFY = 1 << 4
+    XRB_EVENT_TYPE_INDICATOR_MAP_NOTIFY = 1 << 5
+    XRB_EVENT_TYPE_NAMES_NOTIFY = 1 << 6
+    XRB_EVENT_TYPE_COMPAT_MAP_NOTIFY = 1 << 7
+    XRB_EVENT_TYPE_BELL_NOTIFY = 1 << 8
+    XRB_EVENT_TYPE_ACTION_MESSAGE = 1 << 9
+    XRB_EVENT_TYPE_ACCESS_X_NOTIFY = 1 << 10
+    XRB_EVENT_TYPE_EXTENSION_DEVICE_NOTIFY = 1 << 11
+    XRB_NKN_DETAIL_KEYCODES = 1 << 0
+    XRB_NKN_DETAIL_GEOMETRY = 1 << 1
+    XRB_NKN_DETAIL_DEVICE_ID = 1 << 2
+    XRB_AXN_DETAIL_SK_PRESS = 1 << 0
+    XRB_AXN_DETAIL_SK_ACCEPT = 1 << 1
+    XRB_AXN_DETAIL_SK_REJECT = 1 << 2
+    XRB_AXN_DETAIL_SK_RELEASE = 1 << 3
+    XRB_AXN_DETAIL_BK_ACCEPT = 1 << 4
+    XRB_AXN_DETAIL_BK_REJECT = 1 << 5
+    XRB_AXN_DETAIL_AXK_WARNING = 1 << 6
+    XRB_MAP_PART_KEY_TYPES = 1 << 0
+    XRB_MAP_PART_KEY_SYMS = 1 << 1
+    XRB_MAP_PART_MODIFIER_MAP = 1 << 2
+    XRB_MAP_PART_EXPLICIT_COMPONENTS = 1 << 3
+    XRB_MAP_PART_KEY_ACTIONS = 1 << 4
+    XRB_MAP_PART_KEY_BEHAVIORS = 1 << 5
+    XRB_MAP_PART_VIRTUAL_MODS = 1 << 6
+    XRB_MAP_PART_VIRTUAL_MOD_MAP = 1 << 7
+    XRB_SET_MAP_FLAGS_RESIZE_TYPES = 1 << 0
+    XRB_SET_MAP_FLAGS_RECOMPUTE_ACTIONS = 1 << 1
+    XRB_STATE_PART_MODIFIER_STATE = 1 << 0
+    XRB_STATE_PART_MODIFIER_BASE = 1 << 1
+    XRB_STATE_PART_MODIFIER_LATCH = 1 << 2
+    XRB_STATE_PART_MODIFIER_LOCK = 1 << 3
+    XRB_STATE_PART_GROUP_STATE = 1 << 4
+    XRB_STATE_PART_GROUP_BASE = 1 << 5
+    XRB_STATE_PART_GROUP_LATCH = 1 << 6
+    XRB_STATE_PART_GROUP_LOCK = 1 << 7
+    XRB_STATE_PART_COMPAT_STATE = 1 << 8
+    XRB_STATE_PART_GRAB_MODS = 1 << 9
+    XRB_STATE_PART_COMPAT_GRAB_MODS = 1 << 10
+    XRB_STATE_PART_LOOKUP_MODS = 1 << 11
+    XRB_STATE_PART_COMPAT_LOOKUP_MODS = 1 << 12
+    XRB_STATE_PART_POINTER_BUTTONS = 1 << 13
+    XRB_BOOL_CTRL_REPEAT_KEYS = 1 << 0
+    XRB_BOOL_CTRL_SLOW_KEYS = 1 << 1
+    XRB_BOOL_CTRL_BOUNCE_KEYS = 1 << 2
+    XRB_BOOL_CTRL_STICKY_KEYS = 1 << 3
+    XRB_BOOL_CTRL_MOUSE_KEYS = 1 << 4
+    XRB_BOOL_CTRL_MOUSE_KEYS_ACCEL = 1 << 5
+    XRB_BOOL_CTRL_ACCESS_X_KEYS = 1 << 6
+    XRB_BOOL_CTRL_ACCESS_X_TIMEOUT_MASK = 1 << 7
+    XRB_BOOL_CTRL_ACCESS_X_FEEDBACK_MASK = 1 << 8
+    XRB_BOOL_CTRL_AUDIBLE_BELL_MASK = 1 << 9
+    XRB_BOOL_CTRL_OVERLAY_1MASK = 1 << 10
+    XRB_BOOL_CTRL_OVERLAY_2MASK = 1 << 11
+    XRB_BOOL_CTRL_IGNORE_GROUP_LOCK_MASK = 1 << 12
+    XRB_CONTROL_GROUPS_WRAP = 1 << 27
+    XRB_CONTROL_INTERNAL_MODS = 1 << 28
+    XRB_CONTROL_IGNORE_LOCK_MODS = 1 << 29
+    XRB_CONTROL_PER_KEY_REPEAT = 1 << 30
+    XRB_CONTROL_CONTROLS_ENABLED = 1 << 31
+    XRB_AXFB_OPT_SK_PRESS_FB = 1 << 0
+    XRB_AXFB_OPT_SK_ACCEPT_FB = 1 << 1
+    XRB_AXFB_OPT_FEATURE_FB = 1 << 2
+    XRB_AXFB_OPT_SLOW_WARN_FB = 1 << 3
+    XRB_AXFB_OPT_INDICATOR_FB = 1 << 4
+    XRB_AXFB_OPT_STICKY_KEYS_FB = 1 << 5
+    XRB_AXFB_OPT_SK_RELEASE_FB = 1 << 6
+    XRB_AXFB_OPT_SK_REJECT_FB = 1 << 7
+    XRB_AXFB_OPT_BK_REJECT_FB = 1 << 8
+    XRB_AXFB_OPT_DUMB_BELL = 1 << 9
+    XRB_AXSK_OPT_TWO_KEYS = 1 << 6
+    XRB_AXSK_OPT_LATCH_TO_LOCK = 1 << 7
     class XrbAXOption < FFI::Union
       layout \
           :fbopt, :uint16,
@@ -126,14 +104,10 @@ class Xrb
     end
     attach_function :xcb_device_spec_next, [:pointer], :void
     attach_function :xcb_device_spec_end, [:pointer], XrbGenericIterator
-    enum :xrb_led_class_result_t, [
-        :xrb_led_class_result_kbd_feedback_class, 0,
-        :xrb_led_class_result_led_feedback_class, 4
-    ]
-    enum :xrb_led_class_t, [
-        :xrb_led_class_dflt_xi_class, 768,
-        :xrb_led_class_all_xi_classes, 1280
-    ]
+    XRB_LED_CLASS_RESULT_KBD_FEEDBACK_CLASS = 0
+    XRB_LED_CLASS_RESULT_LED_FEEDBACK_CLASS = 4
+    XRB_LED_CLASS_DFLT_XI_CLASS = 768
+    XRB_LED_CLASS_ALL_XI_CLASSES = 1280
     typedef :uint16, :xrb_ledclassspec_t
     class XrbLedClassSpecIterator < FFI::Struct
       layout \
@@ -143,13 +117,9 @@ class Xrb
     end
     attach_function :xcb_led_class_spec_next, [:pointer], :void
     attach_function :xcb_led_class_spec_end, [:pointer], XrbGenericIterator
-    enum :xrb_bell_class_result_t, [
-        :xrb_bell_class_result_kbd_feedback_class, 0,
-        :xrb_bell_class_result_bell_feedback_class, 5
-    ]
-    enum :xrb_bell_class_t, [
-        :xrb_bell_class_dflt_xi_class, 768
-    ]
+    XRB_BELL_CLASS_RESULT_KBD_FEEDBACK_CLASS = 0
+    XRB_BELL_CLASS_RESULT_BELL_FEEDBACK_CLASS = 5
+    XRB_BELL_CLASS_DFLT_XI_CLASS = 768
     typedef :uint16, :xrb_bellclassspec_t
     class XrbBellClassSpecIterator < FFI::Struct
       layout \
@@ -159,15 +129,13 @@ class Xrb
     end
     attach_function :xcb_bell_class_spec_next, [:pointer], :void
     attach_function :xcb_bell_class_spec_end, [:pointer], XrbGenericIterator
-    enum :xrb_id_t, [
-        :xrb_id_use_core_kbd, 256,
-        :xrb_id_use_core_ptr, 512,
-        :xrb_id_dflt_xi_class, 768,
-        :xrb_id_dflt_xi_id, 1024,
-        :xrb_id_all_xi_class, 1280,
-        :xrb_id_all_xi_id, 1536,
-        :xrb_id_xi_none, 65280
-    ]
+    XRB_ID_USE_CORE_KBD = 256
+    XRB_ID_USE_CORE_PTR = 512
+    XRB_ID_DFLT_XI_CLASS = 768
+    XRB_ID_DFLT_XI_ID = 1024
+    XRB_ID_ALL_XI_CLASS = 1280
+    XRB_ID_ALL_XI_ID = 1536
+    XRB_ID_XI_NONE = 65280
     typedef :uint16, :xrb_idspec_t
     class XrbIDSpecIterator < FFI::Struct
       layout \
@@ -177,108 +145,80 @@ class Xrb
     end
     attach_function :xcb_id_spec_next, [:pointer], :void
     attach_function :xcb_id_spec_end, [:pointer], XrbGenericIterator
-    enum :xrb_group_t, [
-        :xrb_group_1, 0,
-        :xrb_group_2, 1,
-        :xrb_group_3, 2,
-        :xrb_group_4, 3
-    ]
-    enum :xrb_groups_t, [
-        :xrb_groups_any, 254,
-        :xrb_groups_all, 255
-    ]
-    enum :xrb_set_of_group_t, [
-        :xrb_set_of_group_group_1, 1 << 0,
-        :xrb_set_of_group_group_2, 1 << 1,
-        :xrb_set_of_group_group_3, 1 << 2,
-        :xrb_set_of_group_group_4, 1 << 3
-    ]
-    enum :xrb_set_of_groups_t, [
-        :xrb_set_of_groups_any, 1 << 7
-    ]
-    enum :xrb_groups_wrap_t, [
-        :xrb_groups_wrap_wrap_into_range, 0,
-        :xrb_groups_wrap_clamp_into_range, 1 << 6,
-        :xrb_groups_wrap_redirect_into_range, 1 << 7
-    ]
-    enum :xrb_v_mods_high_t, [
-        :xrb_v_mods_high_15, 1 << 7,
-        :xrb_v_mods_high_14, 1 << 6,
-        :xrb_v_mods_high_13, 1 << 5,
-        :xrb_v_mods_high_12, 1 << 4,
-        :xrb_v_mods_high_11, 1 << 3,
-        :xrb_v_mods_high_10, 1 << 2,
-        :xrb_v_mods_high_9, 1 << 1,
-        :xrb_v_mods_high_8, 1 << 0
-    ]
-    enum :xrb_v_mods_low_t, [
-        :xrb_v_mods_low_7, 1 << 7,
-        :xrb_v_mods_low_6, 1 << 6,
-        :xrb_v_mods_low_5, 1 << 5,
-        :xrb_v_mods_low_4, 1 << 4,
-        :xrb_v_mods_low_3, 1 << 3,
-        :xrb_v_mods_low_2, 1 << 2,
-        :xrb_v_mods_low_1, 1 << 1,
-        :xrb_v_mods_low_0, 1 << 0
-    ]
-    enum :xrb_v_mod_t, [
-        :xrb_v_mod_15, 1 << 15,
-        :xrb_v_mod_14, 1 << 14,
-        :xrb_v_mod_13, 1 << 13,
-        :xrb_v_mod_12, 1 << 12,
-        :xrb_v_mod_11, 1 << 11,
-        :xrb_v_mod_10, 1 << 10,
-        :xrb_v_mod_9, 1 << 9,
-        :xrb_v_mod_8, 1 << 8,
-        :xrb_v_mod_7, 1 << 7,
-        :xrb_v_mod_6, 1 << 6,
-        :xrb_v_mod_5, 1 << 5,
-        :xrb_v_mod_4, 1 << 4,
-        :xrb_v_mod_3, 1 << 3,
-        :xrb_v_mod_2, 1 << 2,
-        :xrb_v_mod_1, 1 << 1,
-        :xrb_v_mod_0, 1 << 0
-    ]
-    enum :xrb_explicit_t, [
-        :xrb_explicit_v_mod_map, 1 << 7,
-        :xrb_explicit_behavior, 1 << 6,
-        :xrb_explicit_auto_repeat, 1 << 5,
-        :xrb_explicit_interpret, 1 << 4,
-        :xrb_explicit_key_type_4, 1 << 3,
-        :xrb_explicit_key_type_3, 1 << 2,
-        :xrb_explicit_key_type_2, 1 << 1,
-        :xrb_explicit_key_type_1, 1 << 0
-    ]
-    enum :xrb_sym_interpret_t, [
-        :xrb_sym_interpret_none_of, 0,
-        :xrb_sym_interpret_any_of_or_none, 1,
-        :xrb_sym_interpret_any_of, 2,
-        :xrb_sym_interpret_all_of, 3,
-        :xrb_sym_interpret_exactly, 4
-    ]
-    enum :xrb_sym_interp_match_t, [
-        :xrb_sym_interp_match_level_one_only, 1 << 7,
-        :xrb_sym_interp_match_op_mask, 127
-    ]
-    enum :xrb_im_flag_t, [
-        :xrb_im_flag_no_explicit, 1 << 7,
-        :xrb_im_flag_no_automatic, 1 << 6,
-        :xrb_im_flag_led_drives_kb, 1 << 5
-    ]
-    enum :xrb_im_mods_which_t, [
-        :xrb_im_mods_which_use_compat, 1 << 4,
-        :xrb_im_mods_which_use_effective, 1 << 3,
-        :xrb_im_mods_which_use_locked, 1 << 2,
-        :xrb_im_mods_which_use_latched, 1 << 1,
-        :xrb_im_mods_which_use_base, 1 << 0
-    ]
-    enum :xrb_im_groups_which_t, [
-        :xrb_im_groups_which_use_compat, 1 << 4,
-        :xrb_im_groups_which_use_effective, 1 << 3,
-        :xrb_im_groups_which_use_locked, 1 << 2,
-        :xrb_im_groups_which_use_latched, 1 << 1,
-        :xrb_im_groups_which_use_base, 1 << 0
-    ]
+    XRB_GROUP_1 = 0
+    XRB_GROUP_2 = 1
+    XRB_GROUP_3 = 2
+    XRB_GROUP_4 = 3
+    XRB_GROUPS_ANY = 254
+    XRB_GROUPS_ALL = 255
+    XRB_SET_OF_GROUP_GROUP_1 = 1 << 0
+    XRB_SET_OF_GROUP_GROUP_2 = 1 << 1
+    XRB_SET_OF_GROUP_GROUP_3 = 1 << 2
+    XRB_SET_OF_GROUP_GROUP_4 = 1 << 3
+    XRB_SET_OF_GROUPS_ANY = 1 << 7
+    XRB_GROUPS_WRAP_WRAP_INTO_RANGE = 0
+    XRB_GROUPS_WRAP_CLAMP_INTO_RANGE = 1 << 6
+    XRB_GROUPS_WRAP_REDIRECT_INTO_RANGE = 1 << 7
+    XRB_V_MODS_HIGH_15 = 1 << 7
+    XRB_V_MODS_HIGH_14 = 1 << 6
+    XRB_V_MODS_HIGH_13 = 1 << 5
+    XRB_V_MODS_HIGH_12 = 1 << 4
+    XRB_V_MODS_HIGH_11 = 1 << 3
+    XRB_V_MODS_HIGH_10 = 1 << 2
+    XRB_V_MODS_HIGH_9 = 1 << 1
+    XRB_V_MODS_HIGH_8 = 1 << 0
+    XRB_V_MODS_LOW_7 = 1 << 7
+    XRB_V_MODS_LOW_6 = 1 << 6
+    XRB_V_MODS_LOW_5 = 1 << 5
+    XRB_V_MODS_LOW_4 = 1 << 4
+    XRB_V_MODS_LOW_3 = 1 << 3
+    XRB_V_MODS_LOW_2 = 1 << 2
+    XRB_V_MODS_LOW_1 = 1 << 1
+    XRB_V_MODS_LOW_0 = 1 << 0
+    XRB_V_MOD_15 = 1 << 15
+    XRB_V_MOD_14 = 1 << 14
+    XRB_V_MOD_13 = 1 << 13
+    XRB_V_MOD_12 = 1 << 12
+    XRB_V_MOD_11 = 1 << 11
+    XRB_V_MOD_10 = 1 << 10
+    XRB_V_MOD_9 = 1 << 9
+    XRB_V_MOD_8 = 1 << 8
+    XRB_V_MOD_7 = 1 << 7
+    XRB_V_MOD_6 = 1 << 6
+    XRB_V_MOD_5 = 1 << 5
+    XRB_V_MOD_4 = 1 << 4
+    XRB_V_MOD_3 = 1 << 3
+    XRB_V_MOD_2 = 1 << 2
+    XRB_V_MOD_1 = 1 << 1
+    XRB_V_MOD_0 = 1 << 0
+    XRB_EXPLICIT_V_MOD_MAP = 1 << 7
+    XRB_EXPLICIT_BEHAVIOR = 1 << 6
+    XRB_EXPLICIT_AUTO_REPEAT = 1 << 5
+    XRB_EXPLICIT_INTERPRET = 1 << 4
+    XRB_EXPLICIT_KEY_TYPE_4 = 1 << 3
+    XRB_EXPLICIT_KEY_TYPE_3 = 1 << 2
+    XRB_EXPLICIT_KEY_TYPE_2 = 1 << 1
+    XRB_EXPLICIT_KEY_TYPE_1 = 1 << 0
+    XRB_SYM_INTERPRET_NONE_OF = 0
+    XRB_SYM_INTERPRET_ANY_OF_OR_NONE = 1
+    XRB_SYM_INTERPRET_ANY_OF = 2
+    XRB_SYM_INTERPRET_ALL_OF = 3
+    XRB_SYM_INTERPRET_EXACTLY = 4
+    XRB_SYM_INTERP_MATCH_LEVEL_ONE_ONLY = 1 << 7
+    XRB_SYM_INTERP_MATCH_OP_MASK = 127
+    XRB_IM_FLAG_NO_EXPLICIT = 1 << 7
+    XRB_IM_FLAG_NO_AUTOMATIC = 1 << 6
+    XRB_IM_FLAG_LED_DRIVES_KB = 1 << 5
+    XRB_IM_MODS_WHICH_USE_COMPAT = 1 << 4
+    XRB_IM_MODS_WHICH_USE_EFFECTIVE = 1 << 3
+    XRB_IM_MODS_WHICH_USE_LOCKED = 1 << 2
+    XRB_IM_MODS_WHICH_USE_LATCHED = 1 << 1
+    XRB_IM_MODS_WHICH_USE_BASE = 1 << 0
+    XRB_IM_GROUPS_WHICH_USE_COMPAT = 1 << 4
+    XRB_IM_GROUPS_WHICH_USE_EFFECTIVE = 1 << 3
+    XRB_IM_GROUPS_WHICH_USE_LOCKED = 1 << 2
+    XRB_IM_GROUPS_WHICH_USE_LATCHED = 1 << 1
+    XRB_IM_GROUPS_WHICH_USE_BASE = 1 << 0
     class XrbIndicatorMap < FFI::Struct
       layout \
           :flags, :uint8,
@@ -299,50 +239,40 @@ class Xrb
     end
     attach_function :xcb_indicator_map_next, [:pointer], :void
     attach_function :xcb_indicator_map_end, [:pointer], XrbGenericIterator
-    enum :xrb_cm_detail_t, [
-        :xrb_cm_detail_sym_interp, 1 << 0,
-        :xrb_cm_detail_group_compat, 1 << 1
-    ]
-    enum :xrb_name_detail_t, [
-        :xrb_name_detail_keycodes, 1 << 0,
-        :xrb_name_detail_geometry, 1 << 1,
-        :xrb_name_detail_symbols, 1 << 2,
-        :xrb_name_detail_phys_symbols, 1 << 3,
-        :xrb_name_detail_types, 1 << 4,
-        :xrb_name_detail_compat, 1 << 5,
-        :xrb_name_detail_key_type_names, 1 << 6,
-        :xrb_name_detail_kt_level_names, 1 << 7,
-        :xrb_name_detail_indicator_names, 1 << 8,
-        :xrb_name_detail_key_names, 1 << 9,
-        :xrb_name_detail_key_aliases, 1 << 10,
-        :xrb_name_detail_virtual_mod_names, 1 << 11,
-        :xrb_name_detail_group_names, 1 << 12,
-        :xrb_name_detail_rg_names, 1 << 13
-    ]
-    enum :xrb_gbn_detail_t, [
-        :xrb_gbn_detail_types, 1 << 0,
-        :xrb_gbn_detail_compat_map, 1 << 1,
-        :xrb_gbn_detail_client_symbols, 1 << 2,
-        :xrb_gbn_detail_server_symbols, 1 << 3,
-        :xrb_gbn_detail_indicator_maps, 1 << 4,
-        :xrb_gbn_detail_key_names, 1 << 5,
-        :xrb_gbn_detail_geometry, 1 << 6,
-        :xrb_gbn_detail_other_names, 1 << 7
-    ]
-    enum :xrb_xi_feature_t, [
-        :xrb_xi_feature_keyboards, 1 << 0,
-        :xrb_xi_feature_button_actions, 1 << 1,
-        :xrb_xi_feature_indicator_names, 1 << 2,
-        :xrb_xi_feature_indicator_maps, 1 << 3,
-        :xrb_xi_feature_indicator_state, 1 << 4
-    ]
-    enum :xrb_per_client_flag_t, [
-        :xrb_per_client_flag_detectable_auto_repeat, 1 << 0,
-        :xrb_per_client_flag_grabs_use_xkb_state, 1 << 1,
-        :xrb_per_client_flag_auto_reset_controls, 1 << 2,
-        :xrb_per_client_flag_lookup_state_when_grabbed, 1 << 3,
-        :xrb_per_client_flag_send_event_uses_xkb_state, 1 << 4
-    ]
+    XRB_CM_DETAIL_SYM_INTERP = 1 << 0
+    XRB_CM_DETAIL_GROUP_COMPAT = 1 << 1
+    XRB_NAME_DETAIL_KEYCODES = 1 << 0
+    XRB_NAME_DETAIL_GEOMETRY = 1 << 1
+    XRB_NAME_DETAIL_SYMBOLS = 1 << 2
+    XRB_NAME_DETAIL_PHYS_SYMBOLS = 1 << 3
+    XRB_NAME_DETAIL_TYPES = 1 << 4
+    XRB_NAME_DETAIL_COMPAT = 1 << 5
+    XRB_NAME_DETAIL_KEY_TYPE_NAMES = 1 << 6
+    XRB_NAME_DETAIL_KT_LEVEL_NAMES = 1 << 7
+    XRB_NAME_DETAIL_INDICATOR_NAMES = 1 << 8
+    XRB_NAME_DETAIL_KEY_NAMES = 1 << 9
+    XRB_NAME_DETAIL_KEY_ALIASES = 1 << 10
+    XRB_NAME_DETAIL_VIRTUAL_MOD_NAMES = 1 << 11
+    XRB_NAME_DETAIL_GROUP_NAMES = 1 << 12
+    XRB_NAME_DETAIL_RG_NAMES = 1 << 13
+    XRB_GBN_DETAIL_TYPES = 1 << 0
+    XRB_GBN_DETAIL_COMPAT_MAP = 1 << 1
+    XRB_GBN_DETAIL_CLIENT_SYMBOLS = 1 << 2
+    XRB_GBN_DETAIL_SERVER_SYMBOLS = 1 << 3
+    XRB_GBN_DETAIL_INDICATOR_MAPS = 1 << 4
+    XRB_GBN_DETAIL_KEY_NAMES = 1 << 5
+    XRB_GBN_DETAIL_GEOMETRY = 1 << 6
+    XRB_GBN_DETAIL_OTHER_NAMES = 1 << 7
+    XRB_XI_FEATURE_KEYBOARDS = 1 << 0
+    XRB_XI_FEATURE_BUTTON_ACTIONS = 1 << 1
+    XRB_XI_FEATURE_INDICATOR_NAMES = 1 << 2
+    XRB_XI_FEATURE_INDICATOR_MAPS = 1 << 3
+    XRB_XI_FEATURE_INDICATOR_STATE = 1 << 4
+    XRB_PER_CLIENT_FLAG_DETECTABLE_AUTO_REPEAT = 1 << 0
+    XRB_PER_CLIENT_FLAG_GRABS_USE_XKB_STATE = 1 << 1
+    XRB_PER_CLIENT_FLAG_AUTO_RESET_CONTROLS = 1 << 2
+    XRB_PER_CLIENT_FLAG_LOOKUP_STATE_WHEN_GRABBED = 1 << 3
+    XRB_PER_CLIENT_FLAG_SEND_EVENT_USES_XKB_STATE = 1 << 4
     class XrbModDef < FFI::Struct
       layout \
           :mask, :uint8,
@@ -464,7 +394,9 @@ class Xrb
     attach_function :xcb_key_type_next, [:pointer], :void
     attach_function :xcb_key_type_end, [:pointer], XrbGenericIterator
     attach_function :xcb_key_type_sizeof, [:pointer], :int
+    attach_function :xcb_key_type_map_iterator, [:pointer], XrbKeyTypeIterator
     attach_function :xcb_key_type_map_length, [:pointer], :int
+    attach_function :xcb_key_type_preserve_iterator, [:pointer], XrbKeyTypeIterator
     attach_function :xcb_key_type_preserve_length, [:pointer], :int
     class XrbKeySymMap < FFI::Struct
       layout \
@@ -617,17 +549,15 @@ class Xrb
           :type, :uint8
     end
 
-    enum :xrb_behavior_type_t, [
-        :xrb_behavior_type_default, 0,
-        :xrb_behavior_type_lock, 1,
-        :xrb_behavior_type_radio_group, 2,
-        :xrb_behavior_type_overlay_1, 3,
-        :xrb_behavior_type_overlay_2, 4,
-        :xrb_behavior_type_permament_lock, 129,
-        :xrb_behavior_type_permament_radio_group, 130,
-        :xrb_behavior_type_permament_overlay_1, 131,
-        :xrb_behavior_type_permament_overlay_2, 132
-    ]
+    XRB_BEHAVIOR_TYPE_DEFAULT = 0
+    XRB_BEHAVIOR_TYPE_LOCK = 1
+    XRB_BEHAVIOR_TYPE_RADIO_GROUP = 2
+    XRB_BEHAVIOR_TYPE_OVERLAY_1 = 3
+    XRB_BEHAVIOR_TYPE_OVERLAY_2 = 4
+    XRB_BEHAVIOR_TYPE_PERMAMENT_LOCK = 129
+    XRB_BEHAVIOR_TYPE_PERMAMENT_RADIO_GROUP = 130
+    XRB_BEHAVIOR_TYPE_PERMAMENT_OVERLAY_1 = 131
+    XRB_BEHAVIOR_TYPE_PERMAMENT_OVERLAY_2 = 132
     class XrbSetBehavior < FFI::Struct
       layout \
           :keycode, :xrb_keycode_t,
@@ -721,7 +651,9 @@ class Xrb
     attach_function :xcb_set_key_type_next, [:pointer], :void
     attach_function :xcb_set_key_type_end, [:pointer], XrbGenericIterator
     attach_function :xcb_set_key_type_sizeof, [:pointer], :int
+    attach_function :xcb_set_key_type_entries_iterator, [:pointer], XrbSetKeyTypeIterator
     attach_function :xcb_set_key_type_entries_length, [:pointer], :int
+    attach_function :xcb_set_key_type_preserve_entries_iterator, [:pointer], XrbSetKeyTypeIterator
     attach_function :xcb_set_key_type_preserve_entries_length, [:pointer], :int
     typedef :uint8, :xrb_string8_t
     class XrbString8Iterator < FFI::Struct
@@ -767,6 +699,7 @@ class Xrb
     attach_function :xcb_outline_next, [:pointer], :void
     attach_function :xcb_outline_end, [:pointer], XrbGenericIterator
     attach_function :xcb_outline_sizeof, [:pointer], :int
+    attach_function :xcb_outline_points_iterator, [:pointer], XrbOutlineIterator
     attach_function :xcb_outline_points_length, [:pointer], :int
     class XrbShape < FFI::Struct
       layout \
@@ -786,6 +719,7 @@ class Xrb
     attach_function :xcb_shape_next, [:pointer], :void
     attach_function :xcb_shape_end, [:pointer], XrbGenericIterator
     attach_function :xcb_shape_sizeof, [:pointer], :int
+    attach_function :xcb_shape_outlines_iterator, [:pointer], XrbShapeIterator
     attach_function :xcb_shape_outlines_length, [:pointer], :int
     class XrbKey < FFI::Struct
       layout \
@@ -841,6 +775,7 @@ class Xrb
     attach_function :xcb_overlay_row_next, [:pointer], :void
     attach_function :xcb_overlay_row_end, [:pointer], XrbGenericIterator
     attach_function :xcb_overlay_row_sizeof, [:pointer], :int
+    attach_function :xcb_overlay_row_keys_iterator, [:pointer], XrbOverlayRowIterator
     attach_function :xcb_overlay_row_keys_length, [:pointer], :int
     class XrbOverlay < FFI::Struct
       layout \
@@ -858,6 +793,7 @@ class Xrb
     attach_function :xcb_overlay_next, [:pointer], :void
     attach_function :xcb_overlay_end, [:pointer], XrbGenericIterator
     attach_function :xcb_overlay_sizeof, [:pointer], :int
+    attach_function :xcb_overlay_rows_iterator, [:pointer], XrbOverlayIterator
     attach_function :xcb_overlay_rows_length, [:pointer], :int
     class XrbRow < FFI::Struct
       layout \
@@ -877,14 +813,13 @@ class Xrb
     attach_function :xcb_row_next, [:pointer], :void
     attach_function :xcb_row_end, [:pointer], XrbGenericIterator
     attach_function :xcb_row_sizeof, [:pointer], :int
+    attach_function :xcb_row_keys_iterator, [:pointer], XrbRowIterator
     attach_function :xcb_row_keys_length, [:pointer], :int
-    enum :xrb_doodad_type_t, [
-        :xrb_doodad_type_outline, 1,
-        :xrb_doodad_type_solid, 2,
-        :xrb_doodad_type_text, 3,
-        :xrb_doodad_type_indicator, 4,
-        :xrb_doodad_type_logo, 5
-    ]
+    XRB_DOODAD_TYPE_OUTLINE = 1
+    XRB_DOODAD_TYPE_SOLID = 2
+    XRB_DOODAD_TYPE_TEXT = 3
+    XRB_DOODAD_TYPE_INDICATOR = 4
+    XRB_DOODAD_TYPE_LOGO = 5
     class XrbCommonDoodad < FFI::Struct
       layout \
           :name, :xrb_atom_t,
@@ -1025,9 +960,11 @@ class Xrb
     attach_function :xcb_section_next, [:pointer], :void
     attach_function :xcb_section_end, [:pointer], XrbGenericIterator
     attach_function :xcb_section_sizeof, [:pointer], :int
+    attach_function :xcb_section_rows_iterator, [:pointer], XrbSectionIterator
     attach_function :xcb_section_rows_length, [:pointer], :int
     attach_function :xcb_section_doodads, [:pointer], :pointer
     attach_function :xcb_section_doodads_length, [:pointer], :int
+    attach_function :xcb_section_overlays_iterator, [:pointer], XrbSectionIterator
     attach_function :xcb_section_overlays_length, [:pointer], :int
     class XrbListing < FFI::Struct
       layout \
@@ -1067,41 +1004,36 @@ class Xrb
     attach_function :xcb_device_led_info_sizeof, [:pointer], :int
     attach_function :xcb_device_led_info_names, [:pointer], :pointer
     attach_function :xcb_device_led_info_names_length, [:pointer], :int
+    attach_function :xcb_device_led_info_maps_iterator, [:pointer], XrbDeviceLedInfoIterator
     attach_function :xcb_device_led_info_maps_length, [:pointer], :int
-    enum :xrb_error_t, [
-        :xrb_error_bad_device, 255,
-        :xrb_error_bad_class, 254,
-        :xrb_error_bad_id, 253
-    ]
-    enum :xrb_sa_t, [
-        :xrb_sa_clear_locks, 1 << 0,
-        :xrb_sa_latch_to_lock, 1 << 1,
-        :xrb_sa_use_mod_map_mods, 1 << 2,
-        :xrb_sa_group_absolute, 1 << 2
-    ]
-    enum :xrb_sa_type_t, [
-        :xrb_sa_type_no_action, 0,
-        :xrb_sa_type_set_mods, 1,
-        :xrb_sa_type_latch_mods, 2,
-        :xrb_sa_type_lock_mods, 3,
-        :xrb_sa_type_set_group, 4,
-        :xrb_sa_type_latch_group, 5,
-        :xrb_sa_type_lock_group, 6,
-        :xrb_sa_type_move_ptr, 7,
-        :xrb_sa_type_ptr_btn, 8,
-        :xrb_sa_type_lock_ptr_btn, 9,
-        :xrb_sa_type_set_ptr_dflt, 10,
-        :xrb_sa_type_iso_lock, 11,
-        :xrb_sa_type_terminate, 12,
-        :xrb_sa_type_switch_screen, 13,
-        :xrb_sa_type_set_controls, 14,
-        :xrb_sa_type_lock_controls, 15,
-        :xrb_sa_type_action_message, 16,
-        :xrb_sa_type_redirect_key, 17,
-        :xrb_sa_type_device_btn, 18,
-        :xrb_sa_type_lock_device_btn, 19,
-        :xrb_sa_type_device_valuator, 20
-    ]
+    XRB_ERROR_BAD_DEVICE = 255
+    XRB_ERROR_BAD_CLASS = 254
+    XRB_ERROR_BAD_ID = 253
+    XRB_SA_CLEAR_LOCKS = 1 << 0
+    XRB_SA_LATCH_TO_LOCK = 1 << 1
+    XRB_SA_USE_MOD_MAP_MODS = 1 << 2
+    XRB_SA_GROUP_ABSOLUTE = 1 << 2
+    XRB_SA_TYPE_NO_ACTION = 0
+    XRB_SA_TYPE_SET_MODS = 1
+    XRB_SA_TYPE_LATCH_MODS = 2
+    XRB_SA_TYPE_LOCK_MODS = 3
+    XRB_SA_TYPE_SET_GROUP = 4
+    XRB_SA_TYPE_LATCH_GROUP = 5
+    XRB_SA_TYPE_LOCK_GROUP = 6
+    XRB_SA_TYPE_MOVE_PTR = 7
+    XRB_SA_TYPE_PTR_BTN = 8
+    XRB_SA_TYPE_LOCK_PTR_BTN = 9
+    XRB_SA_TYPE_SET_PTR_DFLT = 10
+    XRB_SA_TYPE_ISO_LOCK = 11
+    XRB_SA_TYPE_TERMINATE = 12
+    XRB_SA_TYPE_SWITCH_SCREEN = 13
+    XRB_SA_TYPE_SET_CONTROLS = 14
+    XRB_SA_TYPE_LOCK_CONTROLS = 15
+    XRB_SA_TYPE_ACTION_MESSAGE = 16
+    XRB_SA_TYPE_REDIRECT_KEY = 17
+    XRB_SA_TYPE_DEVICE_BTN = 18
+    XRB_SA_TYPE_LOCK_DEVICE_BTN = 19
+    XRB_SA_TYPE_DEVICE_VALUATOR = 20
     class XrbSANoAction < FFI::Struct
       layout \
           :type, :uint8,
@@ -1187,11 +1119,9 @@ class Xrb
     end
     attach_function :xcb_sa_lock_group_next, [:pointer], :void
     attach_function :xcb_sa_lock_group_end, [:pointer], XrbGenericIterator
-    enum :xrb_sa_move_ptr_flag_t, [
-        :xrb_sa_move_ptr_flag_no_acceleration, 1 << 0,
-        :xrb_sa_move_ptr_flag_move_absolute_x, 1 << 1,
-        :xrb_sa_move_ptr_flag_move_absolute_y, 1 << 2
-    ]
+    XRB_SA_MOVE_PTR_FLAG_NO_ACCELERATION = 1 << 0
+    XRB_SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_X = 1 << 1
+    XRB_SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_Y = 1 << 2
     class XrbSAMovePtr < FFI::Struct
       layout \
           :type, :uint8,
@@ -1245,10 +1175,8 @@ class Xrb
     end
     attach_function :xcb_sa_lock_ptr_btn_next, [:pointer], :void
     attach_function :xcb_sa_lock_ptr_btn_end, [:pointer], XrbGenericIterator
-    enum :xrb_sa_set_ptr_dflt_flag_t, [
-        :xrb_sa_set_ptr_dflt_flag_dflt_btn_absolute, 1 << 1,
-        :xrb_sa_set_ptr_dflt_flag_affect_dflt_button, 1 << 0
-    ]
+    XRB_SA_SET_PTR_DFLT_FLAG_DFLT_BTN_ABSOLUTE = 1 << 1
+    XRB_SA_SET_PTR_DFLT_FLAG_AFFECT_DFLT_BUTTON = 1 << 0
     class XrbSASetPtrDflt < FFI::Struct
       layout \
           :type, :uint8,
@@ -1266,19 +1194,15 @@ class Xrb
     end
     attach_function :xcb_sa_set_ptr_dflt_next, [:pointer], :void
     attach_function :xcb_sa_set_ptr_dflt_end, [:pointer], XrbGenericIterator
-    enum :xrb_sa_iso_lock_flag_t, [
-        :xrb_sa_iso_lock_flag_no_lock, 1 << 0,
-        :xrb_sa_iso_lock_flag_no_unlock, 1 << 1,
-        :xrb_sa_iso_lock_flag_use_mod_map_mods, 1 << 2,
-        :xrb_sa_iso_lock_flag_group_absolute, 1 << 2,
-        :xrb_sa_iso_lock_flag_iso_dflt_is_group, 1 << 3
-    ]
-    enum :xrb_sa_iso_lock_no_affect_t, [
-        :xrb_sa_iso_lock_no_affect_ctrls, 1 << 3,
-        :xrb_sa_iso_lock_no_affect_ptr, 1 << 4,
-        :xrb_sa_iso_lock_no_affect_group, 1 << 5,
-        :xrb_sa_iso_lock_no_affect_mods, 1 << 6
-    ]
+    XRB_SA_ISO_LOCK_FLAG_NO_LOCK = 1 << 0
+    XRB_SA_ISO_LOCK_FLAG_NO_UNLOCK = 1 << 1
+    XRB_SA_ISO_LOCK_FLAG_USE_MOD_MAP_MODS = 1 << 2
+    XRB_SA_ISO_LOCK_FLAG_GROUP_ABSOLUTE = 1 << 2
+    XRB_SA_ISO_LOCK_FLAG_ISO_DFLT_IS_GROUP = 1 << 3
+    XRB_SA_ISO_LOCK_NO_AFFECT_CTRLS = 1 << 3
+    XRB_SA_ISO_LOCK_NO_AFFECT_PTR = 1 << 4
+    XRB_SA_ISO_LOCK_NO_AFFECT_GROUP = 1 << 5
+    XRB_SA_ISO_LOCK_NO_AFFECT_MODS = 1 << 6
     class XrbSAIsoLock < FFI::Struct
       layout \
           :type, :uint8,
@@ -1313,10 +1237,8 @@ class Xrb
     end
     attach_function :xcb_sa_terminate_next, [:pointer], :void
     attach_function :xcb_sa_terminate_end, [:pointer], XrbGenericIterator
-    enum :xrb_switch_screen_flag_t, [
-        :xrb_switch_screen_flag_application, 1 << 0,
-        :xrb_switch_screen_flag_absolute, 1 << 2
-    ]
+    XRB_SWITCH_SCREEN_FLAG_APPLICATION = 1 << 0
+    XRB_SWITCH_SCREEN_FLAG_ABSOLUTE = 1 << 2
     class XrbSASwitchScreen < FFI::Struct
       layout \
           :type, :uint8,
@@ -1333,23 +1255,19 @@ class Xrb
     end
     attach_function :xcb_sa_switch_screen_next, [:pointer], :void
     attach_function :xcb_sa_switch_screen_end, [:pointer], XrbGenericIterator
-    enum :xrb_bool_ctrls_high_t, [
-        :xrb_bool_ctrls_high_access_x_feedback, 1 << 0,
-        :xrb_bool_ctrls_high_audible_bell, 1 << 1,
-        :xrb_bool_ctrls_high_overlay_1, 1 << 2,
-        :xrb_bool_ctrls_high_overlay_2, 1 << 3,
-        :xrb_bool_ctrls_high_ignore_group_lock, 1 << 4
-    ]
-    enum :xrb_bool_ctrls_low_t, [
-        :xrb_bool_ctrls_low_repeat_keys, 1 << 0,
-        :xrb_bool_ctrls_low_slow_keys, 1 << 1,
-        :xrb_bool_ctrls_low_bounce_keys, 1 << 2,
-        :xrb_bool_ctrls_low_sticky_keys, 1 << 3,
-        :xrb_bool_ctrls_low_mouse_keys, 1 << 4,
-        :xrb_bool_ctrls_low_mouse_keys_accel, 1 << 5,
-        :xrb_bool_ctrls_low_access_x_keys, 1 << 6,
-        :xrb_bool_ctrls_low_access_x_timeout, 1 << 7
-    ]
+    XRB_BOOL_CTRLS_HIGH_ACCESS_X_FEEDBACK = 1 << 0
+    XRB_BOOL_CTRLS_HIGH_AUDIBLE_BELL = 1 << 1
+    XRB_BOOL_CTRLS_HIGH_OVERLAY_1 = 1 << 2
+    XRB_BOOL_CTRLS_HIGH_OVERLAY_2 = 1 << 3
+    XRB_BOOL_CTRLS_HIGH_IGNORE_GROUP_LOCK = 1 << 4
+    XRB_BOOL_CTRLS_LOW_REPEAT_KEYS = 1 << 0
+    XRB_BOOL_CTRLS_LOW_SLOW_KEYS = 1 << 1
+    XRB_BOOL_CTRLS_LOW_BOUNCE_KEYS = 1 << 2
+    XRB_BOOL_CTRLS_LOW_STICKY_KEYS = 1 << 3
+    XRB_BOOL_CTRLS_LOW_MOUSE_KEYS = 1 << 4
+    XRB_BOOL_CTRLS_LOW_MOUSE_KEYS_ACCEL = 1 << 5
+    XRB_BOOL_CTRLS_LOW_ACCESS_X_KEYS = 1 << 6
+    XRB_BOOL_CTRLS_LOW_ACCESS_X_TIMEOUT = 1 << 7
     class XrbSASetControls < FFI::Struct
       layout \
           :type, :uint8,
@@ -1376,11 +1294,9 @@ class Xrb
     end
     attach_function :xcb_sa_lock_controls_next, [:pointer], :void
     attach_function :xcb_sa_lock_controls_end, [:pointer], XrbGenericIterator
-    enum :xrb_action_message_flag_t, [
-        :xrb_action_message_flag_on_press, 1 << 0,
-        :xrb_action_message_flag_on_release, 1 << 1,
-        :xrb_action_message_flag_gen_key_event, 1 << 2
-    ]
+    XRB_ACTION_MESSAGE_FLAG_ON_PRESS = 1 << 0
+    XRB_ACTION_MESSAGE_FLAG_ON_RELEASE = 1 << 1
+    XRB_ACTION_MESSAGE_FLAG_GEN_KEY_EVENT = 1 << 2
     class XrbSAActionMessage < FFI::Struct
       layout \
           :type, :uint8,
@@ -1437,10 +1353,8 @@ class Xrb
     end
     attach_function :xcb_sa_device_btn_next, [:pointer], :void
     attach_function :xcb_sa_device_btn_end, [:pointer], XrbGenericIterator
-    enum :xrb_lock_device_flags_t, [
-        :xrb_lock_device_flags_no_lock, 1 << 0,
-        :xrb_lock_device_flags_no_unlock, 1 << 1
-    ]
+    XRB_LOCK_DEVICE_FLAGS_NO_LOCK = 1 << 0
+    XRB_LOCK_DEVICE_FLAGS_NO_UNLOCK = 1 << 1
     class XrbSALockDeviceBtn < FFI::Struct
       layout \
           :type, :uint8,
@@ -1458,14 +1372,12 @@ class Xrb
     end
     attach_function :xcb_sa_lock_device_btn_next, [:pointer], :void
     attach_function :xcb_sa_lock_device_btn_end, [:pointer], XrbGenericIterator
-    enum :xrb_sa_val_what_t, [
-        :xrb_sa_val_what_ignore_val, 0,
-        :xrb_sa_val_what_set_val_min, 1,
-        :xrb_sa_val_what_set_val_center, 2,
-        :xrb_sa_val_what_set_val_max, 3,
-        :xrb_sa_val_what_set_val_relative, 4,
-        :xrb_sa_val_what_set_val_absolute, 5
-    ]
+    XRB_SA_VAL_WHAT_IGNORE_VAL = 0
+    XRB_SA_VAL_WHAT_SET_VAL_MIN = 1
+    XRB_SA_VAL_WHAT_SET_VAL_CENTER = 2
+    XRB_SA_VAL_WHAT_SET_VAL_MAX = 3
+    XRB_SA_VAL_WHAT_SET_VAL_RELATIVE = 4
+    XRB_SA_VAL_WHAT_SET_VAL_ABSOLUTE = 5
     class XrbSADeviceValuator < FFI::Struct
       layout \
           :type, :uint8,
@@ -1739,7 +1651,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_use_extension, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbUseExtensionCookie
+    attach_function :xcb_use_extension, [:pointer,:uint8,:uint16,:uint16], XrbUseExtensionCookie
     class XrbUseExtensionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1767,8 +1679,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_events_checked, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbSelectEventsCookie
-    attach_function :xcb_select_events, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbSelectEventsCookie
+    attach_function :xcb_select_events_checked, [:pointer,:uint8,:uint16,:uint16], XrbSelectEventsCookie
+    attach_function :xcb_select_events, [:pointer,:uint8,:uint16,:uint16], XrbSelectEventsCookie
     class XrbBellRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1792,8 +1704,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_bell_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:xrb_bellclassspec_t,:xrb_idspec_t,:int8,:bool,:bool,:int16,:int16,:xrb_atom_t,:xrb_window_t], XrbBellCookie
-    attach_function :xcb_bell, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:xrb_bellclassspec_t,:xrb_idspec_t,:int8,:bool,:bool,:int16,:int16,:xrb_atom_t,:xrb_window_t], XrbBellCookie
+    attach_function :xcb_bell_checked, [:pointer,:uint8,:xrb_devicespec_t,:xrb_bellclassspec_t,:xrb_idspec_t,:int8,:bool,:bool,:int16,:int16,:xrb_atom_t,:xrb_window_t], XrbBellCookie
+    attach_function :xcb_bell, [:pointer,:uint8,:xrb_devicespec_t,:xrb_bellclassspec_t,:xrb_idspec_t,:int8,:bool,:bool,:int16,:int16,:xrb_atom_t,:xrb_window_t], XrbBellCookie
     class XrbGetStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1821,7 +1733,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_state, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:int16,:int16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16], XrbGetStateCookie
+    attach_function :xcb_get_state, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:int16,:int16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16], XrbGetStateCookie
     class XrbGetStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1869,8 +1781,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_latch_lock_state_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], XrbLatchLockStateCookie
-    attach_function :xcb_latch_lock_state, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], XrbLatchLockStateCookie
+    attach_function :xcb_latch_lock_state_checked, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], XrbLatchLockStateCookie
+    attach_function :xcb_latch_lock_state, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], XrbLatchLockStateCookie
     class XrbGetControlsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1910,7 +1822,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_controls, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,XrbAXOption,:uint16,XrbAXOption,XrbAXOption,:uint32,:uint32,:uint32,:uint32], XrbGetControlsCookie
+    attach_function :xcb_get_controls, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,XrbAXOption,:uint16,XrbAXOption,XrbAXOption,:uint32,:uint32,:uint32,:uint32], XrbGetControlsCookie
     class XrbGetControlsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1992,8 +1904,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_controls_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbAXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,XrbAXOption,XrbAXOption,:uint32], XrbSetControlsCookie
-    attach_function :xcb_set_controls, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbAXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,XrbAXOption,XrbAXOption,:uint32], XrbSetControlsCookie
+    attach_function :xcb_set_controls_checked, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbAXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,XrbAXOption,XrbAXOption,:uint32], XrbSetControlsCookie
+    attach_function :xcb_set_controls, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbAXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,XrbAXOption,XrbAXOption,:uint32], XrbSetControlsCookie
     class XrbGetMapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2005,7 +1917,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_map, [:pointer,:uint8,:uint8,:uint16], XrbGetMapCookie
+    attach_function :xcb_get_map, [:pointer,:uint8], XrbGetMapCookie
     class XrbGetMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2027,8 +1939,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_map_checked, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbSetMapCookie
-    attach_function :xcb_set_map, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbSetMapCookie
+    attach_function :xcb_set_map_checked, [:pointer,:uint8,:uint32], XrbSetMapCookie
+    attach_function :xcb_set_map, [:pointer,:uint8,:uint32], XrbSetMapCookie
     class XrbGetCompatMapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2047,7 +1959,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_compat_map, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint16,:uint16,:uint16,:uint32,:uint32], XrbGetCompatMapCookie
+    attach_function :xcb_get_compat_map, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint32,:uint32], XrbGetCompatMapCookie
     class XrbGetCompatMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2086,8 +1998,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_compat_map_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetCompatMapCookie
-    attach_function :xcb_set_compat_map, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetCompatMapCookie
+    attach_function :xcb_set_compat_map_checked, [:pointer,:uint8,:xrb_devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetCompatMapCookie
+    attach_function :xcb_set_compat_map, [:pointer,:uint8,:xrb_devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetCompatMapCookie
     class XrbGetIndicatorStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2101,7 +2013,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_indicator_state, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbGetIndicatorStateCookie
+    attach_function :xcb_get_indicator_state, [:pointer,:uint8,:uint32], XrbGetIndicatorStateCookie
     class XrbGetIndicatorStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2130,7 +2042,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_indicator_map, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32,:uint8,:uint32], XrbGetIndicatorMapCookie
+    attach_function :xcb_get_indicator_map, [:pointer,:uint8,:uint32,:uint32,:uint8,:uint32], XrbGetIndicatorMapCookie
     class XrbGetIndicatorMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2160,8 +2072,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_indicator_map_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint32,:uint32], XrbSetIndicatorMapCookie
-    attach_function :xcb_set_indicator_map, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint32,:uint32], XrbSetIndicatorMapCookie
+    attach_function :xcb_set_indicator_map_checked, [:pointer,:uint8,:xrb_devicespec_t,:uint32,:uint32], XrbSetIndicatorMapCookie
+    attach_function :xcb_set_indicator_map, [:pointer,:uint8,:xrb_devicespec_t,:uint32,:uint32], XrbSetIndicatorMapCookie
     class XrbGetNamedIndicatorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2187,7 +2099,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_named_indicator, [:pointer,:uint8,:uint8,:uint16,:xrb_atom_t,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbGetNamedIndicatorCookie
+    attach_function :xcb_get_named_indicator, [:pointer,:uint8,:xrb_atom_t,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbGetNamedIndicatorCookie
     class XrbGetNamedIndicatorReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2241,8 +2153,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_named_indicator_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:xrb_ledclassspec_t,:xrb_idspec_t,:xrb_atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbSetNamedIndicatorCookie
-    attach_function :xcb_set_named_indicator, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:xrb_ledclassspec_t,:xrb_idspec_t,:xrb_atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbSetNamedIndicatorCookie
+    attach_function :xcb_set_named_indicator_checked, [:pointer,:uint8,:xrb_devicespec_t,:xrb_ledclassspec_t,:xrb_idspec_t,:xrb_atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbSetNamedIndicatorCookie
+    attach_function :xcb_set_named_indicator, [:pointer,:uint8,:xrb_devicespec_t,:xrb_ledclassspec_t,:xrb_idspec_t,:xrb_atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], XrbSetNamedIndicatorCookie
     class XrbGetNamesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2254,7 +2166,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_names, [:pointer,:uint8,:uint8,:uint16], XrbGetNamesCookie
+    attach_function :xcb_get_names, [:pointer,:uint8], XrbGetNamesCookie
     class XrbGetNamesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2276,8 +2188,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_names_checked, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbSetNamesCookie
-    attach_function :xcb_set_names, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbSetNamesCookie
+    attach_function :xcb_set_names_checked, [:pointer,:uint8,:uint32], XrbSetNamesCookie
+    attach_function :xcb_set_names, [:pointer,:uint8,:uint32], XrbSetNamesCookie
     class XrbGetGeometryRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2303,7 +2215,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_geometry, [:pointer,:uint8,:uint8,:uint16,:xrb_atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetGeometryCookie
+    attach_function :xcb_get_geometry, [:pointer,:uint8,:xrb_atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetGeometryCookie
     class XrbGetGeometryReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2354,8 +2266,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_geometry_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:xrb_atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbSetGeometryCookie
-    attach_function :xcb_set_geometry, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:xrb_atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbSetGeometryCookie
+    attach_function :xcb_set_geometry_checked, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:xrb_atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbSetGeometryCookie
+    attach_function :xcb_set_geometry, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:xrb_atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbSetGeometryCookie
     class XrbPerClientFlagsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2372,7 +2284,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_per_client_flags, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32,:uint32,:uint32], XrbPerClientFlagsCookie
+    attach_function :xcb_per_client_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], XrbPerClientFlagsCookie
     class XrbPerClientFlagsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2408,7 +2320,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_components, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbListComponentsCookie
+    attach_function :xcb_list_components, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbListComponentsCookie
     class XrbListComponentsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2453,7 +2365,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_kbd_by_name, [:pointer,:uint8,:uint8,:uint16,:xrb_atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetKbdByNameCookie
+    attach_function :xcb_get_kbd_by_name, [:pointer,:uint8,:xrb_atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,XrbCountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], XrbGetKbdByNameCookie
     class XrbGetKbdByNameReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2505,7 +2417,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_info, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint16,:uint16,:xrb_atom_t,:uint16,:uint32,:uint32,:uint32], XrbGetDeviceInfoCookie
+    attach_function :xcb_get_device_info, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint16,:uint16,:xrb_atom_t,:uint16,:uint32,:uint32,:uint32], XrbGetDeviceInfoCookie
     class XrbGetDeviceInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2548,8 +2460,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_info_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetDeviceInfoCookie
-    attach_function :xcb_set_device_info, [:pointer,:uint8,:uint8,:uint16,:xrb_devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetDeviceInfoCookie
+    attach_function :xcb_set_device_info_checked, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetDeviceInfoCookie
+    attach_function :xcb_set_device_info, [:pointer,:uint8,:xrb_devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], XrbSetDeviceInfoCookie
     class XrbSetDebuggingFlagsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2566,7 +2478,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_debugging_flags, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32,:uint32,:uint32], XrbSetDebuggingFlagsCookie
+    attach_function :xcb_set_debugging_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], XrbSetDebuggingFlagsCookie
     class XrbSetDebuggingFlagsReply < FFI::Struct
       layout \
           :response_type, :uint8,

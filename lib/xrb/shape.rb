@@ -28,18 +28,14 @@ class Xrb
     end
     attach_function :xcb_kind_next, [:pointer], :void
     attach_function :xcb_kind_end, [:pointer], XrbGenericIterator
-    enum :xrb_so_t, [
-        :xrb_so_set, 1,
-        :xrb_so_union, 2,
-        :xrb_so_intersect, 3,
-        :xrb_so_subtract, 4,
-        :xrb_so_invert, 5
-    ]
-    enum :xrb_sk_t, [
-        :xrb_sk_bounding, 1,
-        :xrb_sk_clip, 2,
-        :xrb_sk_input, 3
-    ]
+    XRB_SO_SET = 1
+    XRB_SO_UNION = 2
+    XRB_SO_INTERSECT = 3
+    XRB_SO_SUBTRACT = 4
+    XRB_SO_INVERT = 5
+    XRB_SK_BOUNDING = 1
+    XRB_SK_CLIP = 2
+    XRB_SK_INPUT = 3
     class XrbNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -67,7 +63,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -99,8 +95,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_rectangles_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:uint8,:xrb_window_t,:int16,:int16,:uint32], XrbRectanglesCookie
-    attach_function :xcb_rectangles, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:uint8,:xrb_window_t,:int16,:int16,:uint32], XrbRectanglesCookie
+    attach_function :xcb_rectangles_checked, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:uint8,:xrb_window_t,:int16,:int16,:uint32], XrbRectanglesCookie
+    attach_function :xcb_rectangles, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:uint8,:xrb_window_t,:int16,:int16,:uint32], XrbRectanglesCookie
     class XrbMaskRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -119,8 +115,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_mask_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_pixmap_t], XrbMaskCookie
-    attach_function :xcb_mask, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_pixmap_t], XrbMaskCookie
+    attach_function :xcb_mask_checked, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_pixmap_t], XrbMaskCookie
+    attach_function :xcb_mask, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_pixmap_t], XrbMaskCookie
     class XrbCombineRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -140,8 +136,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_combine_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_window_t], XrbCombineCookie
-    attach_function :xcb_combine, [:pointer,:uint8,:uint8,:uint16,:xrb_op_t,:xrb_kind_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_window_t], XrbCombineCookie
+    attach_function :xcb_combine_checked, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_window_t], XrbCombineCookie
+    attach_function :xcb_combine, [:pointer,:uint8,:xrb_op_t,:xrb_kind_t,:xrb_kind_t,:xrb_window_t,:int16,:int16,:xrb_window_t], XrbCombineCookie
     class XrbOffsetRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -158,8 +154,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_offset_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_kind_t,:xrb_window_t,:int16,:int16], XrbOffsetCookie
-    attach_function :xcb_offset, [:pointer,:uint8,:uint8,:uint16,:xrb_kind_t,:xrb_window_t,:int16,:int16], XrbOffsetCookie
+    attach_function :xcb_offset_checked, [:pointer,:uint8,:xrb_kind_t,:xrb_window_t,:int16,:int16], XrbOffsetCookie
+    attach_function :xcb_offset, [:pointer,:uint8,:xrb_kind_t,:xrb_window_t,:int16,:int16], XrbOffsetCookie
     class XrbQueryExtentsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -182,7 +178,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_extents, [:pointer,:uint8,:uint8,:uint16,:bool,:bool,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], XrbQueryExtentsCookie
+    attach_function :xcb_query_extents, [:pointer,:uint8,:bool,:bool,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], XrbQueryExtentsCookie
     class XrbQueryExtentsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -219,8 +215,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_input_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:bool], XrbSelectInputCookie
-    attach_function :xcb_select_input, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t,:bool], XrbSelectInputCookie
+    attach_function :xcb_select_input_checked, [:pointer,:uint8,:xrb_window_t,:bool], XrbSelectInputCookie
+    attach_function :xcb_select_input, [:pointer,:uint8,:xrb_window_t,:bool], XrbSelectInputCookie
     class XrbInputSelectedRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -232,7 +228,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_input_selected, [:pointer,:uint8,:uint8,:uint16], XrbInputSelectedCookie
+    attach_function :xcb_input_selected, [:pointer,:uint8], XrbInputSelectedCookie
     class XrbInputSelectedReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -257,7 +253,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_rectangles, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbGetRectanglesCookie
+    attach_function :xcb_get_rectangles, [:pointer,:uint8,:uint32,:uint32], XrbGetRectanglesCookie
     class XrbGetRectanglesReply < FFI::Struct
       layout \
           :response_type, :uint8,

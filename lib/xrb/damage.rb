@@ -20,12 +20,10 @@ class Xrb
     end
     attach_function :xcb_damage_next, [:pointer], :void
     attach_function :xcb_damage_end, [:pointer], XrbGenericIterator
-    enum :xrb_report_level_t, [
-        :xrb_report_level_raw_rectangles, 1,
-        :xrb_report_level_delta_rectangles, 2,
-        :xrb_report_level_bounding_box, 3,
-        :xrb_report_level_non_empty, 4
-    ]
+    XRB_REPORT_LEVEL_RAW_RECTANGLES = 1
+    XRB_REPORT_LEVEL_DELTA_RECTANGLES = 2
+    XRB_REPORT_LEVEL_BOUNDING_BOX = 3
+    XRB_REPORT_LEVEL_NON_EMPTY = 4
     class XrbNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -58,7 +56,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -88,8 +86,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
-    attach_function :xcb_create, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
+    attach_function :xcb_create_checked, [:pointer,:uint8,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
+    attach_function :xcb_create, [:pointer,:uint8,:xrb_damage_t,:xrb_drawable_t,:uint8], XrbCreateCookie
     class XrbDestroyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -102,8 +100,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t], XrbDestroyCookie
-    attach_function :xcb_destroy, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t], XrbDestroyCookie
+    attach_function :xcb_destroy_checked, [:pointer,:uint8,:xrb_damage_t], XrbDestroyCookie
+    attach_function :xcb_destroy, [:pointer,:uint8,:xrb_damage_t], XrbDestroyCookie
     class XrbSubtractRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -118,8 +116,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_subtract_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
-    attach_function :xcb_subtract, [:pointer,:uint8,:uint8,:uint16,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
+    attach_function :xcb_subtract_checked, [:pointer,:uint8,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
+    attach_function :xcb_subtract, [:pointer,:uint8,:xrb_damage_t,:xrb_region_t,:xrb_region_t], XrbSubtractCookie
     class XrbAddRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -133,7 +131,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_add_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
-    attach_function :xcb_add, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
+    attach_function :xcb_add_checked, [:pointer,:uint8,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
+    attach_function :xcb_add, [:pointer,:uint8,:xrb_drawable_t,:xrb_region_t], XrbAddCookie
   end
 end

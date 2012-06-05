@@ -48,7 +48,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -81,8 +81,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_attach_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_seg_t,:uint32,:bool], XrbAttachCookie
-    attach_function :xcb_attach, [:pointer,:uint8,:uint8,:uint16,:xrb_seg_t,:uint32,:bool], XrbAttachCookie
+    attach_function :xcb_attach_checked, [:pointer,:uint8,:xrb_seg_t,:uint32,:bool], XrbAttachCookie
+    attach_function :xcb_attach, [:pointer,:uint8,:xrb_seg_t,:uint32,:bool], XrbAttachCookie
     class XrbDetachRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -95,8 +95,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_detach_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_seg_t], XrbDetachCookie
-    attach_function :xcb_detach, [:pointer,:uint8,:uint8,:uint16,:xrb_seg_t], XrbDetachCookie
+    attach_function :xcb_detach_checked, [:pointer,:uint8,:xrb_seg_t], XrbDetachCookie
+    attach_function :xcb_detach, [:pointer,:uint8,:xrb_seg_t], XrbDetachCookie
     class XrbPutImageRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -124,8 +124,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_put_image_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_gcontext_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:uint8,:uint8,:uint8,:xrb_seg_t,:uint32], XrbPutImageCookie
-    attach_function :xcb_put_image, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_gcontext_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:uint8,:uint8,:uint8,:xrb_seg_t,:uint32], XrbPutImageCookie
+    attach_function :xcb_put_image_checked, [:pointer,:uint8,:xrb_drawable_t,:xrb_gcontext_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:uint8,:uint8,:uint8,:xrb_seg_t,:uint32], XrbPutImageCookie
+    attach_function :xcb_put_image, [:pointer,:uint8,:xrb_drawable_t,:xrb_gcontext_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:uint8,:uint8,:uint8,:xrb_seg_t,:uint32], XrbPutImageCookie
     class XrbGetImageRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -139,7 +139,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_image, [:pointer,:uint8,:uint8,:uint16,:xrb_visualid_t,:uint32], XrbGetImageCookie
+    attach_function :xcb_get_image, [:pointer,:uint8,:xrb_visualid_t,:uint32], XrbGetImageCookie
     class XrbGetImageReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -172,7 +172,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_pixmap_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_pixmap_t,:xrb_drawable_t,:uint16,:uint16,:uint8,:xrb_seg_t,:uint32], XrbCreatePixmapCookie
-    attach_function :xcb_create_pixmap, [:pointer,:uint8,:uint8,:uint16,:xrb_pixmap_t,:xrb_drawable_t,:uint16,:uint16,:uint8,:xrb_seg_t,:uint32], XrbCreatePixmapCookie
+    attach_function :xcb_create_pixmap_checked, [:pointer,:uint8,:xrb_pixmap_t,:xrb_drawable_t,:uint16,:uint16,:uint8,:xrb_seg_t,:uint32], XrbCreatePixmapCookie
+    attach_function :xcb_create_pixmap, [:pointer,:uint8,:xrb_pixmap_t,:xrb_drawable_t,:uint16,:uint16,:uint8,:xrb_seg_t,:uint32], XrbCreatePixmapCookie
   end
 end

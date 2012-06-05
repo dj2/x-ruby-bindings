@@ -9,10 +9,8 @@ class Xrb
     ffi_lib 'xevie'
     MAJOR_VERSION = 1
     MINOR_VERSION = 0
-    enum :xrb_datatype_t, [
-        :xrb_datatype_unmodified, 1,
-        :xrb_datatype_modified, 2
-    ]
+    XRB_DATATYPE_UNMODIFIED = 1
+    XRB_DATATYPE_MODIFIED = 2
     class XrbEvent < FFI::Struct
       layout \
           :pad1, [:uint8, 32]
@@ -40,7 +38,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -67,7 +65,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_start, [:pointer,:uint8,:uint8,:uint16], XrbStartCookie
+    attach_function :xcb_start, [:pointer,:uint8], XrbStartCookie
     class XrbStartReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -92,7 +90,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_end, [:pointer,:uint8,:uint8,:uint16], XrbEndCookie
+    attach_function :xcb_end, [:pointer,:uint8], XrbEndCookie
     class XrbEndReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -117,7 +115,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_send, [:pointer,:uint8,:uint8,:uint16], XrbSendCookie
+    attach_function :xcb_send, [:pointer,:uint8], XrbSendCookie
     class XrbSendReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -142,7 +140,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_input, [:pointer,:uint8,:uint8,:uint16], XrbSelectInputCookie
+    attach_function :xcb_select_input, [:pointer,:uint8], XrbSelectInputCookie
     class XrbSelectInputReply < FFI::Struct
       layout \
           :response_type, :uint8,

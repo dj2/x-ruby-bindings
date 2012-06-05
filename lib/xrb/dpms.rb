@@ -9,12 +9,10 @@ class Xrb
     ffi_lib 'dpms'
     MAJOR_VERSION = 0
     MINOR_VERSION = 0
-    enum :xrb_dpms_mode_t, [
-        :xrb_dpms_mode_on, 1,
-        :xrb_dpms_mode_standby, 2,
-        :xrb_dpms_mode_suspend, 3,
-        :xrb_dpms_mode_off, 4
-    ]
+    XRB_DPMS_MODE_ON = 1
+    XRB_DPMS_MODE_STANDBY = 2
+    XRB_DPMS_MODE_SUSPEND = 3
+    XRB_DPMS_MODE_OFF = 4
     class XrbGetVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -28,7 +26,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbGetVersionCookie
+    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], XrbGetVersionCookie
     class XrbGetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -55,7 +53,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_capable, [:pointer,:uint8,:uint8,:uint16,:bool], XrbCapableCookie
+    attach_function :xcb_capable, [:pointer,:uint8,:bool], XrbCapableCookie
     class XrbCapableReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -84,7 +82,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_timeouts, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16], XrbGetTimeoutsCookie
+    attach_function :xcb_get_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], XrbGetTimeoutsCookie
     class XrbGetTimeoutsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -114,8 +112,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_timeouts_checked, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16], XrbSetTimeoutsCookie
-    attach_function :xcb_set_timeouts, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16], XrbSetTimeoutsCookie
+    attach_function :xcb_set_timeouts_checked, [:pointer,:uint8,:uint16,:uint16,:uint16], XrbSetTimeoutsCookie
+    attach_function :xcb_set_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], XrbSetTimeoutsCookie
     class XrbEnableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -127,8 +125,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable_checked, [:pointer,:uint8,:uint8,:uint16], XrbEnableCookie
-    attach_function :xcb_enable, [:pointer,:uint8,:uint8,:uint16], XrbEnableCookie
+    attach_function :xcb_enable_checked, [:pointer,:uint8], XrbEnableCookie
+    attach_function :xcb_enable, [:pointer,:uint8], XrbEnableCookie
     class XrbDisableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -140,8 +138,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_disable_checked, [:pointer,:uint8,:uint8,:uint16], XrbDisableCookie
-    attach_function :xcb_disable, [:pointer,:uint8,:uint8,:uint16], XrbDisableCookie
+    attach_function :xcb_disable_checked, [:pointer,:uint8], XrbDisableCookie
+    attach_function :xcb_disable, [:pointer,:uint8], XrbDisableCookie
     class XrbForceLevelRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -154,8 +152,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_force_level_checked, [:pointer,:uint8,:uint8,:uint16,:uint16], XrbForceLevelCookie
-    attach_function :xcb_force_level, [:pointer,:uint8,:uint8,:uint16,:uint16], XrbForceLevelCookie
+    attach_function :xcb_force_level_checked, [:pointer,:uint8,:uint16], XrbForceLevelCookie
+    attach_function :xcb_force_level, [:pointer,:uint8,:uint16], XrbForceLevelCookie
     class XrbInfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -170,7 +168,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_info, [:pointer,:uint8,:uint8,:uint16,:uint16,:bool], XrbInfoCookie
+    attach_function :xcb_info, [:pointer,:uint8,:uint16,:bool], XrbInfoCookie
     class XrbInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,

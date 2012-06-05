@@ -97,7 +97,7 @@ class Xrb
   attach_function :xcb_discard_reply, [:xrb_connection_t, :uint], :void
   attach_function :xcb_get_extension_data, [:xrb_connection_t, :xrb_extension_t], :pointer
   attach_function :xcb_prefetch_extension_data, [:xrb_connection_t, :xrb_extension_t], :void
-  attach_function :xcb_get_setup, [:xrb_connection_t], :void
+  attach_function :xcb_get_setup, [:xrb_connection_t], :pointer
   attach_function :xcb_get_file_descriptor, [:xrb_connection_t], :int
   attach_function :xcb_connection_has_error, [:xrb_connection_t], :int
   attach_function :xcb_connect_to_fd, [:int, :pointer], :xrb_connection_t

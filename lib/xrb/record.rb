@@ -90,11 +90,9 @@ class Xrb
     end
     attach_function :xcb_element_header_next, [:pointer], :void
     attach_function :xcb_element_header_end, [:pointer], XrbGenericIterator
-    enum :xrb_h_type_t, [
-        :xrb_h_type_from_server_time, 1 << 0,
-        :xrb_h_type_from_client_time, 1 << 1,
-        :xrb_h_type_from_client_sequence, 1 << 2
-    ]
+    XRB_H_TYPE_FROM_SERVER_TIME = 1 << 0
+    XRB_H_TYPE_FROM_CLIENT_TIME = 1 << 1
+    XRB_H_TYPE_FROM_CLIENT_SEQUENCE = 1 << 2
     typedef :uint32, :xrb_clientspec_t
     class XrbClientSpecIterator < FFI::Struct
       layout \
@@ -104,11 +102,9 @@ class Xrb
     end
     attach_function :xcb_client_spec_next, [:pointer], :void
     attach_function :xcb_client_spec_end, [:pointer], XrbGenericIterator
-    enum :xrb_cs_t, [
-        :xrb_cs_current_clients, 1,
-        :xrb_cs_future_clients, 2,
-        :xrb_cs_all_clients, 3
-    ]
+    XRB_CS_CURRENT_CLIENTS = 1
+    XRB_CS_FUTURE_CLIENTS = 2
+    XRB_CS_ALL_CLIENTS = 3
     class XrbClientInfo < FFI::Struct
       layout \
           :client_resource, :xrb_clientspec_t,
@@ -124,6 +120,7 @@ class Xrb
     attach_function :xcb_client_info_next, [:pointer], :void
     attach_function :xcb_client_info_end, [:pointer], XrbGenericIterator
     attach_function :xcb_client_info_sizeof, [:pointer], :int
+    attach_function :xcb_client_info_ranges_iterator, [:pointer], XrbClientInfoIterator
     attach_function :xcb_client_info_ranges_length, [:pointer], :int
     class XrbBadContextError < FFI::Struct
       layout \
@@ -146,7 +143,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -176,8 +173,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_context_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbCreateContextCookie
-    attach_function :xcb_create_context, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbCreateContextCookie
+    attach_function :xcb_create_context_checked, [:pointer,:uint8,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbCreateContextCookie
+    attach_function :xcb_create_context, [:pointer,:uint8,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbCreateContextCookie
     class XrbRegisterClientsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -194,8 +191,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_register_clients_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbRegisterClientsCookie
-    attach_function :xcb_register_clients, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbRegisterClientsCookie
+    attach_function :xcb_register_clients_checked, [:pointer,:uint8,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbRegisterClientsCookie
+    attach_function :xcb_register_clients, [:pointer,:uint8,:xrb_context_t,:xrb_elementheader_t,:uint32,:uint32,:uint32,:uint32], XrbRegisterClientsCookie
     class XrbUnregisterClientsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -209,8 +206,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_unregister_clients_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:uint32,:uint32], XrbUnregisterClientsCookie
-    attach_function :xcb_unregister_clients, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t,:uint32,:uint32], XrbUnregisterClientsCookie
+    attach_function :xcb_unregister_clients_checked, [:pointer,:uint8,:xrb_context_t,:uint32,:uint32], XrbUnregisterClientsCookie
+    attach_function :xcb_unregister_clients, [:pointer,:uint8,:xrb_context_t,:uint32,:uint32], XrbUnregisterClientsCookie
     class XrbGetContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -226,7 +223,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_context, [:pointer,:uint8,:uint8,:uint16,:xrb_elementheader_t,:uint32,:uint32], XrbGetContextCookie
+    attach_function :xcb_get_context, [:pointer,:uint8,:xrb_elementheader_t,:uint32,:uint32], XrbGetContextCookie
     class XrbGetContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -260,7 +257,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable_context, [:pointer,:uint8,:uint8,:uint16,:xrb_elementheader_t,:bool,:uint32,:uint32,:uint32,:uint32], XrbEnableContextCookie
+    attach_function :xcb_enable_context, [:pointer,:uint8,:xrb_elementheader_t,:bool,:uint32,:uint32,:uint32,:uint32], XrbEnableContextCookie
     class XrbEnableContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -291,8 +288,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_disable_context_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t], XrbDisableContextCookie
-    attach_function :xcb_disable_context, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t], XrbDisableContextCookie
+    attach_function :xcb_disable_context_checked, [:pointer,:uint8,:xrb_context_t], XrbDisableContextCookie
+    attach_function :xcb_disable_context, [:pointer,:uint8,:xrb_context_t], XrbDisableContextCookie
     class XrbFreeContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -305,7 +302,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_free_context_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t], XrbFreeContextCookie
-    attach_function :xcb_free_context, [:pointer,:uint8,:uint8,:uint16,:xrb_context_t], XrbFreeContextCookie
+    attach_function :xcb_free_context_checked, [:pointer,:uint8,:xrb_context_t], XrbFreeContextCookie
+    attach_function :xcb_free_context, [:pointer,:uint8,:xrb_context_t], XrbFreeContextCookie
   end
 end

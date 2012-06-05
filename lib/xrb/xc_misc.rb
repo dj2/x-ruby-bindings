@@ -22,7 +22,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbGetVersionCookie
+    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], XrbGetVersionCookie
     class XrbGetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -49,7 +49,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_range, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbGetXIDRangeCookie
+    attach_function :xcb_get_xid_range, [:pointer,:uint8,:uint32,:uint32], XrbGetXIDRangeCookie
     class XrbGetXIDRangeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -76,7 +76,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_list, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbGetXIDListCookie
+    attach_function :xcb_get_xid_list, [:pointer,:uint8,:uint32,:uint32], XrbGetXIDListCookie
     class XrbGetXIDListReply < FFI::Struct
       layout \
           :response_type, :uint8,

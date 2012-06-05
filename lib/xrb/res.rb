@@ -51,7 +51,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -78,7 +78,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_clients, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryClientsCookie
+    attach_function :xcb_query_clients, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientsCookie
     class XrbQueryClientsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -105,7 +105,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_client_resources, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryClientResourcesCookie
+    attach_function :xcb_query_client_resources, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientResourcesCookie
     class XrbQueryClientResourcesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -132,7 +132,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_client_pixmap_bytes, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryClientPixmapBytesCookie
+    attach_function :xcb_query_client_pixmap_bytes, [:pointer,:uint8,:uint32,:uint32], XrbQueryClientPixmapBytesCookie
     class XrbQueryClientPixmapBytesReply < FFI::Struct
       layout \
           :response_type, :uint8,

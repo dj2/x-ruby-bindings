@@ -19,11 +19,9 @@ class Xrb
     end
     attach_function :xcb_alarm_next, [:pointer], :void
     attach_function :xcb_alarm_end, [:pointer], XrbGenericIterator
-    enum :xrb_alarmstate_t, [
-        :xrb_alarmstate_active, 1,
-        :xrb_alarmstate_inactive, 2,
-        :xrb_alarmstate_destroyed, 3
-    ]
+    XRB_ALARMSTATE_ACTIVE = 1
+    XRB_ALARMSTATE_INACTIVE = 2
+    XRB_ALARMSTATE_DESTROYED = 3
     typedef :uint32, :xrb_counter_t
     class XrbCounterIterator < FFI::Struct
       layout \
@@ -42,24 +40,18 @@ class Xrb
     end
     attach_function :xcb_fence_next, [:pointer], :void
     attach_function :xcb_fence_end, [:pointer], XrbGenericIterator
-    enum :xrb_testtype_t, [
-        :xrb_testtype_positive_transition, 1,
-        :xrb_testtype_negative_transition, 2,
-        :xrb_testtype_positive_comparison, 3,
-        :xrb_testtype_negative_comparison, 4
-    ]
-    enum :xrb_valuetype_t, [
-        :xrb_valuetype_absolute, 1,
-        :xrb_valuetype_relative, 2
-    ]
-    enum :xrb_ca_t, [
-        :xrb_ca_counter, 1 << 0,
-        :xrb_ca_value_type, 1 << 1,
-        :xrb_ca_value, 1 << 2,
-        :xrb_ca_test_type, 1 << 3,
-        :xrb_ca_delta, 1 << 4,
-        :xrb_ca_events, 1 << 5
-    ]
+    XRB_TESTTYPE_POSITIVE_TRANSITION = 1
+    XRB_TESTTYPE_NEGATIVE_TRANSITION = 2
+    XRB_TESTTYPE_POSITIVE_COMPARISON = 3
+    XRB_TESTTYPE_NEGATIVE_COMPARISON = 4
+    XRB_VALUETYPE_ABSOLUTE = 1
+    XRB_VALUETYPE_RELATIVE = 2
+    XRB_CA_COUNTER = 1 << 0
+    XRB_CA_VALUE_TYPE = 1 << 1
+    XRB_CA_VALUE = 1 << 2
+    XRB_CA_TEST_TYPE = 1 << 3
+    XRB_CA_DELTA = 1 << 4
+    XRB_CA_EVENTS = 1 << 5
     class XrbInt64 < FFI::Struct
       layout \
           :hi, :int32,
@@ -181,7 +173,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_initialize, [:pointer,:uint8,:uint8,:uint16,:uint8,:uint8], XrbInitializeCookie
+    attach_function :xcb_initialize, [:pointer,:uint8,:uint8,:uint8], XrbInitializeCookie
     class XrbInitializeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -209,7 +201,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_system_counters, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbListSystemCountersCookie
+    attach_function :xcb_list_system_counters, [:pointer,:uint8,:uint32,:uint32], XrbListSystemCountersCookie
     class XrbListSystemCountersReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -236,8 +228,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_counter_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbCreateCounterCookie
-    attach_function :xcb_create_counter, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbCreateCounterCookie
+    attach_function :xcb_create_counter_checked, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbCreateCounterCookie
+    attach_function :xcb_create_counter, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbCreateCounterCookie
     class XrbDestroyCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -250,8 +242,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_counter_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t], XrbDestroyCounterCookie
-    attach_function :xcb_destroy_counter, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t], XrbDestroyCounterCookie
+    attach_function :xcb_destroy_counter_checked, [:pointer,:uint8,:xrb_counter_t], XrbDestroyCounterCookie
+    attach_function :xcb_destroy_counter, [:pointer,:uint8,:xrb_counter_t], XrbDestroyCounterCookie
     class XrbQueryCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -264,7 +256,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_counter, [:pointer,:uint8,:uint8,:uint16,XrbInt64], XrbQueryCounterCookie
+    attach_function :xcb_query_counter, [:pointer,:uint8,XrbInt64], XrbQueryCounterCookie
     class XrbQueryCounterReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -288,8 +280,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_await_checked, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbAwaitCookie
-    attach_function :xcb_await, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbAwaitCookie
+    attach_function :xcb_await_checked, [:pointer,:uint8,:uint32], XrbAwaitCookie
+    attach_function :xcb_await, [:pointer,:uint8,:uint32], XrbAwaitCookie
     class XrbChangeCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -303,8 +295,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_counter_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbChangeCounterCookie
-    attach_function :xcb_change_counter, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbChangeCounterCookie
+    attach_function :xcb_change_counter_checked, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbChangeCounterCookie
+    attach_function :xcb_change_counter, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbChangeCounterCookie
     class XrbSetCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -318,8 +310,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_counter_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbSetCounterCookie
-    attach_function :xcb_set_counter, [:pointer,:uint8,:uint8,:uint16,:xrb_counter_t,XrbInt64], XrbSetCounterCookie
+    attach_function :xcb_set_counter_checked, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbSetCounterCookie
+    attach_function :xcb_set_counter, [:pointer,:uint8,:xrb_counter_t,XrbInt64], XrbSetCounterCookie
     class XrbCreateAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -333,8 +325,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_alarm_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t,:uint32], XrbCreateAlarmCookie
-    attach_function :xcb_create_alarm, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t,:uint32], XrbCreateAlarmCookie
+    attach_function :xcb_create_alarm_checked, [:pointer,:uint8,:xrb_alarm_t,:uint32,:pointer], XrbCreateAlarmCookie
+    attach_function :xcb_create_alarm, [:pointer,:uint8,:xrb_alarm_t,:uint32,:pointer], XrbCreateAlarmCookie
     class XrbChangeAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -348,8 +340,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_alarm_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t,:uint32], XrbChangeAlarmCookie
-    attach_function :xcb_change_alarm, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t,:uint32], XrbChangeAlarmCookie
+    attach_function :xcb_change_alarm_checked, [:pointer,:uint8,:xrb_alarm_t,:uint32,:pointer], XrbChangeAlarmCookie
+    attach_function :xcb_change_alarm, [:pointer,:uint8,:xrb_alarm_t,:uint32,:pointer], XrbChangeAlarmCookie
     class XrbDestroyAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -362,8 +354,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_alarm_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t], XrbDestroyAlarmCookie
-    attach_function :xcb_destroy_alarm, [:pointer,:uint8,:uint8,:uint16,:xrb_alarm_t], XrbDestroyAlarmCookie
+    attach_function :xcb_destroy_alarm_checked, [:pointer,:uint8,:xrb_alarm_t], XrbDestroyAlarmCookie
+    attach_function :xcb_destroy_alarm, [:pointer,:uint8,:xrb_alarm_t], XrbDestroyAlarmCookie
     class XrbQueryAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -380,7 +372,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_alarm, [:pointer,:uint8,:uint8,:uint16,XrbTrigger,XrbInt64,:bool,:uint8], XrbQueryAlarmCookie
+    attach_function :xcb_query_alarm, [:pointer,:uint8,XrbTrigger,XrbInt64,:bool,:uint8], XrbQueryAlarmCookie
     class XrbQueryAlarmReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -410,8 +402,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_priority_checked, [:pointer,:uint8,:uint8,:uint16,:uint32,:int32], XrbSetPriorityCookie
-    attach_function :xcb_set_priority, [:pointer,:uint8,:uint8,:uint16,:uint32,:int32], XrbSetPriorityCookie
+    attach_function :xcb_set_priority_checked, [:pointer,:uint8,:uint32,:int32], XrbSetPriorityCookie
+    attach_function :xcb_set_priority, [:pointer,:uint8,:uint32,:int32], XrbSetPriorityCookie
     class XrbGetPriorityRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -424,7 +416,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_priority, [:pointer,:uint8,:uint8,:uint16,:int32], XrbGetPriorityCookie
+    attach_function :xcb_get_priority, [:pointer,:uint8,:int32], XrbGetPriorityCookie
     class XrbGetPriorityReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -451,8 +443,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_fence_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_fence_t,:bool], XrbCreateFenceCookie
-    attach_function :xcb_create_fence, [:pointer,:uint8,:uint8,:uint16,:xrb_drawable_t,:xrb_fence_t,:bool], XrbCreateFenceCookie
+    attach_function :xcb_create_fence_checked, [:pointer,:uint8,:xrb_drawable_t,:xrb_fence_t,:bool], XrbCreateFenceCookie
+    attach_function :xcb_create_fence, [:pointer,:uint8,:xrb_drawable_t,:xrb_fence_t,:bool], XrbCreateFenceCookie
     class XrbTriggerFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -465,8 +457,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_trigger_fence_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbTriggerFenceCookie
-    attach_function :xcb_trigger_fence, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbTriggerFenceCookie
+    attach_function :xcb_trigger_fence_checked, [:pointer,:uint8,:xrb_fence_t], XrbTriggerFenceCookie
+    attach_function :xcb_trigger_fence, [:pointer,:uint8,:xrb_fence_t], XrbTriggerFenceCookie
     class XrbResetFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -479,8 +471,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_reset_fence_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbResetFenceCookie
-    attach_function :xcb_reset_fence, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbResetFenceCookie
+    attach_function :xcb_reset_fence_checked, [:pointer,:uint8,:xrb_fence_t], XrbResetFenceCookie
+    attach_function :xcb_reset_fence, [:pointer,:uint8,:xrb_fence_t], XrbResetFenceCookie
     class XrbDestroyFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -493,8 +485,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_fence_checked, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbDestroyFenceCookie
-    attach_function :xcb_destroy_fence, [:pointer,:uint8,:uint8,:uint16,:xrb_fence_t], XrbDestroyFenceCookie
+    attach_function :xcb_destroy_fence_checked, [:pointer,:uint8,:xrb_fence_t], XrbDestroyFenceCookie
+    attach_function :xcb_destroy_fence, [:pointer,:uint8,:xrb_fence_t], XrbDestroyFenceCookie
     class XrbQueryFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -508,7 +500,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_fence, [:pointer,:uint8,:uint8,:uint16,:bool], XrbQueryFenceCookie
+    attach_function :xcb_query_fence, [:pointer,:uint8,:bool], XrbQueryFenceCookie
     class XrbQueryFenceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -533,7 +525,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_await_fence_checked, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbAwaitFenceCookie
-    attach_function :xcb_await_fence, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbAwaitFenceCookie
+    attach_function :xcb_await_fence_checked, [:pointer,:uint8,:uint32], XrbAwaitFenceCookie
+    attach_function :xcb_await_fence, [:pointer,:uint8,:uint32], XrbAwaitFenceCookie
   end
 end

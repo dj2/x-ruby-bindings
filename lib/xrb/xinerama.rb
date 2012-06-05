@@ -39,7 +39,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16], XrbQueryVersionCookie
+    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], XrbQueryVersionCookie
     class XrbQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -65,7 +65,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_state, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbGetStateCookie
+    attach_function :xcb_get_state, [:pointer,:uint8,:xrb_window_t], XrbGetStateCookie
     class XrbGetStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -90,7 +90,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_count, [:pointer,:uint8,:uint8,:uint16,:xrb_window_t], XrbGetScreenCountCookie
+    attach_function :xcb_get_screen_count, [:pointer,:uint8,:xrb_window_t], XrbGetScreenCountCookie
     class XrbGetScreenCountReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -118,7 +118,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_size, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32,:xrb_window_t,:uint32], XrbGetScreenSizeCookie
+    attach_function :xcb_get_screen_size, [:pointer,:uint8,:uint32,:uint32,:xrb_window_t,:uint32], XrbGetScreenSizeCookie
     class XrbGetScreenSizeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -146,7 +146,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_is_active, [:pointer,:uint8,:uint8,:uint16,:uint32], XrbIsActiveCookie
+    attach_function :xcb_is_active, [:pointer,:uint8,:uint32], XrbIsActiveCookie
     class XrbIsActiveReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -172,7 +172,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_screens, [:pointer,:uint8,:uint8,:uint16,:uint32,:uint32], XrbQueryScreensCookie
+    attach_function :xcb_query_screens, [:pointer,:uint8,:uint32,:uint32], XrbQueryScreensCookie
     class XrbQueryScreensReply < FFI::Struct
       layout \
           :response_type, :uint8,

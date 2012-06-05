@@ -91,8 +91,8 @@ class Xrb
       end
 
       def to_ffi(parent)
-        prefix = "xrb_#{parent.camel_case}_"        
-        ":#{prefix}#{@name.camel_case}, #{@type == :bit ? '1 << ' : ''}#{@value}"
+        prefix = "xrb_#{parent.camel_case}_".upcase
+        "#{prefix}#{@name.camel_case.upcase} = #{@type == :bit ? '1 << ' : ''}#{@value}"
       end
 
       def to_s(indent = 0)
