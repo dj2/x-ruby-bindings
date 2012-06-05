@@ -106,4 +106,13 @@ class Xrb
   attach_function :xcb_connect, [:string, :pointer], :connection_t
   attach_function :xcb_connect_to_display_with_auth_info, [:string, :pointer, :pointer], :connection_t
   attach_function :xcb_generate_id, [:connection_t], :uint32
+
+  # Add wrappers to all the xcb_* methods that drop the xcb_'s
+  Xrb.methods.each do |meth|
+    next unless meth.to_s =~ /^xcb_/
+    name = meth.to_s.gsub(/^xcb_/, '').to_sym
+
+    method = "def self.#{name}(*args) #{meth}(*args); end"
+    Xrb.class_eval(method)
+  end
 end

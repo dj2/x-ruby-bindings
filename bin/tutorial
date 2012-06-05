@@ -5,24 +5,24 @@ $: << './lib' << '../lib'
 require 'xrb'
 require 'pp'
 
-conn = Xrb.xcb_connect(nil, nil)
-setup = Xrb.xcb_get_setup(conn)
-iter = Xrb.xcb_setup_roots_iterator(setup)
+conn = Xrb.connect(nil, nil)
+setup = Xrb.get_setup(conn)
+iter = Xrb.setup_roots_iterator(setup)
 
 screen = Xrb::Screen.new(iter)
 
-window = Xrb.xcb_generate_id(conn)
+window = Xrb.generate_id(conn)
 
 mask = Xrb::CW_BACK_PIXEL | Xrb::CW_EVENT_MASK
 values = [screen[:white_pixel], Xrb::EVENT_MASK_EXPOSURE]
 ptr = FFI::MemoryPointer.new(:uint32, values.size)
 
-Xrb.xcb_create_window(conn, Xrb::COPY_FROM_PARENT, window, screen[:root],
+Xrb.create_window(conn, Xrb::COPY_FROM_PARENT, window, screen[:root],
     0, 0, 150, 150, 10, Xrb::WINDOW_CLASS_INPUT_OUTPUT, screen[:root_visual],
     mask, ptr)
 
-Xrb.xcb_map_window(conn, window)
-Xrb.xcb_flush(conn)
+Xrb.map_window(conn, window)
+Xrb.flush(conn)
 
 while (true)
 
