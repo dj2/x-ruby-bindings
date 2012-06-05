@@ -13,12 +13,16 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>=1.9.2'
 
+  s.add_dependency 'ffi'
+  
   s.add_development_dependency 'nokogiri'
   s.add_development_dependency 'yard'
   s.add_development_dependency 'redcarpet'
 
   ignores = File.readlines(".gitignore").grep(/\S+/).map { |i| i.chomp }
   ignores << 'lib/xrb/generator.rb'
+  ignores << Dir['lib/xrb/generator/*']
+  ignores.flatten!
 
   dotfiles = [".gitignore", ".yardopts"]
 
