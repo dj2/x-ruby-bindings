@@ -1,6 +1,8 @@
 class Xrb
   class Generator
     class Field
+      attr_reader :type
+
       def initialize(node, type)
         @name = node.attr('name')
         @type = type        
@@ -21,6 +23,14 @@ class Xrb
         @mask.nil?
       end
 
+      def fixed_size?
+        true
+      end
+
+      def to_ffi(indent = 0)
+        "#{' ' * indent}:#{@name}, #{@type.ffi_name}"
+      end
+
       def to_s(indent = 0)
         "#{' ' * indent}Field #{@name} #{@type}"
       end
@@ -32,6 +42,10 @@ class Xrb
       def initialize(name, type)
         @name = name
         @type = type
+      end
+
+      def to_ffi(indent = 0)
+        "#{' ' * indent}:#{name}, #{@type.ffi_name}"
       end
 
       def to_s(indent = 0)
@@ -47,12 +61,22 @@ class Xrb
         @bytes = bytes
       end
 
+      def fixed_size?
+        true
+      end
+
+      def to_ffi(indent = 0)
+        "#{' ' * indent}:#{@name}#{@index}, [#{@type.ffi_name}, #{@bytes}]"
+      end
+
       def to_s(indent = 0)
         "#{' ' * indent}pad#{@index} #{@bytes}"
       end
     end
 
     class ItemField
+      attr_accessor :value
+
       def initialize(node)
         @name = node.attr('name')
 
@@ -66,18 +90,29 @@ class Xrb
         end
       end
 
+      def to_ffi(parent)
+        prefix = "xrb_#{parent.camel_case}_"        
+        ":#{prefix}#{@name.camel_case}, #{@type == :bit ? '1 << ' : ''}#{@value}"
+      end
+
       def to_s(indent = 0)
         "#{' ' * indent}Item #{@name} (#{@type} #{@value})"
       end
     end
 
     class ValueParamField
+      attr_reader :type
+
       def initialize(node, parser)
         @name = node.attr('value-list-name')
         @type = parser.get_type(:CARD32)
 
         @field_name = node.attr('value-mask-name')
         @field_type = parser.get_type(node.attr('value-mask-type'))
+      end
+
+      def to_ffi(indent = 0)
+        "#{' ' * indent}:#{@field_name}, #{@field_type.ffi_name}"
       end
 
       def to_s(indent = 0)
@@ -113,11 +148,30 @@ class Xrb
     end
 
     class ListField
+      attr_reader :name
+
       def initialize(node, parser)
         @name = node.attr('name')
+        @type = parser.get_type(node.attr('type'))
         @field_name = "#{@name}_len"
         @field_type = parser.get_type(:CARD32)
         @members = parser.parse_list(node.children)
+      end
+
+      def type
+        @field_type
+      end
+
+      def fixed_size?
+        return false unless @type.fixed_size?
+        @members.each { |m| return false unless m.fixed_size? }
+        true
+      end
+
+      def to_ffi(indent = 0)
+        return nil unless @members.first.is_a?(ValueField)
+
+        "#{' ' * indent}:#{@field_name}, [:#{@field_type}, #{@members.first.size}]"
       end
 
       def to_s(indent = 0)
@@ -132,6 +186,10 @@ class Xrb
 
       def initialize(name)
         @name = name
+      end
+
+      def fixed_size?
+        true
       end
 
       def to_s(indent = 0)
@@ -166,9 +224,14 @@ class Xrb
     end
 
     class ValueField
+      attr_reader :size
       def initialize(size)
         @name = :value
         @size = size
+      end
+
+      def fixed_size?
+        true
       end
 
       def to_s(indent = 0)

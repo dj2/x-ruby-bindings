@@ -12,16 +12,16 @@ class Xrb
         @in_dir = in_dir
 
         @types.merge!({
-            UINT8: Type.new('uint8', {size: 1}),
-            UINT16: Type.new('uint16', {size: 2}),
-            UINT32: Type.new('uint32', {size: 4}),
-            INT8: Type.new('int8', {size: 1}),
-            INT16: Type.new('int16', {size: 2}),
-            INT32: Type.new('int32', {size: 4}),
-            char: Type.new('char', {size: 1}),
-            float: Type.new('float', {size: 4}),
-            double: Type.new('double', {size: 8}),
-            BOOL: Type.new('bool', {size: 1})
+            UINT8: Type.new('uint8', {size: 1, ffi_name: ':uint8'}),
+            UINT16: Type.new('uint16', {size: 2, ffi_name: ':uint16'}),
+            UINT32: Type.new('uint32', {size: 4, ffi_name: ':uint32'}),
+            INT8: Type.new('int8', {size: 1, ffi_name: ':int8'}),
+            INT16: Type.new('int16', {size: 2, ffi_name: ':int16'}),
+            INT32: Type.new('int32', {size: 4, ffi_name: ':int32'}),
+            char: Type.new('char', {size: 1, ffi_name: ':uint8'}),
+            float: Type.new('float', {size: 4, ffi_name: ':float'}),
+            double: Type.new('double', {size: 8, ffi_name: ':double'}),
+            BOOL: Type.new('bool', {size: 1, ffi_name: ':bool'})
         })
 
         @types.merge!({
@@ -36,7 +36,7 @@ class Xrb
       end
 
       def process
-        #process("#{@in_dir}/xproto.xml")
+        #parse("#{@in_dir}/xproto.xml")
         Dir["#{@in_dir}/*.xml"].each do |file|
           puts "Processing #{file}"
 
@@ -161,8 +161,7 @@ class Xrb
       end
 
       def handle_typedef(node)
-        type = Type.new(node.attr('newname').to_sym,
-            @types[node.attr('oldname').to_sym])
+        type = Type.new(node.attr('newname').to_sym, get_type(node.attr('oldname')))
         add_type(type, type.name)
         @current_namespace.types << type
       end
