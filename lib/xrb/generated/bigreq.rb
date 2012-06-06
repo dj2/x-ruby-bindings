@@ -21,7 +21,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable, [:pointer,:uint8,:uint32], EnableCookie
+    attach_function :enable, :xcb_enable, [:pointer,:uint8,:uint32], EnableCookie
     class EnableReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -31,7 +31,7 @@ class Xrb
           :maximum_request_length, :uint32
     end
 
-    attach_function :xcb_enable_reply, [:pointer, EnableCookie, :pointer], :pointer
+    attach_function :enable_reply, :xcb_enable_reply, [:pointer, EnableCookie, :pointer], :pointer
 
         
   end

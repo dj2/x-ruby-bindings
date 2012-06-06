@@ -102,8 +102,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_device_spec_next, [:pointer], :void
-    attach_function :xcb_device_spec_end, [:pointer], GenericIterator
+    attach_function :device_spec_next, :xcb_device_spec_next, [:pointer], :void
+    attach_function :device_spec_end, :xcb_device_spec_end, [:pointer], GenericIterator
     LED_CLASS_RESULT_KBD_FEEDBACK_CLASS = 0
     LED_CLASS_RESULT_LED_FEEDBACK_CLASS = 4
     LED_CLASS_DFLT_XI_CLASS = 768
@@ -115,8 +115,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_led_class_spec_next, [:pointer], :void
-    attach_function :xcb_led_class_spec_end, [:pointer], GenericIterator
+    attach_function :led_class_spec_next, :xcb_led_class_spec_next, [:pointer], :void
+    attach_function :led_class_spec_end, :xcb_led_class_spec_end, [:pointer], GenericIterator
     BELL_CLASS_RESULT_KBD_FEEDBACK_CLASS = 0
     BELL_CLASS_RESULT_BELL_FEEDBACK_CLASS = 5
     BELL_CLASS_DFLT_XI_CLASS = 768
@@ -127,8 +127,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_bell_class_spec_next, [:pointer], :void
-    attach_function :xcb_bell_class_spec_end, [:pointer], GenericIterator
+    attach_function :bell_class_spec_next, :xcb_bell_class_spec_next, [:pointer], :void
+    attach_function :bell_class_spec_end, :xcb_bell_class_spec_end, [:pointer], GenericIterator
     ID_USE_CORE_KBD = 256
     ID_USE_CORE_PTR = 512
     ID_DFLT_XI_CLASS = 768
@@ -143,8 +143,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_id_spec_next, [:pointer], :void
-    attach_function :xcb_id_spec_end, [:pointer], GenericIterator
+    attach_function :id_spec_next, :xcb_id_spec_next, [:pointer], :void
+    attach_function :id_spec_end, :xcb_id_spec_end, [:pointer], GenericIterator
     GROUP_1 = 0
     GROUP_2 = 1
     GROUP_3 = 2
@@ -237,8 +237,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_indicator_map_next, [:pointer], :void
-    attach_function :xcb_indicator_map_end, [:pointer], GenericIterator
+    attach_function :indicator_map_next, :xcb_indicator_map_next, [:pointer], :void
+    attach_function :indicator_map_end, :xcb_indicator_map_end, [:pointer], GenericIterator
     CM_DETAIL_SYM_INTERP = 1 << 0
     CM_DETAIL_GROUP_COMPAT = 1 << 1
     NAME_DETAIL_KEYCODES = 1 << 0
@@ -286,8 +286,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_mod_def_next, [:pointer], :void
-    attach_function :xcb_mod_def_end, [:pointer], GenericIterator
+    attach_function :mod_def_next, :xcb_mod_def_next, [:pointer], :void
+    attach_function :mod_def_end, :xcb_mod_def_end, [:pointer], GenericIterator
     class KeyName < FFI::Struct
       layout \
           :name_len, [:uint32 , 4]
@@ -299,11 +299,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_name_next, [:pointer], :void
-    attach_function :xcb_key_name_end, [:pointer], GenericIterator
-    attach_function :xcb_key_name_sizeof, [:pointer], :int
-    attach_function :xcb_key_name_name, [:pointer], :pointer
-    attach_function :xcb_key_name_name_length, [:pointer], :int
+    attach_function :key_name_next, :xcb_key_name_next, [:pointer], :void
+    attach_function :key_name_end, :xcb_key_name_end, [:pointer], GenericIterator
+    attach_function :key_name_sizeof, :xcb_key_name_sizeof, [:pointer], :int
+    attach_function :key_name_name, :xcb_key_name_name, [:pointer], :pointer
+    attach_function :key_name_name_length, :xcb_key_name_name_length, [:pointer], :int
     class KeyAlias < FFI::Struct
       layout \
           :real_len, [:uint32 , 4],
@@ -316,13 +316,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_alias_next, [:pointer], :void
-    attach_function :xcb_key_alias_end, [:pointer], GenericIterator
-    attach_function :xcb_key_alias_sizeof, [:pointer], :int
-    attach_function :xcb_key_alias_real, [:pointer], :pointer
-    attach_function :xcb_key_alias_real_length, [:pointer], :int
-    attach_function :xcb_key_alias_alias, [:pointer], :pointer
-    attach_function :xcb_key_alias_alias_length, [:pointer], :int
+    attach_function :key_alias_next, :xcb_key_alias_next, [:pointer], :void
+    attach_function :key_alias_end, :xcb_key_alias_end, [:pointer], GenericIterator
+    attach_function :key_alias_sizeof, :xcb_key_alias_sizeof, [:pointer], :int
+    attach_function :key_alias_real, :xcb_key_alias_real, [:pointer], :pointer
+    attach_function :key_alias_real_length, :xcb_key_alias_real_length, [:pointer], :int
+    attach_function :key_alias_alias, :xcb_key_alias_alias, [:pointer], :pointer
+    attach_function :key_alias_alias_length, :xcb_key_alias_alias_length, [:pointer], :int
     class CountedString8 < FFI::Struct
       layout \
           :length, :uint8
@@ -334,11 +334,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_counted_string_8_next, [:pointer], :void
-    attach_function :xcb_counted_string_8_end, [:pointer], GenericIterator
-    attach_function :xcb_counted_string_8_sizeof, [:pointer], :int
-    attach_function :xcb_counted_string_8_string, [:pointer], :pointer
-    attach_function :xcb_counted_string_8_string_length, [:pointer], :int
+    attach_function :counted_string_8_next, :xcb_counted_string_8_next, [:pointer], :void
+    attach_function :counted_string_8_end, :xcb_counted_string_8_end, [:pointer], GenericIterator
+    attach_function :counted_string_8_sizeof, :xcb_counted_string_8_sizeof, [:pointer], :int
+    attach_function :counted_string_8_string, :xcb_counted_string_8_string, [:pointer], :pointer
+    attach_function :counted_string_8_string_length, :xcb_counted_string_8_string_length, [:pointer], :int
     class CountedString16 < FFI::Struct
       layout \
           :length, :uint16,
@@ -351,11 +351,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_counted_string_16_next, [:pointer], :void
-    attach_function :xcb_counted_string_16_end, [:pointer], GenericIterator
-    attach_function :xcb_counted_string_16_sizeof, [:pointer], :int
-    attach_function :xcb_counted_string_16_string, [:pointer], :pointer
-    attach_function :xcb_counted_string_16_string_length, [:pointer], :int
+    attach_function :counted_string_16_next, :xcb_counted_string_16_next, [:pointer], :void
+    attach_function :counted_string_16_end, :xcb_counted_string_16_end, [:pointer], GenericIterator
+    attach_function :counted_string_16_sizeof, :xcb_counted_string_16_sizeof, [:pointer], :int
+    attach_function :counted_string_16_string, :xcb_counted_string_16_string, [:pointer], :pointer
+    attach_function :counted_string_16_string_length, :xcb_counted_string_16_string_length, [:pointer], :int
     class KTMapEntry < FFI::Struct
       layout \
           :active, :bool,
@@ -372,8 +372,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_kt_map_entry_next, [:pointer], :void
-    attach_function :xcb_kt_map_entry_end, [:pointer], GenericIterator
+    attach_function :kt_map_entry_next, :xcb_kt_map_entry_next, [:pointer], :void
+    attach_function :kt_map_entry_end, :xcb_kt_map_entry_end, [:pointer], GenericIterator
     class KeyType < FFI::Struct
       layout \
           :mods_mask, :uint8,
@@ -391,13 +391,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_type_next, [:pointer], :void
-    attach_function :xcb_key_type_end, [:pointer], GenericIterator
-    attach_function :xcb_key_type_sizeof, [:pointer], :int
-    attach_function :xcb_key_type_map_iterator, [:pointer], KeyTypeIterator
-    attach_function :xcb_key_type_map_length, [:pointer], :int
-    attach_function :xcb_key_type_preserve_iterator, [:pointer], KeyTypeIterator
-    attach_function :xcb_key_type_preserve_length, [:pointer], :int
+    attach_function :key_type_next, :xcb_key_type_next, [:pointer], :void
+    attach_function :key_type_end, :xcb_key_type_end, [:pointer], GenericIterator
+    attach_function :key_type_sizeof, :xcb_key_type_sizeof, [:pointer], :int
+    attach_function :key_type_map_iterator, :xcb_key_type_map_iterator, [:pointer], KeyTypeIterator
+    attach_function :key_type_map_length, :xcb_key_type_map_length, [:pointer], :int
+    attach_function :key_type_preserve_iterator, :xcb_key_type_preserve_iterator, [:pointer], KeyTypeIterator
+    attach_function :key_type_preserve_length, :xcb_key_type_preserve_length, [:pointer], :int
     class KeySymMap < FFI::Struct
       layout \
           :kt_index_len, [:uint32 , 4],
@@ -412,13 +412,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_sym_map_next, [:pointer], :void
-    attach_function :xcb_key_sym_map_end, [:pointer], GenericIterator
-    attach_function :xcb_key_sym_map_sizeof, [:pointer], :int
-    attach_function :xcb_key_sym_map_kt_index, [:pointer], :pointer
-    attach_function :xcb_key_sym_map_kt_index_length, [:pointer], :int
-    attach_function :xcb_key_sym_map_syms, [:pointer], :pointer
-    attach_function :xcb_key_sym_map_syms_length, [:pointer], :int
+    attach_function :key_sym_map_next, :xcb_key_sym_map_next, [:pointer], :void
+    attach_function :key_sym_map_end, :xcb_key_sym_map_end, [:pointer], GenericIterator
+    attach_function :key_sym_map_sizeof, :xcb_key_sym_map_sizeof, [:pointer], :int
+    attach_function :key_sym_map_kt_index, :xcb_key_sym_map_kt_index, [:pointer], :pointer
+    attach_function :key_sym_map_kt_index_length, :xcb_key_sym_map_kt_index_length, [:pointer], :int
+    attach_function :key_sym_map_syms, :xcb_key_sym_map_syms, [:pointer], :pointer
+    attach_function :key_sym_map_syms_length, :xcb_key_sym_map_syms_length, [:pointer], :int
     class CommonBehavior < FFI::Struct
       layout \
           :type, :uint8,
@@ -431,8 +431,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_common_behavior_next, [:pointer], :void
-    attach_function :xcb_common_behavior_end, [:pointer], GenericIterator
+    attach_function :common_behavior_next, :xcb_common_behavior_next, [:pointer], :void
+    attach_function :common_behavior_end, :xcb_common_behavior_end, [:pointer], GenericIterator
     class DefaultBehavior < FFI::Struct
       layout \
           :type, :uint8,
@@ -445,8 +445,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_default_behavior_next, [:pointer], :void
-    attach_function :xcb_default_behavior_end, [:pointer], GenericIterator
+    attach_function :default_behavior_next, :xcb_default_behavior_next, [:pointer], :void
+    attach_function :default_behavior_end, :xcb_default_behavior_end, [:pointer], GenericIterator
     typedef DefaultBehavior, :lockbehavior_t
     class LockBehaviorIterator < FFI::Struct
       layout \
@@ -454,8 +454,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_lock_behavior_next, [:pointer], :void
-    attach_function :xcb_lock_behavior_end, [:pointer], GenericIterator
+    attach_function :lock_behavior_next, :xcb_lock_behavior_next, [:pointer], :void
+    attach_function :lock_behavior_end, :xcb_lock_behavior_end, [:pointer], GenericIterator
     class RadioGroupBehavior < FFI::Struct
       layout \
           :type, :uint8,
@@ -468,8 +468,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_radio_group_behavior_next, [:pointer], :void
-    attach_function :xcb_radio_group_behavior_end, [:pointer], GenericIterator
+    attach_function :radio_group_behavior_next, :xcb_radio_group_behavior_next, [:pointer], :void
+    attach_function :radio_group_behavior_end, :xcb_radio_group_behavior_end, [:pointer], GenericIterator
     class Overlay1Behavior < FFI::Struct
       layout \
           :type, :uint8,
@@ -482,8 +482,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_overlay_1behavior_next, [:pointer], :void
-    attach_function :xcb_overlay_1behavior_end, [:pointer], GenericIterator
+    attach_function :overlay_1behavior_next, :xcb_overlay_1behavior_next, [:pointer], :void
+    attach_function :overlay_1behavior_end, :xcb_overlay_1behavior_end, [:pointer], GenericIterator
     class Overlay2Behavior < FFI::Struct
       layout \
           :type, :uint8,
@@ -496,8 +496,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_overlay_2behavior_next, [:pointer], :void
-    attach_function :xcb_overlay_2behavior_end, [:pointer], GenericIterator
+    attach_function :overlay_2behavior_next, :xcb_overlay_2behavior_next, [:pointer], :void
+    attach_function :overlay_2behavior_end, :xcb_overlay_2behavior_end, [:pointer], GenericIterator
     typedef :lockbehavior_t, :permamentlockbehavior_t
     class PermamentLockBehaviorIterator < FFI::Struct
       layout \
@@ -505,8 +505,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_permament_lock_behavior_next, [:pointer], :void
-    attach_function :xcb_permament_lock_behavior_end, [:pointer], GenericIterator
+    attach_function :permament_lock_behavior_next, :xcb_permament_lock_behavior_next, [:pointer], :void
+    attach_function :permament_lock_behavior_end, :xcb_permament_lock_behavior_end, [:pointer], GenericIterator
     typedef RadioGroupBehavior, :permamentradiogroupbehavior_t
     class PermamentRadioGroupBehaviorIterator < FFI::Struct
       layout \
@@ -514,8 +514,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_permament_radio_group_behavior_next, [:pointer], :void
-    attach_function :xcb_permament_radio_group_behavior_end, [:pointer], GenericIterator
+    attach_function :permament_radio_group_behavior_next, :xcb_permament_radio_group_behavior_next, [:pointer], :void
+    attach_function :permament_radio_group_behavior_end, :xcb_permament_radio_group_behavior_end, [:pointer], GenericIterator
     typedef Overlay1Behavior, :permamentoverlay1behavior_t
     class PermamentOverlay1BehaviorIterator < FFI::Struct
       layout \
@@ -523,8 +523,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_permament_overlay_1behavior_next, [:pointer], :void
-    attach_function :xcb_permament_overlay_1behavior_end, [:pointer], GenericIterator
+    attach_function :permament_overlay_1behavior_next, :xcb_permament_overlay_1behavior_next, [:pointer], :void
+    attach_function :permament_overlay_1behavior_end, :xcb_permament_overlay_1behavior_end, [:pointer], GenericIterator
     typedef Overlay2Behavior, :permamentoverlay2behavior_t
     class PermamentOverlay2BehaviorIterator < FFI::Struct
       layout \
@@ -532,8 +532,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_permament_overlay_2behavior_next, [:pointer], :void
-    attach_function :xcb_permament_overlay_2behavior_end, [:pointer], GenericIterator
+    attach_function :permament_overlay_2behavior_next, :xcb_permament_overlay_2behavior_next, [:pointer], :void
+    attach_function :permament_overlay_2behavior_end, :xcb_permament_overlay_2behavior_end, [:pointer], GenericIterator
     class Behavior < FFI::Union
       layout \
           :common, CommonBehavior,
@@ -571,8 +571,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_set_behavior_next, [:pointer], :void
-    attach_function :xcb_set_behavior_end, [:pointer], GenericIterator
+    attach_function :set_behavior_next, :xcb_set_behavior_next, [:pointer], :void
+    attach_function :set_behavior_end, :xcb_set_behavior_end, [:pointer], GenericIterator
     class SetExplicit < FFI::Struct
       layout \
           :keycode, :keycode_t,
@@ -585,8 +585,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_set_explicit_next, [:pointer], :void
-    attach_function :xcb_set_explicit_end, [:pointer], GenericIterator
+    attach_function :set_explicit_next, :xcb_set_explicit_next, [:pointer], :void
+    attach_function :set_explicit_end, :xcb_set_explicit_end, [:pointer], GenericIterator
     class KeyModMap < FFI::Struct
       layout \
           :keycode, :keycode_t,
@@ -599,8 +599,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_mod_map_next, [:pointer], :void
-    attach_function :xcb_key_mod_map_end, [:pointer], GenericIterator
+    attach_function :key_mod_map_next, :xcb_key_mod_map_next, [:pointer], :void
+    attach_function :key_mod_map_end, :xcb_key_mod_map_end, [:pointer], GenericIterator
     class KeyVModMap < FFI::Struct
       layout \
           :keycode, :keycode_t,
@@ -614,8 +614,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_v_mod_map_next, [:pointer], :void
-    attach_function :xcb_key_v_mod_map_end, [:pointer], GenericIterator
+    attach_function :key_v_mod_map_next, :xcb_key_v_mod_map_next, [:pointer], :void
+    attach_function :key_v_mod_map_end, :xcb_key_v_mod_map_end, [:pointer], GenericIterator
     class KTSetMapEntry < FFI::Struct
       layout \
           :level, :uint8,
@@ -629,8 +629,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_kt_set_map_entry_next, [:pointer], :void
-    attach_function :xcb_kt_set_map_entry_end, [:pointer], GenericIterator
+    attach_function :kt_set_map_entry_next, :xcb_kt_set_map_entry_next, [:pointer], :void
+    attach_function :kt_set_map_entry_end, :xcb_kt_set_map_entry_end, [:pointer], GenericIterator
     class SetKeyType < FFI::Struct
       layout \
           :mask, :uint8,
@@ -648,13 +648,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_set_key_type_next, [:pointer], :void
-    attach_function :xcb_set_key_type_end, [:pointer], GenericIterator
-    attach_function :xcb_set_key_type_sizeof, [:pointer], :int
-    attach_function :xcb_set_key_type_entries_iterator, [:pointer], SetKeyTypeIterator
-    attach_function :xcb_set_key_type_entries_length, [:pointer], :int
-    attach_function :xcb_set_key_type_preserve_entries_iterator, [:pointer], SetKeyTypeIterator
-    attach_function :xcb_set_key_type_preserve_entries_length, [:pointer], :int
+    attach_function :set_key_type_next, :xcb_set_key_type_next, [:pointer], :void
+    attach_function :set_key_type_end, :xcb_set_key_type_end, [:pointer], GenericIterator
+    attach_function :set_key_type_sizeof, :xcb_set_key_type_sizeof, [:pointer], :int
+    attach_function :set_key_type_entries_iterator, :xcb_set_key_type_entries_iterator, [:pointer], SetKeyTypeIterator
+    attach_function :set_key_type_entries_length, :xcb_set_key_type_entries_length, [:pointer], :int
+    attach_function :set_key_type_preserve_entries_iterator, :xcb_set_key_type_preserve_entries_iterator, [:pointer], SetKeyTypeIterator
+    attach_function :set_key_type_preserve_entries_length, :xcb_set_key_type_preserve_entries_length, [:pointer], :int
     typedef :uint8, :string8_t
     class String8Iterator < FFI::Struct
       layout \
@@ -662,8 +662,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_string8_next, [:pointer], :void
-    attach_function :xcb_string8_end, [:pointer], GenericIterator
+    attach_function :string8_next, :xcb_string8_next, [:pointer], :void
+    attach_function :string8_end, :xcb_string8_end, [:pointer], GenericIterator
     class Property < FFI::Struct
       layout \
           :nameLength, :uint16,
@@ -676,13 +676,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_property_next, [:pointer], :void
-    attach_function :xcb_property_end, [:pointer], GenericIterator
-    attach_function :xcb_property_sizeof, [:pointer], :int
-    attach_function :xcb_property_name, [:pointer], :pointer
-    attach_function :xcb_property_name_length, [:pointer], :int
-    attach_function :xcb_property_value, [:pointer], :pointer
-    attach_function :xcb_property_value_length, [:pointer], :int
+    attach_function :property_next, :xcb_property_next, [:pointer], :void
+    attach_function :property_end, :xcb_property_end, [:pointer], GenericIterator
+    attach_function :property_sizeof, :xcb_property_sizeof, [:pointer], :int
+    attach_function :property_name, :xcb_property_name, [:pointer], :pointer
+    attach_function :property_name_length, :xcb_property_name_length, [:pointer], :int
+    attach_function :property_value, :xcb_property_value, [:pointer], :pointer
+    attach_function :property_value_length, :xcb_property_value_length, [:pointer], :int
     class Outline < FFI::Struct
       layout \
           :nPoints, :uint8,
@@ -696,11 +696,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_outline_next, [:pointer], :void
-    attach_function :xcb_outline_end, [:pointer], GenericIterator
-    attach_function :xcb_outline_sizeof, [:pointer], :int
-    attach_function :xcb_outline_points_iterator, [:pointer], OutlineIterator
-    attach_function :xcb_outline_points_length, [:pointer], :int
+    attach_function :outline_next, :xcb_outline_next, [:pointer], :void
+    attach_function :outline_end, :xcb_outline_end, [:pointer], GenericIterator
+    attach_function :outline_sizeof, :xcb_outline_sizeof, [:pointer], :int
+    attach_function :outline_points_iterator, :xcb_outline_points_iterator, [:pointer], OutlineIterator
+    attach_function :outline_points_length, :xcb_outline_points_length, [:pointer], :int
     class Shape < FFI::Struct
       layout \
           :name, :atom_t,
@@ -716,11 +716,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_shape_next, [:pointer], :void
-    attach_function :xcb_shape_end, [:pointer], GenericIterator
-    attach_function :xcb_shape_sizeof, [:pointer], :int
-    attach_function :xcb_shape_outlines_iterator, [:pointer], ShapeIterator
-    attach_function :xcb_shape_outlines_length, [:pointer], :int
+    attach_function :shape_next, :xcb_shape_next, [:pointer], :void
+    attach_function :shape_end, :xcb_shape_end, [:pointer], GenericIterator
+    attach_function :shape_sizeof, :xcb_shape_sizeof, [:pointer], :int
+    attach_function :shape_outlines_iterator, :xcb_shape_outlines_iterator, [:pointer], ShapeIterator
+    attach_function :shape_outlines_length, :xcb_shape_outlines_length, [:pointer], :int
     class Key < FFI::Struct
       layout \
           :name_len, [:uint32 , 4],
@@ -735,11 +735,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_key_next, [:pointer], :void
-    attach_function :xcb_key_end, [:pointer], GenericIterator
-    attach_function :xcb_key_sizeof, [:pointer], :int
-    attach_function :xcb_key_name, [:pointer], :pointer
-    attach_function :xcb_key_name_length, [:pointer], :int
+    attach_function :key_next, :xcb_key_next, [:pointer], :void
+    attach_function :key_end, :xcb_key_end, [:pointer], GenericIterator
+    attach_function :key_sizeof, :xcb_key_sizeof, [:pointer], :int
+    attach_function :key_name, :xcb_key_name, [:pointer], :pointer
+    attach_function :key_name_length, :xcb_key_name_length, [:pointer], :int
     class OverlayKey < FFI::Struct
       layout \
           :over_len, [:uint32 , 4],
@@ -752,13 +752,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_overlay_key_next, [:pointer], :void
-    attach_function :xcb_overlay_key_end, [:pointer], GenericIterator
-    attach_function :xcb_overlay_key_sizeof, [:pointer], :int
-    attach_function :xcb_overlay_key_over, [:pointer], :pointer
-    attach_function :xcb_overlay_key_over_length, [:pointer], :int
-    attach_function :xcb_overlay_key_under, [:pointer], :pointer
-    attach_function :xcb_overlay_key_under_length, [:pointer], :int
+    attach_function :overlay_key_next, :xcb_overlay_key_next, [:pointer], :void
+    attach_function :overlay_key_end, :xcb_overlay_key_end, [:pointer], GenericIterator
+    attach_function :overlay_key_sizeof, :xcb_overlay_key_sizeof, [:pointer], :int
+    attach_function :overlay_key_over, :xcb_overlay_key_over, [:pointer], :pointer
+    attach_function :overlay_key_over_length, :xcb_overlay_key_over_length, [:pointer], :int
+    attach_function :overlay_key_under, :xcb_overlay_key_under, [:pointer], :pointer
+    attach_function :overlay_key_under_length, :xcb_overlay_key_under_length, [:pointer], :int
     class OverlayRow < FFI::Struct
       layout \
           :rowUnder, :uint8,
@@ -772,11 +772,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_overlay_row_next, [:pointer], :void
-    attach_function :xcb_overlay_row_end, [:pointer], GenericIterator
-    attach_function :xcb_overlay_row_sizeof, [:pointer], :int
-    attach_function :xcb_overlay_row_keys_iterator, [:pointer], OverlayRowIterator
-    attach_function :xcb_overlay_row_keys_length, [:pointer], :int
+    attach_function :overlay_row_next, :xcb_overlay_row_next, [:pointer], :void
+    attach_function :overlay_row_end, :xcb_overlay_row_end, [:pointer], GenericIterator
+    attach_function :overlay_row_sizeof, :xcb_overlay_row_sizeof, [:pointer], :int
+    attach_function :overlay_row_keys_iterator, :xcb_overlay_row_keys_iterator, [:pointer], OverlayRowIterator
+    attach_function :overlay_row_keys_length, :xcb_overlay_row_keys_length, [:pointer], :int
     class Overlay < FFI::Struct
       layout \
           :name, :atom_t,
@@ -790,11 +790,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_overlay_next, [:pointer], :void
-    attach_function :xcb_overlay_end, [:pointer], GenericIterator
-    attach_function :xcb_overlay_sizeof, [:pointer], :int
-    attach_function :xcb_overlay_rows_iterator, [:pointer], OverlayIterator
-    attach_function :xcb_overlay_rows_length, [:pointer], :int
+    attach_function :overlay_next, :xcb_overlay_next, [:pointer], :void
+    attach_function :overlay_end, :xcb_overlay_end, [:pointer], GenericIterator
+    attach_function :overlay_sizeof, :xcb_overlay_sizeof, [:pointer], :int
+    attach_function :overlay_rows_iterator, :xcb_overlay_rows_iterator, [:pointer], OverlayIterator
+    attach_function :overlay_rows_length, :xcb_overlay_rows_length, [:pointer], :int
     class Row < FFI::Struct
       layout \
           :top, :int16,
@@ -810,11 +810,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_row_next, [:pointer], :void
-    attach_function :xcb_row_end, [:pointer], GenericIterator
-    attach_function :xcb_row_sizeof, [:pointer], :int
-    attach_function :xcb_row_keys_iterator, [:pointer], RowIterator
-    attach_function :xcb_row_keys_length, [:pointer], :int
+    attach_function :row_next, :xcb_row_next, [:pointer], :void
+    attach_function :row_end, :xcb_row_end, [:pointer], GenericIterator
+    attach_function :row_sizeof, :xcb_row_sizeof, [:pointer], :int
+    attach_function :row_keys_iterator, :xcb_row_keys_iterator, [:pointer], RowIterator
+    attach_function :row_keys_length, :xcb_row_keys_length, [:pointer], :int
     DOODAD_TYPE_OUTLINE = 1
     DOODAD_TYPE_SOLID = 2
     DOODAD_TYPE_TEXT = 3
@@ -836,8 +836,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_common_doodad_next, [:pointer], :void
-    attach_function :xcb_common_doodad_end, [:pointer], GenericIterator
+    attach_function :common_doodad_next, :xcb_common_doodad_next, [:pointer], :void
+    attach_function :common_doodad_end, :xcb_common_doodad_end, [:pointer], GenericIterator
     class ShapeDoodad < FFI::Struct
       layout \
           :name, :atom_t,
@@ -857,8 +857,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_shape_doodad_next, [:pointer], :void
-    attach_function :xcb_shape_doodad_end, [:pointer], GenericIterator
+    attach_function :shape_doodad_next, :xcb_shape_doodad_next, [:pointer], :void
+    attach_function :shape_doodad_end, :xcb_shape_doodad_end, [:pointer], GenericIterator
     class TextDoodad < FFI::Struct
       layout \
           :name, :atom_t,
@@ -881,8 +881,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_text_doodad_next, [:pointer], :void
-    attach_function :xcb_text_doodad_end, [:pointer], GenericIterator
+    attach_function :text_doodad_next, :xcb_text_doodad_next, [:pointer], :void
+    attach_function :text_doodad_end, :xcb_text_doodad_end, [:pointer], GenericIterator
     class IndicatorDoodad < FFI::Struct
       layout \
           :name, :atom_t,
@@ -903,8 +903,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_indicator_doodad_next, [:pointer], :void
-    attach_function :xcb_indicator_doodad_end, [:pointer], GenericIterator
+    attach_function :indicator_doodad_next, :xcb_indicator_doodad_next, [:pointer], :void
+    attach_function :indicator_doodad_end, :xcb_indicator_doodad_end, [:pointer], GenericIterator
     class LogoDoodad < FFI::Struct
       layout \
           :name, :atom_t,
@@ -925,8 +925,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_logo_doodad_next, [:pointer], :void
-    attach_function :xcb_logo_doodad_end, [:pointer], GenericIterator
+    attach_function :logo_doodad_next, :xcb_logo_doodad_next, [:pointer], :void
+    attach_function :logo_doodad_end, :xcb_logo_doodad_end, [:pointer], GenericIterator
     class Doodad < FFI::Union
       layout \
           :common, CommonDoodad,
@@ -957,15 +957,15 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_section_next, [:pointer], :void
-    attach_function :xcb_section_end, [:pointer], GenericIterator
-    attach_function :xcb_section_sizeof, [:pointer], :int
-    attach_function :xcb_section_rows_iterator, [:pointer], SectionIterator
-    attach_function :xcb_section_rows_length, [:pointer], :int
-    attach_function :xcb_section_doodads, [:pointer], :pointer
-    attach_function :xcb_section_doodads_length, [:pointer], :int
-    attach_function :xcb_section_overlays_iterator, [:pointer], SectionIterator
-    attach_function :xcb_section_overlays_length, [:pointer], :int
+    attach_function :section_next, :xcb_section_next, [:pointer], :void
+    attach_function :section_end, :xcb_section_end, [:pointer], GenericIterator
+    attach_function :section_sizeof, :xcb_section_sizeof, [:pointer], :int
+    attach_function :section_rows_iterator, :xcb_section_rows_iterator, [:pointer], SectionIterator
+    attach_function :section_rows_length, :xcb_section_rows_length, [:pointer], :int
+    attach_function :section_doodads, :xcb_section_doodads, [:pointer], :pointer
+    attach_function :section_doodads_length, :xcb_section_doodads_length, [:pointer], :int
+    attach_function :section_overlays_iterator, :xcb_section_overlays_iterator, [:pointer], SectionIterator
+    attach_function :section_overlays_length, :xcb_section_overlays_length, [:pointer], :int
     class Listing < FFI::Struct
       layout \
           :flags, :uint16,
@@ -978,11 +978,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_listing_next, [:pointer], :void
-    attach_function :xcb_listing_end, [:pointer], GenericIterator
-    attach_function :xcb_listing_sizeof, [:pointer], :int
-    attach_function :xcb_listing_string, [:pointer], :pointer
-    attach_function :xcb_listing_string_length, [:pointer], :int
+    attach_function :listing_next, :xcb_listing_next, [:pointer], :void
+    attach_function :listing_end, :xcb_listing_end, [:pointer], GenericIterator
+    attach_function :listing_sizeof, :xcb_listing_sizeof, [:pointer], :int
+    attach_function :listing_string, :xcb_listing_string, [:pointer], :pointer
+    attach_function :listing_string_length, :xcb_listing_string_length, [:pointer], :int
     class DeviceLedInfo < FFI::Struct
       layout \
           :ledClass, :ledclassspec_t,
@@ -999,13 +999,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_device_led_info_next, [:pointer], :void
-    attach_function :xcb_device_led_info_end, [:pointer], GenericIterator
-    attach_function :xcb_device_led_info_sizeof, [:pointer], :int
-    attach_function :xcb_device_led_info_names, [:pointer], :pointer
-    attach_function :xcb_device_led_info_names_length, [:pointer], :int
-    attach_function :xcb_device_led_info_maps_iterator, [:pointer], DeviceLedInfoIterator
-    attach_function :xcb_device_led_info_maps_length, [:pointer], :int
+    attach_function :device_led_info_next, :xcb_device_led_info_next, [:pointer], :void
+    attach_function :device_led_info_end, :xcb_device_led_info_end, [:pointer], GenericIterator
+    attach_function :device_led_info_sizeof, :xcb_device_led_info_sizeof, [:pointer], :int
+    attach_function :device_led_info_names, :xcb_device_led_info_names, [:pointer], :pointer
+    attach_function :device_led_info_names_length, :xcb_device_led_info_names_length, [:pointer], :int
+    attach_function :device_led_info_maps_iterator, :xcb_device_led_info_maps_iterator, [:pointer], DeviceLedInfoIterator
+    attach_function :device_led_info_maps_length, :xcb_device_led_info_maps_length, [:pointer], :int
     ERROR_BAD_DEVICE = 255
     ERROR_BAD_CLASS = 254
     ERROR_BAD_ID = 253
@@ -1046,8 +1046,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_no_action_next, [:pointer], :void
-    attach_function :xcb_sa_no_action_end, [:pointer], GenericIterator
+    attach_function :sa_no_action_next, :xcb_sa_no_action_next, [:pointer], :void
+    attach_function :sa_no_action_end, :xcb_sa_no_action_end, [:pointer], GenericIterator
     class SASetMods < FFI::Struct
       layout \
           :type, :uint8,
@@ -1065,8 +1065,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_set_mods_next, [:pointer], :void
-    attach_function :xcb_sa_set_mods_end, [:pointer], GenericIterator
+    attach_function :sa_set_mods_next, :xcb_sa_set_mods_next, [:pointer], :void
+    attach_function :sa_set_mods_end, :xcb_sa_set_mods_end, [:pointer], GenericIterator
     typedef SASetMods, :salatchmods_t
     class SALatchModsIterator < FFI::Struct
       layout \
@@ -1074,8 +1074,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_latch_mods_next, [:pointer], :void
-    attach_function :xcb_sa_latch_mods_end, [:pointer], GenericIterator
+    attach_function :sa_latch_mods_next, :xcb_sa_latch_mods_next, [:pointer], :void
+    attach_function :sa_latch_mods_end, :xcb_sa_latch_mods_end, [:pointer], GenericIterator
     typedef SASetMods, :salockmods_t
     class SALockModsIterator < FFI::Struct
       layout \
@@ -1083,8 +1083,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_lock_mods_next, [:pointer], :void
-    attach_function :xcb_sa_lock_mods_end, [:pointer], GenericIterator
+    attach_function :sa_lock_mods_next, :xcb_sa_lock_mods_next, [:pointer], :void
+    attach_function :sa_lock_mods_end, :xcb_sa_lock_mods_end, [:pointer], GenericIterator
     class SASetGroup < FFI::Struct
       layout \
           :type, :uint8,
@@ -1099,8 +1099,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_set_group_next, [:pointer], :void
-    attach_function :xcb_sa_set_group_end, [:pointer], GenericIterator
+    attach_function :sa_set_group_next, :xcb_sa_set_group_next, [:pointer], :void
+    attach_function :sa_set_group_end, :xcb_sa_set_group_end, [:pointer], GenericIterator
     typedef SASetGroup, :salatchgroup_t
     class SALatchGroupIterator < FFI::Struct
       layout \
@@ -1108,8 +1108,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_latch_group_next, [:pointer], :void
-    attach_function :xcb_sa_latch_group_end, [:pointer], GenericIterator
+    attach_function :sa_latch_group_next, :xcb_sa_latch_group_next, [:pointer], :void
+    attach_function :sa_latch_group_end, :xcb_sa_latch_group_end, [:pointer], GenericIterator
     typedef SASetGroup, :salockgroup_t
     class SALockGroupIterator < FFI::Struct
       layout \
@@ -1117,8 +1117,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_lock_group_next, [:pointer], :void
-    attach_function :xcb_sa_lock_group_end, [:pointer], GenericIterator
+    attach_function :sa_lock_group_next, :xcb_sa_lock_group_next, [:pointer], :void
+    attach_function :sa_lock_group_end, :xcb_sa_lock_group_end, [:pointer], GenericIterator
     SA_MOVE_PTR_FLAG_NO_ACCELERATION = 1 << 0
     SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_X = 1 << 1
     SA_MOVE_PTR_FLAG_MOVE_ABSOLUTE_Y = 1 << 2
@@ -1139,8 +1139,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_move_ptr_next, [:pointer], :void
-    attach_function :xcb_sa_move_ptr_end, [:pointer], GenericIterator
+    attach_function :sa_move_ptr_next, :xcb_sa_move_ptr_next, [:pointer], :void
+    attach_function :sa_move_ptr_end, :xcb_sa_move_ptr_end, [:pointer], GenericIterator
     class SAPtrBtn < FFI::Struct
       layout \
           :type, :uint8,
@@ -1156,8 +1156,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_ptr_btn_next, [:pointer], :void
-    attach_function :xcb_sa_ptr_btn_end, [:pointer], GenericIterator
+    attach_function :sa_ptr_btn_next, :xcb_sa_ptr_btn_next, [:pointer], :void
+    attach_function :sa_ptr_btn_end, :xcb_sa_ptr_btn_end, [:pointer], GenericIterator
     class SALockPtrBtn < FFI::Struct
       layout \
           :type, :uint8,
@@ -1173,8 +1173,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_lock_ptr_btn_next, [:pointer], :void
-    attach_function :xcb_sa_lock_ptr_btn_end, [:pointer], GenericIterator
+    attach_function :sa_lock_ptr_btn_next, :xcb_sa_lock_ptr_btn_next, [:pointer], :void
+    attach_function :sa_lock_ptr_btn_end, :xcb_sa_lock_ptr_btn_end, [:pointer], GenericIterator
     SA_SET_PTR_DFLT_FLAG_DFLT_BTN_ABSOLUTE = 1 << 1
     SA_SET_PTR_DFLT_FLAG_AFFECT_DFLT_BUTTON = 1 << 0
     class SASetPtrDflt < FFI::Struct
@@ -1192,8 +1192,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_set_ptr_dflt_next, [:pointer], :void
-    attach_function :xcb_sa_set_ptr_dflt_end, [:pointer], GenericIterator
+    attach_function :sa_set_ptr_dflt_next, :xcb_sa_set_ptr_dflt_next, [:pointer], :void
+    attach_function :sa_set_ptr_dflt_end, :xcb_sa_set_ptr_dflt_end, [:pointer], GenericIterator
     SA_ISO_LOCK_FLAG_NO_LOCK = 1 << 0
     SA_ISO_LOCK_FLAG_NO_UNLOCK = 1 << 1
     SA_ISO_LOCK_FLAG_USE_MOD_MAP_MODS = 1 << 2
@@ -1221,8 +1221,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_iso_lock_next, [:pointer], :void
-    attach_function :xcb_sa_iso_lock_end, [:pointer], GenericIterator
+    attach_function :sa_iso_lock_next, :xcb_sa_iso_lock_next, [:pointer], :void
+    attach_function :sa_iso_lock_end, :xcb_sa_iso_lock_end, [:pointer], GenericIterator
     class SATerminate < FFI::Struct
       layout \
           :type, :uint8,
@@ -1235,8 +1235,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_terminate_next, [:pointer], :void
-    attach_function :xcb_sa_terminate_end, [:pointer], GenericIterator
+    attach_function :sa_terminate_next, :xcb_sa_terminate_next, [:pointer], :void
+    attach_function :sa_terminate_end, :xcb_sa_terminate_end, [:pointer], GenericIterator
     SWITCH_SCREEN_FLAG_APPLICATION = 1 << 0
     SWITCH_SCREEN_FLAG_ABSOLUTE = 1 << 2
     class SASwitchScreen < FFI::Struct
@@ -1253,8 +1253,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_switch_screen_next, [:pointer], :void
-    attach_function :xcb_sa_switch_screen_end, [:pointer], GenericIterator
+    attach_function :sa_switch_screen_next, :xcb_sa_switch_screen_next, [:pointer], :void
+    attach_function :sa_switch_screen_end, :xcb_sa_switch_screen_end, [:pointer], GenericIterator
     BOOL_CTRLS_HIGH_ACCESS_X_FEEDBACK = 1 << 0
     BOOL_CTRLS_HIGH_AUDIBLE_BELL = 1 << 1
     BOOL_CTRLS_HIGH_OVERLAY_1 = 1 << 2
@@ -1283,8 +1283,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_set_controls_next, [:pointer], :void
-    attach_function :xcb_sa_set_controls_end, [:pointer], GenericIterator
+    attach_function :sa_set_controls_next, :xcb_sa_set_controls_next, [:pointer], :void
+    attach_function :sa_set_controls_end, :xcb_sa_set_controls_end, [:pointer], GenericIterator
     typedef SASetControls, :salockcontrols_t
     class SALockControlsIterator < FFI::Struct
       layout \
@@ -1292,8 +1292,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_lock_controls_next, [:pointer], :void
-    attach_function :xcb_sa_lock_controls_end, [:pointer], GenericIterator
+    attach_function :sa_lock_controls_next, :xcb_sa_lock_controls_next, [:pointer], :void
+    attach_function :sa_lock_controls_end, :xcb_sa_lock_controls_end, [:pointer], GenericIterator
     ACTION_MESSAGE_FLAG_ON_PRESS = 1 << 0
     ACTION_MESSAGE_FLAG_ON_RELEASE = 1 << 1
     ACTION_MESSAGE_FLAG_GEN_KEY_EVENT = 1 << 2
@@ -1310,11 +1310,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_action_message_next, [:pointer], :void
-    attach_function :xcb_sa_action_message_end, [:pointer], GenericIterator
-    attach_function :xcb_sa_action_message_sizeof, [:pointer], :int
-    attach_function :xcb_sa_action_message_message, [:pointer], :pointer
-    attach_function :xcb_sa_action_message_message_length, [:pointer], :int
+    attach_function :sa_action_message_next, :xcb_sa_action_message_next, [:pointer], :void
+    attach_function :sa_action_message_end, :xcb_sa_action_message_end, [:pointer], GenericIterator
+    attach_function :sa_action_message_sizeof, :xcb_sa_action_message_sizeof, [:pointer], :int
+    attach_function :sa_action_message_message, :xcb_sa_action_message_message, [:pointer], :pointer
+    attach_function :sa_action_message_message_length, :xcb_sa_action_message_message_length, [:pointer], :int
     class SARedirectKey < FFI::Struct
       layout \
           :type, :uint8,
@@ -1333,8 +1333,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_redirect_key_next, [:pointer], :void
-    attach_function :xcb_sa_redirect_key_end, [:pointer], GenericIterator
+    attach_function :sa_redirect_key_next, :xcb_sa_redirect_key_next, [:pointer], :void
+    attach_function :sa_redirect_key_end, :xcb_sa_redirect_key_end, [:pointer], GenericIterator
     class SADeviceBtn < FFI::Struct
       layout \
           :type, :uint8,
@@ -1351,8 +1351,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_device_btn_next, [:pointer], :void
-    attach_function :xcb_sa_device_btn_end, [:pointer], GenericIterator
+    attach_function :sa_device_btn_next, :xcb_sa_device_btn_next, [:pointer], :void
+    attach_function :sa_device_btn_end, :xcb_sa_device_btn_end, [:pointer], GenericIterator
     LOCK_DEVICE_FLAGS_NO_LOCK = 1 << 0
     LOCK_DEVICE_FLAGS_NO_UNLOCK = 1 << 1
     class SALockDeviceBtn < FFI::Struct
@@ -1370,8 +1370,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_lock_device_btn_next, [:pointer], :void
-    attach_function :xcb_sa_lock_device_btn_end, [:pointer], GenericIterator
+    attach_function :sa_lock_device_btn_next, :xcb_sa_lock_device_btn_next, [:pointer], :void
+    attach_function :sa_lock_device_btn_end, :xcb_sa_lock_device_btn_end, [:pointer], GenericIterator
     SA_VAL_WHAT_IGNORE_VAL = 0
     SA_VAL_WHAT_SET_VAL_MIN = 1
     SA_VAL_WHAT_SET_VAL_CENTER = 2
@@ -1396,8 +1396,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_sa_device_valuator_next, [:pointer], :void
-    attach_function :xcb_sa_device_valuator_end, [:pointer], GenericIterator
+    attach_function :sa_device_valuator_next, :xcb_sa_device_valuator_next, [:pointer], :void
+    attach_function :sa_device_valuator_end, :xcb_sa_device_valuator_end, [:pointer], GenericIterator
     class Action < FFI::Union
       layout \
           :noaction, SANoAction,
@@ -1651,7 +1651,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_use_extension, [:pointer,:uint8,:uint16,:uint16], UseExtensionCookie
+    attach_function :use_extension, :xcb_use_extension, [:pointer,:uint8,:uint16,:uint16], UseExtensionCookie
     class UseExtensionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1663,7 +1663,7 @@ class Xrb
           :pad1, [:uint8, 20]
     end
 
-    attach_function :xcb_use_extension_reply, [:pointer, UseExtensionCookie, :pointer], :pointer
+    attach_function :use_extension_reply, :xcb_use_extension_reply, [:pointer, UseExtensionCookie, :pointer], :pointer
 
         
     class SelectEventsRequest < FFI::Struct
@@ -1679,8 +1679,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_events_checked, [:pointer,:uint8,:uint16,:uint16], SelectEventsCookie
-    attach_function :xcb_select_events, [:pointer,:uint8,:uint16,:uint16], SelectEventsCookie
+    attach_function :select_events_checked, :xcb_select_events_checked, [:pointer,:uint8,:uint16,:uint16], SelectEventsCookie
+    attach_function :select_events, :xcb_select_events, [:pointer,:uint8,:uint16,:uint16], SelectEventsCookie
     class BellRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1704,8 +1704,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_bell_checked, [:pointer,:uint8,:devicespec_t,:bellclassspec_t,:idspec_t,:int8,:bool,:bool,:int16,:int16,:atom_t,:window_t], BellCookie
-    attach_function :xcb_bell, [:pointer,:uint8,:devicespec_t,:bellclassspec_t,:idspec_t,:int8,:bool,:bool,:int16,:int16,:atom_t,:window_t], BellCookie
+    attach_function :bell_checked, :xcb_bell_checked, [:pointer,:uint8,:devicespec_t,:bellclassspec_t,:idspec_t,:int8,:bool,:bool,:int16,:int16,:atom_t,:window_t], BellCookie
+    attach_function :bell, :xcb_bell, [:pointer,:uint8,:devicespec_t,:bellclassspec_t,:idspec_t,:int8,:bool,:bool,:int16,:int16,:atom_t,:window_t], BellCookie
     class GetStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1733,7 +1733,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_state, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:int16,:int16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16], GetStateCookie
+    attach_function :get_state, :xcb_get_state, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:int16,:int16,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16], GetStateCookie
     class GetStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1758,7 +1758,7 @@ class Xrb
           :pad2, [:uint8, 6]
     end
 
-    attach_function :xcb_get_state_reply, [:pointer, GetStateCookie, :pointer], :pointer
+    attach_function :get_state_reply, :xcb_get_state_reply, [:pointer, GetStateCookie, :pointer], :pointer
 
         
     class LatchLockStateRequest < FFI::Struct
@@ -1781,8 +1781,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_latch_lock_state_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], LatchLockStateCookie
-    attach_function :xcb_latch_lock_state, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], LatchLockStateCookie
+    attach_function :latch_lock_state_checked, :xcb_latch_lock_state_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], LatchLockStateCookie
+    attach_function :latch_lock_state, :xcb_latch_lock_state, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:bool,:uint8,:uint8,:bool,:uint16], LatchLockStateCookie
     class GetControlsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1822,7 +1822,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_controls, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,AXOption,:uint16,AXOption,AXOption,:uint32,:uint32,:uint32,:uint32], GetControlsCookie
+    attach_function :get_controls, :xcb_get_controls, [:pointer,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,AXOption,:uint16,AXOption,AXOption,:uint32,:uint32,:uint32,:uint32], GetControlsCookie
     class GetControlsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1859,7 +1859,7 @@ class Xrb
           :perKeyRepeat_len, [:uint32 , 32]
     end
 
-    attach_function :xcb_get_controls_reply, [:pointer, GetControlsCookie, :pointer], :pointer
+    attach_function :get_controls_reply, :xcb_get_controls_reply, [:pointer, GetControlsCookie, :pointer], :pointer
 
         
     class SetControlsRequest < FFI::Struct
@@ -1904,8 +1904,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_controls_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,AXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,AXOption,AXOption,:uint32], SetControlsCookie
-    attach_function :xcb_set_controls, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,AXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,AXOption,AXOption,:uint32], SetControlsCookie
+    attach_function :set_controls_checked, :xcb_set_controls_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,AXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,AXOption,AXOption,:uint32], SetControlsCookie
+    attach_function :set_controls, :xcb_set_controls, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,AXOption,:uint32,:uint32,:uint32,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:uint16,:uint32,:uint32,AXOption,AXOption,:uint32], SetControlsCookie
     class GetMapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1917,7 +1917,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_map, [:pointer,:uint8], GetMapCookie
+    attach_function :get_map, :xcb_get_map, [:pointer,:uint8], GetMapCookie
     class GetMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1925,7 +1925,7 @@ class Xrb
           :length, :uint32
     end
 
-    attach_function :xcb_get_map_reply, [:pointer, GetMapCookie, :pointer], :pointer
+    attach_function :get_map_reply, :xcb_get_map_reply, [:pointer, GetMapCookie, :pointer], :pointer
 
         
     class SetMapRequest < FFI::Struct
@@ -1939,8 +1939,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_map_checked, [:pointer,:uint8,:uint32], SetMapCookie
-    attach_function :xcb_set_map, [:pointer,:uint8,:uint32], SetMapCookie
+    attach_function :set_map_checked, :xcb_set_map_checked, [:pointer,:uint8,:uint32], SetMapCookie
+    attach_function :set_map, :xcb_set_map, [:pointer,:uint8,:uint32], SetMapCookie
     class GetCompatMapRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1959,7 +1959,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_compat_map, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint32,:uint32], GetCompatMapCookie
+    attach_function :get_compat_map, :xcb_get_compat_map, [:pointer,:uint8,:uint8,:uint16,:uint16,:uint16,:uint32,:uint32], GetCompatMapCookie
     class GetCompatMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1975,7 +1975,7 @@ class Xrb
           :si_rtrn_len, [:uint32 , 16]
     end
 
-    attach_function :xcb_get_compat_map_reply, [:pointer, GetCompatMapCookie, :pointer], :pointer
+    attach_function :get_compat_map_reply, :xcb_get_compat_map_reply, [:pointer, GetCompatMapCookie, :pointer], :pointer
 
         
     class SetCompatMapRequest < FFI::Struct
@@ -1998,8 +1998,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_compat_map_checked, [:pointer,:uint8,:devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], SetCompatMapCookie
-    attach_function :xcb_set_compat_map, [:pointer,:uint8,:devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], SetCompatMapCookie
+    attach_function :set_compat_map_checked, :xcb_set_compat_map_checked, [:pointer,:uint8,:devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], SetCompatMapCookie
+    attach_function :set_compat_map, :xcb_set_compat_map, [:pointer,:uint8,:devicespec_t,:bool,:bool,:uint8,:uint16,:uint16,:uint32,:uint32], SetCompatMapCookie
     class GetIndicatorStateRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2013,7 +2013,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_indicator_state, [:pointer,:uint8,:uint32], GetIndicatorStateCookie
+    attach_function :get_indicator_state, :xcb_get_indicator_state, [:pointer,:uint8,:uint32], GetIndicatorStateCookie
     class GetIndicatorStateReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2024,7 +2024,7 @@ class Xrb
           :pad1, [:uint8, 20]
     end
 
-    attach_function :xcb_get_indicator_state_reply, [:pointer, GetIndicatorStateCookie, :pointer], :pointer
+    attach_function :get_indicator_state_reply, :xcb_get_indicator_state_reply, [:pointer, GetIndicatorStateCookie, :pointer], :pointer
 
         
     class GetIndicatorMapRequest < FFI::Struct
@@ -2042,7 +2042,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_indicator_map, [:pointer,:uint8,:uint32,:uint32,:uint8,:uint32], GetIndicatorMapCookie
+    attach_function :get_indicator_map, :xcb_get_indicator_map, [:pointer,:uint8,:uint32,:uint32,:uint8,:uint32], GetIndicatorMapCookie
     class GetIndicatorMapReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2055,7 +2055,7 @@ class Xrb
           :pad1, [:uint8, 15]
     end
 
-    attach_function :xcb_get_indicator_map_reply, [:pointer, GetIndicatorMapCookie, :pointer], :pointer
+    attach_function :get_indicator_map_reply, :xcb_get_indicator_map_reply, [:pointer, GetIndicatorMapCookie, :pointer], :pointer
 
         
     class SetIndicatorMapRequest < FFI::Struct
@@ -2072,8 +2072,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_indicator_map_checked, [:pointer,:uint8,:devicespec_t,:uint32,:uint32], SetIndicatorMapCookie
-    attach_function :xcb_set_indicator_map, [:pointer,:uint8,:devicespec_t,:uint32,:uint32], SetIndicatorMapCookie
+    attach_function :set_indicator_map_checked, :xcb_set_indicator_map_checked, [:pointer,:uint8,:devicespec_t,:uint32,:uint32], SetIndicatorMapCookie
+    attach_function :set_indicator_map, :xcb_set_indicator_map, [:pointer,:uint8,:devicespec_t,:uint32,:uint32], SetIndicatorMapCookie
     class GetNamedIndicatorRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2099,7 +2099,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_named_indicator, [:pointer,:uint8,:atom_t,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], GetNamedIndicatorCookie
+    attach_function :get_named_indicator, :xcb_get_named_indicator, [:pointer,:uint8,:atom_t,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], GetNamedIndicatorCookie
     class GetNamedIndicatorReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2122,7 +2122,7 @@ class Xrb
           :pad1, [:uint8, 3]
     end
 
-    attach_function :xcb_get_named_indicator_reply, [:pointer, GetNamedIndicatorCookie, :pointer], :pointer
+    attach_function :get_named_indicator_reply, :xcb_get_named_indicator_reply, [:pointer, GetNamedIndicatorCookie, :pointer], :pointer
 
         
     class SetNamedIndicatorRequest < FFI::Struct
@@ -2153,8 +2153,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_named_indicator_checked, [:pointer,:uint8,:devicespec_t,:ledclassspec_t,:idspec_t,:atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], SetNamedIndicatorCookie
-    attach_function :xcb_set_named_indicator, [:pointer,:uint8,:devicespec_t,:ledclassspec_t,:idspec_t,:atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], SetNamedIndicatorCookie
+    attach_function :set_named_indicator_checked, :xcb_set_named_indicator_checked, [:pointer,:uint8,:devicespec_t,:ledclassspec_t,:idspec_t,:atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], SetNamedIndicatorCookie
+    attach_function :set_named_indicator, :xcb_set_named_indicator, [:pointer,:uint8,:devicespec_t,:ledclassspec_t,:idspec_t,:atom_t,:bool,:bool,:bool,:bool,:uint8,:uint8,:uint8,:uint8,:uint8,:uint16,:uint32], SetNamedIndicatorCookie
     class GetNamesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2166,7 +2166,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_names, [:pointer,:uint8], GetNamesCookie
+    attach_function :get_names, :xcb_get_names, [:pointer,:uint8], GetNamesCookie
     class GetNamesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2174,7 +2174,7 @@ class Xrb
           :length, :uint32
     end
 
-    attach_function :xcb_get_names_reply, [:pointer, GetNamesCookie, :pointer], :pointer
+    attach_function :get_names_reply, :xcb_get_names_reply, [:pointer, GetNamesCookie, :pointer], :pointer
 
         
     class SetNamesRequest < FFI::Struct
@@ -2188,8 +2188,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_names_checked, [:pointer,:uint8,:uint32], SetNamesCookie
-    attach_function :xcb_set_names, [:pointer,:uint8,:uint32], SetNamesCookie
+    attach_function :set_names_checked, :xcb_set_names_checked, [:pointer,:uint8,:uint32], SetNamesCookie
+    attach_function :set_names, :xcb_set_names, [:pointer,:uint8,:uint32], SetNamesCookie
     class GetGeometryRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2215,7 +2215,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_geometry, [:pointer,:uint8,:atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], GetGeometryCookie
+    attach_function :get_geometry, :xcb_get_geometry, [:pointer,:uint8,:atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], GetGeometryCookie
     class GetGeometryReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2238,7 +2238,7 @@ class Xrb
           :labelFont, CountedString16
     end
 
-    attach_function :xcb_get_geometry_reply, [:pointer, GetGeometryCookie, :pointer], :pointer
+    attach_function :get_geometry_reply, :xcb_get_geometry_reply, [:pointer, GetGeometryCookie, :pointer], :pointer
 
         
     class SetGeometryRequest < FFI::Struct
@@ -2266,8 +2266,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_geometry_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], SetGeometryCookie
-    attach_function :xcb_set_geometry, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], SetGeometryCookie
+    attach_function :set_geometry_checked, :xcb_set_geometry_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], SetGeometryCookie
+    attach_function :set_geometry, :xcb_set_geometry, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:atom_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], SetGeometryCookie
     class PerClientFlagsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2284,7 +2284,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_per_client_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], PerClientFlagsCookie
+    attach_function :per_client_flags, :xcb_per_client_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], PerClientFlagsCookie
     class PerClientFlagsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2298,7 +2298,7 @@ class Xrb
           :pad1, [:uint8, 8]
     end
 
-    attach_function :xcb_per_client_flags_reply, [:pointer, PerClientFlagsCookie, :pointer], :pointer
+    attach_function :per_client_flags_reply, :xcb_per_client_flags_reply, [:pointer, PerClientFlagsCookie, :pointer], :pointer
 
         
     class ListComponentsRequest < FFI::Struct
@@ -2320,7 +2320,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_components, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], ListComponentsCookie
+    attach_function :list_components, :xcb_list_components, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], ListComponentsCookie
     class ListComponentsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2337,7 +2337,7 @@ class Xrb
           :pad1, [:uint8, 10]
     end
 
-    attach_function :xcb_list_components_reply, [:pointer, ListComponentsCookie, :pointer], :pointer
+    attach_function :list_components_reply, :xcb_list_components_reply, [:pointer, ListComponentsCookie, :pointer], :pointer
 
         
     class GetKbdByNameRequest < FFI::Struct
@@ -2365,7 +2365,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_kbd_by_name, [:pointer,:uint8,:atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], GetKbdByNameCookie
+    attach_function :get_kbd_by_name, :xcb_get_kbd_by_name, [:pointer,:uint8,:atom_t,:bool,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,CountedString16,:uint32,:uint32,:uint32,:uint32,:uint32,:uint32], GetKbdByNameCookie
     class GetKbdByNameReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2388,7 +2388,7 @@ class Xrb
           :labelFont, CountedString16
     end
 
-    attach_function :xcb_get_kbd_by_name_reply, [:pointer, GetKbdByNameCookie, :pointer], :pointer
+    attach_function :get_kbd_by_name_reply, :xcb_get_kbd_by_name_reply, [:pointer, GetKbdByNameCookie, :pointer], :pointer
 
         
     class GetDeviceInfoRequest < FFI::Struct
@@ -2417,7 +2417,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_info, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint16,:uint16,:atom_t,:uint16,:uint32,:uint32,:uint32], GetDeviceInfoCookie
+    attach_function :get_device_info, :xcb_get_device_info, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint8,:uint8,:uint8,:uint8,:uint8,:bool,:uint16,:uint16,:atom_t,:uint16,:uint32,:uint32,:uint32], GetDeviceInfoCookie
     class GetDeviceInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2441,7 +2441,7 @@ class Xrb
           :nameLen, :uint16
     end
 
-    attach_function :xcb_get_device_info_reply, [:pointer, GetDeviceInfoCookie, :pointer], :pointer
+    attach_function :get_device_info_reply, :xcb_get_device_info_reply, [:pointer, GetDeviceInfoCookie, :pointer], :pointer
 
         
     class SetDeviceInfoRequest < FFI::Struct
@@ -2460,8 +2460,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_info_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], SetDeviceInfoCookie
-    attach_function :xcb_set_device_info, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], SetDeviceInfoCookie
+    attach_function :set_device_info_checked, :xcb_set_device_info_checked, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], SetDeviceInfoCookie
+    attach_function :set_device_info, :xcb_set_device_info, [:pointer,:uint8,:devicespec_t,:uint8,:uint8,:uint16,:uint16,:uint32,:uint32], SetDeviceInfoCookie
     class SetDebuggingFlagsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -2478,7 +2478,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_debugging_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], SetDebuggingFlagsCookie
+    attach_function :set_debugging_flags, :xcb_set_debugging_flags, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], SetDebuggingFlagsCookie
     class SetDebuggingFlagsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -2492,7 +2492,7 @@ class Xrb
           :pad2, [:uint8, 8]
     end
 
-    attach_function :xcb_set_debugging_flags_reply, [:pointer, SetDebuggingFlagsCookie, :pointer], :pointer
+    attach_function :set_debugging_flags_reply, :xcb_set_debugging_flags_reply, [:pointer, SetDebuggingFlagsCookie, :pointer], :pointer
 
         
   end

@@ -48,7 +48,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
+    attach_function :query_version, :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
     class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -60,7 +60,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
+    attach_function :query_version_reply, :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
     class QueryInfoRequest < FFI::Struct
@@ -80,7 +80,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_info, [:pointer,:uint8,:window_t,:uint32,:uint32,:uint32,:uint8], QueryInfoCookie
+    attach_function :query_info, :xcb_query_info, [:pointer,:uint8,:window_t,:uint32,:uint32,:uint32,:uint8], QueryInfoCookie
     class QueryInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -95,7 +95,7 @@ class Xrb
           :pad1, [:uint8, 7]
     end
 
-    attach_function :xcb_query_info_reply, [:pointer, QueryInfoCookie, :pointer], :pointer
+    attach_function :query_info_reply, :xcb_query_info_reply, [:pointer, QueryInfoCookie, :pointer], :pointer
 
         
     class SelectInputRequest < FFI::Struct
@@ -111,8 +111,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_input_checked, [:pointer,:uint8,:drawable_t,:uint32], SelectInputCookie
-    attach_function :xcb_select_input, [:pointer,:uint8,:drawable_t,:uint32], SelectInputCookie
+    attach_function :select_input_checked, :xcb_select_input_checked, [:pointer,:uint8,:drawable_t,:uint32], SelectInputCookie
+    attach_function :select_input, :xcb_select_input, [:pointer,:uint8,:drawable_t,:uint32], SelectInputCookie
     class SetAttributesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -134,8 +134,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_attributes_checked, [:pointer,:uint8,:drawable_t,:int16,:int16,:uint16,:uint16,:uint16,:uint8,:uint8,:visualid_t,:uint32,:pointer], SetAttributesCookie
-    attach_function :xcb_set_attributes, [:pointer,:uint8,:drawable_t,:int16,:int16,:uint16,:uint16,:uint16,:uint8,:uint8,:visualid_t,:uint32,:pointer], SetAttributesCookie
+    attach_function :set_attributes_checked, :xcb_set_attributes_checked, [:pointer,:uint8,:drawable_t,:int16,:int16,:uint16,:uint16,:uint16,:uint8,:uint8,:visualid_t,:uint32,:pointer], SetAttributesCookie
+    attach_function :set_attributes, :xcb_set_attributes, [:pointer,:uint8,:drawable_t,:int16,:int16,:uint16,:uint16,:uint16,:uint8,:uint8,:visualid_t,:uint32,:pointer], SetAttributesCookie
     class UnsetAttributesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -148,8 +148,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_unset_attributes_checked, [:pointer,:uint8,:drawable_t], UnsetAttributesCookie
-    attach_function :xcb_unset_attributes, [:pointer,:uint8,:drawable_t], UnsetAttributesCookie
+    attach_function :unset_attributes_checked, :xcb_unset_attributes_checked, [:pointer,:uint8,:drawable_t], UnsetAttributesCookie
+    attach_function :unset_attributes, :xcb_unset_attributes, [:pointer,:uint8,:drawable_t], UnsetAttributesCookie
     class SuspendRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -163,7 +163,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_suspend_checked, [:pointer,:uint8,:bool], SuspendCookie
-    attach_function :xcb_suspend, [:pointer,:uint8,:bool], SuspendCookie
+    attach_function :suspend_checked, :xcb_suspend_checked, [:pointer,:uint8,:bool], SuspendCookie
+    attach_function :suspend, :xcb_suspend, [:pointer,:uint8,:bool], SuspendCookie
   end
 end

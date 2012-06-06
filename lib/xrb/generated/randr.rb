@@ -18,8 +18,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_mode_next, [:pointer], :void
-    attach_function :xcb_mode_end, [:pointer], GenericIterator
+    attach_function :mode_next, :xcb_mode_next, [:pointer], :void
+    attach_function :mode_end, :xcb_mode_end, [:pointer], GenericIterator
     typedef :uint32, :crtc_t
     class CrtcIterator < FFI::Struct
       layout \
@@ -27,8 +27,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_crtc_next, [:pointer], :void
-    attach_function :xcb_crtc_end, [:pointer], GenericIterator
+    attach_function :crtc_next, :xcb_crtc_next, [:pointer], :void
+    attach_function :crtc_end, :xcb_crtc_end, [:pointer], GenericIterator
     typedef :uint32, :output_t
     class OutputIterator < FFI::Struct
       layout \
@@ -36,8 +36,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_output_next, [:pointer], :void
-    attach_function :xcb_output_end, [:pointer], GenericIterator
+    attach_function :output_next, :xcb_output_next, [:pointer], :void
+    attach_function :output_end, :xcb_output_end, [:pointer], GenericIterator
     ROTATION_ROTATE_0 = 1 << 0
     ROTATION_ROTATE_90 = 1 << 1
     ROTATION_ROTATE_180 = 1 << 2
@@ -58,8 +58,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_screen_size_next, [:pointer], :void
-    attach_function :xcb_screen_size_end, [:pointer], GenericIterator
+    attach_function :screen_size_next, :xcb_screen_size_next, [:pointer], :void
+    attach_function :screen_size_end, :xcb_screen_size_end, [:pointer], GenericIterator
     class RefreshRates < FFI::Struct
       layout \
           :nRates, :uint16
@@ -71,11 +71,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_refresh_rates_next, [:pointer], :void
-    attach_function :xcb_refresh_rates_end, [:pointer], GenericIterator
-    attach_function :xcb_refresh_rates_sizeof, [:pointer], :int
-    attach_function :xcb_refresh_rates_rates, [:pointer], :pointer
-    attach_function :xcb_refresh_rates_rates_length, [:pointer], :int
+    attach_function :refresh_rates_next, :xcb_refresh_rates_next, [:pointer], :void
+    attach_function :refresh_rates_end, :xcb_refresh_rates_end, [:pointer], GenericIterator
+    attach_function :refresh_rates_sizeof, :xcb_refresh_rates_sizeof, [:pointer], :int
+    attach_function :refresh_rates_rates, :xcb_refresh_rates_rates, [:pointer], :pointer
+    attach_function :refresh_rates_rates_length, :xcb_refresh_rates_rates_length, [:pointer], :int
     SET_CONFIG_SUCCESS = 0
     SET_CONFIG_INVALID_CONFIG_TIME = 1
     SET_CONFIG_INVALID_TIME = 2
@@ -121,8 +121,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_mode_info_next, [:pointer], :void
-    attach_function :xcb_mode_info_end, [:pointer], GenericIterator
+    attach_function :mode_info_next, :xcb_mode_info_next, [:pointer], :void
+    attach_function :mode_info_end, :xcb_mode_info_end, [:pointer], GenericIterator
     CONNECTION_CONNECTED = 1
     CONNECTION_DISCONNECTED = 2
     CONNECTION_UNKNOWN = 3
@@ -149,8 +149,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_crtc_change_next, [:pointer], :void
-    attach_function :xcb_crtc_change_end, [:pointer], GenericIterator
+    attach_function :crtc_change_next, :xcb_crtc_change_next, [:pointer], :void
+    attach_function :crtc_change_end, :xcb_crtc_change_end, [:pointer], GenericIterator
     class OutputChange < FFI::Struct
       layout \
           :timestamp, :timestamp_t,
@@ -170,8 +170,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_output_change_next, [:pointer], :void
-    attach_function :xcb_output_change_end, [:pointer], GenericIterator
+    attach_function :output_change_next, :xcb_output_change_next, [:pointer], :void
+    attach_function :output_change_end, :xcb_output_change_end, [:pointer], GenericIterator
     class OutputProperty < FFI::Struct
       layout \
           :window, :window_t,
@@ -188,8 +188,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_output_property_next, [:pointer], :void
-    attach_function :xcb_output_property_end, [:pointer], GenericIterator
+    attach_function :output_property_next, :xcb_output_property_next, [:pointer], :void
+    attach_function :output_property_end, :xcb_output_property_end, [:pointer], GenericIterator
     class NotifyData < FFI::Union
       layout \
           :cc, CrtcChange,
@@ -255,7 +255,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
+    attach_function :query_version, :xcb_query_version, [:pointer,:uint8,:uint32,:uint32], QueryVersionCookie
     class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -267,7 +267,7 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
+    attach_function :query_version_reply, :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
     class SetScreenConfigRequest < FFI::Struct
@@ -286,7 +286,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_screen_config, [:pointer,:uint8,:timestamp_t,:timestamp_t,:window_t,:uint16], SetScreenConfigCookie
+    attach_function :set_screen_config, :xcb_set_screen_config, [:pointer,:uint8,:timestamp_t,:timestamp_t,:window_t,:uint16], SetScreenConfigCookie
     class SetScreenConfigReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -300,7 +300,7 @@ class Xrb
           :pad1, [:uint8, 10]
     end
 
-    attach_function :xcb_set_screen_config_reply, [:pointer, SetScreenConfigCookie, :pointer], :pointer
+    attach_function :set_screen_config_reply, :xcb_set_screen_config_reply, [:pointer, SetScreenConfigCookie, :pointer], :pointer
 
         
     class SelectInputRequest < FFI::Struct
@@ -317,8 +317,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_input_checked, [:pointer,:uint8,:window_t,:uint16], SelectInputCookie
-    attach_function :xcb_select_input, [:pointer,:uint8,:window_t,:uint16], SelectInputCookie
+    attach_function :select_input_checked, :xcb_select_input_checked, [:pointer,:uint8,:window_t,:uint16], SelectInputCookie
+    attach_function :select_input, :xcb_select_input, [:pointer,:uint8,:window_t,:uint16], SelectInputCookie
     class GetScreenInfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -339,7 +339,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_info, [:pointer,:uint8,:window_t,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], GetScreenInfoCookie
+    attach_function :get_screen_info, :xcb_get_screen_info, [:pointer,:uint8,:window_t,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], GetScreenInfoCookie
     class GetScreenInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -357,7 +357,7 @@ class Xrb
           :pad1, [:uint8, 2]
     end
 
-    attach_function :xcb_get_screen_info_reply, [:pointer, GetScreenInfoCookie, :pointer], :pointer
+    attach_function :get_screen_info_reply, :xcb_get_screen_info_reply, [:pointer, GetScreenInfoCookie, :pointer], :pointer
 
         
     class GetScreenSizeRangeRequest < FFI::Struct
@@ -376,7 +376,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_size_range, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16], GetScreenSizeRangeCookie
+    attach_function :get_screen_size_range, :xcb_get_screen_size_range, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16], GetScreenSizeRangeCookie
     class GetScreenSizeRangeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -390,7 +390,7 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_get_screen_size_range_reply, [:pointer, GetScreenSizeRangeCookie, :pointer], :pointer
+    attach_function :get_screen_size_range_reply, :xcb_get_screen_size_range_reply, [:pointer, GetScreenSizeRangeCookie, :pointer], :pointer
 
         
     class SetScreenSizeRequest < FFI::Struct
@@ -409,8 +409,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_screen_size_checked, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint32,:uint32], SetScreenSizeCookie
-    attach_function :xcb_set_screen_size, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint32,:uint32], SetScreenSizeCookie
+    attach_function :set_screen_size_checked, :xcb_set_screen_size_checked, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint32,:uint32], SetScreenSizeCookie
+    attach_function :set_screen_size, :xcb_set_screen_size, [:pointer,:uint8,:window_t,:uint16,:uint16,:uint32,:uint32], SetScreenSizeCookie
     class GetScreenResourcesRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -429,7 +429,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_resources, [:pointer,:uint8,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetScreenResourcesCookie
+    attach_function :get_screen_resources, :xcb_get_screen_resources, [:pointer,:uint8,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetScreenResourcesCookie
     class GetScreenResourcesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -445,7 +445,7 @@ class Xrb
           :pad2, [:uint8, 8]
     end
 
-    attach_function :xcb_get_screen_resources_reply, [:pointer, GetScreenResourcesCookie, :pointer], :pointer
+    attach_function :get_screen_resources_reply, :xcb_get_screen_resources_reply, [:pointer, GetScreenResourcesCookie, :pointer], :pointer
 
         
     class GetOutputInfoRequest < FFI::Struct
@@ -470,7 +470,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_output_info, [:pointer,:uint8,:timestamp_t,:crtc_t,:uint32,:uint32,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetOutputInfoCookie
+    attach_function :get_output_info, :xcb_get_output_info, [:pointer,:uint8,:timestamp_t,:crtc_t,:uint32,:uint32,:uint8,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetOutputInfoCookie
     class GetOutputInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -490,7 +490,7 @@ class Xrb
           :name_len, :uint16
     end
 
-    attach_function :xcb_get_output_info_reply, [:pointer, GetOutputInfoCookie, :pointer], :pointer
+    attach_function :get_output_info_reply, :xcb_get_output_info_reply, [:pointer, GetOutputInfoCookie, :pointer], :pointer
 
         
     class ListOutputPropertiesRequest < FFI::Struct
@@ -506,7 +506,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_output_properties, [:pointer,:uint8,:uint16,:uint32], ListOutputPropertiesCookie
+    attach_function :list_output_properties, :xcb_list_output_properties, [:pointer,:uint8,:uint16,:uint32], ListOutputPropertiesCookie
     class ListOutputPropertiesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -517,7 +517,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_list_output_properties_reply, [:pointer, ListOutputPropertiesCookie, :pointer], :pointer
+    attach_function :list_output_properties_reply, :xcb_list_output_properties_reply, [:pointer, ListOutputPropertiesCookie, :pointer], :pointer
 
         
     class QueryOutputPropertyRequest < FFI::Struct
@@ -535,7 +535,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_output_property, [:pointer,:uint8,:bool,:bool,:bool,:uint32], QueryOutputPropertyCookie
+    attach_function :query_output_property, :xcb_query_output_property, [:pointer,:uint8,:bool,:bool,:bool,:uint32], QueryOutputPropertyCookie
     class QueryOutputPropertyReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -548,7 +548,7 @@ class Xrb
           :pad2, [:uint8, 21]
     end
 
-    attach_function :xcb_query_output_property_reply, [:pointer, QueryOutputPropertyCookie, :pointer], :pointer
+    attach_function :query_output_property_reply, :xcb_query_output_property_reply, [:pointer, QueryOutputPropertyCookie, :pointer], :pointer
 
         
     class ConfigureOutputPropertyRequest < FFI::Struct
@@ -567,8 +567,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_configure_output_property_checked, [:pointer,:uint8,:output_t,:atom_t,:bool,:bool,:uint32], ConfigureOutputPropertyCookie
-    attach_function :xcb_configure_output_property, [:pointer,:uint8,:output_t,:atom_t,:bool,:bool,:uint32], ConfigureOutputPropertyCookie
+    attach_function :configure_output_property_checked, :xcb_configure_output_property_checked, [:pointer,:uint8,:output_t,:atom_t,:bool,:bool,:uint32], ConfigureOutputPropertyCookie
+    attach_function :configure_output_property, :xcb_configure_output_property, [:pointer,:uint8,:output_t,:atom_t,:bool,:bool,:uint32], ConfigureOutputPropertyCookie
     class ChangeOutputPropertyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -587,8 +587,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_output_property_checked, [:pointer,:uint8,:output_t,:atom_t,:atom_t,:uint8,:uint8,:uint32,:uint32], ChangeOutputPropertyCookie
-    attach_function :xcb_change_output_property, [:pointer,:uint8,:output_t,:atom_t,:atom_t,:uint8,:uint8,:uint32,:uint32], ChangeOutputPropertyCookie
+    attach_function :change_output_property_checked, :xcb_change_output_property_checked, [:pointer,:uint8,:output_t,:atom_t,:atom_t,:uint8,:uint8,:uint32,:uint32], ChangeOutputPropertyCookie
+    attach_function :change_output_property, :xcb_change_output_property, [:pointer,:uint8,:output_t,:atom_t,:atom_t,:uint8,:uint8,:uint32,:uint32], ChangeOutputPropertyCookie
     class DeleteOutputPropertyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -602,8 +602,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_delete_output_property_checked, [:pointer,:uint8,:output_t,:atom_t], DeleteOutputPropertyCookie
-    attach_function :xcb_delete_output_property, [:pointer,:uint8,:output_t,:atom_t], DeleteOutputPropertyCookie
+    attach_function :delete_output_property_checked, :xcb_delete_output_property_checked, [:pointer,:uint8,:output_t,:atom_t], DeleteOutputPropertyCookie
+    attach_function :delete_output_property, :xcb_delete_output_property, [:pointer,:uint8,:output_t,:atom_t], DeleteOutputPropertyCookie
     class GetOutputPropertyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -619,7 +619,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_output_property, [:pointer,:uint8,:atom_t,:uint32,:uint32,:uint32], GetOutputPropertyCookie
+    attach_function :get_output_property, :xcb_get_output_property, [:pointer,:uint8,:atom_t,:uint32,:uint32,:uint32], GetOutputPropertyCookie
     class GetOutputPropertyReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -632,7 +632,7 @@ class Xrb
           :pad1, [:uint8, 12]
     end
 
-    attach_function :xcb_get_output_property_reply, [:pointer, GetOutputPropertyCookie, :pointer], :pointer
+    attach_function :get_output_property_reply, :xcb_get_output_property_reply, [:pointer, GetOutputPropertyCookie, :pointer], :pointer
 
         
     class CreateModeRequest < FFI::Struct
@@ -648,7 +648,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_mode, [:pointer,:uint8,:mode_t], CreateModeCookie
+    attach_function :create_mode, :xcb_create_mode, [:pointer,:uint8,:mode_t], CreateModeCookie
     class CreateModeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -659,7 +659,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_create_mode_reply, [:pointer, CreateModeCookie, :pointer], :pointer
+    attach_function :create_mode_reply, :xcb_create_mode_reply, [:pointer, CreateModeCookie, :pointer], :pointer
 
         
     class DestroyModeRequest < FFI::Struct
@@ -674,8 +674,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_mode_checked, [:pointer,:uint8,:mode_t], DestroyModeCookie
-    attach_function :xcb_destroy_mode, [:pointer,:uint8,:mode_t], DestroyModeCookie
+    attach_function :destroy_mode_checked, :xcb_destroy_mode_checked, [:pointer,:uint8,:mode_t], DestroyModeCookie
+    attach_function :destroy_mode, :xcb_destroy_mode, [:pointer,:uint8,:mode_t], DestroyModeCookie
     class AddOutputModeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -689,8 +689,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_add_output_mode_checked, [:pointer,:uint8,:output_t,:mode_t], AddOutputModeCookie
-    attach_function :xcb_add_output_mode, [:pointer,:uint8,:output_t,:mode_t], AddOutputModeCookie
+    attach_function :add_output_mode_checked, :xcb_add_output_mode_checked, [:pointer,:uint8,:output_t,:mode_t], AddOutputModeCookie
+    attach_function :add_output_mode, :xcb_add_output_mode, [:pointer,:uint8,:output_t,:mode_t], AddOutputModeCookie
     class DeleteOutputModeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -704,8 +704,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_delete_output_mode_checked, [:pointer,:uint8,:output_t,:mode_t], DeleteOutputModeCookie
-    attach_function :xcb_delete_output_mode, [:pointer,:uint8,:output_t,:mode_t], DeleteOutputModeCookie
+    attach_function :delete_output_mode_checked, :xcb_delete_output_mode_checked, [:pointer,:uint8,:output_t,:mode_t], DeleteOutputModeCookie
+    attach_function :delete_output_mode, :xcb_delete_output_mode, [:pointer,:uint8,:output_t,:mode_t], DeleteOutputModeCookie
     class GetCrtcInfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -727,7 +727,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_crtc_info, [:pointer,:uint8,:timestamp_t,:int16,:int16,:uint16,:uint16,:mode_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], GetCrtcInfoCookie
+    attach_function :get_crtc_info, :xcb_get_crtc_info, [:pointer,:uint8,:timestamp_t,:int16,:int16,:uint16,:uint16,:mode_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32], GetCrtcInfoCookie
     class GetCrtcInfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -746,7 +746,7 @@ class Xrb
           :num_possible_outputs, :uint16
     end
 
-    attach_function :xcb_get_crtc_info_reply, [:pointer, GetCrtcInfoCookie, :pointer], :pointer
+    attach_function :get_crtc_info_reply, :xcb_get_crtc_info_reply, [:pointer, GetCrtcInfoCookie, :pointer], :pointer
 
         
     class SetCrtcConfigRequest < FFI::Struct
@@ -762,7 +762,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_crtc_config, [:pointer,:uint8,:timestamp_t], SetCrtcConfigCookie
+    attach_function :set_crtc_config, :xcb_set_crtc_config, [:pointer,:uint8,:timestamp_t], SetCrtcConfigCookie
     class SetCrtcConfigReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -773,7 +773,7 @@ class Xrb
           :pad1, [:uint8, 20]
     end
 
-    attach_function :xcb_set_crtc_config_reply, [:pointer, SetCrtcConfigCookie, :pointer], :pointer
+    attach_function :set_crtc_config_reply, :xcb_set_crtc_config_reply, [:pointer, SetCrtcConfigCookie, :pointer], :pointer
 
         
     class GetCrtcGammaSizeRequest < FFI::Struct
@@ -789,7 +789,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_crtc_gamma_size, [:pointer,:uint8,:uint16], GetCrtcGammaSizeCookie
+    attach_function :get_crtc_gamma_size, :xcb_get_crtc_gamma_size, [:pointer,:uint8,:uint16], GetCrtcGammaSizeCookie
     class GetCrtcGammaSizeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -800,7 +800,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_get_crtc_gamma_size_reply, [:pointer, GetCrtcGammaSizeCookie, :pointer], :pointer
+    attach_function :get_crtc_gamma_size_reply, :xcb_get_crtc_gamma_size_reply, [:pointer, GetCrtcGammaSizeCookie, :pointer], :pointer
 
         
     class GetCrtcGammaRequest < FFI::Struct
@@ -816,7 +816,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_crtc_gamma, [:pointer,:uint8,:uint16,:uint32,:uint32,:uint32], GetCrtcGammaCookie
+    attach_function :get_crtc_gamma, :xcb_get_crtc_gamma, [:pointer,:uint8,:uint16,:uint32,:uint32,:uint32], GetCrtcGammaCookie
     class GetCrtcGammaReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -827,7 +827,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_get_crtc_gamma_reply, [:pointer, GetCrtcGammaCookie, :pointer], :pointer
+    attach_function :get_crtc_gamma_reply, :xcb_get_crtc_gamma_reply, [:pointer, GetCrtcGammaCookie, :pointer], :pointer
 
         
     class SetCrtcGammaRequest < FFI::Struct
@@ -844,8 +844,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_crtc_gamma_checked, [:pointer,:uint8,:crtc_t,:uint16,:uint32,:uint32,:uint32], SetCrtcGammaCookie
-    attach_function :xcb_set_crtc_gamma, [:pointer,:uint8,:crtc_t,:uint16,:uint32,:uint32,:uint32], SetCrtcGammaCookie
+    attach_function :set_crtc_gamma_checked, :xcb_set_crtc_gamma_checked, [:pointer,:uint8,:crtc_t,:uint16,:uint32,:uint32,:uint32], SetCrtcGammaCookie
+    attach_function :set_crtc_gamma, :xcb_set_crtc_gamma, [:pointer,:uint8,:crtc_t,:uint16,:uint32,:uint32,:uint32], SetCrtcGammaCookie
     class GetScreenResourcesCurrentRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -864,7 +864,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_screen_resources_current, [:pointer,:uint8,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetScreenResourcesCurrentCookie
+    attach_function :get_screen_resources_current, :xcb_get_screen_resources_current, [:pointer,:uint8,:timestamp_t,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetScreenResourcesCurrentCookie
     class GetScreenResourcesCurrentReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -880,7 +880,7 @@ class Xrb
           :pad2, [:uint8, 8]
     end
 
-    attach_function :xcb_get_screen_resources_current_reply, [:pointer, GetScreenResourcesCurrentCookie, :pointer], :pointer
+    attach_function :get_screen_resources_current_reply, :xcb_get_screen_resources_current_reply, [:pointer, GetScreenResourcesCurrentCookie, :pointer], :pointer
 
         
     class SetCrtcTransformRequest < FFI::Struct
@@ -898,8 +898,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_crtc_transform_checked, [:pointer,:uint8,:crtc_t,Transform,:uint16,:uint32,:uint32], SetCrtcTransformCookie
-    attach_function :xcb_set_crtc_transform, [:pointer,:uint8,:crtc_t,Transform,:uint16,:uint32,:uint32], SetCrtcTransformCookie
+    attach_function :set_crtc_transform_checked, :xcb_set_crtc_transform_checked, [:pointer,:uint8,:crtc_t,Transform,:uint16,:uint32,:uint32], SetCrtcTransformCookie
+    attach_function :set_crtc_transform, :xcb_set_crtc_transform, [:pointer,:uint8,:crtc_t,Transform,:uint16,:uint32,:uint32], SetCrtcTransformCookie
     class GetCrtcTransformRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -920,7 +920,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_crtc_transform, [:pointer,:uint8,Transform,:bool,Transform,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetCrtcTransformCookie
+    attach_function :get_crtc_transform, :xcb_get_crtc_transform, [:pointer,:uint8,Transform,:bool,Transform,:uint16,:uint16,:uint16,:uint16,:uint32,:uint32,:uint32,:uint32], GetCrtcTransformCookie
     class GetCrtcTransformReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -938,7 +938,7 @@ class Xrb
           :current_nparams, :uint16
     end
 
-    attach_function :xcb_get_crtc_transform_reply, [:pointer, GetCrtcTransformCookie, :pointer], :pointer
+    attach_function :get_crtc_transform_reply, :xcb_get_crtc_transform_reply, [:pointer, GetCrtcTransformCookie, :pointer], :pointer
 
         
     class GetPanningRequest < FFI::Struct
@@ -965,7 +965,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_panning, [:pointer,:uint8,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:int16,:int16], GetPanningCookie
+    attach_function :get_panning, :xcb_get_panning, [:pointer,:uint8,:timestamp_t,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16,:int16,:int16,:int16,:int16], GetPanningCookie
     class GetPanningReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -987,7 +987,7 @@ class Xrb
           :border_bottom, :int16
     end
 
-    attach_function :xcb_get_panning_reply, [:pointer, GetPanningCookie, :pointer], :pointer
+    attach_function :get_panning_reply, :xcb_get_panning_reply, [:pointer, GetPanningCookie, :pointer], :pointer
 
         
     class SetPanningRequest < FFI::Struct
@@ -1002,7 +1002,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_panning, [:pointer,:uint8,:timestamp_t], SetPanningCookie
+    attach_function :set_panning, :xcb_set_panning, [:pointer,:uint8,:timestamp_t], SetPanningCookie
     class SetPanningReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1012,7 +1012,7 @@ class Xrb
           :timestamp, :timestamp_t
     end
 
-    attach_function :xcb_set_panning_reply, [:pointer, SetPanningCookie, :pointer], :pointer
+    attach_function :set_panning_reply, :xcb_set_panning_reply, [:pointer, SetPanningCookie, :pointer], :pointer
 
         
     class SetOutputPrimaryRequest < FFI::Struct
@@ -1028,8 +1028,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_output_primary_checked, [:pointer,:uint8,:window_t,:output_t], SetOutputPrimaryCookie
-    attach_function :xcb_set_output_primary, [:pointer,:uint8,:window_t,:output_t], SetOutputPrimaryCookie
+    attach_function :set_output_primary_checked, :xcb_set_output_primary_checked, [:pointer,:uint8,:window_t,:output_t], SetOutputPrimaryCookie
+    attach_function :set_output_primary, :xcb_set_output_primary, [:pointer,:uint8,:window_t,:output_t], SetOutputPrimaryCookie
     class GetOutputPrimaryRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -1042,7 +1042,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_output_primary, [:pointer,:uint8,:output_t], GetOutputPrimaryCookie
+    attach_function :get_output_primary, :xcb_get_output_primary, [:pointer,:uint8,:output_t], GetOutputPrimaryCookie
     class GetOutputPrimaryReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -1052,7 +1052,7 @@ class Xrb
           :output, :output_t
     end
 
-    attach_function :xcb_get_output_primary_reply, [:pointer, GetOutputPrimaryCookie, :pointer], :pointer
+    attach_function :get_output_primary_reply, :xcb_get_output_primary_reply, [:pointer, GetOutputPrimaryCookie, :pointer], :pointer
 
         
   end

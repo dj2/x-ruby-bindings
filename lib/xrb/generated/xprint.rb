@@ -17,8 +17,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_string8_next, [:pointer], :void
-    attach_function :xcb_string8_end, [:pointer], GenericIterator
+    attach_function :string8_next, :xcb_string8_next, [:pointer], :void
+    attach_function :string8_end, :xcb_string8_end, [:pointer], GenericIterator
     class Printer < FFI::Struct
       layout \
           :nameLen, :uint32,
@@ -31,13 +31,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_printer_next, [:pointer], :void
-    attach_function :xcb_printer_end, [:pointer], GenericIterator
-    attach_function :xcb_printer_sizeof, [:pointer], :int
-    attach_function :xcb_printer_name, [:pointer], :pointer
-    attach_function :xcb_printer_name_length, [:pointer], :int
-    attach_function :xcb_printer_description, [:pointer], :pointer
-    attach_function :xcb_printer_description_length, [:pointer], :int
+    attach_function :printer_next, :xcb_printer_next, [:pointer], :void
+    attach_function :printer_end, :xcb_printer_end, [:pointer], GenericIterator
+    attach_function :printer_sizeof, :xcb_printer_sizeof, [:pointer], :int
+    attach_function :printer_name, :xcb_printer_name, [:pointer], :pointer
+    attach_function :printer_name_length, :xcb_printer_name_length, [:pointer], :int
+    attach_function :printer_description, :xcb_printer_description, [:pointer], :pointer
+    attach_function :printer_description_length, :xcb_printer_description_length, [:pointer], :int
     typedef :uint32, :pcontext_t
     class PcontextIterator < FFI::Struct
       layout \
@@ -45,8 +45,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_pcontext_next, [:pointer], :void
-    attach_function :xcb_pcontext_end, [:pointer], GenericIterator
+    attach_function :pcontext_next, :xcb_pcontext_next, [:pointer], :void
+    attach_function :pcontext_end, :xcb_pcontext_end, [:pointer], GenericIterator
     GET_DOC_FINISHED = 0
     GET_DOC_SECOND_CONSUMER = 1
     EV_MASK_NO_EVENT_MASK = 0
@@ -107,7 +107,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_query_version, [:pointer,:uint8,:uint16,:uint16], PrintQueryVersionCookie
+    attach_function :print_query_version, :xcb_print_query_version, [:pointer,:uint8,:uint16,:uint16], PrintQueryVersionCookie
     class PrintQueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -118,7 +118,7 @@ class Xrb
           :minor_version, :uint16
     end
 
-    attach_function :xcb_print_query_version_reply, [:pointer, PrintQueryVersionCookie, :pointer], :pointer
+    attach_function :print_query_version_reply, :xcb_print_query_version_reply, [:pointer, PrintQueryVersionCookie, :pointer], :pointer
 
         
     class PrintGetPrinterListRequest < FFI::Struct
@@ -134,7 +134,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_printer_list, [:pointer,:uint8,:uint32,:uint32], PrintGetPrinterListCookie
+    attach_function :print_get_printer_list, :xcb_print_get_printer_list, [:pointer,:uint8,:uint32,:uint32], PrintGetPrinterListCookie
     class PrintGetPrinterListReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -145,7 +145,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_print_get_printer_list_reply, [:pointer, PrintGetPrinterListCookie, :pointer], :pointer
+    attach_function :print_get_printer_list_reply, :xcb_print_get_printer_list_reply, [:pointer, PrintGetPrinterListCookie, :pointer], :pointer
 
         
     class PrintRehashPrinterListRequest < FFI::Struct
@@ -159,8 +159,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_rehash_printer_list_checked, [:pointer,:uint8], PrintRehashPrinterListCookie
-    attach_function :xcb_print_rehash_printer_list, [:pointer,:uint8], PrintRehashPrinterListCookie
+    attach_function :print_rehash_printer_list_checked, :xcb_print_rehash_printer_list_checked, [:pointer,:uint8], PrintRehashPrinterListCookie
+    attach_function :print_rehash_printer_list, :xcb_print_rehash_printer_list, [:pointer,:uint8], PrintRehashPrinterListCookie
     class CreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -175,8 +175,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_context_checked, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], CreateContextCookie
-    attach_function :xcb_create_context, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], CreateContextCookie
+    attach_function :create_context_checked, :xcb_create_context_checked, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], CreateContextCookie
+    attach_function :create_context, :xcb_create_context, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32,:uint32], CreateContextCookie
     class PrintSetContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -189,8 +189,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_set_context_checked, [:pointer,:uint8,:uint32], PrintSetContextCookie
-    attach_function :xcb_print_set_context, [:pointer,:uint8,:uint32], PrintSetContextCookie
+    attach_function :print_set_context_checked, :xcb_print_set_context_checked, [:pointer,:uint8,:uint32], PrintSetContextCookie
+    attach_function :print_set_context, :xcb_print_set_context, [:pointer,:uint8,:uint32], PrintSetContextCookie
     class PrintGetContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -203,7 +203,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_context, [:pointer,:uint8,:uint32], PrintGetContextCookie
+    attach_function :print_get_context, :xcb_print_get_context, [:pointer,:uint8,:uint32], PrintGetContextCookie
     class PrintGetContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -213,7 +213,7 @@ class Xrb
           :context, :uint32
     end
 
-    attach_function :xcb_print_get_context_reply, [:pointer, PrintGetContextCookie, :pointer], :pointer
+    attach_function :print_get_context_reply, :xcb_print_get_context_reply, [:pointer, PrintGetContextCookie, :pointer], :pointer
 
         
     class PrintDestroyContextRequest < FFI::Struct
@@ -228,8 +228,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_destroy_context_checked, [:pointer,:uint8,:uint32], PrintDestroyContextCookie
-    attach_function :xcb_print_destroy_context, [:pointer,:uint8,:uint32], PrintDestroyContextCookie
+    attach_function :print_destroy_context_checked, :xcb_print_destroy_context_checked, [:pointer,:uint8,:uint32], PrintDestroyContextCookie
+    attach_function :print_destroy_context, :xcb_print_destroy_context, [:pointer,:uint8,:uint32], PrintDestroyContextCookie
     class PrintGetScreenOfContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -242,7 +242,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_screen_of_context, [:pointer,:uint8,:window_t], PrintGetScreenOfContextCookie
+    attach_function :print_get_screen_of_context, :xcb_print_get_screen_of_context, [:pointer,:uint8,:window_t], PrintGetScreenOfContextCookie
     class PrintGetScreenOfContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -252,7 +252,7 @@ class Xrb
           :root, :window_t
     end
 
-    attach_function :xcb_print_get_screen_of_context_reply, [:pointer, PrintGetScreenOfContextCookie, :pointer], :pointer
+    attach_function :print_get_screen_of_context_reply, :xcb_print_get_screen_of_context_reply, [:pointer, PrintGetScreenOfContextCookie, :pointer], :pointer
 
         
     class PrintStartJobRequest < FFI::Struct
@@ -267,8 +267,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_start_job_checked, [:pointer,:uint8,:uint8], PrintStartJobCookie
-    attach_function :xcb_print_start_job, [:pointer,:uint8,:uint8], PrintStartJobCookie
+    attach_function :print_start_job_checked, :xcb_print_start_job_checked, [:pointer,:uint8,:uint8], PrintStartJobCookie
+    attach_function :print_start_job, :xcb_print_start_job, [:pointer,:uint8,:uint8], PrintStartJobCookie
     class PrintEndJobRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -281,8 +281,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_end_job_checked, [:pointer,:uint8,:bool], PrintEndJobCookie
-    attach_function :xcb_print_end_job, [:pointer,:uint8,:bool], PrintEndJobCookie
+    attach_function :print_end_job_checked, :xcb_print_end_job_checked, [:pointer,:uint8,:bool], PrintEndJobCookie
+    attach_function :print_end_job, :xcb_print_end_job, [:pointer,:uint8,:bool], PrintEndJobCookie
     class PrintStartDocRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -295,8 +295,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_start_doc_checked, [:pointer,:uint8,:uint8], PrintStartDocCookie
-    attach_function :xcb_print_start_doc, [:pointer,:uint8,:uint8], PrintStartDocCookie
+    attach_function :print_start_doc_checked, :xcb_print_start_doc_checked, [:pointer,:uint8,:uint8], PrintStartDocCookie
+    attach_function :print_start_doc, :xcb_print_start_doc, [:pointer,:uint8,:uint8], PrintStartDocCookie
     class PrintEndDocRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -309,8 +309,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_end_doc_checked, [:pointer,:uint8,:bool], PrintEndDocCookie
-    attach_function :xcb_print_end_doc, [:pointer,:uint8,:bool], PrintEndDocCookie
+    attach_function :print_end_doc_checked, :xcb_print_end_doc_checked, [:pointer,:uint8,:bool], PrintEndDocCookie
+    attach_function :print_end_doc, :xcb_print_end_doc, [:pointer,:uint8,:bool], PrintEndDocCookie
     class PrintPutDocumentDataRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -326,8 +326,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_put_document_data_checked, [:pointer,:uint8,:drawable_t,:uint32,:uint16,:uint16,:uint32,:uint32,:uint32], PrintPutDocumentDataCookie
-    attach_function :xcb_print_put_document_data, [:pointer,:uint8,:drawable_t,:uint32,:uint16,:uint16,:uint32,:uint32,:uint32], PrintPutDocumentDataCookie
+    attach_function :print_put_document_data_checked, :xcb_print_put_document_data_checked, [:pointer,:uint8,:drawable_t,:uint32,:uint16,:uint16,:uint32,:uint32,:uint32], PrintPutDocumentDataCookie
+    attach_function :print_put_document_data, :xcb_print_put_document_data, [:pointer,:uint8,:drawable_t,:uint32,:uint16,:uint16,:uint32,:uint32,:uint32], PrintPutDocumentDataCookie
     class PrintGetDocumentDataRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -343,7 +343,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_document_data, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], PrintGetDocumentDataCookie
+    attach_function :print_get_document_data, :xcb_print_get_document_data, [:pointer,:uint8,:uint32,:uint32,:uint32,:uint32], PrintGetDocumentDataCookie
     class PrintGetDocumentDataReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -356,7 +356,7 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    attach_function :xcb_print_get_document_data_reply, [:pointer, PrintGetDocumentDataCookie, :pointer], :pointer
+    attach_function :print_get_document_data_reply, :xcb_print_get_document_data_reply, [:pointer, PrintGetDocumentDataCookie, :pointer], :pointer
 
         
     class PrintStartPageRequest < FFI::Struct
@@ -371,8 +371,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_start_page_checked, [:pointer,:uint8,:window_t], PrintStartPageCookie
-    attach_function :xcb_print_start_page, [:pointer,:uint8,:window_t], PrintStartPageCookie
+    attach_function :print_start_page_checked, :xcb_print_start_page_checked, [:pointer,:uint8,:window_t], PrintStartPageCookie
+    attach_function :print_start_page, :xcb_print_start_page, [:pointer,:uint8,:window_t], PrintStartPageCookie
     class PrintEndPageRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -386,8 +386,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_end_page_checked, [:pointer,:uint8,:bool], PrintEndPageCookie
-    attach_function :xcb_print_end_page, [:pointer,:uint8,:bool], PrintEndPageCookie
+    attach_function :print_end_page_checked, :xcb_print_end_page_checked, [:pointer,:uint8,:bool], PrintEndPageCookie
+    attach_function :print_end_page, :xcb_print_end_page, [:pointer,:uint8,:bool], PrintEndPageCookie
     class PrintSelectInputRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -401,8 +401,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_select_input_checked, [:pointer,:uint8,:pcontext_t,:uint32,:pointer], PrintSelectInputCookie
-    attach_function :xcb_print_select_input, [:pointer,:uint8,:pcontext_t,:uint32,:pointer], PrintSelectInputCookie
+    attach_function :print_select_input_checked, :xcb_print_select_input_checked, [:pointer,:uint8,:pcontext_t,:uint32,:pointer], PrintSelectInputCookie
+    attach_function :print_select_input, :xcb_print_select_input, [:pointer,:uint8,:pcontext_t,:uint32,:pointer], PrintSelectInputCookie
     class PrintInputSelectedRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -416,7 +416,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_input_selected, [:pointer,:uint8,:uint32,:pointer,:uint32,:pointer], PrintInputSelectedCookie
+    attach_function :print_input_selected, :xcb_print_input_selected, [:pointer,:uint8,:uint32,:pointer,:uint32,:pointer], PrintInputSelectedCookie
     class PrintInputSelectedReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -427,7 +427,7 @@ class Xrb
           :all_events_mask, :uint32
     end
 
-    attach_function :xcb_print_input_selected_reply, [:pointer, PrintInputSelectedCookie, :pointer], :pointer
+    attach_function :print_input_selected_reply, :xcb_print_input_selected_reply, [:pointer, PrintInputSelectedCookie, :pointer], :pointer
 
         
     class PrintGetAttributesRequest < FFI::Struct
@@ -444,7 +444,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_attributes, [:pointer,:uint8,:uint32,:string8_t], PrintGetAttributesCookie
+    attach_function :print_get_attributes, :xcb_print_get_attributes, [:pointer,:uint8,:uint32,:string8_t], PrintGetAttributesCookie
     class PrintGetAttributesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -456,7 +456,7 @@ class Xrb
           :attributes, :string8_t
     end
 
-    attach_function :xcb_print_get_attributes_reply, [:pointer, PrintGetAttributesCookie, :pointer], :pointer
+    attach_function :print_get_attributes_reply, :xcb_print_get_attributes_reply, [:pointer, PrintGetAttributesCookie, :pointer], :pointer
 
         
     class PrintGetOneAttributesRequest < FFI::Struct
@@ -472,7 +472,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_one_attributes, [:pointer,:uint8,:uint32,:uint32], PrintGetOneAttributesCookie
+    attach_function :print_get_one_attributes, :xcb_print_get_one_attributes, [:pointer,:uint8,:uint32,:uint32], PrintGetOneAttributesCookie
     class PrintGetOneAttributesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -483,7 +483,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_print_get_one_attributes_reply, [:pointer, PrintGetOneAttributesCookie, :pointer], :pointer
+    attach_function :print_get_one_attributes_reply, :xcb_print_get_one_attributes_reply, [:pointer, PrintGetOneAttributesCookie, :pointer], :pointer
 
         
     class PrintSetAttributesRequest < FFI::Struct
@@ -502,8 +502,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_set_attributes_checked, [:pointer,:uint8,:pcontext_t,:uint32,:uint8,:uint8,:uint32], PrintSetAttributesCookie
-    attach_function :xcb_print_set_attributes, [:pointer,:uint8,:pcontext_t,:uint32,:uint8,:uint8,:uint32], PrintSetAttributesCookie
+    attach_function :print_set_attributes_checked, :xcb_print_set_attributes_checked, [:pointer,:uint8,:pcontext_t,:uint32,:uint8,:uint8,:uint32], PrintSetAttributesCookie
+    attach_function :print_set_attributes, :xcb_print_set_attributes, [:pointer,:uint8,:pcontext_t,:uint32,:uint8,:uint8,:uint32], PrintSetAttributesCookie
     class PrintGetPageDimensionsRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -521,7 +521,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_page_dimensions, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16], PrintGetPageDimensionsCookie
+    attach_function :print_get_page_dimensions, :xcb_print_get_page_dimensions, [:pointer,:uint8,:uint16,:uint16,:uint16,:uint16,:uint16,:uint16], PrintGetPageDimensionsCookie
     class PrintGetPageDimensionsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -536,7 +536,7 @@ class Xrb
           :reproducible_height, :uint16
     end
 
-    attach_function :xcb_print_get_page_dimensions_reply, [:pointer, PrintGetPageDimensionsCookie, :pointer], :pointer
+    attach_function :print_get_page_dimensions_reply, :xcb_print_get_page_dimensions_reply, [:pointer, PrintGetPageDimensionsCookie, :pointer], :pointer
 
         
     class PrintQueryScreensRequest < FFI::Struct
@@ -552,7 +552,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_query_screens, [:pointer,:uint8,:uint32,:uint32], PrintQueryScreensCookie
+    attach_function :print_query_screens, :xcb_print_query_screens, [:pointer,:uint8,:uint32,:uint32], PrintQueryScreensCookie
     class PrintQueryScreensReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -563,7 +563,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_print_query_screens_reply, [:pointer, PrintQueryScreensCookie, :pointer], :pointer
+    attach_function :print_query_screens_reply, :xcb_print_query_screens_reply, [:pointer, PrintQueryScreensCookie, :pointer], :pointer
 
         
     class PrintSetImageResolutionRequest < FFI::Struct
@@ -578,7 +578,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_set_image_resolution, [:pointer,:uint8,:uint16], PrintSetImageResolutionCookie
+    attach_function :print_set_image_resolution, :xcb_print_set_image_resolution, [:pointer,:uint8,:uint16], PrintSetImageResolutionCookie
     class PrintSetImageResolutionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -588,7 +588,7 @@ class Xrb
           :previous_resolutions, :uint16
     end
 
-    attach_function :xcb_print_set_image_resolution_reply, [:pointer, PrintSetImageResolutionCookie, :pointer], :pointer
+    attach_function :print_set_image_resolution_reply, :xcb_print_set_image_resolution_reply, [:pointer, PrintSetImageResolutionCookie, :pointer], :pointer
 
         
     class PrintGetImageResolutionRequest < FFI::Struct
@@ -603,7 +603,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_print_get_image_resolution, [:pointer,:uint8,:uint16], PrintGetImageResolutionCookie
+    attach_function :print_get_image_resolution, :xcb_print_get_image_resolution, [:pointer,:uint8,:uint16], PrintGetImageResolutionCookie
     class PrintGetImageResolutionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -613,7 +613,7 @@ class Xrb
           :image_resolution, :uint16
     end
 
-    attach_function :xcb_print_get_image_resolution_reply, [:pointer, PrintGetImageResolutionCookie, :pointer], :pointer
+    attach_function :print_get_image_resolution_reply, :xcb_print_get_image_resolution_reply, [:pointer, PrintGetImageResolutionCookie, :pointer], :pointer
 
         
   end

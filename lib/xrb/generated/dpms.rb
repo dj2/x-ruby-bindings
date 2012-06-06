@@ -26,7 +26,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], GetVersionCookie
+    attach_function :get_version, :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], GetVersionCookie
     class GetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -37,7 +37,7 @@ class Xrb
           :server_minor_version, :uint16
     end
 
-    attach_function :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
+    attach_function :get_version_reply, :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
 
         
     class CapableRequest < FFI::Struct
@@ -53,7 +53,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_capable, [:pointer,:uint8,:bool], CapableCookie
+    attach_function :capable, :xcb_capable, [:pointer,:uint8,:bool], CapableCookie
     class CapableReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -64,7 +64,7 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_capable_reply, [:pointer, CapableCookie, :pointer], :pointer
+    attach_function :capable_reply, :xcb_capable_reply, [:pointer, CapableCookie, :pointer], :pointer
 
         
     class GetTimeoutsRequest < FFI::Struct
@@ -82,7 +82,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], GetTimeoutsCookie
+    attach_function :get_timeouts, :xcb_get_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], GetTimeoutsCookie
     class GetTimeoutsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -95,7 +95,7 @@ class Xrb
           :pad2, [:uint8, 18]
     end
 
-    attach_function :xcb_get_timeouts_reply, [:pointer, GetTimeoutsCookie, :pointer], :pointer
+    attach_function :get_timeouts_reply, :xcb_get_timeouts_reply, [:pointer, GetTimeoutsCookie, :pointer], :pointer
 
         
     class SetTimeoutsRequest < FFI::Struct
@@ -112,8 +112,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_timeouts_checked, [:pointer,:uint8,:uint16,:uint16,:uint16], SetTimeoutsCookie
-    attach_function :xcb_set_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], SetTimeoutsCookie
+    attach_function :set_timeouts_checked, :xcb_set_timeouts_checked, [:pointer,:uint8,:uint16,:uint16,:uint16], SetTimeoutsCookie
+    attach_function :set_timeouts, :xcb_set_timeouts, [:pointer,:uint8,:uint16,:uint16,:uint16], SetTimeoutsCookie
     class EnableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -125,8 +125,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_enable_checked, [:pointer,:uint8], EnableCookie
-    attach_function :xcb_enable, [:pointer,:uint8], EnableCookie
+    attach_function :enable_checked, :xcb_enable_checked, [:pointer,:uint8], EnableCookie
+    attach_function :enable, :xcb_enable, [:pointer,:uint8], EnableCookie
     class DisableRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -138,8 +138,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_disable_checked, [:pointer,:uint8], DisableCookie
-    attach_function :xcb_disable, [:pointer,:uint8], DisableCookie
+    attach_function :disable_checked, :xcb_disable_checked, [:pointer,:uint8], DisableCookie
+    attach_function :disable, :xcb_disable, [:pointer,:uint8], DisableCookie
     class ForceLevelRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -152,8 +152,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_force_level_checked, [:pointer,:uint8,:uint16], ForceLevelCookie
-    attach_function :xcb_force_level, [:pointer,:uint8,:uint16], ForceLevelCookie
+    attach_function :force_level_checked, :xcb_force_level_checked, [:pointer,:uint8,:uint16], ForceLevelCookie
+    attach_function :force_level, :xcb_force_level, [:pointer,:uint8,:uint16], ForceLevelCookie
     class InfoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -168,7 +168,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_info, [:pointer,:uint8,:uint16,:bool], InfoCookie
+    attach_function :info, :xcb_info, [:pointer,:uint8,:uint16,:bool], InfoCookie
     class InfoReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -180,7 +180,7 @@ class Xrb
           :pad2, [:uint8, 21]
     end
 
-    attach_function :xcb_info_reply, [:pointer, InfoCookie, :pointer], :pointer
+    attach_function :info_reply, :xcb_info_reply, [:pointer, InfoCookie, :pointer], :pointer
 
         
   end

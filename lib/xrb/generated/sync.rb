@@ -17,8 +17,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_alarm_next, [:pointer], :void
-    attach_function :xcb_alarm_end, [:pointer], GenericIterator
+    attach_function :alarm_next, :xcb_alarm_next, [:pointer], :void
+    attach_function :alarm_end, :xcb_alarm_end, [:pointer], GenericIterator
     ALARMSTATE_ACTIVE = 1
     ALARMSTATE_INACTIVE = 2
     ALARMSTATE_DESTROYED = 3
@@ -29,8 +29,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_counter_next, [:pointer], :void
-    attach_function :xcb_counter_end, [:pointer], GenericIterator
+    attach_function :counter_next, :xcb_counter_next, [:pointer], :void
+    attach_function :counter_end, :xcb_counter_end, [:pointer], GenericIterator
     typedef :uint32, :fence_t
     class FenceIterator < FFI::Struct
       layout \
@@ -38,8 +38,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_fence_next, [:pointer], :void
-    attach_function :xcb_fence_end, [:pointer], GenericIterator
+    attach_function :fence_next, :xcb_fence_next, [:pointer], :void
+    attach_function :fence_end, :xcb_fence_end, [:pointer], GenericIterator
     TESTTYPE_POSITIVE_TRANSITION = 1
     TESTTYPE_NEGATIVE_TRANSITION = 2
     TESTTYPE_POSITIVE_COMPARISON = 3
@@ -64,8 +64,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_int64_next, [:pointer], :void
-    attach_function :xcb_int64_end, [:pointer], GenericIterator
+    attach_function :int64_next, :xcb_int64_next, [:pointer], :void
+    attach_function :int64_end, :xcb_int64_end, [:pointer], GenericIterator
     class Systemcounter < FFI::Struct
       layout \
           :counter, :counter_t,
@@ -79,11 +79,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_systemcounter_next, [:pointer], :void
-    attach_function :xcb_systemcounter_end, [:pointer], GenericIterator
-    attach_function :xcb_systemcounter_sizeof, [:pointer], :int
-    attach_function :xcb_systemcounter_name, [:pointer], :pointer
-    attach_function :xcb_systemcounter_name_length, [:pointer], :int
+    attach_function :systemcounter_next, :xcb_systemcounter_next, [:pointer], :void
+    attach_function :systemcounter_end, :xcb_systemcounter_end, [:pointer], GenericIterator
+    attach_function :systemcounter_sizeof, :xcb_systemcounter_sizeof, [:pointer], :int
+    attach_function :systemcounter_name, :xcb_systemcounter_name, [:pointer], :pointer
+    attach_function :systemcounter_name_length, :xcb_systemcounter_name_length, [:pointer], :int
     class Trigger < FFI::Struct
       layout \
           :counter, :counter_t,
@@ -98,8 +98,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_trigger_next, [:pointer], :void
-    attach_function :xcb_trigger_end, [:pointer], GenericIterator
+    attach_function :trigger_next, :xcb_trigger_next, [:pointer], :void
+    attach_function :trigger_end, :xcb_trigger_end, [:pointer], GenericIterator
     class Waitcondition < FFI::Struct
       layout \
           :trigger, Trigger,
@@ -112,8 +112,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_waitcondition_next, [:pointer], :void
-    attach_function :xcb_waitcondition_end, [:pointer], GenericIterator
+    attach_function :waitcondition_next, :xcb_waitcondition_next, [:pointer], :void
+    attach_function :waitcondition_end, :xcb_waitcondition_end, [:pointer], GenericIterator
     class CounterNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -173,7 +173,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_initialize, [:pointer,:uint8,:uint8,:uint8], InitializeCookie
+    attach_function :initialize, :xcb_initialize, [:pointer,:uint8,:uint8,:uint8], InitializeCookie
     class InitializeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -185,7 +185,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_initialize_reply, [:pointer, InitializeCookie, :pointer], :pointer
+    attach_function :initialize_reply, :xcb_initialize_reply, [:pointer, InitializeCookie, :pointer], :pointer
 
         
     class ListSystemCountersRequest < FFI::Struct
@@ -201,7 +201,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_system_counters, [:pointer,:uint8,:uint32,:uint32], ListSystemCountersCookie
+    attach_function :list_system_counters, :xcb_list_system_counters, [:pointer,:uint8,:uint32,:uint32], ListSystemCountersCookie
     class ListSystemCountersReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -212,7 +212,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_system_counters_reply, [:pointer, ListSystemCountersCookie, :pointer], :pointer
+    attach_function :list_system_counters_reply, :xcb_list_system_counters_reply, [:pointer, ListSystemCountersCookie, :pointer], :pointer
 
         
     class CreateCounterRequest < FFI::Struct
@@ -228,8 +228,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_counter_checked, [:pointer,:uint8,:counter_t,Int64], CreateCounterCookie
-    attach_function :xcb_create_counter, [:pointer,:uint8,:counter_t,Int64], CreateCounterCookie
+    attach_function :create_counter_checked, :xcb_create_counter_checked, [:pointer,:uint8,:counter_t,Int64], CreateCounterCookie
+    attach_function :create_counter, :xcb_create_counter, [:pointer,:uint8,:counter_t,Int64], CreateCounterCookie
     class DestroyCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -242,8 +242,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_counter_checked, [:pointer,:uint8,:counter_t], DestroyCounterCookie
-    attach_function :xcb_destroy_counter, [:pointer,:uint8,:counter_t], DestroyCounterCookie
+    attach_function :destroy_counter_checked, :xcb_destroy_counter_checked, [:pointer,:uint8,:counter_t], DestroyCounterCookie
+    attach_function :destroy_counter, :xcb_destroy_counter, [:pointer,:uint8,:counter_t], DestroyCounterCookie
     class QueryCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -256,7 +256,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_counter, [:pointer,:uint8,Int64], QueryCounterCookie
+    attach_function :query_counter, :xcb_query_counter, [:pointer,:uint8,Int64], QueryCounterCookie
     class QueryCounterReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -266,7 +266,7 @@ class Xrb
           :counter_value, Int64
     end
 
-    attach_function :xcb_query_counter_reply, [:pointer, QueryCounterCookie, :pointer], :pointer
+    attach_function :query_counter_reply, :xcb_query_counter_reply, [:pointer, QueryCounterCookie, :pointer], :pointer
 
         
     class AwaitRequest < FFI::Struct
@@ -280,8 +280,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_await_checked, [:pointer,:uint8,:uint32], AwaitCookie
-    attach_function :xcb_await, [:pointer,:uint8,:uint32], AwaitCookie
+    attach_function :await_checked, :xcb_await_checked, [:pointer,:uint8,:uint32], AwaitCookie
+    attach_function :await, :xcb_await, [:pointer,:uint8,:uint32], AwaitCookie
     class ChangeCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -295,8 +295,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_counter_checked, [:pointer,:uint8,:counter_t,Int64], ChangeCounterCookie
-    attach_function :xcb_change_counter, [:pointer,:uint8,:counter_t,Int64], ChangeCounterCookie
+    attach_function :change_counter_checked, :xcb_change_counter_checked, [:pointer,:uint8,:counter_t,Int64], ChangeCounterCookie
+    attach_function :change_counter, :xcb_change_counter, [:pointer,:uint8,:counter_t,Int64], ChangeCounterCookie
     class SetCounterRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -310,8 +310,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_counter_checked, [:pointer,:uint8,:counter_t,Int64], SetCounterCookie
-    attach_function :xcb_set_counter, [:pointer,:uint8,:counter_t,Int64], SetCounterCookie
+    attach_function :set_counter_checked, :xcb_set_counter_checked, [:pointer,:uint8,:counter_t,Int64], SetCounterCookie
+    attach_function :set_counter, :xcb_set_counter, [:pointer,:uint8,:counter_t,Int64], SetCounterCookie
     class CreateAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -325,8 +325,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_alarm_checked, [:pointer,:uint8,:alarm_t,:uint32,:pointer], CreateAlarmCookie
-    attach_function :xcb_create_alarm, [:pointer,:uint8,:alarm_t,:uint32,:pointer], CreateAlarmCookie
+    attach_function :create_alarm_checked, :xcb_create_alarm_checked, [:pointer,:uint8,:alarm_t,:uint32,:pointer], CreateAlarmCookie
+    attach_function :create_alarm, :xcb_create_alarm, [:pointer,:uint8,:alarm_t,:uint32,:pointer], CreateAlarmCookie
     class ChangeAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -340,8 +340,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_change_alarm_checked, [:pointer,:uint8,:alarm_t,:uint32,:pointer], ChangeAlarmCookie
-    attach_function :xcb_change_alarm, [:pointer,:uint8,:alarm_t,:uint32,:pointer], ChangeAlarmCookie
+    attach_function :change_alarm_checked, :xcb_change_alarm_checked, [:pointer,:uint8,:alarm_t,:uint32,:pointer], ChangeAlarmCookie
+    attach_function :change_alarm, :xcb_change_alarm, [:pointer,:uint8,:alarm_t,:uint32,:pointer], ChangeAlarmCookie
     class DestroyAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -354,8 +354,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_alarm_checked, [:pointer,:uint8,:alarm_t], DestroyAlarmCookie
-    attach_function :xcb_destroy_alarm, [:pointer,:uint8,:alarm_t], DestroyAlarmCookie
+    attach_function :destroy_alarm_checked, :xcb_destroy_alarm_checked, [:pointer,:uint8,:alarm_t], DestroyAlarmCookie
+    attach_function :destroy_alarm, :xcb_destroy_alarm, [:pointer,:uint8,:alarm_t], DestroyAlarmCookie
     class QueryAlarmRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -372,7 +372,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_alarm, [:pointer,:uint8,Trigger,Int64,:bool,:uint8], QueryAlarmCookie
+    attach_function :query_alarm, :xcb_query_alarm, [:pointer,:uint8,Trigger,Int64,:bool,:uint8], QueryAlarmCookie
     class QueryAlarmReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -386,7 +386,7 @@ class Xrb
           :pad2, [:uint8, 2]
     end
 
-    attach_function :xcb_query_alarm_reply, [:pointer, QueryAlarmCookie, :pointer], :pointer
+    attach_function :query_alarm_reply, :xcb_query_alarm_reply, [:pointer, QueryAlarmCookie, :pointer], :pointer
 
         
     class SetPriorityRequest < FFI::Struct
@@ -402,8 +402,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_priority_checked, [:pointer,:uint8,:uint32,:int32], SetPriorityCookie
-    attach_function :xcb_set_priority, [:pointer,:uint8,:uint32,:int32], SetPriorityCookie
+    attach_function :set_priority_checked, :xcb_set_priority_checked, [:pointer,:uint8,:uint32,:int32], SetPriorityCookie
+    attach_function :set_priority, :xcb_set_priority, [:pointer,:uint8,:uint32,:int32], SetPriorityCookie
     class GetPriorityRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -416,7 +416,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_priority, [:pointer,:uint8,:int32], GetPriorityCookie
+    attach_function :get_priority, :xcb_get_priority, [:pointer,:uint8,:int32], GetPriorityCookie
     class GetPriorityReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -426,7 +426,7 @@ class Xrb
           :priority, :int32
     end
 
-    attach_function :xcb_get_priority_reply, [:pointer, GetPriorityCookie, :pointer], :pointer
+    attach_function :get_priority_reply, :xcb_get_priority_reply, [:pointer, GetPriorityCookie, :pointer], :pointer
 
         
     class CreateFenceRequest < FFI::Struct
@@ -443,8 +443,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_create_fence_checked, [:pointer,:uint8,:drawable_t,:fence_t,:bool], CreateFenceCookie
-    attach_function :xcb_create_fence, [:pointer,:uint8,:drawable_t,:fence_t,:bool], CreateFenceCookie
+    attach_function :create_fence_checked, :xcb_create_fence_checked, [:pointer,:uint8,:drawable_t,:fence_t,:bool], CreateFenceCookie
+    attach_function :create_fence, :xcb_create_fence, [:pointer,:uint8,:drawable_t,:fence_t,:bool], CreateFenceCookie
     class TriggerFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -457,8 +457,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_trigger_fence_checked, [:pointer,:uint8,:fence_t], TriggerFenceCookie
-    attach_function :xcb_trigger_fence, [:pointer,:uint8,:fence_t], TriggerFenceCookie
+    attach_function :trigger_fence_checked, :xcb_trigger_fence_checked, [:pointer,:uint8,:fence_t], TriggerFenceCookie
+    attach_function :trigger_fence, :xcb_trigger_fence, [:pointer,:uint8,:fence_t], TriggerFenceCookie
     class ResetFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -471,8 +471,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_reset_fence_checked, [:pointer,:uint8,:fence_t], ResetFenceCookie
-    attach_function :xcb_reset_fence, [:pointer,:uint8,:fence_t], ResetFenceCookie
+    attach_function :reset_fence_checked, :xcb_reset_fence_checked, [:pointer,:uint8,:fence_t], ResetFenceCookie
+    attach_function :reset_fence, :xcb_reset_fence, [:pointer,:uint8,:fence_t], ResetFenceCookie
     class DestroyFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -485,8 +485,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_destroy_fence_checked, [:pointer,:uint8,:fence_t], DestroyFenceCookie
-    attach_function :xcb_destroy_fence, [:pointer,:uint8,:fence_t], DestroyFenceCookie
+    attach_function :destroy_fence_checked, :xcb_destroy_fence_checked, [:pointer,:uint8,:fence_t], DestroyFenceCookie
+    attach_function :destroy_fence, :xcb_destroy_fence, [:pointer,:uint8,:fence_t], DestroyFenceCookie
     class QueryFenceRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -500,7 +500,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_fence, [:pointer,:uint8,:bool], QueryFenceCookie
+    attach_function :query_fence, :xcb_query_fence, [:pointer,:uint8,:bool], QueryFenceCookie
     class QueryFenceReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -511,7 +511,7 @@ class Xrb
           :pad2, [:uint8, 23]
     end
 
-    attach_function :xcb_query_fence_reply, [:pointer, QueryFenceCookie, :pointer], :pointer
+    attach_function :query_fence_reply, :xcb_query_fence_reply, [:pointer, QueryFenceCookie, :pointer], :pointer
 
         
     class AwaitFenceRequest < FFI::Struct
@@ -525,7 +525,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_await_fence_checked, [:pointer,:uint8,:uint32], AwaitFenceCookie
-    attach_function :xcb_await_fence, [:pointer,:uint8,:uint32], AwaitFenceCookie
+    attach_function :await_fence_checked, :xcb_await_fence_checked, [:pointer,:uint8,:uint32], AwaitFenceCookie
+    attach_function :await_fence, :xcb_await_fence, [:pointer,:uint8,:uint32], AwaitFenceCookie
   end
 end

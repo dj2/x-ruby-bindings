@@ -22,7 +22,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], GetVersionCookie
+    attach_function :get_version, :xcb_get_version, [:pointer,:uint8,:uint16,:uint16], GetVersionCookie
     class GetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -33,7 +33,7 @@ class Xrb
           :server_minor_version, :uint16
     end
 
-    attach_function :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
+    attach_function :get_version_reply, :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
 
         
     class GetXIDRangeRequest < FFI::Struct
@@ -49,7 +49,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_range, [:pointer,:uint8,:uint32,:uint32], GetXIDRangeCookie
+    attach_function :get_xid_range, :xcb_get_xid_range, [:pointer,:uint8,:uint32,:uint32], GetXIDRangeCookie
     class GetXIDRangeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -60,7 +60,7 @@ class Xrb
           :count, :uint32
     end
 
-    attach_function :xcb_get_xid_range_reply, [:pointer, GetXIDRangeCookie, :pointer], :pointer
+    attach_function :get_xid_range_reply, :xcb_get_xid_range_reply, [:pointer, GetXIDRangeCookie, :pointer], :pointer
 
         
     class GetXIDListRequest < FFI::Struct
@@ -76,7 +76,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_xid_list, [:pointer,:uint8,:uint32,:uint32], GetXIDListCookie
+    attach_function :get_xid_list, :xcb_get_xid_list, [:pointer,:uint8,:uint32,:uint32], GetXIDListCookie
     class GetXIDListReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -87,7 +87,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_xid_list_reply, [:pointer, GetXIDListCookie, :pointer], :pointer
+    attach_function :get_xid_list_reply, :xcb_get_xid_list_reply, [:pointer, GetXIDListCookie, :pointer], :pointer
 
         
   end

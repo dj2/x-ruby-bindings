@@ -18,8 +18,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_port_next, [:pointer], :void
-    attach_function :xcb_port_end, [:pointer], GenericIterator
+    attach_function :port_next, :xcb_port_next, [:pointer], :void
+    attach_function :port_end, :xcb_port_end, [:pointer], GenericIterator
     typedef :uint32, :encoding_t
     class EncodingIterator < FFI::Struct
       layout \
@@ -27,8 +27,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_encoding_next, [:pointer], :void
-    attach_function :xcb_encoding_end, [:pointer], GenericIterator
+    attach_function :encoding_next, :xcb_encoding_next, [:pointer], :void
+    attach_function :encoding_end, :xcb_encoding_end, [:pointer], GenericIterator
     TYPE_INPUT_MASK = 1 << 0
     TYPE_OUTPUT_MASK = 1 << 1
     TYPE_VIDEO_MASK = 1 << 2
@@ -65,8 +65,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_rational_next, [:pointer], :void
-    attach_function :xcb_rational_end, [:pointer], GenericIterator
+    attach_function :rational_next, :xcb_rational_next, [:pointer], :void
+    attach_function :rational_end, :xcb_rational_end, [:pointer], GenericIterator
     class Format < FFI::Struct
       layout \
           :visual, :visualid_t,
@@ -80,8 +80,8 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_format_next, [:pointer], :void
-    attach_function :xcb_format_end, [:pointer], GenericIterator
+    attach_function :format_next, :xcb_format_next, [:pointer], :void
+    attach_function :format_end, :xcb_format_end, [:pointer], GenericIterator
     class AdaptorInfo < FFI::Struct
       layout \
           :base_id, :port_t,
@@ -98,13 +98,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_adaptor_info_next, [:pointer], :void
-    attach_function :xcb_adaptor_info_end, [:pointer], GenericIterator
-    attach_function :xcb_adaptor_info_sizeof, [:pointer], :int
-    attach_function :xcb_adaptor_info_name, [:pointer], :pointer
-    attach_function :xcb_adaptor_info_name_length, [:pointer], :int
-    attach_function :xcb_adaptor_info_formats_iterator, [:pointer], AdaptorInfoIterator
-    attach_function :xcb_adaptor_info_formats_length, [:pointer], :int
+    attach_function :adaptor_info_next, :xcb_adaptor_info_next, [:pointer], :void
+    attach_function :adaptor_info_end, :xcb_adaptor_info_end, [:pointer], GenericIterator
+    attach_function :adaptor_info_sizeof, :xcb_adaptor_info_sizeof, [:pointer], :int
+    attach_function :adaptor_info_name, :xcb_adaptor_info_name, [:pointer], :pointer
+    attach_function :adaptor_info_name_length, :xcb_adaptor_info_name_length, [:pointer], :int
+    attach_function :adaptor_info_formats_iterator, :xcb_adaptor_info_formats_iterator, [:pointer], AdaptorInfoIterator
+    attach_function :adaptor_info_formats_length, :xcb_adaptor_info_formats_length, [:pointer], :int
     class EncodingInfo < FFI::Struct
       layout \
           :encoding, :encoding_t,
@@ -121,11 +121,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_encoding_info_next, [:pointer], :void
-    attach_function :xcb_encoding_info_end, [:pointer], GenericIterator
-    attach_function :xcb_encoding_info_sizeof, [:pointer], :int
-    attach_function :xcb_encoding_info_name, [:pointer], :pointer
-    attach_function :xcb_encoding_info_name_length, [:pointer], :int
+    attach_function :encoding_info_next, :xcb_encoding_info_next, [:pointer], :void
+    attach_function :encoding_info_end, :xcb_encoding_info_end, [:pointer], GenericIterator
+    attach_function :encoding_info_sizeof, :xcb_encoding_info_sizeof, [:pointer], :int
+    attach_function :encoding_info_name, :xcb_encoding_info_name, [:pointer], :pointer
+    attach_function :encoding_info_name_length, :xcb_encoding_info_name_length, [:pointer], :int
     class Image < FFI::Struct
       layout \
           :id, :uint32,
@@ -141,15 +141,15 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_image_next, [:pointer], :void
-    attach_function :xcb_image_end, [:pointer], GenericIterator
-    attach_function :xcb_image_sizeof, [:pointer], :int
-    attach_function :xcb_image_pitches, [:pointer], :pointer
-    attach_function :xcb_image_pitches_length, [:pointer], :int
-    attach_function :xcb_image_offsets, [:pointer], :pointer
-    attach_function :xcb_image_offsets_length, [:pointer], :int
-    attach_function :xcb_image_data, [:pointer], :pointer
-    attach_function :xcb_image_data_length, [:pointer], :int
+    attach_function :image_next, :xcb_image_next, [:pointer], :void
+    attach_function :image_end, :xcb_image_end, [:pointer], GenericIterator
+    attach_function :image_sizeof, :xcb_image_sizeof, [:pointer], :int
+    attach_function :image_pitches, :xcb_image_pitches, [:pointer], :pointer
+    attach_function :image_pitches_length, :xcb_image_pitches_length, [:pointer], :int
+    attach_function :image_offsets, :xcb_image_offsets, [:pointer], :pointer
+    attach_function :image_offsets_length, :xcb_image_offsets_length, [:pointer], :int
+    attach_function :image_data, :xcb_image_data, [:pointer], :pointer
+    attach_function :image_data_length, :xcb_image_data_length, [:pointer], :int
     class AttributeInfo < FFI::Struct
       layout \
           :flags, :uint32,
@@ -164,11 +164,11 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_attribute_info_next, [:pointer], :void
-    attach_function :xcb_attribute_info_end, [:pointer], GenericIterator
-    attach_function :xcb_attribute_info_sizeof, [:pointer], :int
-    attach_function :xcb_attribute_info_name, [:pointer], :pointer
-    attach_function :xcb_attribute_info_name_length, [:pointer], :int
+    attach_function :attribute_info_next, :xcb_attribute_info_next, [:pointer], :void
+    attach_function :attribute_info_end, :xcb_attribute_info_end, [:pointer], GenericIterator
+    attach_function :attribute_info_sizeof, :xcb_attribute_info_sizeof, [:pointer], :int
+    attach_function :attribute_info_name, :xcb_attribute_info_name, [:pointer], :pointer
+    attach_function :attribute_info_name_length, :xcb_attribute_info_name_length, [:pointer], :int
     class ImageFormatInfo < FFI::Struct
       layout \
           :id, :uint32,
@@ -206,13 +206,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_image_format_info_next, [:pointer], :void
-    attach_function :xcb_image_format_info_end, [:pointer], GenericIterator
-    attach_function :xcb_image_format_info_sizeof, [:pointer], :int
-    attach_function :xcb_image_format_info_guid, [:pointer], :pointer
-    attach_function :xcb_image_format_info_guid_length, [:pointer], :int
-    attach_function :xcb_image_format_info_vcomp_order, [:pointer], :pointer
-    attach_function :xcb_image_format_info_vcomp_order_length, [:pointer], :int
+    attach_function :image_format_info_next, :xcb_image_format_info_next, [:pointer], :void
+    attach_function :image_format_info_end, :xcb_image_format_info_end, [:pointer], GenericIterator
+    attach_function :image_format_info_sizeof, :xcb_image_format_info_sizeof, [:pointer], :int
+    attach_function :image_format_info_guid, :xcb_image_format_info_guid, [:pointer], :pointer
+    attach_function :image_format_info_guid_length, :xcb_image_format_info_guid_length, [:pointer], :int
+    attach_function :image_format_info_vcomp_order, :xcb_image_format_info_vcomp_order, [:pointer], :pointer
+    attach_function :image_format_info_vcomp_order_length, :xcb_image_format_info_vcomp_order_length, [:pointer], :int
     class VideoNotifyEvent < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -266,7 +266,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_extension, [:pointer,:uint8,:uint16,:uint16], QueryExtensionCookie
+    attach_function :query_extension, :xcb_query_extension, [:pointer,:uint8,:uint16,:uint16], QueryExtensionCookie
     class QueryExtensionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -277,7 +277,7 @@ class Xrb
           :minor, :uint16
     end
 
-    attach_function :xcb_query_extension_reply, [:pointer, QueryExtensionCookie, :pointer], :pointer
+    attach_function :query_extension_reply, :xcb_query_extension_reply, [:pointer, QueryExtensionCookie, :pointer], :pointer
 
         
     class QueryAdaptorsRequest < FFI::Struct
@@ -293,7 +293,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_adaptors, [:pointer,:uint8,:uint16,:uint32], QueryAdaptorsCookie
+    attach_function :query_adaptors, :xcb_query_adaptors, [:pointer,:uint8,:uint16,:uint32], QueryAdaptorsCookie
     class QueryAdaptorsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -304,7 +304,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_query_adaptors_reply, [:pointer, QueryAdaptorsCookie, :pointer], :pointer
+    attach_function :query_adaptors_reply, :xcb_query_adaptors_reply, [:pointer, QueryAdaptorsCookie, :pointer], :pointer
 
         
     class QueryEncodingsRequest < FFI::Struct
@@ -320,7 +320,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_encodings, [:pointer,:uint8,:uint16,:uint32], QueryEncodingsCookie
+    attach_function :query_encodings, :xcb_query_encodings, [:pointer,:uint8,:uint16,:uint32], QueryEncodingsCookie
     class QueryEncodingsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -331,7 +331,7 @@ class Xrb
           :pad2, [:uint8, 22]
     end
 
-    attach_function :xcb_query_encodings_reply, [:pointer, QueryEncodingsCookie, :pointer], :pointer
+    attach_function :query_encodings_reply, :xcb_query_encodings_reply, [:pointer, QueryEncodingsCookie, :pointer], :pointer
 
         
     class GrabPortRequest < FFI::Struct
@@ -345,7 +345,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_port, [:pointer,:uint8], GrabPortCookie
+    attach_function :grab_port, :xcb_grab_port, [:pointer,:uint8], GrabPortCookie
     class GrabPortReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -354,7 +354,7 @@ class Xrb
           :length, :uint32
     end
 
-    attach_function :xcb_grab_port_reply, [:pointer, GrabPortCookie, :pointer], :pointer
+    attach_function :grab_port_reply, :xcb_grab_port_reply, [:pointer, GrabPortCookie, :pointer], :pointer
 
         
     class UngrabPortRequest < FFI::Struct
@@ -370,8 +370,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_ungrab_port_checked, [:pointer,:uint8,:port_t,:timestamp_t], UngrabPortCookie
-    attach_function :xcb_ungrab_port, [:pointer,:uint8,:port_t,:timestamp_t], UngrabPortCookie
+    attach_function :ungrab_port_checked, :xcb_ungrab_port_checked, [:pointer,:uint8,:port_t,:timestamp_t], UngrabPortCookie
+    attach_function :ungrab_port, :xcb_ungrab_port, [:pointer,:uint8,:port_t,:timestamp_t], UngrabPortCookie
     class PutVideoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -394,8 +394,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_put_video_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutVideoCookie
-    attach_function :xcb_put_video, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutVideoCookie
+    attach_function :put_video_checked, :xcb_put_video_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutVideoCookie
+    attach_function :put_video, :xcb_put_video, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutVideoCookie
     class PutStillRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -418,8 +418,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_put_still_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutStillCookie
-    attach_function :xcb_put_still, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutStillCookie
+    attach_function :put_still_checked, :xcb_put_still_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutStillCookie
+    attach_function :put_still, :xcb_put_still, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], PutStillCookie
     class GetVideoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -442,8 +442,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_video_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetVideoCookie
-    attach_function :xcb_get_video, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetVideoCookie
+    attach_function :get_video_checked, :xcb_get_video_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetVideoCookie
+    attach_function :get_video, :xcb_get_video, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetVideoCookie
     class GetStillRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -466,8 +466,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_still_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetStillCookie
-    attach_function :xcb_get_still, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetStillCookie
+    attach_function :get_still_checked, :xcb_get_still_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetStillCookie
+    attach_function :get_still, :xcb_get_still, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16], GetStillCookie
     class StopVideoRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -481,8 +481,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_stop_video_checked, [:pointer,:uint8,:port_t,:drawable_t], StopVideoCookie
-    attach_function :xcb_stop_video, [:pointer,:uint8,:port_t,:drawable_t], StopVideoCookie
+    attach_function :stop_video_checked, :xcb_stop_video_checked, [:pointer,:uint8,:port_t,:drawable_t], StopVideoCookie
+    attach_function :stop_video, :xcb_stop_video, [:pointer,:uint8,:port_t,:drawable_t], StopVideoCookie
     class SelectVideoNotifyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -497,8 +497,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_video_notify_checked, [:pointer,:uint8,:drawable_t,:bool], SelectVideoNotifyCookie
-    attach_function :xcb_select_video_notify, [:pointer,:uint8,:drawable_t,:bool], SelectVideoNotifyCookie
+    attach_function :select_video_notify_checked, :xcb_select_video_notify_checked, [:pointer,:uint8,:drawable_t,:bool], SelectVideoNotifyCookie
+    attach_function :select_video_notify, :xcb_select_video_notify, [:pointer,:uint8,:drawable_t,:bool], SelectVideoNotifyCookie
     class SelectPortNotifyRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -513,8 +513,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_select_port_notify_checked, [:pointer,:uint8,:port_t,:bool], SelectPortNotifyCookie
-    attach_function :xcb_select_port_notify, [:pointer,:uint8,:port_t,:bool], SelectPortNotifyCookie
+    attach_function :select_port_notify_checked, :xcb_select_port_notify_checked, [:pointer,:uint8,:port_t,:bool], SelectPortNotifyCookie
+    attach_function :select_port_notify, :xcb_select_port_notify, [:pointer,:uint8,:port_t,:bool], SelectPortNotifyCookie
     class QueryBestSizeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -528,7 +528,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_best_size, [:pointer,:uint8,:uint16,:uint16], QueryBestSizeCookie
+    attach_function :query_best_size, :xcb_query_best_size, [:pointer,:uint8,:uint16,:uint16], QueryBestSizeCookie
     class QueryBestSizeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -539,7 +539,7 @@ class Xrb
           :actual_height, :uint16
     end
 
-    attach_function :xcb_query_best_size_reply, [:pointer, QueryBestSizeCookie, :pointer], :pointer
+    attach_function :query_best_size_reply, :xcb_query_best_size_reply, [:pointer, QueryBestSizeCookie, :pointer], :pointer
 
         
     class SetPortAttributeRequest < FFI::Struct
@@ -556,8 +556,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_port_attribute_checked, [:pointer,:uint8,:port_t,:atom_t,:int32], SetPortAttributeCookie
-    attach_function :xcb_set_port_attribute, [:pointer,:uint8,:port_t,:atom_t,:int32], SetPortAttributeCookie
+    attach_function :set_port_attribute_checked, :xcb_set_port_attribute_checked, [:pointer,:uint8,:port_t,:atom_t,:int32], SetPortAttributeCookie
+    attach_function :set_port_attribute, :xcb_set_port_attribute, [:pointer,:uint8,:port_t,:atom_t,:int32], SetPortAttributeCookie
     class GetPortAttributeRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -570,7 +570,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_port_attribute, [:pointer,:uint8,:int32], GetPortAttributeCookie
+    attach_function :get_port_attribute, :xcb_get_port_attribute, [:pointer,:uint8,:int32], GetPortAttributeCookie
     class GetPortAttributeReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -580,7 +580,7 @@ class Xrb
           :value, :int32
     end
 
-    attach_function :xcb_get_port_attribute_reply, [:pointer, GetPortAttributeCookie, :pointer], :pointer
+    attach_function :get_port_attribute_reply, :xcb_get_port_attribute_reply, [:pointer, GetPortAttributeCookie, :pointer], :pointer
 
         
     class QueryPortAttributesRequest < FFI::Struct
@@ -597,7 +597,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_port_attributes, [:pointer,:uint8,:uint32,:uint32,:uint32], QueryPortAttributesCookie
+    attach_function :query_port_attributes, :xcb_query_port_attributes, [:pointer,:uint8,:uint32,:uint32,:uint32], QueryPortAttributesCookie
     class QueryPortAttributesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -609,7 +609,7 @@ class Xrb
           :pad2, [:uint8, 16]
     end
 
-    attach_function :xcb_query_port_attributes_reply, [:pointer, QueryPortAttributesCookie, :pointer], :pointer
+    attach_function :query_port_attributes_reply, :xcb_query_port_attributes_reply, [:pointer, QueryPortAttributesCookie, :pointer], :pointer
 
         
     class ListImageFormatsRequest < FFI::Struct
@@ -625,7 +625,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_image_formats, [:pointer,:uint8,:uint32,:uint32], ListImageFormatsCookie
+    attach_function :list_image_formats, :xcb_list_image_formats, [:pointer,:uint8,:uint32,:uint32], ListImageFormatsCookie
     class ListImageFormatsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -636,7 +636,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_image_formats_reply, [:pointer, ListImageFormatsCookie, :pointer], :pointer
+    attach_function :list_image_formats_reply, :xcb_list_image_formats_reply, [:pointer, ListImageFormatsCookie, :pointer], :pointer
 
         
     class QueryImageAttributesRequest < FFI::Struct
@@ -655,7 +655,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_image_attributes, [:pointer,:uint8,:uint32,:uint32,:uint16,:uint16,:uint32,:uint32], QueryImageAttributesCookie
+    attach_function :query_image_attributes, :xcb_query_image_attributes, [:pointer,:uint8,:uint32,:uint32,:uint16,:uint16,:uint32,:uint32], QueryImageAttributesCookie
     class QueryImageAttributesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -669,7 +669,7 @@ class Xrb
           :pad2, [:uint8, 12]
     end
 
-    attach_function :xcb_query_image_attributes_reply, [:pointer, QueryImageAttributesCookie, :pointer], :pointer
+    attach_function :query_image_attributes_reply, :xcb_query_image_attributes_reply, [:pointer, QueryImageAttributesCookie, :pointer], :pointer
 
         
     class PutImageRequest < FFI::Struct
@@ -697,8 +697,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_put_image_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32], PutImageCookie
-    attach_function :xcb_put_image, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32], PutImageCookie
+    attach_function :put_image_checked, :xcb_put_image_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32], PutImageCookie
+    attach_function :put_image, :xcb_put_image, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint32], PutImageCookie
     class ShmPutImageRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -728,7 +728,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_shm_put_image_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:seg_t,:uint32,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint8], ShmPutImageCookie
-    attach_function :xcb_shm_put_image, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:seg_t,:uint32,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint8], ShmPutImageCookie
+    attach_function :shm_put_image_checked, :xcb_shm_put_image_checked, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:seg_t,:uint32,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint8], ShmPutImageCookie
+    attach_function :shm_put_image, :xcb_shm_put_image, [:pointer,:uint8,:port_t,:drawable_t,:gcontext_t,:seg_t,:uint32,:uint32,:int16,:int16,:uint16,:uint16,:int16,:int16,:uint16,:uint16,:uint16,:uint16,:uint8], ShmPutImageCookie
   end
 end

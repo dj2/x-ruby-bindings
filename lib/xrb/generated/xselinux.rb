@@ -23,13 +23,13 @@ class Xrb
           :rem, :int,
           :indent, :int
     end
-    attach_function :xcb_list_item_next, [:pointer], :void
-    attach_function :xcb_list_item_end, [:pointer], GenericIterator
-    attach_function :xcb_list_item_sizeof, [:pointer], :int
-    attach_function :xcb_list_item_object_context, [:pointer], :pointer
-    attach_function :xcb_list_item_object_context_length, [:pointer], :int
-    attach_function :xcb_list_item_data_context, [:pointer], :pointer
-    attach_function :xcb_list_item_data_context_length, [:pointer], :int
+    attach_function :list_item_next, :xcb_list_item_next, [:pointer], :void
+    attach_function :list_item_end, :xcb_list_item_end, [:pointer], GenericIterator
+    attach_function :list_item_sizeof, :xcb_list_item_sizeof, [:pointer], :int
+    attach_function :list_item_object_context, :xcb_list_item_object_context, [:pointer], :pointer
+    attach_function :list_item_object_context_length, :xcb_list_item_object_context_length, [:pointer], :int
+    attach_function :list_item_data_context, :xcb_list_item_data_context, [:pointer], :pointer
+    attach_function :list_item_data_context_length, :xcb_list_item_data_context_length, [:pointer], :int
     class QueryVersionRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -43,7 +43,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
+    attach_function :query_version, :xcb_query_version, [:pointer,:uint8,:uint16,:uint16], QueryVersionCookie
     class QueryVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -54,7 +54,7 @@ class Xrb
           :server_minor, :uint16
     end
 
-    attach_function :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
+    attach_function :query_version_reply, :xcb_query_version_reply, [:pointer, QueryVersionCookie, :pointer], :pointer
 
         
     class SetDeviceCreateContextRequest < FFI::Struct
@@ -69,8 +69,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetDeviceCreateContextCookie
-    attach_function :xcb_set_device_create_context, [:pointer,:uint8,:uint32,:uint32], SetDeviceCreateContextCookie
+    attach_function :set_device_create_context_checked, :xcb_set_device_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetDeviceCreateContextCookie
+    attach_function :set_device_create_context, :xcb_set_device_create_context, [:pointer,:uint8,:uint32,:uint32], SetDeviceCreateContextCookie
     class GetDeviceCreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -84,7 +84,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_create_context, [:pointer,:uint8,:uint32,:uint32], GetDeviceCreateContextCookie
+    attach_function :get_device_create_context, :xcb_get_device_create_context, [:pointer,:uint8,:uint32,:uint32], GetDeviceCreateContextCookie
     class GetDeviceCreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -95,7 +95,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_device_create_context_reply, [:pointer, GetDeviceCreateContextCookie, :pointer], :pointer
+    attach_function :get_device_create_context_reply, :xcb_get_device_create_context_reply, [:pointer, GetDeviceCreateContextCookie, :pointer], :pointer
 
         
     class SetDeviceContextRequest < FFI::Struct
@@ -111,8 +111,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_device_context_checked, [:pointer,:uint8,:uint32,:uint32,:uint32], SetDeviceContextCookie
-    attach_function :xcb_set_device_context, [:pointer,:uint8,:uint32,:uint32,:uint32], SetDeviceContextCookie
+    attach_function :set_device_context_checked, :xcb_set_device_context_checked, [:pointer,:uint8,:uint32,:uint32,:uint32], SetDeviceContextCookie
+    attach_function :set_device_context, :xcb_set_device_context, [:pointer,:uint8,:uint32,:uint32,:uint32], SetDeviceContextCookie
     class GetDeviceContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -126,7 +126,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_device_context, [:pointer,:uint8,:uint32,:uint32], GetDeviceContextCookie
+    attach_function :get_device_context, :xcb_get_device_context, [:pointer,:uint8,:uint32,:uint32], GetDeviceContextCookie
     class GetDeviceContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -137,7 +137,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_device_context_reply, [:pointer, GetDeviceContextCookie, :pointer], :pointer
+    attach_function :get_device_context_reply, :xcb_get_device_context_reply, [:pointer, GetDeviceContextCookie, :pointer], :pointer
 
         
     class SetWindowCreateContextRequest < FFI::Struct
@@ -152,8 +152,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_window_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetWindowCreateContextCookie
-    attach_function :xcb_set_window_create_context, [:pointer,:uint8,:uint32,:uint32], SetWindowCreateContextCookie
+    attach_function :set_window_create_context_checked, :xcb_set_window_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetWindowCreateContextCookie
+    attach_function :set_window_create_context, :xcb_set_window_create_context, [:pointer,:uint8,:uint32,:uint32], SetWindowCreateContextCookie
     class GetWindowCreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -167,7 +167,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_window_create_context, [:pointer,:uint8,:uint32,:uint32], GetWindowCreateContextCookie
+    attach_function :get_window_create_context, :xcb_get_window_create_context, [:pointer,:uint8,:uint32,:uint32], GetWindowCreateContextCookie
     class GetWindowCreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -178,7 +178,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_window_create_context_reply, [:pointer, GetWindowCreateContextCookie, :pointer], :pointer
+    attach_function :get_window_create_context_reply, :xcb_get_window_create_context_reply, [:pointer, GetWindowCreateContextCookie, :pointer], :pointer
 
         
     class GetWindowContextRequest < FFI::Struct
@@ -194,7 +194,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_window_context, [:pointer,:uint8,:uint32,:uint32], GetWindowContextCookie
+    attach_function :get_window_context, :xcb_get_window_context, [:pointer,:uint8,:uint32,:uint32], GetWindowContextCookie
     class GetWindowContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -205,7 +205,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_window_context_reply, [:pointer, GetWindowContextCookie, :pointer], :pointer
+    attach_function :get_window_context_reply, :xcb_get_window_context_reply, [:pointer, GetWindowContextCookie, :pointer], :pointer
 
         
     class SetPropertyCreateContextRequest < FFI::Struct
@@ -220,8 +220,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_property_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetPropertyCreateContextCookie
-    attach_function :xcb_set_property_create_context, [:pointer,:uint8,:uint32,:uint32], SetPropertyCreateContextCookie
+    attach_function :set_property_create_context_checked, :xcb_set_property_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetPropertyCreateContextCookie
+    attach_function :set_property_create_context, :xcb_set_property_create_context, [:pointer,:uint8,:uint32,:uint32], SetPropertyCreateContextCookie
     class GetPropertyCreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -235,7 +235,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_property_create_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyCreateContextCookie
+    attach_function :get_property_create_context, :xcb_get_property_create_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyCreateContextCookie
     class GetPropertyCreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -246,7 +246,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_property_create_context_reply, [:pointer, GetPropertyCreateContextCookie, :pointer], :pointer
+    attach_function :get_property_create_context_reply, :xcb_get_property_create_context_reply, [:pointer, GetPropertyCreateContextCookie, :pointer], :pointer
 
         
     class SetPropertyUseContextRequest < FFI::Struct
@@ -261,8 +261,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_property_use_context_checked, [:pointer,:uint8,:uint32,:uint32], SetPropertyUseContextCookie
-    attach_function :xcb_set_property_use_context, [:pointer,:uint8,:uint32,:uint32], SetPropertyUseContextCookie
+    attach_function :set_property_use_context_checked, :xcb_set_property_use_context_checked, [:pointer,:uint8,:uint32,:uint32], SetPropertyUseContextCookie
+    attach_function :set_property_use_context, :xcb_set_property_use_context, [:pointer,:uint8,:uint32,:uint32], SetPropertyUseContextCookie
     class GetPropertyUseContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -276,7 +276,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_property_use_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyUseContextCookie
+    attach_function :get_property_use_context, :xcb_get_property_use_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyUseContextCookie
     class GetPropertyUseContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -287,7 +287,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_property_use_context_reply, [:pointer, GetPropertyUseContextCookie, :pointer], :pointer
+    attach_function :get_property_use_context_reply, :xcb_get_property_use_context_reply, [:pointer, GetPropertyUseContextCookie, :pointer], :pointer
 
         
     class GetPropertyContextRequest < FFI::Struct
@@ -303,7 +303,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_property_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyContextCookie
+    attach_function :get_property_context, :xcb_get_property_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyContextCookie
     class GetPropertyContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -314,7 +314,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_property_context_reply, [:pointer, GetPropertyContextCookie, :pointer], :pointer
+    attach_function :get_property_context_reply, :xcb_get_property_context_reply, [:pointer, GetPropertyContextCookie, :pointer], :pointer
 
         
     class GetPropertyDataContextRequest < FFI::Struct
@@ -330,7 +330,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_property_data_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyDataContextCookie
+    attach_function :get_property_data_context, :xcb_get_property_data_context, [:pointer,:uint8,:uint32,:uint32], GetPropertyDataContextCookie
     class GetPropertyDataContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -341,7 +341,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_property_data_context_reply, [:pointer, GetPropertyDataContextCookie, :pointer], :pointer
+    attach_function :get_property_data_context_reply, :xcb_get_property_data_context_reply, [:pointer, GetPropertyDataContextCookie, :pointer], :pointer
 
         
     class ListPropertiesRequest < FFI::Struct
@@ -357,7 +357,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_properties, [:pointer,:uint8,:uint32,:uint32], ListPropertiesCookie
+    attach_function :list_properties, :xcb_list_properties, [:pointer,:uint8,:uint32,:uint32], ListPropertiesCookie
     class ListPropertiesReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -368,7 +368,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_properties_reply, [:pointer, ListPropertiesCookie, :pointer], :pointer
+    attach_function :list_properties_reply, :xcb_list_properties_reply, [:pointer, ListPropertiesCookie, :pointer], :pointer
 
         
     class SetSelectionCreateContextRequest < FFI::Struct
@@ -383,8 +383,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_selection_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetSelectionCreateContextCookie
-    attach_function :xcb_set_selection_create_context, [:pointer,:uint8,:uint32,:uint32], SetSelectionCreateContextCookie
+    attach_function :set_selection_create_context_checked, :xcb_set_selection_create_context_checked, [:pointer,:uint8,:uint32,:uint32], SetSelectionCreateContextCookie
+    attach_function :set_selection_create_context, :xcb_set_selection_create_context, [:pointer,:uint8,:uint32,:uint32], SetSelectionCreateContextCookie
     class GetSelectionCreateContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -398,7 +398,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selection_create_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionCreateContextCookie
+    attach_function :get_selection_create_context, :xcb_get_selection_create_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionCreateContextCookie
     class GetSelectionCreateContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -409,7 +409,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_selection_create_context_reply, [:pointer, GetSelectionCreateContextCookie, :pointer], :pointer
+    attach_function :get_selection_create_context_reply, :xcb_get_selection_create_context_reply, [:pointer, GetSelectionCreateContextCookie, :pointer], :pointer
 
         
     class SetSelectionUseContextRequest < FFI::Struct
@@ -424,8 +424,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_set_selection_use_context_checked, [:pointer,:uint8,:uint32,:uint32], SetSelectionUseContextCookie
-    attach_function :xcb_set_selection_use_context, [:pointer,:uint8,:uint32,:uint32], SetSelectionUseContextCookie
+    attach_function :set_selection_use_context_checked, :xcb_set_selection_use_context_checked, [:pointer,:uint8,:uint32,:uint32], SetSelectionUseContextCookie
+    attach_function :set_selection_use_context, :xcb_set_selection_use_context, [:pointer,:uint8,:uint32,:uint32], SetSelectionUseContextCookie
     class GetSelectionUseContextRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -439,7 +439,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selection_use_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionUseContextCookie
+    attach_function :get_selection_use_context, :xcb_get_selection_use_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionUseContextCookie
     class GetSelectionUseContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -450,7 +450,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_selection_use_context_reply, [:pointer, GetSelectionUseContextCookie, :pointer], :pointer
+    attach_function :get_selection_use_context_reply, :xcb_get_selection_use_context_reply, [:pointer, GetSelectionUseContextCookie, :pointer], :pointer
 
         
     class GetSelectionContextRequest < FFI::Struct
@@ -466,7 +466,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selection_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionContextCookie
+    attach_function :get_selection_context, :xcb_get_selection_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionContextCookie
     class GetSelectionContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -477,7 +477,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_selection_context_reply, [:pointer, GetSelectionContextCookie, :pointer], :pointer
+    attach_function :get_selection_context_reply, :xcb_get_selection_context_reply, [:pointer, GetSelectionContextCookie, :pointer], :pointer
 
         
     class GetSelectionDataContextRequest < FFI::Struct
@@ -493,7 +493,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_selection_data_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionDataContextCookie
+    attach_function :get_selection_data_context, :xcb_get_selection_data_context, [:pointer,:uint8,:uint32,:uint32], GetSelectionDataContextCookie
     class GetSelectionDataContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -504,7 +504,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_selection_data_context_reply, [:pointer, GetSelectionDataContextCookie, :pointer], :pointer
+    attach_function :get_selection_data_context_reply, :xcb_get_selection_data_context_reply, [:pointer, GetSelectionDataContextCookie, :pointer], :pointer
 
         
     class ListSelectionsRequest < FFI::Struct
@@ -520,7 +520,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_list_selections, [:pointer,:uint8,:uint32,:uint32], ListSelectionsCookie
+    attach_function :list_selections, :xcb_list_selections, [:pointer,:uint8,:uint32,:uint32], ListSelectionsCookie
     class ListSelectionsReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -531,7 +531,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_list_selections_reply, [:pointer, ListSelectionsCookie, :pointer], :pointer
+    attach_function :list_selections_reply, :xcb_list_selections_reply, [:pointer, ListSelectionsCookie, :pointer], :pointer
 
         
     class GetClientContextRequest < FFI::Struct
@@ -547,7 +547,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_client_context, [:pointer,:uint8,:uint32,:uint32], GetClientContextCookie
+    attach_function :get_client_context, :xcb_get_client_context, [:pointer,:uint8,:uint32,:uint32], GetClientContextCookie
     class GetClientContextReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -558,7 +558,7 @@ class Xrb
           :pad2, [:uint8, 20]
     end
 
-    attach_function :xcb_get_client_context_reply, [:pointer, GetClientContextCookie, :pointer], :pointer
+    attach_function :get_client_context_reply, :xcb_get_client_context_reply, [:pointer, GetClientContextCookie, :pointer], :pointer
 
         
   end

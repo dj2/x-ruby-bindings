@@ -24,7 +24,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_get_version, [:pointer,:uint8,:uint16], GetVersionCookie
+    attach_function :get_version, :xcb_get_version, [:pointer,:uint8,:uint16], GetVersionCookie
     class GetVersionReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -34,7 +34,7 @@ class Xrb
           :minor_version, :uint16
     end
 
-    attach_function :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
+    attach_function :get_version_reply, :xcb_get_version_reply, [:pointer, GetVersionCookie, :pointer], :pointer
 
         
     class CompareCursorRequest < FFI::Struct
@@ -48,7 +48,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_compare_cursor, [:pointer,:uint8], CompareCursorCookie
+    attach_function :compare_cursor, :xcb_compare_cursor, [:pointer,:uint8], CompareCursorCookie
     class CompareCursorReply < FFI::Struct
       layout \
           :response_type, :uint8,
@@ -57,7 +57,7 @@ class Xrb
           :length, :uint32
     end
 
-    attach_function :xcb_compare_cursor_reply, [:pointer, CompareCursorCookie, :pointer], :pointer
+    attach_function :compare_cursor_reply, :xcb_compare_cursor_reply, [:pointer, CompareCursorCookie, :pointer], :pointer
 
         
     class FakeInputRequest < FFI::Struct
@@ -81,8 +81,8 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_fake_input_checked, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
-    attach_function :xcb_fake_input, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
+    attach_function :fake_input_checked, :xcb_fake_input_checked, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
+    attach_function :fake_input, :xcb_fake_input, [:pointer,:uint8,:uint8,:uint8,:uint32,:window_t,:int16,:int16,:uint8], FakeInputCookie
     class GrabControlRequest < FFI::Struct
       layout \
           :major_opcode, :uint8,
@@ -96,7 +96,7 @@ class Xrb
       layout \
           :sequence, :int
     end
-    attach_function :xcb_grab_control_checked, [:pointer,:uint8,:bool], GrabControlCookie
-    attach_function :xcb_grab_control, [:pointer,:uint8,:bool], GrabControlCookie
+    attach_function :grab_control_checked, :xcb_grab_control_checked, [:pointer,:uint8,:bool], GrabControlCookie
+    attach_function :grab_control, :xcb_grab_control, [:pointer,:uint8,:bool], GrabControlCookie
   end
 end
