@@ -81,7 +81,7 @@ class Xrb
   end
 end
 
-require 'xrb/xproto'
+require 'xrb/generated/xproto'
 
 class Xrb
   typedef :pointer, :connection_t
