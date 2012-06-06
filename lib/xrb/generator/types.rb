@@ -38,8 +38,8 @@ class Xrb
         out << "#{' ' * (indent + 6)}:rem, :int,"
         out << "#{' ' * (indent + 6)}:indent, :int"
         out << "#{' ' * indent}end"
-        out << "#{' ' * indent}attach_function :xcb_#{name.to_s.camel_case}_next, [:pointer], :void"
-        out << "#{' ' * indent}attach_function :xcb_#{name.to_s.camel_case}_end, [:pointer], GenericIterator"
+        out << "#{' ' * indent}attach_function :#{name.to_s.camel_case}_next, :xcb_#{name.to_s.camel_case}_next, [:pointer], :void"
+        out << "#{' ' * indent}attach_function :#{name.to_s.camel_case}_end, :xcb_#{name.to_s.camel_case}_end, [:pointer], GenericIterator"
 
         out.join("\n")
       end
@@ -138,24 +138,25 @@ class Xrb
         out << "#{' ' * (indent + 6)}:rem, :int,"
         out << "#{' ' * (indent + 6)}:indent, :int"
         out << "#{' ' * indent}end"
-        out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_next, [:pointer], :void"
-        out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_end, [:pointer], GenericIterator"
+        out << "#{' ' * indent}attach_function :#{name.camel_case}_next, :xcb_#{name.camel_case}_next, [:pointer], :void"
+        out << "#{' ' * indent}attach_function :#{name.camel_case}_end, :xcb_#{name.camel_case}_end, [:pointer], GenericIterator"
 
         lists = []
         fields.each { |f| lists << f if f.is_a?(ListField) }
         
         if !lists.empty?
-          out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_sizeof, [:pointer], :int"
+          out << "#{' ' * indent}attach_function :#{name.camel_case}_sizeof, :xcb_#{name.camel_case}_sizeof, [:pointer], :int"
 
           lists.each do |list|
-            n = ":xcb_#{name.camel_case}_#{list.name.camel_case}"
+            rn = "#{name.camel_case}_#{list.name.camel_case}"
+            n = ":xcb_#{rn}"
 
             if list.fixed_size?
-              out << "#{' ' * indent}attach_function #{n}, [:pointer], :pointer"
+              out << "#{' ' * indent}attach_function :#{rn}, #{n}, [:pointer], :pointer"
             else
-              out << "#{' ' * indent}attach_function #{n}_iterator, [:pointer], #{ffi_name}Iterator"
+              out << "#{' ' * indent}attach_function :#{rn}_iterator, #{n}_iterator, [:pointer], #{ffi_name}Iterator"
             end
-            out << "#{' ' * indent}attach_function #{n}_length, [:pointer], :int"
+            out << "#{' ' * indent}attach_function :#{rn}_length, #{n}_length, [:pointer], :int"
           end
         end
 
@@ -388,12 +389,12 @@ class Xrb
         out << "#{' ' * indent}end"
 
         if @reply.nil?
-          str = "#{' ' * indent}attach_function :xcb_#{name.camel_case}_checked, "
+          str = "#{' ' * indent}attach_function :#{name.camel_case}_checked, :xcb_#{name.camel_case}_checked, "
           str << "[#{body.join(",")}], #{base_ffi_name}Cookie"
           out << str
         end
 
-        str = "#{' ' * indent}attach_function :xcb_#{name.camel_case}, "
+        str = "#{' ' * indent}attach_function :#{name.camel_case}, :xcb_#{name.camel_case}, "
         str << "[#{body.join(",")}], #{base_ffi_name}Cookie"
         out << str
 
@@ -458,7 +459,7 @@ class Xrb
 
         out << "#{' ' * indent}end"
         out << ""
-        out << "#{' ' * indent}attach_function :xcb_#{name.camel_case}_reply, [:pointer, #{parent_ffi_name}Cookie, :pointer], :pointer
+        out << "#{' ' * indent}attach_function :#{name.camel_case}_reply, :xcb_#{name.camel_case}_reply, [:pointer, #{parent_ffi_name}Cookie, :pointer], :pointer
 
         "#{out.join("\n")}"
       end
