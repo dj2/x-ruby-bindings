@@ -86,6 +86,8 @@ module Xrb
           print("#")
           print('')
 
+          print("require 'xrb/generic_types'")
+
           ns.imports.each do |import|
             print("require 'xrb/#{import}'")
           end
