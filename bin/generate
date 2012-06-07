@@ -2,9 +2,10 @@
 
 $: << './lib' << '../lib'
 
+require 'pp'
 require 'xrb/generator'
 
 XRB_OUT_DIR = File.expand_path("#{File.dirname(__FILE__)}/../lib/xrb/generated")
 XCB_IN_DIR = '/usr/share/xcb'
 
-XRB::Generator.new(XCB_IN_DIR, XRB_OUT_DIR).generate
+Xrb::Generator.new(XCB_IN_DIR, XRB_OUT_DIR).generate
