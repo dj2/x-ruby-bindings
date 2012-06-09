@@ -1,11 +1,5 @@
 require 'xrb/generator/types'
 
-class File
-  def iputs(indent, str)
-    self.puts("#{' ' * indent}#{str}")
-  end
-end
-
 module Xrb
   class Generator
     class RbPrinter
@@ -68,8 +62,12 @@ module Xrb
         name.underscore.camel_case
       end
 
+      def format(str = '')
+        "#{' ' * @indent}#{str}"
+      end
+
       def print(str = '', &blk)
-        @file.iputs(@indent, str)
+        @file.puts(format(str))
 
         if block_given?
           inc do
@@ -225,18 +223,26 @@ module Xrb
         end
 
         def process
-          @data.each do |field|
+          output = []
+
+          @data.each_with_index do |field, idx|
             meth = "process_#{@p.name(field)}".to_sym
             if (respond_to?(meth))
-              send(meth, field)
+              output << send(meth, field)
             else
               puts "Unknown field type #{@p.name(field)}"
             end
           end
+          output.delete_if { |r| r.nil? }
+
+          if !output.empty?
+            output[0].strip!
+            @p.print(output.join(",\n"))
+          end
         end
 
         def process_field(field)
-          @p.print(":#{field.name}, :#{field.type.name}")
+          @p.format(":#{field.name}, :#{field.type.name}")
         end
 
         def process_autofield(field)
@@ -244,23 +250,23 @@ module Xrb
         end
 
         def process_valueparamfield(field)
-          @p.print(":#{field.name}, :#{field.type.name}")
+          @p.format(":#{field.name}, :#{field.type.name}")
         end
 
         def process_listfield(field)
-          return unless field.members.first.is_a?(ValueField)
+          return nil unless field.members.first.is_a?(ValueField)
 
-          @p.print(":#{field.name}, " +
+          @p.format(":#{field.name}, " +
               "[:#{field.type.name}, #{field.members.first.size}]")
         end
 
         def process_padfield(field)
-          @p.print(":#{field.name}#{field.index}, " +
+          @p.format(":#{field.name}#{field.index}, " +
               "[:#{field.type.name}, #{field.bytes}]")
         end
 
         def process_itemfield(field)
-          @p.print("#{field.name.underscore.upcase} = " +
+          @p.format("#{field.name.underscore.upcase} = " +
               "(#{field.type == :bit ? '1 << ' : ''}#{field.value})")
         end
       end
@@ -273,6 +279,8 @@ module Xrb
 
         def process
           @data.each do |type|
+            next if @p.name(type) == 'enum'
+
             meth = "process_#{@p.name(type)}".to_sym
             respond_to?(meth) ? send(meth, type) : process_type(type)
             @p.print
@@ -291,9 +299,6 @@ module Xrb
             @p.print("union \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
           end
-        end
-
-        def process_enum(type)
         end
 
         def process_array(values)
