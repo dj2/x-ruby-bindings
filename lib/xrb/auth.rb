@@ -18,7 +18,7 @@ module Xrb
           :data, [:data_length, :string]
     end
 
-    def initialize(host, display)
+    def self.find(host, display)
       if host.nil? || host == 'localhost' || host == '127.0.0.1'
         host = Socket.gethostname
       end
@@ -32,8 +32,11 @@ module Xrb
       end
 
       File.open(file) do |f|
-        auto = AuthInfo.unpack(f)
+        auth = AuthInfo.unpack(f)
+        return auth if auth.display.to_i == display
       end
+
+      nil
     end
   end
 end

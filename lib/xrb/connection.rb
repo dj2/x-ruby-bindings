@@ -16,8 +16,8 @@ module Xrb
         TCPSocket.new(@host, Xrb::TCP_PORT + @display)
       end
 
-      auth = Xrb::Auth.new(@host, @display)
-
+      auth = Xrb::Auth.find(@host, @display)
+p auth
       @xid = {
         last: 0,
         base: xid_base,
