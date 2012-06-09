@@ -13,7 +13,6 @@ module Xrb
         end
       end
       
-      
       class Counter
         attr_accessor :id
         
@@ -30,33 +29,30 @@ module Xrb
         end
       end
       
-      
-      
-      
       class Int64 < Xrd::Message
         layout \
-            :hi, :int32
+            :hi, :int32,
             :lo, :uint32
       end
       
       class Systemcounter < Xrd::Message
         layout \
-            :counter, :uint32
-            :resolution, :INT64
+            :counter, :uint32,
+            :resolution, :INT64,
             :name_len, :uint16
       end
       
       class Trigger < Xrd::Message
         layout \
-            :counter, :uint32
-            :wait_type, :uint32
-            :wait_value, :INT64
+            :counter, :uint32,
+            :wait_type, :uint32,
+            :wait_value, :INT64,
             :test_type, :uint32
       end
       
       class Waitcondition < Xrd::Message
         layout \
-            :trigger, :TRIGGER
+            :trigger, :TRIGGER,
             :event_threshold, :INT64
       end
       

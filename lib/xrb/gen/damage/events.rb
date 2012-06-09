@@ -9,12 +9,12 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :level, :uint8
-            :drawable, :uint32
-            :damage, :uint32
-            :timestamp, :uint32
-            :area, :RECTANGLE
+            :response_type, :uint8,
+            :level, :uint8,
+            :drawable, :uint32,
+            :damage, :uint32,
+            :timestamp, :uint32,
+            :area, :RECTANGLE,
             :geometry, :RECTANGLE
       end
       

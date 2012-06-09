@@ -7,9 +7,9 @@ module Xrb
     module Message
       class ScreenInfo < Xrd::Message
         layout \
-            :x_org, :int16
-            :y_org, :int16
-            :width, :uint16
+            :x_org, :int16,
+            :y_org, :int16,
+            :width, :uint16,
             :height, :uint16
       end
       

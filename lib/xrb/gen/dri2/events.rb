@@ -9,15 +9,15 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :pad1, [:uint8, 1]
-            :event_type, :uint16
-            :pad2, [:uint8, 2]
-            :drawable, :uint32
-            :ust_hi, :uint32
-            :ust_lo, :uint32
-            :msc_hi, :uint32
-            :msc_lo, :uint32
+            :response_type, :uint8,
+            :pad1, [:uint8, 1],
+            :event_type, :uint16,
+            :pad2, [:uint8, 2],
+            :drawable, :uint32,
+            :ust_hi, :uint32,
+            :ust_lo, :uint32,
+            :msc_hi, :uint32,
+            :msc_lo, :uint32,
             :sbc, :uint32
       end
       
@@ -25,8 +25,8 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :response_type, :uint8
-            :pad1, [:uint8, 1]
+            :response_type, :uint8,
+            :pad1, [:uint8, 1],
             :drawable, :uint32
       end
       

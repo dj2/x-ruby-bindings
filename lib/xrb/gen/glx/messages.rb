@@ -85,10 +85,6 @@ module Xrb
         end
       end
       
-      
-      
-      
-      
     end
   end
 end

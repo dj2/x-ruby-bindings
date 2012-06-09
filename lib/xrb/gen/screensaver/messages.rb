@@ -5,9 +5,6 @@
 module Xrb
   module ScreenSaver
     module Message
-      
-      
-      
     end
   end
 end

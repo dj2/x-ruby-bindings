@@ -9,11 +9,11 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :server_major_version, :uint16
-            :server_minor_version, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :server_major_version, :uint16,
+            :server_minor_version, :uint16,
             :pad2, [:uint8, 20]
       end
       
@@ -21,14 +21,14 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :saver_window, :uint32
-            :ms_until_server, :uint32
-            :ms_since_user_input, :uint32
-            :event_mask, :uint32
-            :kind, :uint8
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :saver_window, :uint32,
+            :ms_until_server, :uint32,
+            :ms_since_user_input, :uint32,
+            :event_mask, :uint32,
+            :kind, :uint8,
             :pad1, [:uint8, 7]
       end
       
@@ -36,10 +36,10 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :drawable, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :drawable, :uint32,
             :event_mask, :uint32
       end
       
@@ -47,18 +47,18 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :drawable, :uint32
-            :x, :int16
-            :y, :int16
-            :width, :uint16
-            :height, :uint16
-            :border_width, :uint16
-            :class, :uint8
-            :depth, :uint8
-            :visual, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :drawable, :uint32,
+            :x, :int16,
+            :y, :int16,
+            :width, :uint16,
+            :height, :uint16,
+            :border_width, :uint16,
+            :class, :uint8,
+            :depth, :uint8,
+            :visual, :uint32,
             :value_mask, :uint32
       end
       
@@ -66,9 +66,9 @@ module Xrb
         OPCODE = 4
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :drawable, :uint32
       end
       
@@ -76,10 +76,10 @@ module Xrb
         OPCODE = 5
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :suspend, :bool
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :suspend, :bool,
             :pad1, [:uint8, 3]
       end
       

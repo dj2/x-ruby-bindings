@@ -9,10 +9,10 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :major, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :major, :uint16,
             :minor, :uint16
       end
       
@@ -20,9 +20,9 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :window, :uint32
       end
       
@@ -30,9 +30,9 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :window, :uint32
       end
       
@@ -40,12 +40,12 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :width, :uint32
-            :height, :uint32
-            :window, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :width, :uint32,
+            :height, :uint32,
+            :window, :uint32,
             :screen, :uint32
       end
       
@@ -53,9 +53,9 @@ module Xrb
         OPCODE = 4
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :state, :uint32
       end
       
@@ -63,10 +63,10 @@ module Xrb
         OPCODE = 5
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :number, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :number, :uint32,
             :pad2, [:uint8, 20]
       end
       

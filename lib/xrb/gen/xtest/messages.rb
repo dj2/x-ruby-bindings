@@ -5,7 +5,6 @@
 module Xrb
   module Test
     module Message
-      
     end
   end
 end

@@ -9,10 +9,10 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :server_major, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :server_major, :uint16,
             :server_minor, :uint16
       end
       
@@ -20,9 +20,9 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -30,10 +30,10 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -41,10 +41,10 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :device, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :device, :uint32,
             :context_len, :uint32
       end
       
@@ -52,10 +52,10 @@ module Xrb
         OPCODE = 4
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -63,9 +63,9 @@ module Xrb
         OPCODE = 5
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -73,10 +73,10 @@ module Xrb
         OPCODE = 6
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -84,10 +84,10 @@ module Xrb
         OPCODE = 7
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -95,9 +95,9 @@ module Xrb
         OPCODE = 8
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -105,10 +105,10 @@ module Xrb
         OPCODE = 9
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -116,9 +116,9 @@ module Xrb
         OPCODE = 10
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -126,10 +126,10 @@ module Xrb
         OPCODE = 11
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -137,10 +137,10 @@ module Xrb
         OPCODE = 12
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -148,10 +148,10 @@ module Xrb
         OPCODE = 13
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -159,10 +159,10 @@ module Xrb
         OPCODE = 14
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :properties_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :properties_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -170,9 +170,9 @@ module Xrb
         OPCODE = 15
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -180,10 +180,10 @@ module Xrb
         OPCODE = 16
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -191,9 +191,9 @@ module Xrb
         OPCODE = 17
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :context_len, :uint32
       end
       
@@ -201,10 +201,10 @@ module Xrb
         OPCODE = 18
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -212,10 +212,10 @@ module Xrb
         OPCODE = 19
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -223,10 +223,10 @@ module Xrb
         OPCODE = 20
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -234,10 +234,10 @@ module Xrb
         OPCODE = 21
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :selections_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :selections_len, :uint32,
             :pad2, [:uint8, 20]
       end
       
@@ -245,10 +245,10 @@ module Xrb
         OPCODE = 22
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :context_len, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :context_len, :uint32,
             :pad2, [:uint8, 20]
       end
       

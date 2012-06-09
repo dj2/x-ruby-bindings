@@ -9,9 +9,9 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :detail, :uint8
-            :context, :uint32
+            :response_type, :uint8,
+            :detail, :uint8,
+            :context, :uint32,
             :cancel, :bool
       end
       
@@ -19,8 +19,8 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :response_type, :uint8
-            :detail, :uint8
+            :response_type, :uint8,
+            :detail, :uint8,
             :context, :uint32
       end
       

@@ -9,11 +9,11 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_counter, :uint32
-            :minor_opcode, :uint16
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_counter, :uint32,
+            :minor_opcode, :uint16,
             :major_opcode, :uint8
       end
       
@@ -21,11 +21,11 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_alarm, :uint32
-            :minor_opcode, :uint16
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_alarm, :uint32,
+            :minor_opcode, :uint16,
             :major_opcode, :uint8
       end
       

@@ -5,7 +5,6 @@
 module Xrb
   module DPMS
     module Message
-      
     end
   end
 end

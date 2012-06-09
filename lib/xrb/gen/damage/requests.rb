@@ -9,11 +9,11 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :major_version, :uint32
-            :minor_version, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :major_version, :uint32,
+            :minor_version, :uint32,
             :pad2, [:uint8, 16]
       end
       
@@ -21,12 +21,12 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :damage, :uint32
-            :drawable, :uint32
-            :level, :uint8
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :damage, :uint32,
+            :drawable, :uint32,
+            :level, :uint8,
             :pad1, [:uint8, 3]
       end
       
@@ -34,9 +34,9 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :damage, :uint32
       end
       
@@ -44,11 +44,11 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :damage, :uint32
-            :repair, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :damage, :uint32,
+            :repair, :uint32,
             :parts, :uint32
       end
       
@@ -56,10 +56,10 @@ module Xrb
         OPCODE = 4
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :drawable, :uint32
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :drawable, :uint32,
             :region, :uint32
       end
       

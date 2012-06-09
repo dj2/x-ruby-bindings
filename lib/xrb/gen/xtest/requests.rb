@@ -9,9 +9,9 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
             :minor_version, :uint16
       end
       
@@ -19,8 +19,8 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
             :length, :uint16
       end
       
@@ -28,18 +28,18 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :type, :uint8
-            :detail, :uint8
-            :pad1, [:uint8, 2]
-            :time, :uint32
-            :root, :uint32
-            :pad2, [:uint8, 8]
-            :rootX, :int16
-            :rootY, :int16
-            :pad3, [:uint8, 7]
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :type, :uint8,
+            :detail, :uint8,
+            :pad1, [:uint8, 2],
+            :time, :uint32,
+            :root, :uint32,
+            :pad2, [:uint8, 8],
+            :rootX, :int16,
+            :rootY, :int16,
+            :pad3, [:uint8, 7],
             :deviceid, :uint8
       end
       
@@ -47,10 +47,10 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8
-            :minor_opcode, :uint8
-            :length, :uint16
-            :impervious, :bool
+            :major_opcode, :uint8,
+            :minor_opcode, :uint8,
+            :length, :uint16,
+            :impervious, :bool,
             :pad1, [:uint8, 3]
       end
       

@@ -8,18 +8,18 @@ module Xrb
       OPCODE = 2
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :same_screen, :bool
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :same_screen, :bool,
           :pad1, [:uint8, 1]
     end
     
@@ -27,18 +27,18 @@ module Xrb
       OPCODE = 3
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :same_screen, :bool
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :same_screen, :bool,
           :pad1, [:uint8, 1]
     end
     
@@ -46,18 +46,18 @@ module Xrb
       OPCODE = 4
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :same_screen, :bool
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :same_screen, :bool,
           :pad1, [:uint8, 1]
     end
     
@@ -65,18 +65,18 @@ module Xrb
       OPCODE = 5
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :same_screen, :bool
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :same_screen, :bool,
           :pad1, [:uint8, 1]
     end
     
@@ -84,18 +84,18 @@ module Xrb
       OPCODE = 6
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :same_screen, :bool
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :same_screen, :bool,
           :pad1, [:uint8, 1]
     end
     
@@ -103,18 +103,18 @@ module Xrb
       OPCODE = 7
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :mode, :uint8
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :mode, :uint8,
           :same_screen_focus, :uint8
     end
     
@@ -122,18 +122,18 @@ module Xrb
       OPCODE = 8
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :time, :uint32
-          :root, :uint32
-          :event, :uint32
-          :child, :uint32
-          :root_x, :int16
-          :root_y, :int16
-          :event_x, :int16
-          :event_y, :int16
-          :state, :uint16
-          :mode, :uint8
+          :response_type, :uint8,
+          :detail, :uint8,
+          :time, :uint32,
+          :root, :uint32,
+          :event, :uint32,
+          :child, :uint32,
+          :root_x, :int16,
+          :root_y, :int16,
+          :event_x, :int16,
+          :event_y, :int16,
+          :state, :uint16,
+          :mode, :uint8,
           :same_screen_focus, :uint8
     end
     
@@ -141,10 +141,10 @@ module Xrb
       OPCODE = 9
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :event, :uint32
-          :mode, :uint8
+          :response_type, :uint8,
+          :detail, :uint8,
+          :event, :uint32,
+          :mode, :uint8,
           :pad1, [:uint8, 3]
     end
     
@@ -152,10 +152,10 @@ module Xrb
       OPCODE = 10
       
       layout \
-          :response_type, :uint8
-          :detail, :uint8
-          :event, :uint32
-          :mode, :uint8
+          :response_type, :uint8,
+          :detail, :uint8,
+          :event, :uint32,
+          :mode, :uint8,
           :pad1, [:uint8, 3]
     end
     
@@ -163,7 +163,7 @@ module Xrb
       OPCODE = 11
       
       layout \
-          :response_type, :uint8
+          :response_type, :uint8,
           :keys, [:uint8, 31]
     end
     
@@ -171,14 +171,14 @@ module Xrb
       OPCODE = 12
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :window, :uint32
-          :x, :uint16
-          :y, :uint16
-          :width, :uint16
-          :height, :uint16
-          :count, :uint16
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :window, :uint32,
+          :x, :uint16,
+          :y, :uint16,
+          :width, :uint16,
+          :height, :uint16,
+          :count, :uint16,
           :pad2, [:uint8, 2]
     end
     
@@ -186,16 +186,16 @@ module Xrb
       OPCODE = 13
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :drawable, :uint32
-          :x, :uint16
-          :y, :uint16
-          :width, :uint16
-          :height, :uint16
-          :minor_opcode, :uint16
-          :count, :uint16
-          :major_opcode, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :drawable, :uint32,
+          :x, :uint16,
+          :y, :uint16,
+          :width, :uint16,
+          :height, :uint16,
+          :minor_opcode, :uint16,
+          :count, :uint16,
+          :major_opcode, :uint8,
           :pad2, [:uint8, 3]
     end
     
@@ -203,11 +203,11 @@ module Xrb
       OPCODE = 14
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :drawable, :uint32
-          :minor_opcode, :uint16
-          :major_opcode, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :drawable, :uint32,
+          :minor_opcode, :uint16,
+          :major_opcode, :uint8,
           :pad2, [:uint8, 1]
     end
     
@@ -215,10 +215,10 @@ module Xrb
       OPCODE = 15
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :window, :uint32
-          :state, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :window, :uint32,
+          :state, :uint8,
           :pad2, [:uint8, 3]
     end
     
@@ -226,16 +226,16 @@ module Xrb
       OPCODE = 16
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :parent, :uint32
-          :window, :uint32
-          :x, :int16
-          :y, :int16
-          :width, :uint16
-          :height, :uint16
-          :border_width, :uint16
-          :override_redirect, :bool
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :parent, :uint32,
+          :window, :uint32,
+          :x, :int16,
+          :y, :int16,
+          :width, :uint16,
+          :height, :uint16,
+          :border_width, :uint16,
+          :override_redirect, :bool,
           :pad2, [:uint8, 1]
     end
     
@@ -243,9 +243,9 @@ module Xrb
       OPCODE = 17
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
           :window, :uint32
     end
     
@@ -253,11 +253,11 @@ module Xrb
       OPCODE = 18
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :from_configure, :bool
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :from_configure, :bool,
           :pad2, [:uint8, 3]
     end
     
@@ -265,11 +265,11 @@ module Xrb
       OPCODE = 19
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :override_redirect, :bool
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :override_redirect, :bool,
           :pad2, [:uint8, 3]
     end
     
@@ -277,9 +277,9 @@ module Xrb
       OPCODE = 20
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :parent, :uint32
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :parent, :uint32,
           :window, :uint32
     end
     
@@ -287,14 +287,14 @@ module Xrb
       OPCODE = 21
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :parent, :uint32
-          :x, :int16
-          :y, :int16
-          :override_redirect, :bool
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :parent, :uint32,
+          :x, :int16,
+          :y, :int16,
+          :override_redirect, :bool,
           :pad2, [:uint8, 3]
     end
     
@@ -302,17 +302,17 @@ module Xrb
       OPCODE = 22
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :above_sibling, :uint32
-          :x, :int16
-          :y, :int16
-          :width, :uint16
-          :height, :uint16
-          :border_width, :uint16
-          :override_redirect, :bool
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :above_sibling, :uint32,
+          :x, :int16,
+          :y, :int16,
+          :width, :uint16,
+          :height, :uint16,
+          :border_width, :uint16,
+          :override_redirect, :bool,
           :pad2, [:uint8, 1]
     end
     
@@ -320,16 +320,16 @@ module Xrb
       OPCODE = 23
       
       layout \
-          :response_type, :uint8
-          :stack_mode, :uint8
-          :parent, :uint32
-          :window, :uint32
-          :sibling, :uint32
-          :x, :int16
-          :y, :int16
-          :width, :uint16
-          :height, :uint16
-          :border_width, :uint16
+          :response_type, :uint8,
+          :stack_mode, :uint8,
+          :parent, :uint32,
+          :window, :uint32,
+          :sibling, :uint32,
+          :x, :int16,
+          :y, :int16,
+          :width, :uint16,
+          :height, :uint16,
+          :border_width, :uint16,
           :value_mask, :uint16
     end
     
@@ -337,11 +337,11 @@ module Xrb
       OPCODE = 24
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :x, :int16
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :x, :int16,
           :y, :int16
     end
     
@@ -349,10 +349,10 @@ module Xrb
       OPCODE = 25
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :window, :uint32
-          :width, :uint16
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :window, :uint32,
+          :width, :uint16,
           :height, :uint16
     end
     
@@ -360,12 +360,12 @@ module Xrb
       OPCODE = 26
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :pad2, [:uint8, 4]
-          :place, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :pad2, [:uint8, 4],
+          :place, :uint8,
           :pad3, [:uint8, 3]
     end
     
@@ -373,12 +373,12 @@ module Xrb
       OPCODE = 27
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :event, :uint32
-          :window, :uint32
-          :pad2, [:uint8, 4]
-          :place, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :event, :uint32,
+          :window, :uint32,
+          :pad2, [:uint8, 4],
+          :place, :uint8,
           :pad3, [:uint8, 3]
     end
     
@@ -386,12 +386,12 @@ module Xrb
       OPCODE = 28
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :window, :uint32
-          :atom, :uint32
-          :time, :uint32
-          :state, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :window, :uint32,
+          :atom, :uint32,
+          :time, :uint32,
+          :state, :uint8,
           :pad2, [:uint8, 3]
     end
     
@@ -399,10 +399,10 @@ module Xrb
       OPCODE = 29
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :time, :uint32
-          :owner, :uint32
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :time, :uint32,
+          :owner, :uint32,
           :selection, :uint32
     end
     
@@ -410,13 +410,13 @@ module Xrb
       OPCODE = 30
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :time, :uint32
-          :owner, :uint32
-          :requestor, :uint32
-          :selection, :uint32
-          :target, :uint32
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :time, :uint32,
+          :owner, :uint32,
+          :requestor, :uint32,
+          :selection, :uint32,
+          :target, :uint32,
           :property, :uint32
     end
     
@@ -424,12 +424,12 @@ module Xrb
       OPCODE = 31
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :time, :uint32
-          :requestor, :uint32
-          :selection, :uint32
-          :target, :uint32
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :time, :uint32,
+          :requestor, :uint32,
+          :selection, :uint32,
+          :target, :uint32,
           :property, :uint32
     end
     
@@ -437,12 +437,12 @@ module Xrb
       OPCODE = 32
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :window, :uint32
-          :colormap, :uint32
-          :new, :bool
-          :state, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :window, :uint32,
+          :colormap, :uint32,
+          :new, :bool,
+          :state, :uint8,
           :pad2, [:uint8, 2]
     end
     
@@ -450,10 +450,10 @@ module Xrb
       OPCODE = 33
       
       layout \
-          :response_type, :uint8
-          :format, :uint8
-          :window, :uint32
-          :type, :uint32
+          :response_type, :uint8,
+          :format, :uint8,
+          :window, :uint32,
+          :type, :uint32,
           :data, :ClientMessageData
     end
     
@@ -461,11 +461,11 @@ module Xrb
       OPCODE = 34
       
       layout \
-          :response_type, :uint8
-          :pad1, [:uint8, 1]
-          :request, :uint8
-          :first_keycode, :uint8
-          :count, :uint8
+          :response_type, :uint8,
+          :pad1, [:uint8, 1],
+          :request, :uint8,
+          :first_keycode, :uint8,
+          :count, :uint8,
           :pad2, [:uint8, 1]
     end
     

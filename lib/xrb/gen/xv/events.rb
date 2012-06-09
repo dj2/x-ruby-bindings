@@ -9,10 +9,10 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :reason, :uint8
-            :time, :uint32
-            :drawable, :uint32
+            :response_type, :uint8,
+            :reason, :uint8,
+            :time, :uint32,
+            :drawable, :uint32,
             :port, :uint32
       end
       
@@ -20,11 +20,11 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :response_type, :uint8
-            :pad1, [:uint8, 1]
-            :time, :uint32
-            :port, :uint32
-            :attribute, :uint32
+            :response_type, :uint8,
+            :pad1, [:uint8, 1],
+            :time, :uint32,
+            :port, :uint32,
+            :attribute, :uint32,
             :value, :int32
       end
       

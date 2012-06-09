@@ -5,7 +5,6 @@
 module Xrb
   module Xevie
     module Message
-      
       class Event < Xrd::Message
         layout \
             :pad1, [:uint8, 32]

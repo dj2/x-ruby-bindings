@@ -5,7 +5,7 @@
 module Xrb
   module Composite
     # Redirect
-    REDIRECT_AUTOMATIC = (1)
+    REDIRECT_AUTOMATIC = (1),
     REDIRECT_MANUAL = (2)
     
   end

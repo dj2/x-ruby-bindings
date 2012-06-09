@@ -15,7 +15,7 @@ module Xrb
       
       class Printer < Xrd::Message
         layout \
-            :nameLen, :uint32
+            :nameLen, :uint32,
             :descLen, :uint32
       end
       
@@ -26,10 +26,6 @@ module Xrb
           [id].pack('L')
         end
       end
-      
-      
-      
-      
       
     end
   end

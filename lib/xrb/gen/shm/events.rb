@@ -9,13 +9,13 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :pad1, [:uint8, 1]
-            :drawable, :uint32
-            :minor_event, :uint16
-            :major_event, :uint8
-            :pad2, [:uint8, 1]
-            :shmseg, :uint32
+            :response_type, :uint8,
+            :pad1, [:uint8, 1],
+            :drawable, :uint32,
+            :minor_event, :uint16,
+            :major_event, :uint8,
+            :pad2, [:uint8, 1],
+            :shmseg, :uint32,
             :offset, :uint32
       end
       

@@ -9,12 +9,12 @@ module Xrb
         OPCODE = -1
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -22,12 +22,12 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -35,12 +35,12 @@ module Xrb
         OPCODE = 1
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -48,12 +48,12 @@ module Xrb
         OPCODE = 2
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -61,12 +61,12 @@ module Xrb
         OPCODE = 3
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -74,12 +74,12 @@ module Xrb
         OPCODE = 4
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -87,12 +87,12 @@ module Xrb
         OPCODE = 5
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -100,12 +100,12 @@ module Xrb
         OPCODE = 6
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -113,12 +113,12 @@ module Xrb
         OPCODE = 7
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -126,12 +126,12 @@ module Xrb
         OPCODE = 8
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -139,12 +139,12 @@ module Xrb
         OPCODE = 9
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -152,12 +152,12 @@ module Xrb
         OPCODE = 10
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -165,12 +165,12 @@ module Xrb
         OPCODE = 11
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -178,12 +178,12 @@ module Xrb
         OPCODE = 12
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       
@@ -191,12 +191,12 @@ module Xrb
         OPCODE = 13
         
         layout \
-            :response_type, :uint8
-            :error_code, :uint8
-            :sequence, :uint16
-            :bad_value, :uint32
-            :minor_opcode, :uint16
-            :major_opcode, :uint8
+            :response_type, :uint8,
+            :error_code, :uint8,
+            :sequence, :uint16,
+            :bad_value, :uint32,
+            :minor_opcode, :uint16,
+            :major_opcode, :uint8,
             :pad1, [:uint8, 21]
       end
       

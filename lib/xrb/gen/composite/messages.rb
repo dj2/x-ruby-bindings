@@ -5,7 +5,6 @@
 module Xrb
   module Composite
     module Message
-      
     end
   end
 end
