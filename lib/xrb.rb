@@ -1,6 +1,6 @@
 require 'xrb/constants'
 require 'xrb/generic_types'
-require 'xrb/generated/xproto'
+require 'xrb/xproto'
 require 'xrb/connection'
 require 'xrb/setup'
 require 'xrb/window'

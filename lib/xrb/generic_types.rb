@@ -62,8 +62,8 @@ module Xrd
     end
   end
 
-  module Request
-    class VoidCookie < Xrd::Message
+  module Cookie
+    class Void < Xrd::Message
       layout :sequence, :int
     end
   end
