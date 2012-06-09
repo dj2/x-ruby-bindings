@@ -161,7 +161,7 @@ module Xrb
 
           if !ns.types.empty?
             file(ns, "#{ns.header}/messages") do
-              print("module Message") do
+              print("class Message") do
                 Type.new(ns.types, self).process
               end
             end
@@ -288,14 +288,14 @@ module Xrb
         end
 
         def process_type(type)
-          @p.print("class #{@p.type_name(type.name)} < Xrd::Message") do
+          @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
             @p.print("layout \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
           end
         end
 
         def process_union(type)
-          @p.print("class #{@p.type_name(type.name)}") do
+          @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
             @p.print("union \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
           end
@@ -404,7 +404,7 @@ module Xrb
         end
 
         def process_cookie(type)
-          @p.print("class #{@p.type_name(type.name)} < Xrd::Message") do
+          @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
             @p.print("layout :sequence, :int")
           end
         end
