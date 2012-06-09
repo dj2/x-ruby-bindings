@@ -132,7 +132,7 @@ module Xrb
             print("require 'xrb/generic_types'")
             ns.imports.each { |import| print("require 'xrb/#{import}'") }
 
-            name = "xrb/#{ns.header}"
+            name = "xrb/gen/#{ns.header}"
             print("require '#{name}/constants'") unless constants.empty?
             print("require '#{name}/messages'") unless ns.types.empty?
             print("require '#{name}/events'") unless ns.events.empty?
