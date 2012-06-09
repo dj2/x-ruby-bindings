@@ -4,7 +4,7 @@
 
 module Xrb
   module Shape
-    module Message
+    class Message
       class Op
         attr_accessor :id
         

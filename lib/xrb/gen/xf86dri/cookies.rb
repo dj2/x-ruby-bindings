@@ -5,51 +5,51 @@
 module Xrb
   module XF86Dri
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryDirectRenderingCapable < Xrd::Message
+      class QueryDirectRenderingCapable < Xrb::Message
         layout :sequence, :int
       end
       
-      class OpenConnection < Xrd::Message
+      class OpenConnection < Xrb::Message
         layout :sequence, :int
       end
       
-      class CloseConnection < Xrd::Message
+      class CloseConnection < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetClientDriverName < Xrd::Message
+      class GetClientDriverName < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContext < Xrd::Message
+      class CreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyContext < Xrd::Message
+      class DestroyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateDrawable < Xrd::Message
+      class CreateDrawable < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyDrawable < Xrd::Message
+      class DestroyDrawable < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDrawableInfo < Xrd::Message
+      class GetDrawableInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceInfo < Xrd::Message
+      class GetDeviceInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class AuthConnection < Xrd::Message
+      class AuthConnection < Xrb::Message
         layout :sequence, :int
       end
       

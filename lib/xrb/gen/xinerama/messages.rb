@@ -4,8 +4,8 @@
 
 module Xrb
   module Xinerama
-    module Message
-      class ScreenInfo < Xrd::Message
+    class Message
+      class ScreenInfo < Xrb::Message
         layout \
             :x_org, :int16,
             :y_org, :int16,

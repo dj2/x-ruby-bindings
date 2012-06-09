@@ -5,103 +5,103 @@
 module Xrb
   module XPrint
     module Cookie
-      class PrintQueryVersion < Xrd::Message
+      class PrintQueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetPrinterList < Xrd::Message
+      class PrintGetPrinterList < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintRehashPrinterList < Xrd::Message
+      class PrintRehashPrinterList < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContext < Xrd::Message
+      class CreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintSetContext < Xrd::Message
+      class PrintSetContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetContext < Xrd::Message
+      class PrintGetContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintDestroyContext < Xrd::Message
+      class PrintDestroyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetScreenOfContext < Xrd::Message
+      class PrintGetScreenOfContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintStartJob < Xrd::Message
+      class PrintStartJob < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintEndJob < Xrd::Message
+      class PrintEndJob < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintStartDoc < Xrd::Message
+      class PrintStartDoc < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintEndDoc < Xrd::Message
+      class PrintEndDoc < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintPutDocumentData < Xrd::Message
+      class PrintPutDocumentData < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetDocumentData < Xrd::Message
+      class PrintGetDocumentData < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintStartPage < Xrd::Message
+      class PrintStartPage < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintEndPage < Xrd::Message
+      class PrintEndPage < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintSelectInput < Xrd::Message
+      class PrintSelectInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintInputSelected < Xrd::Message
+      class PrintInputSelected < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetAttributes < Xrd::Message
+      class PrintGetAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetOneAttributes < Xrd::Message
+      class PrintGetOneAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintSetAttributes < Xrd::Message
+      class PrintSetAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetPageDimensions < Xrd::Message
+      class PrintGetPageDimensions < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintQueryScreens < Xrd::Message
+      class PrintQueryScreens < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintSetImageResolution < Xrd::Message
+      class PrintSetImageResolution < Xrb::Message
         layout :sequence, :int
       end
       
-      class PrintGetImageResolution < Xrd::Message
+      class PrintGetImageResolution < Xrb::Message
         layout :sequence, :int
       end
       

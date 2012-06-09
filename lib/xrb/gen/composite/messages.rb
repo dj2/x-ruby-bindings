@@ -4,7 +4,7 @@
 
 module Xrb
   module Composite
-    module Message
+    class Message
     end
   end
 end

@@ -5,27 +5,27 @@
 module Xrb
   module Xinerama
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetState < Xrd::Message
+      class GetState < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenCount < Xrd::Message
+      class GetScreenCount < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenSize < Xrd::Message
+      class GetScreenSize < Xrb::Message
         layout :sequence, :int
       end
       
-      class IsActive < Xrd::Message
+      class IsActive < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryScreens < Xrd::Message
+      class QueryScreens < Xrb::Message
         layout :sequence, :int
       end
       

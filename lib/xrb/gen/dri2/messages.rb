@@ -4,8 +4,8 @@
 
 module Xrb
   module DRI2
-    module Message
-      class Dri2buffer < Xrd::Message
+    class Message
+      class Dri2buffer < Xrb::Message
         layout \
             :attachment, :uint32,
             :name, :uint32,
@@ -14,7 +14,7 @@ module Xrb
             :flags, :uint32
       end
       
-      class AttachFormat < Xrd::Message
+      class AttachFormat < Xrb::Message
         layout \
             :attachment, :uint32,
             :format, :uint32

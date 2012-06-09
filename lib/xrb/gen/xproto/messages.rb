@@ -3,8 +3,8 @@
 #
 
 module Xrb
-  module Message
-    class Char2b < Xrd::Message
+  class Message
+    class Char2b < Xrb::Message
       layout \
           :byte1, :uint8,
           :byte2, :uint8
@@ -122,13 +122,13 @@ module Xrb
       end
     end
     
-    class Point < Xrd::Message
+    class Point < Xrb::Message
       layout \
           :x, :int16,
           :y, :int16
     end
     
-    class Rectangle < Xrd::Message
+    class Rectangle < Xrb::Message
       layout \
           :x, :int16,
           :y, :int16,
@@ -136,7 +136,7 @@ module Xrb
           :height, :uint16
     end
     
-    class Arc < Xrd::Message
+    class Arc < Xrb::Message
       layout \
           :x, :int16,
           :y, :int16,
@@ -146,7 +146,7 @@ module Xrb
           :angle2, :int16
     end
     
-    class Format < Xrd::Message
+    class Format < Xrb::Message
       layout \
           :depth, :uint8,
           :bits_per_pixel, :uint8,
@@ -154,7 +154,7 @@ module Xrb
           :pad1, [:uint8, 5]
     end
     
-    class VisualType < Xrd::Message
+    class VisualType < Xrb::Message
       layout \
           :visual_id, :uint32,
           :class, :uint8,
@@ -166,7 +166,7 @@ module Xrb
           :pad1, [:uint8, 4]
     end
     
-    class Depth < Xrd::Message
+    class Depth < Xrb::Message
       layout \
           :depth, :uint8,
           :pad1, [:uint8, 1],
@@ -174,7 +174,7 @@ module Xrb
           :pad2, [:uint8, 4]
     end
     
-    class Screen < Xrd::Message
+    class Screen < Xrb::Message
       layout \
           :root, :uint32,
           :default_colormap, :uint32,
@@ -194,7 +194,7 @@ module Xrb
           :allowed_depths_len, :uint8
     end
     
-    class SetupRequest < Xrd::Message
+    class SetupRequest < Xrb::Message
       layout \
           :byte_order, :uint8,
           :pad1, [:uint8, 1],
@@ -205,7 +205,7 @@ module Xrb
           :pad2, [:uint8, 2]
     end
     
-    class SetupFailed < Xrd::Message
+    class SetupFailed < Xrb::Message
       layout \
           :status, :uint8,
           :reason_len, :uint8,
@@ -214,14 +214,14 @@ module Xrb
           :length, :uint16
     end
     
-    class SetupAuthenticate < Xrd::Message
+    class SetupAuthenticate < Xrb::Message
       layout \
           :status, :uint8,
           :pad1, [:uint8, 5],
           :length, :uint16
     end
     
-    class Setup < Xrd::Message
+    class Setup < Xrb::Message
       layout \
           :status, :uint8,
           :pad1, [:uint8, 1],
@@ -245,27 +245,27 @@ module Xrb
           :pad2, [:uint8, 4]
     end
     
-    class ClientMessageData
+    class ClientMessageData < Xrb::Message
       union \
           :data8, [:uint8, 20],
           :data16, [:uint16, 10],
           :data32, [:uint32, 5]
     end
     
-    class TimeCoord < Xrd::Message
+    class TimeCoord < Xrb::Message
       layout \
           :time, :uint32,
           :x, :int16,
           :y, :int16
     end
     
-    class FontProp < Xrd::Message
+    class FontProp < Xrb::Message
       layout \
           :name, :uint32,
           :value, :uint32
     end
     
-    class CharInfo < Xrd::Message
+    class CharInfo < Xrb::Message
       layout \
           :left_side_bearing, :int16,
           :right_side_bearing, :int16,
@@ -275,12 +275,12 @@ module Xrb
           :attributes, :uint16
     end
     
-    class Str < Xrd::Message
+    class Str < Xrb::Message
       layout \
           :name_len, :uint8
     end
     
-    class Segment < Xrd::Message
+    class Segment < Xrb::Message
       layout \
           :x1, :int16,
           :y1, :int16,
@@ -288,7 +288,7 @@ module Xrb
           :y2, :int16
     end
     
-    class ColorItem < Xrd::Message
+    class ColorItem < Xrb::Message
       layout \
           :pixel, :uint32,
           :red, :uint16,
@@ -298,7 +298,7 @@ module Xrb
           :pad1, [:uint8, 1]
     end
     
-    class RGB < Xrd::Message
+    class RGB < Xrb::Message
       layout \
           :red, :uint16,
           :green, :uint16,
@@ -306,7 +306,7 @@ module Xrb
           :pad1, [:uint8, 2]
     end
     
-    class Host < Xrd::Message
+    class Host < Xrb::Message
       layout \
           :family, :uint8,
           :pad1, [:uint8, 1],

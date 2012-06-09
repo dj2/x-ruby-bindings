@@ -4,7 +4,7 @@
 
 module Xrb
   module Glx
-    module Message
+    class Message
       class Pixmap
         attr_accessor :id
         

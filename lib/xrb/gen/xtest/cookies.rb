@@ -5,19 +5,19 @@
 module Xrb
   module Test
     module Cookie
-      class GetVersion < Xrd::Message
+      class GetVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class CompareCursor < Xrd::Message
+      class CompareCursor < Xrb::Message
         layout :sequence, :int
       end
       
-      class FakeInput < Xrd::Message
+      class FakeInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class GrabControl < Xrd::Message
+      class GrabControl < Xrb::Message
         layout :sequence, :int
       end
       

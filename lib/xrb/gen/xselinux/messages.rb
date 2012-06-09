@@ -4,8 +4,8 @@
 
 module Xrb
   module SELinux
-    module Message
-      class ListItem < Xrd::Message
+    class Message
+      class ListItem < Xrb::Message
         layout \
             :name, :uint32,
             :object_context_len, :uint32,

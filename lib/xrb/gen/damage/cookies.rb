@@ -5,23 +5,23 @@
 module Xrb
   module Damage
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Create < Xrd::Message
+      class Create < Xrb::Message
         layout :sequence, :int
       end
       
-      class Destroy < Xrd::Message
+      class Destroy < Xrb::Message
         layout :sequence, :int
       end
       
-      class Subtract < Xrd::Message
+      class Subtract < Xrb::Message
         layout :sequence, :int
       end
       
-      class Add < Xrd::Message
+      class Add < Xrb::Message
         layout :sequence, :int
       end
       

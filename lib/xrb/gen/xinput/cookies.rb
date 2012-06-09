@@ -5,135 +5,135 @@
 module Xrb
   module Input
     module Cookie
-      class GetExtensionVersion < Xrd::Message
+      class GetExtensionVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListInputDevices < Xrd::Message
+      class ListInputDevices < Xrb::Message
         layout :sequence, :int
       end
       
-      class OpenDevice < Xrd::Message
+      class OpenDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class CloseDevice < Xrd::Message
+      class CloseDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceMode < Xrd::Message
+      class SetDeviceMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectExtensionEvent < Xrd::Message
+      class SelectExtensionEvent < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSelectedExtensionEvents < Xrd::Message
+      class GetSelectedExtensionEvents < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeDeviceDontPropagateList < Xrd::Message
+      class ChangeDeviceDontPropagateList < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceDontPropagateList < Xrd::Message
+      class GetDeviceDontPropagateList < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceMotionEvents < Xrd::Message
+      class GetDeviceMotionEvents < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeKeyboardDevice < Xrd::Message
+      class ChangeKeyboardDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangePointerDevice < Xrd::Message
+      class ChangePointerDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class GrabDevice < Xrd::Message
+      class GrabDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class UngrabDevice < Xrd::Message
+      class UngrabDevice < Xrb::Message
         layout :sequence, :int
       end
       
-      class GrabDeviceKey < Xrd::Message
+      class GrabDeviceKey < Xrb::Message
         layout :sequence, :int
       end
       
-      class UngrabDeviceKey < Xrd::Message
+      class UngrabDeviceKey < Xrb::Message
         layout :sequence, :int
       end
       
-      class GrabDeviceButton < Xrd::Message
+      class GrabDeviceButton < Xrb::Message
         layout :sequence, :int
       end
       
-      class UngrabDeviceButton < Xrd::Message
+      class UngrabDeviceButton < Xrb::Message
         layout :sequence, :int
       end
       
-      class AllowDeviceEvents < Xrd::Message
+      class AllowDeviceEvents < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceFocus < Xrd::Message
+      class GetDeviceFocus < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceFocus < Xrd::Message
+      class SetDeviceFocus < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetFeedbackControl < Xrd::Message
+      class GetFeedbackControl < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceKeyMapping < Xrd::Message
+      class GetDeviceKeyMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeDeviceKeyMapping < Xrd::Message
+      class ChangeDeviceKeyMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceModifierMapping < Xrd::Message
+      class GetDeviceModifierMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceModifierMapping < Xrd::Message
+      class SetDeviceModifierMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceButtonMapping < Xrd::Message
+      class GetDeviceButtonMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceButtonMapping < Xrd::Message
+      class SetDeviceButtonMapping < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryDeviceState < Xrd::Message
+      class QueryDeviceState < Xrb::Message
         layout :sequence, :int
       end
       
-      class SendExtensionEvent < Xrd::Message
+      class SendExtensionEvent < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeviceBell < Xrd::Message
+      class DeviceBell < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceValuators < Xrd::Message
+      class SetDeviceValuators < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceControl < Xrd::Message
+      class GetDeviceControl < Xrb::Message
         layout :sequence, :int
       end
       

@@ -4,7 +4,7 @@
 
 module Xrb
   module XvMC
-    module Message
+    class Message
       class Context
         attr_accessor :id
         
@@ -29,7 +29,7 @@ module Xrb
         end
       end
       
-      class SurfaceInfo < Xrd::Message
+      class SurfaceInfo < Xrb::Message
         layout \
             :id, :uint32,
             :chroma_format, :uint16,

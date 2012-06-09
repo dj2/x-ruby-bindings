@@ -5,127 +5,127 @@
 module Xrb
   module XFixes
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeSaveSet < Xrd::Message
+      class ChangeSaveSet < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectSelectionInput < Xrd::Message
+      class SelectSelectionInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectCursorInput < Xrd::Message
+      class SelectCursorInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCursorImage < Xrd::Message
+      class GetCursorImage < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegion < Xrd::Message
+      class CreateRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegionFromBitmap < Xrd::Message
+      class CreateRegionFromBitmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegionFromWindow < Xrd::Message
+      class CreateRegionFromWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegionFromGc < Xrd::Message
+      class CreateRegionFromGc < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegionFromPicture < Xrd::Message
+      class CreateRegionFromPicture < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyRegion < Xrd::Message
+      class DestroyRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetRegion < Xrd::Message
+      class SetRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class CopyRegion < Xrd::Message
+      class CopyRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class UnionRegion < Xrd::Message
+      class UnionRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class IntersectRegion < Xrd::Message
+      class IntersectRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SubtractRegion < Xrd::Message
+      class SubtractRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class InvertRegion < Xrd::Message
+      class InvertRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class TranslateRegion < Xrd::Message
+      class TranslateRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class RegionExtents < Xrd::Message
+      class RegionExtents < Xrb::Message
         layout :sequence, :int
       end
       
-      class FetchRegion < Xrd::Message
+      class FetchRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetGcClipRegion < Xrd::Message
+      class SetGcClipRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetWindowShapeRegion < Xrd::Message
+      class SetWindowShapeRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPictureClipRegion < Xrd::Message
+      class SetPictureClipRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetCursorName < Xrd::Message
+      class SetCursorName < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCursorName < Xrd::Message
+      class GetCursorName < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCursorImageAndName < Xrd::Message
+      class GetCursorImageAndName < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeCursor < Xrd::Message
+      class ChangeCursor < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeCursorByName < Xrd::Message
+      class ChangeCursorByName < Xrb::Message
         layout :sequence, :int
       end
       
-      class ExpandRegion < Xrd::Message
+      class ExpandRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class HideCursor < Xrd::Message
+      class HideCursor < Xrb::Message
         layout :sequence, :int
       end
       
-      class ShowCursor < Xrd::Message
+      class ShowCursor < Xrb::Message
         layout :sequence, :int
       end
       

@@ -4,7 +4,7 @@
 
 module Xrb
   module Xv
-    module Message
+    class Message
       class Port
         attr_accessor :id
         
@@ -21,20 +21,20 @@ module Xrb
         end
       end
       
-      class Rational < Xrd::Message
+      class Rational < Xrb::Message
         layout \
             :numerator, :int32,
             :denominator, :int32
       end
       
-      class Format < Xrd::Message
+      class Format < Xrb::Message
         layout \
             :visual, :uint32,
             :depth, :uint8,
             :pad1, [:uint8, 3]
       end
       
-      class AdaptorInfo < Xrd::Message
+      class AdaptorInfo < Xrb::Message
         layout \
             :base_id, :uint32,
             :name_size, :uint16,
@@ -44,7 +44,7 @@ module Xrb
             :pad1, [:uint8, 1]
       end
       
-      class EncodingInfo < Xrd::Message
+      class EncodingInfo < Xrb::Message
         layout \
             :encoding, :uint32,
             :name_size, :uint16,
@@ -54,7 +54,7 @@ module Xrb
             :rate, :Rational
       end
       
-      class Image < Xrd::Message
+      class Image < Xrb::Message
         layout \
             :id, :uint32,
             :width, :uint16,
@@ -63,7 +63,7 @@ module Xrb
             :num_planes, :uint32
       end
       
-      class AttributeInfo < Xrd::Message
+      class AttributeInfo < Xrb::Message
         layout \
             :flags, :uint32,
             :min, :int32,
@@ -71,7 +71,7 @@ module Xrb
             :size, :uint32
       end
       
-      class ImageFormatInfo < Xrd::Message
+      class ImageFormatInfo < Xrb::Message
         layout \
             :id, :uint32,
             :type, :uint8,

@@ -5,95 +5,95 @@
 module Xrb
   module SELinux
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceCreateContext < Xrd::Message
+      class SetDeviceCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceCreateContext < Xrd::Message
+      class GetDeviceCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetDeviceContext < Xrd::Message
+      class SetDeviceContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDeviceContext < Xrd::Message
+      class GetDeviceContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetWindowCreateContext < Xrd::Message
+      class SetWindowCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetWindowCreateContext < Xrd::Message
+      class GetWindowCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetWindowContext < Xrd::Message
+      class GetWindowContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPropertyCreateContext < Xrd::Message
+      class SetPropertyCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPropertyCreateContext < Xrd::Message
+      class GetPropertyCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPropertyUseContext < Xrd::Message
+      class SetPropertyUseContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPropertyUseContext < Xrd::Message
+      class GetPropertyUseContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPropertyContext < Xrd::Message
+      class GetPropertyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPropertyDataContext < Xrd::Message
+      class GetPropertyDataContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListProperties < Xrd::Message
+      class ListProperties < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetSelectionCreateContext < Xrd::Message
+      class SetSelectionCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSelectionCreateContext < Xrd::Message
+      class GetSelectionCreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetSelectionUseContext < Xrd::Message
+      class SetSelectionUseContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSelectionUseContext < Xrd::Message
+      class GetSelectionUseContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSelectionContext < Xrd::Message
+      class GetSelectionContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSelectionDataContext < Xrd::Message
+      class GetSelectionDataContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListSelections < Xrd::Message
+      class ListSelections < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetClientContext < Xrd::Message
+      class GetClientContext < Xrb::Message
         layout :sequence, :int
       end
       

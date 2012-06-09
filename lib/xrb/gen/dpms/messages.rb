@@ -4,7 +4,7 @@
 
 module Xrb
   module DPMS
-    module Message
+    class Message
     end
   end
 end

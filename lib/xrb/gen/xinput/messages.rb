@@ -4,7 +4,7 @@
 
 module Xrb
   module Input
-    module Message
+    class Message
       class KeyCode
         attr_accessor :id
         
@@ -21,7 +21,7 @@ module Xrb
         end
       end
       
-      class DeviceInfo < Xrd::Message
+      class DeviceInfo < Xrb::Message
         layout \
             :device_type, :uint32,
             :device_id, :uint8,
@@ -30,13 +30,13 @@ module Xrb
             :pad1, [:uint8, 1]
       end
       
-      class InputInfo < Xrd::Message
+      class InputInfo < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8
       end
       
-      class KeyInfo < Xrd::Message
+      class KeyInfo < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
@@ -46,21 +46,21 @@ module Xrb
             :pad1, [:uint8, 2]
       end
       
-      class ButtonInfo < Xrd::Message
+      class ButtonInfo < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
             :num_buttons, :uint16
       end
       
-      class AxisInfo < Xrd::Message
+      class AxisInfo < Xrb::Message
         layout \
             :resolution, :uint32,
             :minimum, :int32,
             :maximum, :int32
       end
       
-      class ValuatorInfo < Xrd::Message
+      class ValuatorInfo < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
@@ -69,25 +69,25 @@ module Xrb
             :motion_size, :uint32
       end
       
-      class InputClassInfo < Xrd::Message
+      class InputClassInfo < Xrb::Message
         layout \
             :class_id, :uint8,
             :event_type_base, :uint8
       end
       
-      class DeviceTimeCoord < Xrd::Message
+      class DeviceTimeCoord < Xrb::Message
         layout \
             :time, :uint32
       end
       
-      class FeedbackState < Xrd::Message
+      class FeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
             :len, :uint16
       end
       
-      class KbdFeedbackState < Xrd::Message
+      class KbdFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -103,7 +103,7 @@ module Xrb
             :auto_repeats, [:uint8, 32]
       end
       
-      class PtrFeedbackState < Xrd::Message
+      class PtrFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -114,7 +114,7 @@ module Xrb
             :threshold, :uint16
       end
       
-      class IntegerFeedbackState < Xrd::Message
+      class IntegerFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -124,7 +124,7 @@ module Xrb
             :max_value, :int32
       end
       
-      class StringFeedbackState < Xrd::Message
+      class StringFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -133,7 +133,7 @@ module Xrb
             :num_keysyms, :uint16
       end
       
-      class BellFeedbackState < Xrd::Message
+      class BellFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -144,7 +144,7 @@ module Xrb
             :duration, :uint16
       end
       
-      class LedFeedbackState < Xrd::Message
+      class LedFeedbackState < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -153,14 +153,14 @@ module Xrb
             :led_values, :uint32
       end
       
-      class FeedbackCtl < Xrd::Message
+      class FeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
             :len, :uint16
       end
       
-      class KbdFeedbackCtl < Xrd::Message
+      class KbdFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -175,7 +175,7 @@ module Xrb
             :led_values, :uint32
       end
       
-      class PtrFeedbackCtl < Xrd::Message
+      class PtrFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -186,7 +186,7 @@ module Xrb
             :threshold, :int16
       end
       
-      class IntegerFeedbackCtl < Xrd::Message
+      class IntegerFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -194,7 +194,7 @@ module Xrb
             :int_to_display, :int32
       end
       
-      class StringFeedbackCtl < Xrd::Message
+      class StringFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -203,7 +203,7 @@ module Xrb
             :num_keysyms, :uint16
       end
       
-      class BellFeedbackCtl < Xrd::Message
+      class BellFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -214,7 +214,7 @@ module Xrb
             :duration, :int16
       end
       
-      class LedFeedbackCtl < Xrd::Message
+      class LedFeedbackCtl < Xrb::Message
         layout \
             :class_id, :uint8,
             :id, :uint8,
@@ -223,14 +223,14 @@ module Xrb
             :led_values, :uint32
       end
       
-      class InputState < Xrd::Message
+      class InputState < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
             :num_items, :uint8
       end
       
-      class KeyState < Xrd::Message
+      class KeyState < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
@@ -239,7 +239,7 @@ module Xrb
             :keys, [:uint8, 32]
       end
       
-      class ButtonState < Xrd::Message
+      class ButtonState < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
@@ -248,7 +248,7 @@ module Xrb
             :buttons, [:uint8, 32]
       end
       
-      class ValuatorState < Xrd::Message
+      class ValuatorState < Xrb::Message
         layout \
             :class_id, :uint8,
             :len, :uint8,
@@ -256,20 +256,20 @@ module Xrb
             :mode, :uint8
       end
       
-      class DeviceState < Xrd::Message
+      class DeviceState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16
       end
       
-      class DeviceResolutionState < Xrd::Message
+      class DeviceResolutionState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
             :num_valuators, :uint32
       end
       
-      class DeviceAbsCalibState < Xrd::Message
+      class DeviceAbsCalibState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -283,7 +283,7 @@ module Xrb
             :button_threshold, :uint32
       end
       
-      class DeviceAbsAreaState < Xrd::Message
+      class DeviceAbsAreaState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -295,7 +295,7 @@ module Xrb
             :following, :uint32
       end
       
-      class DeviceCoreState < Xrd::Message
+      class DeviceCoreState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -304,7 +304,7 @@ module Xrb
             :pad1, [:uint8, 2]
       end
       
-      class DeviceEnableState < Xrd::Message
+      class DeviceEnableState < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -312,13 +312,13 @@ module Xrb
             :pad1, [:uint8, 3]
       end
       
-      class DeviceCtl < Xrd::Message
+      class DeviceCtl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16
       end
       
-      class DeviceResolutionCtl < Xrd::Message
+      class DeviceResolutionCtl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -326,7 +326,7 @@ module Xrb
             :num_valuators, :uint8
       end
       
-      class DeviceAbsCalibCtl < Xrd::Message
+      class DeviceAbsCalibCtl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -340,7 +340,7 @@ module Xrb
             :button_threshold, :uint32
       end
       
-      class DeviceAbsAreaCtrl < Xrd::Message
+      class DeviceAbsAreaCtrl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -352,7 +352,7 @@ module Xrb
             :following, :uint32
       end
       
-      class DeviceCoreCtrl < Xrd::Message
+      class DeviceCoreCtrl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,
@@ -360,7 +360,7 @@ module Xrb
             :pad1, [:uint8, 3]
       end
       
-      class DeviceEnableCtrl < Xrd::Message
+      class DeviceEnableCtrl < Xrb::Message
         layout \
             :control_id, :uint16,
             :len, :uint16,

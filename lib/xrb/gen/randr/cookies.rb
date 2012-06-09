@@ -5,123 +5,123 @@
 module Xrb
   module RandR
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetScreenConfig < Xrd::Message
+      class SetScreenConfig < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectInput < Xrd::Message
+      class SelectInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenInfo < Xrd::Message
+      class GetScreenInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenSizeRange < Xrd::Message
+      class GetScreenSizeRange < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetScreenSize < Xrd::Message
+      class SetScreenSize < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenResources < Xrd::Message
+      class GetScreenResources < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetOutputInfo < Xrd::Message
+      class GetOutputInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListOutputProperties < Xrd::Message
+      class ListOutputProperties < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryOutputProperty < Xrd::Message
+      class QueryOutputProperty < Xrb::Message
         layout :sequence, :int
       end
       
-      class ConfigureOutputProperty < Xrd::Message
+      class ConfigureOutputProperty < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeOutputProperty < Xrd::Message
+      class ChangeOutputProperty < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteOutputProperty < Xrd::Message
+      class DeleteOutputProperty < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetOutputProperty < Xrd::Message
+      class GetOutputProperty < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateMode < Xrd::Message
+      class CreateMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyMode < Xrd::Message
+      class DestroyMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class AddOutputMode < Xrd::Message
+      class AddOutputMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteOutputMode < Xrd::Message
+      class DeleteOutputMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCrtcInfo < Xrd::Message
+      class GetCrtcInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetCrtcConfig < Xrd::Message
+      class SetCrtcConfig < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCrtcGammaSize < Xrd::Message
+      class GetCrtcGammaSize < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCrtcGamma < Xrd::Message
+      class GetCrtcGamma < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetCrtcGamma < Xrd::Message
+      class SetCrtcGamma < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetScreenResourcesCurrent < Xrd::Message
+      class GetScreenResourcesCurrent < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetCrtcTransform < Xrd::Message
+      class SetCrtcTransform < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCrtcTransform < Xrd::Message
+      class GetCrtcTransform < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPanning < Xrd::Message
+      class GetPanning < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPanning < Xrd::Message
+      class SetPanning < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetOutputPrimary < Xrd::Message
+      class SetOutputPrimary < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetOutputPrimary < Xrd::Message
+      class GetOutputPrimary < Xrb::Message
         layout :sequence, :int
       end
       

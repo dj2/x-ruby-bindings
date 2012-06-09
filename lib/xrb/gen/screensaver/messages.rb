@@ -4,7 +4,7 @@
 
 module Xrb
   module ScreenSaver
-    module Message
+    class Message
     end
   end
 end

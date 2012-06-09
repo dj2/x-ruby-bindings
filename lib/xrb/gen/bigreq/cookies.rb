@@ -5,7 +5,7 @@
 module Xrb
   module BigRequests
     module Cookie
-      class Enable < Xrd::Message
+      class Enable < Xrb::Message
         layout :sequence, :int
       end
       

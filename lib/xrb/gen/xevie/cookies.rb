@@ -5,23 +5,23 @@
 module Xrb
   module Xevie
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Start < Xrd::Message
+      class Start < Xrb::Message
         layout :sequence, :int
       end
       
-      class End < Xrd::Message
+      class End < Xrb::Message
         layout :sequence, :int
       end
       
-      class Send < Xrd::Message
+      class Send < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectInput < Xrd::Message
+      class SelectInput < Xrb::Message
         layout :sequence, :int
       end
       

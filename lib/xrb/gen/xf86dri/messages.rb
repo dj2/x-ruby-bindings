@@ -4,8 +4,8 @@
 
 module Xrb
   module XF86Dri
-    module Message
-      class DrmClipRect < Xrd::Message
+    class Message
+      class DrmClipRect < Xrb::Message
         layout \
             :x1, :int16,
             :y1, :int16,

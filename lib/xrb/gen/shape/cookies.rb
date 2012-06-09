@@ -5,39 +5,39 @@
 module Xrb
   module Shape
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Rectangles < Xrd::Message
+      class Rectangles < Xrb::Message
         layout :sequence, :int
       end
       
-      class Mask < Xrd::Message
+      class Mask < Xrb::Message
         layout :sequence, :int
       end
       
-      class Combine < Xrd::Message
+      class Combine < Xrb::Message
         layout :sequence, :int
       end
       
-      class Offset < Xrd::Message
+      class Offset < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryExtents < Xrd::Message
+      class QueryExtents < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectInput < Xrd::Message
+      class SelectInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class InputSelected < Xrd::Message
+      class InputSelected < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetRectangles < Xrd::Message
+      class GetRectangles < Xrb::Message
         layout :sequence, :int
       end
       

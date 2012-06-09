@@ -4,7 +4,7 @@
 
 module Xrb
   module XPrint
-    module Message
+    class Message
       class String8
         attr_accessor :id
         
@@ -13,7 +13,7 @@ module Xrb
         end
       end
       
-      class Printer < Xrd::Message
+      class Printer < Xrb::Message
         layout \
             :nameLen, :uint32,
             :descLen, :uint32

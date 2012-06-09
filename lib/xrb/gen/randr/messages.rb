@@ -4,7 +4,7 @@
 
 module Xrb
   module RandR
-    module Message
+    class Message
       class Mode
         attr_accessor :id
         
@@ -29,7 +29,7 @@ module Xrb
         end
       end
       
-      class ScreenSize < Xrd::Message
+      class ScreenSize < Xrb::Message
         layout \
             :width, :uint16,
             :height, :uint16,
@@ -37,12 +37,12 @@ module Xrb
             :mheight, :uint16
       end
       
-      class RefreshRates < Xrd::Message
+      class RefreshRates < Xrb::Message
         layout \
             :nRates, :uint16
       end
       
-      class ModeInfo < Xrd::Message
+      class ModeInfo < Xrb::Message
         layout \
             :id, :uint32,
             :width, :uint16,
@@ -59,7 +59,7 @@ module Xrb
             :mode_flags, :uint32
       end
       
-      class CrtcChange < Xrd::Message
+      class CrtcChange < Xrb::Message
         layout \
             :timestamp, :uint32,
             :window, :uint32,
@@ -73,7 +73,7 @@ module Xrb
             :height, :uint16
       end
       
-      class OutputChange < Xrd::Message
+      class OutputChange < Xrb::Message
         layout \
             :timestamp, :uint32,
             :config_timestamp, :uint32,
@@ -86,7 +86,7 @@ module Xrb
             :subpixel_order, :uint8
       end
       
-      class OutputProperty < Xrd::Message
+      class OutputProperty < Xrb::Message
         layout \
             :window, :uint32,
             :output, :uint32,
@@ -96,7 +96,7 @@ module Xrb
             :pad1, [:uint8, 11]
       end
       
-      class NotifyData
+      class NotifyData < Xrb::Message
         union \
             :cc, :CrtcChange,
             :oc, :OutputChange,

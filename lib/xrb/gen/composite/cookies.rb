@@ -5,39 +5,39 @@
 module Xrb
   module Composite
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class RedirectWindow < Xrd::Message
+      class RedirectWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class RedirectSubwindows < Xrd::Message
+      class RedirectSubwindows < Xrb::Message
         layout :sequence, :int
       end
       
-      class UnredirectWindow < Xrd::Message
+      class UnredirectWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class UnredirectSubwindows < Xrd::Message
+      class UnredirectSubwindows < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateRegionFromBorderClip < Xrd::Message
+      class CreateRegionFromBorderClip < Xrb::Message
         layout :sequence, :int
       end
       
-      class NameWindowPixmap < Xrd::Message
+      class NameWindowPixmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetOverlayWindow < Xrd::Message
+      class GetOverlayWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class ReleaseOverlayWindow < Xrd::Message
+      class ReleaseOverlayWindow < Xrb::Message
         layout :sequence, :int
       end
       

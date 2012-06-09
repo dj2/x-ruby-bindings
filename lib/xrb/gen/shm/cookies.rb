@@ -5,27 +5,27 @@
 module Xrb
   module Shm
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Attach < Xrd::Message
+      class Attach < Xrb::Message
         layout :sequence, :int
       end
       
-      class Detach < Xrd::Message
+      class Detach < Xrb::Message
         layout :sequence, :int
       end
       
-      class PutImage < Xrd::Message
+      class PutImage < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetImage < Xrd::Message
+      class GetImage < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreatePixmap < Xrd::Message
+      class CreatePixmap < Xrb::Message
         layout :sequence, :int
       end
       

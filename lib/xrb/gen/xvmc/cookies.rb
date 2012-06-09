@@ -5,39 +5,39 @@
 module Xrb
   module XvMC
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListSurfaceTypes < Xrd::Message
+      class ListSurfaceTypes < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContext < Xrd::Message
+      class CreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyContext < Xrd::Message
+      class DestroyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateSurface < Xrd::Message
+      class CreateSurface < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroySurface < Xrd::Message
+      class DestroySurface < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateSubpicture < Xrd::Message
+      class CreateSubpicture < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroySubpicture < Xrd::Message
+      class DestroySubpicture < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListSubpictureTypes < Xrd::Message
+      class ListSubpictureTypes < Xrb::Message
         layout :sequence, :int
       end
       

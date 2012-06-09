@@ -4,7 +4,7 @@
 
 module Xrb
   module Sync
-    module Message
+    class Message
       class Alarm
         attr_accessor :id
         
@@ -29,20 +29,20 @@ module Xrb
         end
       end
       
-      class Int64 < Xrd::Message
+      class Int64 < Xrb::Message
         layout \
             :hi, :int32,
             :lo, :uint32
       end
       
-      class Systemcounter < Xrd::Message
+      class Systemcounter < Xrb::Message
         layout \
             :counter, :uint32,
             :resolution, :INT64,
             :name_len, :uint16
       end
       
-      class Trigger < Xrd::Message
+      class Trigger < Xrb::Message
         layout \
             :counter, :uint32,
             :wait_type, :uint32,
@@ -50,7 +50,7 @@ module Xrb
             :test_type, :uint32
       end
       
-      class Waitcondition < Xrd::Message
+      class Waitcondition < Xrb::Message
         layout \
             :trigger, :TRIGGER,
             :event_threshold, :INT64

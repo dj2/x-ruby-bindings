@@ -4,7 +4,7 @@
 
 module Xrb
   module Record
-    module Message
+    class Message
       class Context
         attr_accessor :id
         
@@ -13,25 +13,25 @@ module Xrb
         end
       end
       
-      class Range_8 < Xrd::Message
+      class Range_8 < Xrb::Message
         layout \
             :first, :uint8,
             :last, :uint8
       end
       
-      class Range_16 < Xrd::Message
+      class Range_16 < Xrb::Message
         layout \
             :first, :uint16,
             :last, :uint16
       end
       
-      class ExtRange < Xrd::Message
+      class ExtRange < Xrb::Message
         layout \
             :major, :Range8,
             :minor, :Range16
       end
       
-      class Range < Xrd::Message
+      class Range < Xrb::Message
         layout \
             :core_requests, :Range8,
             :core_replies, :Range8,
@@ -60,7 +60,7 @@ module Xrb
         end
       end
       
-      class ClientInfo < Xrd::Message
+      class ClientInfo < Xrb::Message
         layout \
             :client_resource, :uint32,
             :num_ranges, :uint32

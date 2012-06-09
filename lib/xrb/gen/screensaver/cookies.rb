@@ -5,27 +5,27 @@
 module Xrb
   module ScreenSaver
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryInfo < Xrd::Message
+      class QueryInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectInput < Xrd::Message
+      class SelectInput < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetAttributes < Xrd::Message
+      class SetAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class UnsetAttributes < Xrd::Message
+      class UnsetAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class Suspend < Xrd::Message
+      class Suspend < Xrb::Message
         layout :sequence, :int
       end
       

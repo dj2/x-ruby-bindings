@@ -5,19 +5,19 @@
 module Xrb
   module Res
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryClients < Xrd::Message
+      class QueryClients < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryClientResources < Xrd::Message
+      class QueryClientResources < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryClientPixmapBytes < Xrd::Message
+      class QueryClientPixmapBytes < Xrb::Message
         layout :sequence, :int
       end
       

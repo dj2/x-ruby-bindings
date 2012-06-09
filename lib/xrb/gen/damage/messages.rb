@@ -4,7 +4,7 @@
 
 module Xrb
   module Damage
-    module Message
+    class Message
       class Damage
         attr_accessor :id
         

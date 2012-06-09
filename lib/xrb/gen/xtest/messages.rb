@@ -4,7 +4,7 @@
 
 module Xrb
   module Test
-    module Message
+    class Message
     end
   end
 end

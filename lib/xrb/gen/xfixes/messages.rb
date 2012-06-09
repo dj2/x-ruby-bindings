@@ -4,7 +4,7 @@
 
 module Xrb
   module XFixes
-    module Message
+    class Message
       class Region
         attr_accessor :id
         

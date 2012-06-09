@@ -5,35 +5,35 @@
 module Xrb
   module Record
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContext < Xrd::Message
+      class CreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class RegisterClients < Xrd::Message
+      class RegisterClients < Xrb::Message
         layout :sequence, :int
       end
       
-      class UnregisterClients < Xrd::Message
+      class UnregisterClients < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetContext < Xrd::Message
+      class GetContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class EnableContext < Xrd::Message
+      class EnableContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class DisableContext < Xrd::Message
+      class DisableContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class FreeContext < Xrd::Message
+      class FreeContext < Xrb::Message
         layout :sequence, :int
       end
       

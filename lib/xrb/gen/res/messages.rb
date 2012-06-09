@@ -4,14 +4,14 @@
 
 module Xrb
   module Res
-    module Message
-      class Client < Xrd::Message
+    class Message
+      class Client < Xrb::Message
         layout \
             :resource_base, :uint32,
             :resource_mask, :uint32
       end
       
-      class Type < Xrd::Message
+      class Type < Xrb::Message
         layout \
             :resource_type, :uint32,
             :count, :uint32

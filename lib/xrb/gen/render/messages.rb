@@ -4,7 +4,7 @@
 
 module Xrb
   module Render
-    module Message
+    class Message
       class Glyph
         attr_accessor :id
         
@@ -45,7 +45,7 @@ module Xrb
         end
       end
       
-      class Directformat < Xrd::Message
+      class Directformat < Xrb::Message
         layout \
             :red_shift, :uint16,
             :red_mask, :uint16,
@@ -57,7 +57,7 @@ module Xrb
             :alpha_mask, :uint16
       end
       
-      class Pictforminfo < Xrd::Message
+      class Pictforminfo < Xrb::Message
         layout \
             :id, :uint32,
             :type, :uint8,
@@ -67,13 +67,13 @@ module Xrb
             :colormap, :uint32
       end
       
-      class Pictvisual < Xrd::Message
+      class Pictvisual < Xrb::Message
         layout \
             :visual, :uint32,
             :format, :uint32
       end
       
-      class Pictdepth < Xrd::Message
+      class Pictdepth < Xrb::Message
         layout \
             :depth, :uint8,
             :pad1, [:uint8, 1],
@@ -81,13 +81,13 @@ module Xrb
             :pad2, [:uint8, 4]
       end
       
-      class Pictscreen < Xrd::Message
+      class Pictscreen < Xrb::Message
         layout \
             :num_depths, :uint32,
             :fallback, :uint32
       end
       
-      class Indexvalue < Xrd::Message
+      class Indexvalue < Xrb::Message
         layout \
             :pixel, :uint32,
             :red, :uint16,
@@ -96,7 +96,7 @@ module Xrb
             :alpha, :uint16
       end
       
-      class Color < Xrd::Message
+      class Color < Xrb::Message
         layout \
             :red, :uint16,
             :green, :uint16,
@@ -104,26 +104,26 @@ module Xrb
             :alpha, :uint16
       end
       
-      class Pointfix < Xrd::Message
+      class Pointfix < Xrb::Message
         layout \
             :x, :int32,
             :y, :int32
       end
       
-      class Linefix < Xrd::Message
+      class Linefix < Xrb::Message
         layout \
             :p1, :POINTFIX,
             :p2, :POINTFIX
       end
       
-      class Triangle < Xrd::Message
+      class Triangle < Xrb::Message
         layout \
             :p1, :POINTFIX,
             :p2, :POINTFIX,
             :p3, :POINTFIX
       end
       
-      class Trapezoid < Xrd::Message
+      class Trapezoid < Xrb::Message
         layout \
             :top, :int32,
             :bottom, :int32,
@@ -131,7 +131,7 @@ module Xrb
             :right, :LINEFIX
       end
       
-      class Glyphinfo < Xrd::Message
+      class Glyphinfo < Xrb::Message
         layout \
             :width, :uint16,
             :height, :uint16,
@@ -141,7 +141,7 @@ module Xrb
             :y_off, :int16
       end
       
-      class Transform < Xrd::Message
+      class Transform < Xrb::Message
         layout \
             :matrix11, :int32,
             :matrix12, :int32,
@@ -154,20 +154,20 @@ module Xrb
             :matrix33, :int32
       end
       
-      class Animcursorelt < Xrd::Message
+      class Animcursorelt < Xrb::Message
         layout \
             :cursor, :uint32,
             :delay, :uint32
       end
       
-      class Spanfix < Xrd::Message
+      class Spanfix < Xrb::Message
         layout \
             :l, :int32,
             :r, :int32,
             :y, :int32
       end
       
-      class Trap < Xrd::Message
+      class Trap < Xrb::Message
         layout \
             :top, :SPANFIX,
             :bot, :SPANFIX

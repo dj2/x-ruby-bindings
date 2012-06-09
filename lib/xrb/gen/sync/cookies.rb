@@ -5,83 +5,83 @@
 module Xrb
   module Sync
     module Cookie
-      class Initialize < Xrd::Message
+      class Initialize < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListSystemCounters < Xrd::Message
+      class ListSystemCounters < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateCounter < Xrd::Message
+      class CreateCounter < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyCounter < Xrd::Message
+      class DestroyCounter < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryCounter < Xrd::Message
+      class QueryCounter < Xrb::Message
         layout :sequence, :int
       end
       
-      class Await < Xrd::Message
+      class Await < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeCounter < Xrd::Message
+      class ChangeCounter < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetCounter < Xrd::Message
+      class SetCounter < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateAlarm < Xrd::Message
+      class CreateAlarm < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeAlarm < Xrd::Message
+      class ChangeAlarm < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyAlarm < Xrd::Message
+      class DestroyAlarm < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryAlarm < Xrd::Message
+      class QueryAlarm < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPriority < Xrd::Message
+      class SetPriority < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPriority < Xrd::Message
+      class GetPriority < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateFence < Xrd::Message
+      class CreateFence < Xrb::Message
         layout :sequence, :int
       end
       
-      class TriggerFence < Xrd::Message
+      class TriggerFence < Xrb::Message
         layout :sequence, :int
       end
       
-      class ResetFence < Xrd::Message
+      class ResetFence < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyFence < Xrd::Message
+      class DestroyFence < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryFence < Xrd::Message
+      class QueryFence < Xrb::Message
         layout :sequence, :int
       end
       
-      class AwaitFence < Xrd::Message
+      class AwaitFence < Xrb::Message
         layout :sequence, :int
       end
       

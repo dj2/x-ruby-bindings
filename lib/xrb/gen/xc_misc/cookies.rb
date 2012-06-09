@@ -5,15 +5,15 @@
 module Xrb
   module XCMisc
     module Cookie
-      class GetVersion < Xrd::Message
+      class GetVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetXidRange < Xrd::Message
+      class GetXidRange < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetXidList < Xrd::Message
+      class GetXidList < Xrb::Message
         layout :sequence, :int
       end
       

@@ -5,83 +5,83 @@
 module Xrb
   module Xv
     module Cookie
-      class QueryExtension < Xrd::Message
+      class QueryExtension < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryAdaptors < Xrd::Message
+      class QueryAdaptors < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryEncodings < Xrd::Message
+      class QueryEncodings < Xrb::Message
         layout :sequence, :int
       end
       
-      class GrabPort < Xrd::Message
+      class GrabPort < Xrb::Message
         layout :sequence, :int
       end
       
-      class UngrabPort < Xrd::Message
+      class UngrabPort < Xrb::Message
         layout :sequence, :int
       end
       
-      class PutVideo < Xrd::Message
+      class PutVideo < Xrb::Message
         layout :sequence, :int
       end
       
-      class PutStill < Xrd::Message
+      class PutStill < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetVideo < Xrd::Message
+      class GetVideo < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetStill < Xrd::Message
+      class GetStill < Xrb::Message
         layout :sequence, :int
       end
       
-      class StopVideo < Xrd::Message
+      class StopVideo < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectVideoNotify < Xrd::Message
+      class SelectVideoNotify < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectPortNotify < Xrd::Message
+      class SelectPortNotify < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryBestSize < Xrd::Message
+      class QueryBestSize < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetPortAttribute < Xrd::Message
+      class SetPortAttribute < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPortAttribute < Xrd::Message
+      class GetPortAttribute < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryPortAttributes < Xrd::Message
+      class QueryPortAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class ListImageFormats < Xrd::Message
+      class ListImageFormats < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryImageAttributes < Xrd::Message
+      class QueryImageAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class PutImage < Xrd::Message
+      class PutImage < Xrb::Message
         layout :sequence, :int
       end
       
-      class ShmPutImage < Xrd::Message
+      class ShmPutImage < Xrb::Message
         layout :sequence, :int
       end
       

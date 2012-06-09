@@ -4,7 +4,7 @@
 
 module Xrb
   module Shm
-    module Message
+    class Message
       class Seg
         attr_accessor :id
         

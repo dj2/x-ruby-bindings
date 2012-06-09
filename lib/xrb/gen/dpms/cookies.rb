@@ -5,35 +5,35 @@
 module Xrb
   module DPMS
     module Cookie
-      class GetVersion < Xrd::Message
+      class GetVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Capable < Xrd::Message
+      class Capable < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTimeouts < Xrd::Message
+      class GetTimeouts < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetTimeouts < Xrd::Message
+      class SetTimeouts < Xrb::Message
         layout :sequence, :int
       end
       
-      class Enable < Xrd::Message
+      class Enable < Xrb::Message
         layout :sequence, :int
       end
       
-      class Disable < Xrd::Message
+      class Disable < Xrb::Message
         layout :sequence, :int
       end
       
-      class ForceLevel < Xrd::Message
+      class ForceLevel < Xrb::Message
         layout :sequence, :int
       end
       
-      class Info < Xrd::Message
+      class Info < Xrb::Message
         layout :sequence, :int
       end
       

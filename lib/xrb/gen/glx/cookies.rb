@@ -5,403 +5,403 @@
 module Xrb
   module Glx
     module Cookie
-      class Render < Xrd::Message
+      class Render < Xrb::Message
         layout :sequence, :int
       end
       
-      class RenderLarge < Xrd::Message
+      class RenderLarge < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContext < Xrd::Message
+      class CreateContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyContext < Xrd::Message
+      class DestroyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class MakeCurrent < Xrd::Message
+      class MakeCurrent < Xrb::Message
         layout :sequence, :int
       end
       
-      class IsDirect < Xrd::Message
+      class IsDirect < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class WaitGl < Xrd::Message
+      class WaitGl < Xrb::Message
         layout :sequence, :int
       end
       
-      class WaitX < Xrd::Message
+      class WaitX < Xrb::Message
         layout :sequence, :int
       end
       
-      class CopyContext < Xrd::Message
+      class CopyContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class SwapBuffers < Xrd::Message
+      class SwapBuffers < Xrb::Message
         layout :sequence, :int
       end
       
-      class UseXFont < Xrd::Message
+      class UseXFont < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateGlxPixmap < Xrd::Message
+      class CreateGlxPixmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetVisualConfigs < Xrd::Message
+      class GetVisualConfigs < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyGlxPixmap < Xrd::Message
+      class DestroyGlxPixmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class VendorPrivate < Xrd::Message
+      class VendorPrivate < Xrb::Message
         layout :sequence, :int
       end
       
-      class VendorPrivateWithReply < Xrd::Message
+      class VendorPrivateWithReply < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryExtensionsString < Xrd::Message
+      class QueryExtensionsString < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryServerString < Xrd::Message
+      class QueryServerString < Xrb::Message
         layout :sequence, :int
       end
       
-      class ClientInfo < Xrd::Message
+      class ClientInfo < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetFbConfigs < Xrd::Message
+      class GetFbConfigs < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreatePixmap < Xrd::Message
+      class CreatePixmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyPixmap < Xrd::Message
+      class DestroyPixmap < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateNewContext < Xrd::Message
+      class CreateNewContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class QueryContext < Xrd::Message
+      class QueryContext < Xrb::Message
         layout :sequence, :int
       end
       
-      class MakeContextCurrent < Xrd::Message
+      class MakeContextCurrent < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreatePbuffer < Xrd::Message
+      class CreatePbuffer < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyPbuffer < Xrd::Message
+      class DestroyPbuffer < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDrawableAttributes < Xrd::Message
+      class GetDrawableAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class ChangeDrawableAttributes < Xrd::Message
+      class ChangeDrawableAttributes < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateWindow < Xrd::Message
+      class CreateWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteWindow < Xrd::Message
+      class DeleteWindow < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetClientInfoArb < Xrd::Message
+      class SetClientInfoArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateContextAttribsArb < Xrd::Message
+      class CreateContextAttribsArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class SetClientInfo_2arb < Xrd::Message
+      class SetClientInfo_2arb < Xrb::Message
         layout :sequence, :int
       end
       
-      class NewList < Xrd::Message
+      class NewList < Xrb::Message
         layout :sequence, :int
       end
       
-      class EndList < Xrd::Message
+      class EndList < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteLists < Xrd::Message
+      class DeleteLists < Xrb::Message
         layout :sequence, :int
       end
       
-      class GenLists < Xrd::Message
+      class GenLists < Xrb::Message
         layout :sequence, :int
       end
       
-      class FeedbackBuffer < Xrd::Message
+      class FeedbackBuffer < Xrb::Message
         layout :sequence, :int
       end
       
-      class SelectBuffer < Xrd::Message
+      class SelectBuffer < Xrb::Message
         layout :sequence, :int
       end
       
-      class RenderMode < Xrd::Message
+      class RenderMode < Xrb::Message
         layout :sequence, :int
       end
       
-      class Finish < Xrd::Message
+      class Finish < Xrb::Message
         layout :sequence, :int
       end
       
-      class PixelStoref < Xrd::Message
+      class PixelStoref < Xrb::Message
         layout :sequence, :int
       end
       
-      class PixelStorei < Xrd::Message
+      class PixelStorei < Xrb::Message
         layout :sequence, :int
       end
       
-      class ReadPixels < Xrd::Message
+      class ReadPixels < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetBooleanv < Xrd::Message
+      class GetBooleanv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetClipPlane < Xrd::Message
+      class GetClipPlane < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetDoublev < Xrd::Message
+      class GetDoublev < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetError < Xrd::Message
+      class GetError < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetFloatv < Xrd::Message
+      class GetFloatv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetIntegerv < Xrd::Message
+      class GetIntegerv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetLightfv < Xrd::Message
+      class GetLightfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetLightiv < Xrd::Message
+      class GetLightiv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMapdv < Xrd::Message
+      class GetMapdv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMapfv < Xrd::Message
+      class GetMapfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMapiv < Xrd::Message
+      class GetMapiv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMaterialfv < Xrd::Message
+      class GetMaterialfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMaterialiv < Xrd::Message
+      class GetMaterialiv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPixelMapfv < Xrd::Message
+      class GetPixelMapfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPixelMapuiv < Xrd::Message
+      class GetPixelMapuiv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPixelMapusv < Xrd::Message
+      class GetPixelMapusv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetPolygonStipple < Xrd::Message
+      class GetPolygonStipple < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetString < Xrd::Message
+      class GetString < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexEnvfv < Xrd::Message
+      class GetTexEnvfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexEnviv < Xrd::Message
+      class GetTexEnviv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexGendv < Xrd::Message
+      class GetTexGendv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexGenfv < Xrd::Message
+      class GetTexGenfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexGeniv < Xrd::Message
+      class GetTexGeniv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexImage < Xrd::Message
+      class GetTexImage < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexParameterfv < Xrd::Message
+      class GetTexParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexParameteriv < Xrd::Message
+      class GetTexParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexLevelParameterfv < Xrd::Message
+      class GetTexLevelParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetTexLevelParameteriv < Xrd::Message
+      class GetTexLevelParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class IsList < Xrd::Message
+      class IsList < Xrb::Message
         layout :sequence, :int
       end
       
-      class Flush < Xrd::Message
+      class Flush < Xrb::Message
         layout :sequence, :int
       end
       
-      class AreTexturesResident < Xrd::Message
+      class AreTexturesResident < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteTextures < Xrd::Message
+      class DeleteTextures < Xrb::Message
         layout :sequence, :int
       end
       
-      class GenTextures < Xrd::Message
+      class GenTextures < Xrb::Message
         layout :sequence, :int
       end
       
-      class IsTexture < Xrd::Message
+      class IsTexture < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetColorTable < Xrd::Message
+      class GetColorTable < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetColorTableParameterfv < Xrd::Message
+      class GetColorTableParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetColorTableParameteriv < Xrd::Message
+      class GetColorTableParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetConvolutionFilter < Xrd::Message
+      class GetConvolutionFilter < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetConvolutionParameterfv < Xrd::Message
+      class GetConvolutionParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetConvolutionParameteriv < Xrd::Message
+      class GetConvolutionParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetSeparableFilter < Xrd::Message
+      class GetSeparableFilter < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetHistogram < Xrd::Message
+      class GetHistogram < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetHistogramParameterfv < Xrd::Message
+      class GetHistogramParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetHistogramParameteriv < Xrd::Message
+      class GetHistogramParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMinmax < Xrd::Message
+      class GetMinmax < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMinmaxParameterfv < Xrd::Message
+      class GetMinmaxParameterfv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMinmaxParameteriv < Xrd::Message
+      class GetMinmaxParameteriv < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetCompressedTexImageArb < Xrd::Message
+      class GetCompressedTexImageArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class DeleteQueriesArb < Xrd::Message
+      class DeleteQueriesArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class GenQueriesArb < Xrd::Message
+      class GenQueriesArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class IsQueryArb < Xrd::Message
+      class IsQueryArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetQueryivArb < Xrd::Message
+      class GetQueryivArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetQueryObjectivArb < Xrd::Message
+      class GetQueryObjectivArb < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetQueryObjectuivArb < Xrd::Message
+      class GetQueryObjectuivArb < Xrb::Message
         layout :sequence, :int
       end
       

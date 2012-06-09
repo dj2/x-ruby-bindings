@@ -5,55 +5,55 @@
 module Xrb
   module DRI2
     module Cookie
-      class QueryVersion < Xrd::Message
+      class QueryVersion < Xrb::Message
         layout :sequence, :int
       end
       
-      class Connect < Xrd::Message
+      class Connect < Xrb::Message
         layout :sequence, :int
       end
       
-      class Authenticate < Xrd::Message
+      class Authenticate < Xrb::Message
         layout :sequence, :int
       end
       
-      class CreateDrawable < Xrd::Message
+      class CreateDrawable < Xrb::Message
         layout :sequence, :int
       end
       
-      class DestroyDrawable < Xrd::Message
+      class DestroyDrawable < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetBuffers < Xrd::Message
+      class GetBuffers < Xrb::Message
         layout :sequence, :int
       end
       
-      class CopyRegion < Xrd::Message
+      class CopyRegion < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetBuffersWithFormat < Xrd::Message
+      class GetBuffersWithFormat < Xrb::Message
         layout :sequence, :int
       end
       
-      class SwapBuffers < Xrd::Message
+      class SwapBuffers < Xrb::Message
         layout :sequence, :int
       end
       
-      class GetMsc < Xrd::Message
+      class GetMsc < Xrb::Message
         layout :sequence, :int
       end
       
-      class WaitMsc < Xrd::Message
+      class WaitMsc < Xrb::Message
         layout :sequence, :int
       end
       
-      class WaitSbc < Xrd::Message
+      class WaitSbc < Xrb::Message
         layout :sequence, :int
       end
       
-      class SwapInterval < Xrd::Message
+      class SwapInterval < Xrb::Message
         layout :sequence, :int
       end
       
