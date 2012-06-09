@@ -8,8 +8,8 @@ module Xrb
     class AuthInfo < Xrb::Message
       layout \
           :family, :nint16,
-          :address_length, :nint16,
-          :address, [:address_length, :string],
+          :host_length, :nint16,
+          :host, [:host_length, :string],
           :display_length, :nint16,
           :display, [:display_length, :string],
           :name_length, :nint16,
@@ -33,7 +33,7 @@ module Xrb
 
       File.open(file) do |f|
         auth = AuthInfo.unpack(f)
-        return auth if auth.display.to_i == display
+        return auth if auth.host == host && auth.display.to_i == display
       end
 
       nil
