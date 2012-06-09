@@ -1,3 +1,4 @@
+require 'xrb/cardinal'
 require 'xrb/generator/types'
 
 module Xrb
@@ -226,10 +227,16 @@ module Xrb
         end
 
         def process_listfield(field)
-          return nil unless field.members.first.is_a?(ValueField)
+          return if field.members.empty?
 
-          @p.format(":#{field.name}, " +
-              "[:#{field.type.name}, #{field.members.first.size}]")
+          if field.members.first.is_a?(ValueField)
+            @p.format(":#{field.name}, " +
+                "[:#{field.type.name}, #{field.members.first.size}]")
+          elsif field.members.first.is_a?(FieldRefField)
+            @p.format(":#{field.name}, [:#{field.members.first.name}, :string]")
+          else
+            puts "Unhandled list type: #{field.members.first.to_s}"
+          end
         end
 
         def process_padfield(field)
