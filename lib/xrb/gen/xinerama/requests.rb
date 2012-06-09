@@ -67,7 +67,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :number, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :screen_info, [:number, :string]
       end
       
     end

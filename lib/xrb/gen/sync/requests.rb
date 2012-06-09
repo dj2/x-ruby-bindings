@@ -25,7 +25,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :counters_len, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :counters, [:counters_len, :string]
       end
       
       class CreateCounter < Xrb::Message

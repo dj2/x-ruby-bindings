@@ -187,7 +187,8 @@ module Xrb
           :length, :uint16,
           :parent, :uint32,
           :children_len, :uint16,
-          :pad2, [:uint8, 14]
+          :pad2, [:uint8, 14],
+          :children, [:children_len, :string]
     end
     
     class InternAtom < Xrb::Message
@@ -206,7 +207,8 @@ module Xrb
           :major_opcode, :uint8,
           :name_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :name, [:name_len, :string]
     end
     
     class ChangeProperty < Xrb::Message
@@ -221,7 +223,8 @@ module Xrb
           :type, :uint32,
           :format, :uint8,
           :pad1, [:uint8, 3],
-          :data_len, :uint32
+          :data_len, :uint32,
+          :data, [:data_len, :string]
     end
     
     class DeleteProperty < Xrb::Message
@@ -244,7 +247,8 @@ module Xrb
           :length, :uint16,
           :bytes_after, :uint32,
           :value_len, :uint32,
-          :pad1, [:uint8, 12]
+          :pad1, [:uint8, 12],
+          :value, [:format, :string]
     end
     
     class ListProperties < Xrb::Message
@@ -254,7 +258,8 @@ module Xrb
           :major_opcode, :uint8,
           :atoms_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :atoms, [:atoms_len, :string]
     end
     
     class SetSelectionOwner < Xrb::Message
@@ -463,7 +468,8 @@ module Xrb
           :major_opcode, :uint8,
           :events_len, :uint32,
           :length, :uint16,
-          :pad2, [:uint8, 20]
+          :pad2, [:uint8, 20],
+          :events, [:events_len, :string]
     end
     
     class TranslateCoordinates < Xrb::Message
@@ -532,7 +538,8 @@ module Xrb
           :length, :uint16,
           :fid, :uint32,
           :name_len, :uint16,
-          :pad2, [:uint8, 2]
+          :pad2, [:uint8, 2],
+          :name, [:name_len, :string]
     end
     
     class CloseFont < Xrb::Message
@@ -565,7 +572,9 @@ module Xrb
           :all_chars_exist, :bool,
           :font_ascent, :int16,
           :font_descent, :int16,
-          :char_infos_len, :uint32
+          :char_infos_len, :uint32,
+          :properties, [:properties_len, :string],
+          :char_infos, [:char_infos_len, :string]
     end
     
     class QueryTextExtents < Xrb::Message
@@ -590,7 +599,8 @@ module Xrb
           :major_opcode, :uint8,
           :names_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :names, [:names_len, :string]
     end
     
     class ListFontsWithInfo < Xrb::Message
@@ -613,7 +623,9 @@ module Xrb
           :all_chars_exist, :bool,
           :font_ascent, :int16,
           :font_descent, :int16,
-          :replies_hint, :uint32
+          :replies_hint, :uint32,
+          :properties, [:properties_len, :string],
+          :name, [:name_len, :string]
     end
     
     class SetFontPath < Xrb::Message
@@ -624,7 +636,8 @@ module Xrb
           :pad1, [:uint8, 1],
           :length, :uint16,
           :font_qty, :uint16,
-          :pad2, [:uint8, 2]
+          :pad2, [:uint8, 2],
+          :font, [:font_qty, :string]
     end
     
     class GetFontPath < Xrb::Message
@@ -634,7 +647,8 @@ module Xrb
           :major_opcode, :uint8,
           :path_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :path, [:path_len, :string]
     end
     
     class CreatePixmap < Xrb::Message
@@ -704,7 +718,8 @@ module Xrb
           :length, :uint16,
           :gc, :uint32,
           :dash_offset, :uint16,
-          :dashes_len, :uint16
+          :dashes_len, :uint16,
+          :dashes, [:dashes_len, :string]
     end
     
     class SetClipRectangles < Xrb::Message
@@ -896,7 +911,8 @@ module Xrb
           :major_opcode, :uint8,
           :visual, :uint32,
           :length, :uint16,
-          :pad1, [:uint8, 20]
+          :pad1, [:uint8, 20],
+          :data, [:length, :string]
     end
     
     class PolyText_8 < Xrb::Message
@@ -935,7 +951,8 @@ module Xrb
           :drawable, :uint32,
           :gc, :uint32,
           :x, :int16,
-          :y, :int16
+          :y, :int16,
+          :string, [:string_len, :string]
     end
     
     class ImageText_16 < Xrb::Message
@@ -948,7 +965,8 @@ module Xrb
           :drawable, :uint32,
           :gc, :uint32,
           :x, :int16,
-          :y, :int16
+          :y, :int16,
+          :string, [:string_len, :string]
     end
     
     class CreateColormap < Xrb::Message
@@ -1011,7 +1029,8 @@ module Xrb
           :major_opcode, :uint8,
           :cmaps_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :cmaps, [:cmaps_len, :string]
     end
     
     class AllocColor < Xrb::Message
@@ -1050,7 +1069,9 @@ module Xrb
           :pixels_len, :uint16,
           :length, :uint16,
           :masks_len, :uint16,
-          :pad2, [:uint8, 20]
+          :pad2, [:uint8, 20],
+          :pixels, [:pixels_len, :string],
+          :masks, [:masks_len, :string]
     end
     
     class AllocColorPlanes < Xrb::Message
@@ -1064,7 +1085,8 @@ module Xrb
           :red_mask, :uint32,
           :green_mask, :uint32,
           :blue_mask, :uint32,
-          :pad3, [:uint8, 8]
+          :pad3, [:uint8, 8],
+          :pixels, [:pixels_len, :string]
     end
     
     class FreeColors < Xrb::Message
@@ -1098,7 +1120,8 @@ module Xrb
           :cmap, :uint32,
           :pixel, :uint32,
           :name_len, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [:uint8, 2],
+          :name, [:name_len, :string]
     end
     
     class QueryColors < Xrb::Message
@@ -1108,7 +1131,8 @@ module Xrb
           :major_opcode, :uint8,
           :colors_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :colors, [:colors_len, :string]
     end
     
     class LookupColor < Xrb::Message
@@ -1219,7 +1243,8 @@ module Xrb
       layout \
           :major_opcode, :uint8,
           :pad1, [:uint8, 24],
-          :length, :uint16
+          :length, :uint16,
+          :names, [:names_len, :string]
     end
     
     class ChangeKeyboardMapping < Xrb::Message
@@ -1231,7 +1256,8 @@ module Xrb
           :length, :uint16,
           :first_keycode, :uint8,
           :keysyms_per_keycode, :uint8,
-          :pad1, [:uint8, 2]
+          :pad1, [:uint8, 2],
+          :keysyms, [:keycode_count, :string]
     end
     
     class GetKeyboardMapping < Xrb::Message
@@ -1240,7 +1266,8 @@ module Xrb
       layout \
           :major_opcode, :uint8,
           :pad1, [:uint8, 24],
-          :length, :uint16
+          :length, :uint16,
+          :keysyms, [:length, :string]
     end
     
     class ChangeKeyboardControl < Xrb::Message
@@ -1338,7 +1365,8 @@ module Xrb
           :length, :uint16,
           :family, :uint8,
           :pad1, [:uint8, 1],
-          :address_len, :uint16
+          :address_len, :uint16,
+          :address, [:address_len, :string]
     end
     
     class ListHosts < Xrb::Message
@@ -1348,7 +1376,8 @@ module Xrb
           :major_opcode, :uint8,
           :hosts_len, :uint16,
           :length, :uint16,
-          :pad1, [:uint8, 22]
+          :pad1, [:uint8, 22],
+          :hosts, [:hosts_len, :string]
     end
     
     class SetAccessControl < Xrb::Message
@@ -1388,7 +1417,8 @@ module Xrb
           :length, :uint16,
           :window, :uint32,
           :atoms_len, :uint16,
-          :delta, :int16
+          :delta, :int16,
+          :atoms, [:atoms_len, :string]
     end
     
     class ForceScreenSaver < Xrb::Message
@@ -1415,7 +1445,8 @@ module Xrb
       layout \
           :major_opcode, :uint8,
           :pad1, [:uint8, 24],
-          :length, :uint16
+          :length, :uint16,
+          :map, [:map_len, :string]
     end
     
     class SetModifierMapping < Xrb::Message
@@ -1433,7 +1464,8 @@ module Xrb
       layout \
           :major_opcode, :uint8,
           :pad1, [:uint8, 24],
-          :length, :uint16
+          :length, :uint16,
+          :keycodes, [:keycodes_per_modifier, :string]
     end
     
     class NoOperation < Xrb::Message

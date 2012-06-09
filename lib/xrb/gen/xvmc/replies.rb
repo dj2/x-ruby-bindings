@@ -22,7 +22,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :num, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :surfaces, [:num, :string]
       end
       
       class CreateContext < Xrb::Message
@@ -34,7 +35,8 @@ module Xrb
             :width_actual, :uint16,
             :height_actual, :uint16,
             :flags_return, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :priv_data, [:length, :string]
       end
       
       class CreateSurface < Xrb::Message
@@ -43,7 +45,8 @@ module Xrb
             :pad1, [:uint8, 1],
             :sequence, :uint16,
             :length, :uint32,
-            :pad2, [:uint8, 24]
+            :pad2, [:uint8, 24],
+            :priv_data, [:length, :string]
       end
       
       class CreateSubpicture < Xrb::Message
@@ -57,7 +60,8 @@ module Xrb
             :num_palette_entries, :uint16,
             :entry_bytes, :uint16,
             :component_order, [:uint8, 4],
-            :pad2, [:uint8, 12]
+            :pad2, [:uint8, 12],
+            :priv_data, [:length, :string]
       end
       
       class ListSubpictureTypes < Xrb::Message
@@ -67,7 +71,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :num, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :types, [:num, :string]
       end
       
     end

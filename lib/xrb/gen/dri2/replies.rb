@@ -24,7 +24,9 @@ module Xrb
             :driver_name_length, :uint32,
             :device_name_length, :uint32,
             :pad2, [:uint8, 16],
-            :alignment_pad, [:uint8, 3]
+            :driver_name, [:driver_name_length, :string],
+            :alignment_pad, [:uint8, 3],
+            :device_name, [:device_name_length, :string]
       end
       
       class Authenticate < Xrb::Message
@@ -45,7 +47,8 @@ module Xrb
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12]
+            :pad2, [:uint8, 12],
+            :buffers, [:count, :string]
       end
       
       class CopyRegion < Xrb::Message
@@ -65,7 +68,8 @@ module Xrb
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12]
+            :pad2, [:uint8, 12],
+            :buffers, [:count, :string]
       end
       
       class SwapBuffers < Xrb::Message

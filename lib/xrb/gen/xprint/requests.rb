@@ -24,7 +24,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :listCount, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :printers, [:listCount, :string]
       end
       
       class PrintRehashPrinterList < Xrb::Message
@@ -45,7 +46,9 @@ module Xrb
             :length, :uint16,
             :context_id, :uint32,
             :printerNameLen, :uint32,
-            :localeLen, :uint32
+            :localeLen, :uint32,
+            :printerName, [:printerNameLen, :string],
+            :locale, [:localeLen, :string]
       end
       
       class PrintSetContext < Xrb::Message
@@ -138,7 +141,8 @@ module Xrb
             :drawable, :uint32,
             :len_data, :uint32,
             :len_fmt, :uint16,
-            :len_options, :uint16
+            :len_options, :uint16,
+            :data, [:len_data, :string]
       end
       
       class PrintGetDocumentData < Xrb::Message
@@ -151,7 +155,8 @@ module Xrb
             :status_code, :uint32,
             :finished_flag, :uint32,
             :dataLen, :uint32,
-            :pad2, [:uint8, 12]
+            :pad2, [:uint8, 12],
+            :data, [:dataLen, :string]
       end
       
       class PrintStartPage < Xrb::Message
@@ -217,7 +222,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :valueLen, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :value, [:valueLen, :string]
       end
       
       class PrintSetAttributes < Xrb::Message
@@ -257,7 +263,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :listCount, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :roots, [:listCount, :string]
       end
       
       class PrintSetImageResolution < Xrb::Message

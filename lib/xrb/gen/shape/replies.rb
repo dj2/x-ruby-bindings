@@ -49,7 +49,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :rectangles_len, :uint32,
-            :pad1, [:uint8, 20]
+            :pad1, [:uint8, 20],
+            :rectangles, [:rectangles_len, :string]
       end
       
     end

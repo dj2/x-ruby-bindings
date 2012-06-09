@@ -34,7 +34,8 @@ module Xrb
             :sarea_handle_low, :uint32,
             :sarea_handle_high, :uint32,
             :bus_id_len, :uint32,
-            :pad2, [:uint8, 12]
+            :pad2, [:uint8, 12],
+            :bus_id, [:bus_id_len, :string]
       end
       
       class GetClientDriverName < Xrb::Message
@@ -47,7 +48,8 @@ module Xrb
             :client_driver_minor_version, :uint32,
             :client_driver_patch_version, :uint32,
             :client_driver_name_len, :uint32,
-            :pad2, [:uint8, 8]
+            :pad2, [:uint8, 8],
+            :client_driver_name, [:client_driver_name_len, :string]
       end
       
       class CreateContext < Xrb::Message
@@ -83,7 +85,9 @@ module Xrb
             :num_clip_rects, :uint32,
             :back_x, :int16,
             :back_y, :int16,
-            :num_back_clip_rects, :uint32
+            :num_back_clip_rects, :uint32,
+            :clip_rects, [:num_clip_rects, :string],
+            :back_clip_rects, [:num_back_clip_rects, :string]
       end
       
       class GetDeviceInfo < Xrb::Message
@@ -97,7 +101,8 @@ module Xrb
             :framebuffer_origin_offset, :uint32,
             :framebuffer_size, :uint32,
             :framebuffer_stride, :uint32,
-            :device_private_size, :uint32
+            :device_private_size, :uint32,
+            :device_private, [:device_private_size, :string]
       end
       
       class AuthConnection < Xrb::Message

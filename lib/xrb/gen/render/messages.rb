@@ -78,13 +78,15 @@ module Xrb
             :depth, :uint8,
             :pad1, [:uint8, 1],
             :num_visuals, :uint16,
-            :pad2, [:uint8, 4]
+            :pad2, [:uint8, 4],
+            :visuals, [:num_visuals, :string]
       end
       
       class Pictscreen < Xrb::Message
         layout \
             :num_depths, :uint32,
-            :fallback, :uint32
+            :fallback, :uint32,
+            :depths, [:num_depths, :string]
       end
       
       class Indexvalue < Xrb::Message

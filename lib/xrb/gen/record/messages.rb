@@ -63,7 +63,8 @@ module Xrb
       class ClientInfo < Xrb::Message
         layout \
             :client_resource, :uint32,
-            :num_ranges, :uint32
+            :num_ranges, :uint32,
+            :ranges, [:num_ranges, :string]
       end
       
     end

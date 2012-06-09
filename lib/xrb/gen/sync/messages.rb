@@ -39,7 +39,8 @@ module Xrb
         layout \
             :counter, :uint32,
             :resolution, :INT64,
-            :name_len, :uint16
+            :name_len, :uint16,
+            :name, [:name_len, :string]
       end
       
       class Trigger < Xrb::Message

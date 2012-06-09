@@ -51,7 +51,8 @@ module Xrb
           :root, :uint32,
           :parent, :uint32,
           :children_len, :uint16,
-          :pad2, [:uint8, 14]
+          :pad2, [:uint8, 14],
+          :children, [:children_len, :string]
     end
     
     class InternAtom < Xrb::Message
@@ -70,7 +71,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :name_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :name, [:name_len, :string]
     end
     
     class GetProperty < Xrb::Message
@@ -82,7 +84,8 @@ module Xrb
           :type, :uint32,
           :bytes_after, :uint32,
           :value_len, :uint32,
-          :pad1, [:uint8, 12]
+          :pad1, [:uint8, 12],
+          :value, [:format, :string]
     end
     
     class ListProperties < Xrb::Message
@@ -92,7 +95,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :atoms_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :atoms, [:atoms_len, :string]
     end
     
     class GetSelectionOwner < Xrb::Message
@@ -143,7 +147,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :events_len, :uint32,
-          :pad2, [:uint8, 20]
+          :pad2, [:uint8, 20],
+          :events, [:events_len, :string]
     end
     
     class TranslateCoordinates < Xrb::Message
@@ -195,7 +200,9 @@ module Xrb
           :all_chars_exist, :bool,
           :font_ascent, :int16,
           :font_descent, :int16,
-          :char_infos_len, :uint32
+          :char_infos_len, :uint32,
+          :properties, [:properties_len, :string],
+          :char_infos, [:char_infos_len, :string]
     end
     
     class QueryTextExtents < Xrb::Message
@@ -220,7 +227,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :names_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :names, [:names_len, :string]
     end
     
     class ListFontsWithInfo < Xrb::Message
@@ -243,7 +251,9 @@ module Xrb
           :all_chars_exist, :bool,
           :font_ascent, :int16,
           :font_descent, :int16,
-          :replies_hint, :uint32
+          :replies_hint, :uint32,
+          :properties, [:properties_len, :string],
+          :name, [:name_len, :string]
     end
     
     class GetFontPath < Xrb::Message
@@ -253,7 +263,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :path_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :path, [:path_len, :string]
     end
     
     class GetImage < Xrb::Message
@@ -263,7 +274,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :visual, :uint32,
-          :pad1, [:uint8, 20]
+          :pad1, [:uint8, 20],
+          :data, [:length, :string]
     end
     
     class ListInstalledColormaps < Xrb::Message
@@ -273,7 +285,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :cmaps_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :cmaps, [:cmaps_len, :string]
     end
     
     class AllocColor < Xrb::Message
@@ -312,7 +325,9 @@ module Xrb
           :length, :uint32,
           :pixels_len, :uint16,
           :masks_len, :uint16,
-          :pad2, [:uint8, 20]
+          :pad2, [:uint8, 20],
+          :pixels, [:pixels_len, :string],
+          :masks, [:masks_len, :string]
     end
     
     class AllocColorPlanes < Xrb::Message
@@ -326,7 +341,8 @@ module Xrb
           :red_mask, :uint32,
           :green_mask, :uint32,
           :blue_mask, :uint32,
-          :pad3, [:uint8, 8]
+          :pad3, [:uint8, 8],
+          :pixels, [:pixels_len, :string]
     end
     
     class QueryColors < Xrb::Message
@@ -336,7 +352,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :colors_len, :uint16,
-          :pad2, [:uint8, 22]
+          :pad2, [:uint8, 22],
+          :colors, [:colors_len, :string]
     end
     
     class LookupColor < Xrb::Message
@@ -381,7 +398,8 @@ module Xrb
           :names_len, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :pad1, [:uint8, 24]
+          :pad1, [:uint8, 24],
+          :names, [:names_len, :string]
     end
     
     class GetKeyboardMapping < Xrb::Message
@@ -390,7 +408,8 @@ module Xrb
           :keysyms_per_keycode, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :pad1, [:uint8, 24]
+          :pad1, [:uint8, 24],
+          :keysyms, [:length, :string]
     end
     
     class GetKeyboardControl < Xrb::Message
@@ -440,7 +459,8 @@ module Xrb
           :sequence, :uint16,
           :length, :uint32,
           :hosts_len, :uint16,
-          :pad1, [:uint8, 22]
+          :pad1, [:uint8, 22],
+          :hosts, [:hosts_len, :string]
     end
     
     class SetPointerMapping < Xrb::Message
@@ -457,7 +477,8 @@ module Xrb
           :map_len, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :pad1, [:uint8, 24]
+          :pad1, [:uint8, 24],
+          :map, [:map_len, :string]
     end
     
     class SetModifierMapping < Xrb::Message
@@ -474,7 +495,8 @@ module Xrb
           :keycodes_per_modifier, :uint8,
           :sequence, :uint16,
           :length, :uint32,
-          :pad1, [:uint8, 24]
+          :pad1, [:uint8, 24],
+          :keycodes, [:keycodes_per_modifier, :string]
     end
     
   end

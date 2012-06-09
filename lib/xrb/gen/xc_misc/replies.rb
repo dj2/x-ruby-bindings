@@ -32,7 +32,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :ids_len, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :ids, [:ids_len, :string]
       end
       
     end

@@ -29,7 +29,10 @@ module Xrb
             :num_depths, :uint32,
             :num_visuals, :uint32,
             :num_subpixel, :uint32,
-            :pad2, [:uint8, 4]
+            :pad2, [:uint8, 4],
+            :formats, [:num_formats, :string],
+            :screens, [:num_screens, :string],
+            :subpixels, [:num_subpixel, :string]
       end
       
       class QueryPictIndexValues < Xrb::Message
@@ -40,7 +43,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_values, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [:uint8, 20],
+            :values, [:num_values, :string]
       end
       
       class CreatePicture < Xrb::Message
@@ -215,7 +219,9 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :glyphset, :uint32,
-            :glyphs_len, :uint32
+            :glyphs_len, :uint32,
+            :glyphids, [:glyphs_len, :string],
+            :glyphs, [:glyphs_len, :string]
       end
       
       class FreeGlyphs < Xrb::Message
@@ -325,7 +331,9 @@ module Xrb
             :length, :uint16,
             :num_aliases, :uint32,
             :num_filters, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [:uint8, 16],
+            :aliases, [:num_aliases, :string],
+            :filters, [:num_filters, :string]
       end
       
       class SetPictureFilter < Xrb::Message
@@ -337,7 +345,8 @@ module Xrb
             :length, :uint16,
             :picture, :uint32,
             :filter_len, :uint16,
-            :pad1, [:uint8, 2]
+            :pad1, [:uint8, 2],
+            :filter, [:filter_len, :string]
       end
       
       class CreateAnimCursor < Xrb::Message
@@ -383,7 +392,9 @@ module Xrb
             :picture, :uint32,
             :p1, :POINTFIX,
             :p2, :POINTFIX,
-            :num_stops, :uint32
+            :num_stops, :uint32,
+            :stops, [:num_stops, :string],
+            :colors, [:num_stops, :string]
       end
       
       class CreateRadialGradient < Xrb::Message
@@ -398,7 +409,9 @@ module Xrb
             :outer, :POINTFIX,
             :inner_radius, :int32,
             :outer_radius, :int32,
-            :num_stops, :uint32
+            :num_stops, :uint32,
+            :stops, [:num_stops, :string],
+            :colors, [:num_stops, :string]
       end
       
       class CreateConicalGradient < Xrb::Message
@@ -411,7 +424,9 @@ module Xrb
             :picture, :uint32,
             :center, :POINTFIX,
             :angle, :int32,
-            :num_stops, :uint32
+            :num_stops, :uint32,
+            :stops, [:num_stops, :string],
+            :colors, [:num_stops, :string]
       end
       
     end

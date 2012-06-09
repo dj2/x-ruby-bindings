@@ -29,7 +29,8 @@ module Xrb
             :xhot, :uint16,
             :yhot, :uint16,
             :cursor_serial, :uint32,
-            :pad2, [:uint8, 8]
+            :pad2, [:uint8, 8],
+            :cursor_image, [:width, :string]
       end
       
       class FetchRegion < Xrb::Message
@@ -39,7 +40,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :extents, :RECTANGLE,
-            :pad2, [:uint8, 16]
+            :pad2, [:uint8, 16],
+            :rectangles, [:length, :string]
       end
       
       class GetCursorName < Xrb::Message
@@ -50,7 +52,8 @@ module Xrb
             :length, :uint32,
             :atom, :uint32,
             :nbytes, :uint16,
-            :pad2, [:uint8, 18]
+            :pad2, [:uint8, 18],
+            :name, [:nbytes, :string]
       end
       
       class GetCursorImageAndName < Xrb::Message
@@ -68,7 +71,9 @@ module Xrb
             :cursor_serial, :uint32,
             :cursor_atom, :uint32,
             :nbytes, :uint16,
-            :pad2, [:uint8, 2]
+            :pad2, [:uint8, 2],
+            :name, [:nbytes, :string],
+            :cursor_image, [:width, :string]
       end
       
     end
