@@ -106,11 +106,6 @@ module Xrb
               inc
             end
 
-            if ns.extension?
-              print("MAJOR_VERSION = #{ns.major_version}")
-              print("MINOR_VERSION = #{ns.minor_version}")
-            end
-
             yield if block_given?
 
             if ns.name != 'Xcb'
@@ -123,7 +118,7 @@ module Xrb
 
       def process
         @namespaces.values.each do |ns|
-          next unless ns.header == 'xproto'
+          next if ns.header == 'xkb'
 
           puts "Generating #{@out_dir}/#{ns.header}.rb"
 
@@ -149,9 +144,14 @@ module Xrb
             print("require '#{name}/replies'") unless replies.empty?
           end
 
-          file(ns, ns.header, imports)
+          file(ns, ns.header, imports) do
+            if ns.extension?
+              print("MAJOR_VERSION = #{ns.major_version}")
+              print("MINOR_VERSION = #{ns.minor_version}")
+            end
+          end
 
-          if !constants.nil?
+          if !constants.empty?
             file(ns, "#{ns.header}/constants") do
               constants.each do |constant|
                 print("# #{constant.name}")
