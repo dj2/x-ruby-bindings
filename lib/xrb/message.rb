@@ -8,7 +8,11 @@ module Xrb
       @fields = Hash[*args]
       @fields.each_pair do |key, value|
         if value.is_a?(Array)
+          if value.length >= 3
+            value[1] = Xrb::Cardinal.all[value[1]]
+          end
           value[-1] = Xrb::Cardinal.all[value[-1]]
+
         else
           @fields[key] = Xrb::Cardinal.all[value]
         end
@@ -34,20 +38,22 @@ module Xrb
       ret = self.new
 
       @fields.each_pair do |key, v|
-        size, type, kind = v.is_a?(Array) ? *v : [1, v, v]
+        size, type, kind = v.is_a?(Array) ? v : [1, v, v]
 
         data_value = if kind.is_list?
           tmp = data.read(ret.send(size))
 
-          list = []
-          idx = 0
-          while (idx < tmp.length)
-            list << tmp.byteslice(idx, type.size).unpack(type.directive)
-            idx += type.size
+          if kind.is_string?
+            tmp
+          else
+            list = []
+            idx = 0
+            while (idx < tmp.length)
+              list << tmp.byteslice(idx, type.size).unpack(type.directive).first
+              idx += type.size
+            end
+            list
           end
-
-          kind.is_string? list.join : list
-
         else
           data_value = data.read(type.size * size)
           next if key =~ /^pad[0-9]*/
