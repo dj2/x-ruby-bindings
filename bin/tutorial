@@ -5,9 +5,10 @@ $: << './lib' << '../lib'
 require 'xrb'
 require 'pp'
 
+screen = Xrb.connection.setup.screens.first
 window = Xrb::Window.new(width: 150, height: 150,
-    values: {Xrb::CW_BACK_PIXEL: screen.white_pixel,
-             Xrb::CW_EVENT_MASK: XRB::EVENT_MASK_EXPOSURE})
+    values: {Xrb::CW_BACK_PIXEL => screen.white_pixel,
+             Xrb::CW_EVENT_MASK => XRB::EVENT_MASK_EXPOSURE})
 window.show
 
 while (true)

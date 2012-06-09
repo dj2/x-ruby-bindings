@@ -1,21 +1,6 @@
-module Xrd
-  class Message
-    def self.layout(*args)
-      @fields = Hash[args]
-      
-      @fields.keys.each do |key|
-        next if key.to_s =~ /^pad\d$/
-        attr_accessor key.to_s.underscore.to_sym
-      end
-    end
-
-    def self.union(*args)
-      puts "HANDLE UNION"
-    end
-  end
-
+module Xrb
   module Reply
-    class Genric < Xrd::Message
+    class Genric < Xrb::Message
       layout \
           :response_type, :uint8,
           :pad0, :uint8,
@@ -25,7 +10,7 @@ module Xrd
   end
 
   module Event
-    class Generic < Xrd::Message
+    class Generic < Xrb::Message
       layout \
           :response_type, :uint8,
           :pad0, :uint8,
@@ -34,7 +19,7 @@ module Xrd
           :full_sequence, :uint32
     end
 
-   class Ge < Xrd::Message
+   class Ge < Xrb::Message
       layout \
           :response_type, :uint8,
           :pad0, :uint8,
@@ -48,7 +33,7 @@ module Xrd
   end
 
   module Error
-    class Generic < Xrd::Message
+    class Generic < Xrb::Message
       layout \
           :response_type, :uint8,
           :error_code, :uint8,
@@ -63,18 +48,8 @@ module Xrd
   end
 
   module Cookie
-    class Void < Xrd::Message
+    class Void < Xrb::Message
       layout :sequence, :int
-    end
-  end
-
-  module Auth
-    class Info < Xrd::Message
-      layout \
-          :namelen, :int,
-          :name, :string,
-          :datalen, :int,
-          :data, :pointer
     end
   end
 end

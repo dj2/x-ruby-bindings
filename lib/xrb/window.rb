@@ -1,4 +1,4 @@
-module Xrd
+module Xrb
   class Window
     DEFAULT_OPTS = {x: 0, y: 0, border: 2, depth: Xrb::COPY_FROM_PARENT,
         class: Xrb::WINDOW_CLASS_INPUT_OUTPUT}

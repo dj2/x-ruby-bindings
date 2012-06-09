@@ -1,19 +1,22 @@
+require 'socket'
 require 'xrb/constants'
+require 'xrb/auth'
 
 module Xrb
   class Connection
     def initialize(display_name = ENV['DISPLAY'])
       display_name =~ /^([\w.-]*):(\d+)(?:.(\d+))?$/
-      host, display, screen = $1, $2, $3
+      @host, @display, @screen = $1, $2.to_i, $3
     end
 
     def connect
-      @socket = if host.empty?
-        UNIXSocket.new("/tmp/.X11-unix/X#{display}")
+      @socket = if @host.nil? || @host.empty?
+        UNIXSocket.new("/tmp/.X11-unix/X#{@display}")
       else
-        TCPSocket.new(host, Xrb::TCP_PORT + display)
+        TCPSocket.new(@host, Xrb::TCP_PORT + @display)
       end
 
+      auth = Xrb::Auth.new(@host, @display)
 
       @xid = {
         last: 0,

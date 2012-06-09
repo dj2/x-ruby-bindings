@@ -1,4 +1,4 @@
-module Xrd
+module Xrb
   class Setup
     def screens
     end
