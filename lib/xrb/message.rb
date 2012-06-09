@@ -34,10 +34,20 @@ module Xrb
       ret = self.new
 
       @fields.each_pair do |key, v|
-        size, type = v.is_a?(Array) ? [v[0], v[1]] : [1, v]
+        size, type, kind = v.is_a?(Array) ? *v : [1, v, v]
 
-        data_value = if type.is_string?
-          data.read(ret.send(size))
+        data_value = if kind.is_list?
+          tmp = data.read(ret.send(size))
+
+          list = []
+          idx = 0
+          while (idx < tmp.length)
+            list << tmp.byteslice(idx, type.size).unpack(type.directive)
+            idx += type.size
+          end
+
+          kind.is_string? list.join : list
+
         else
           data_value = data.read(type.size * size)
           next if key =~ /^pad[0-9]*/
