@@ -51,6 +51,21 @@ module Xrb
     end
 
     def pack
+      str = ''
+      @fields.each_pair do |key, v|
+        size, type = v.is_a?(Array) ? [v[0], v[1]] : [1, v]
+
+        str << if type.is_string?
+          self.send(key)
+        else
+          if key =~ /^pad[0-9]*/
+            "\x00" * size
+          else
+            self.send(key).pack(type.directive)
+          end
+        end
+      end
+      str
     end
   end
 end
