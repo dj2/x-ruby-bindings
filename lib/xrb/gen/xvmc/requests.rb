@@ -25,7 +25,7 @@ module Xrb
             :length, :uint16,
             :num, :uint32,
             :pad2, [:uint8, 20],
-            :surfaces, [:num, :string]
+            :surfaces, [:num, :SurfaceInfo, :list]
       end
       
       class CreateContext < Xrb::Message
@@ -39,7 +39,7 @@ module Xrb
             :height_actual, :uint16,
             :flags_return, :uint32,
             :pad2, [:uint8, 20],
-            :priv_data, [:length, :string]
+            :priv_data, [:length, :uint32, :list]
       end
       
       class DestroyContext < Xrb::Message
@@ -60,7 +60,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :priv_data, [:length, :string]
+            :priv_data, [:length, :uint32, :list]
       end
       
       class DestroySurface < Xrb::Message
@@ -86,7 +86,7 @@ module Xrb
             :entry_bytes, :uint16,
             :component_order, [:uint8, 4],
             :pad2, [:uint8, 12],
-            :priv_data, [:length, :string]
+            :priv_data, [:length, :uint32, :list]
       end
       
       class DestroySubpicture < Xrb::Message
@@ -108,7 +108,7 @@ module Xrb
             :length, :uint16,
             :num, :uint32,
             :pad2, [:uint8, 20],
-            :types, [:num, :string]
+            :types, [:num, :ImageFormatInfo, :list]
       end
       
     end

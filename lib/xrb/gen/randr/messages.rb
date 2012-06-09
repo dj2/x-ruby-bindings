@@ -40,7 +40,7 @@ module Xrb
       class RefreshRates < Xrb::Message
         layout \
             :nRates, :uint16,
-            :rates, [:nRates, :string]
+            :rates, [:nRates, :uint16, :list]
       end
       
       class ModeInfo < Xrb::Message

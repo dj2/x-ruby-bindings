@@ -28,8 +28,8 @@ module Xrb
             :pad1, [:uint8, 3],
             :num_client_specs, :uint32,
             :num_ranges, :uint32,
-            :client_specs, [:num_client_specs, :string],
-            :ranges, [:num_ranges, :string]
+            :client_specs, [:num_client_specs, :uint32, :list],
+            :ranges, [:num_ranges, :Range, :list]
       end
       
       class RegisterClients < Xrb::Message
@@ -44,8 +44,8 @@ module Xrb
             :pad1, [:uint8, 3],
             :num_client_specs, :uint32,
             :num_ranges, :uint32,
-            :client_specs, [:num_client_specs, :string],
-            :ranges, [:num_ranges, :string]
+            :client_specs, [:num_client_specs, :uint32, :list],
+            :ranges, [:num_ranges, :Range, :list]
       end
       
       class UnregisterClients < Xrb::Message
@@ -57,7 +57,7 @@ module Xrb
             :length, :uint16,
             :context, :uint32,
             :num_client_specs, :uint32,
-            :client_specs, [:num_client_specs, :string]
+            :client_specs, [:num_client_specs, :uint32, :list]
       end
       
       class GetContext < Xrb::Message
@@ -71,7 +71,7 @@ module Xrb
             :pad1, [:uint8, 3],
             :num_intercepted_clients, :uint32,
             :pad2, [:uint8, 16],
-            :intercepted_clients, [:num_intercepted_clients, :string]
+            :intercepted_clients, [:num_intercepted_clients, :ClientInfo, :list]
       end
       
       class EnableContext < Xrb::Message
@@ -88,7 +88,7 @@ module Xrb
             :server_time, :uint32,
             :rec_sequence_num, :uint32,
             :pad2, [:uint8, 8],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class DisableContext < Xrb::Message

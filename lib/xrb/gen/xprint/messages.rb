@@ -16,9 +16,9 @@ module Xrb
       class Printer < Xrb::Message
         layout \
             :nameLen, :uint32,
-            :name, [:nameLen, :string],
+            :name, [:nameLen, :char, :string],
             :descLen, :uint32,
-            :description, [:descLen, :string]
+            :description, [:descLen, :char, :string]
       end
       
       class Pcontext

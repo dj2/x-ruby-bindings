@@ -40,7 +40,7 @@ module Xrb
             :counter, :uint32,
             :resolution, :INT64,
             :name_len, :uint16,
-            :name, [:name_len, :string]
+            :name, [:name_len, :char, :string]
       end
       
       class Trigger < Xrb::Message

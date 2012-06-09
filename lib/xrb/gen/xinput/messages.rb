@@ -67,7 +67,7 @@ module Xrb
             :axes_len, :uint8,
             :mode, :uint8,
             :motion_size, :uint32,
-            :axes, [:axes_len, :string]
+            :axes, [:axes_len, :AxisInfo, :list]
       end
       
       class InputClassInfo < Xrb::Message
@@ -132,7 +132,7 @@ module Xrb
             :len, :uint16,
             :max_symbols, :uint16,
             :num_keysyms, :uint16,
-            :keysyms, [:num_keysyms, :string]
+            :keysyms, [:num_keysyms, :uint32, :list]
       end
       
       class BellFeedbackState < Xrb::Message
@@ -203,7 +203,7 @@ module Xrb
             :len, :uint16,
             :pad1, [:uint8, 2],
             :num_keysyms, :uint16,
-            :keysyms, [:num_keysyms, :string]
+            :keysyms, [:num_keysyms, :uint32, :list]
       end
       
       class BellFeedbackCtl < Xrb::Message
@@ -257,7 +257,7 @@ module Xrb
             :len, :uint8,
             :num_valuators, :uint8,
             :mode, :uint8,
-            :valuators, [:num_valuators, :string]
+            :valuators, [:num_valuators, :uint32, :list]
       end
       
       class DeviceState < Xrb::Message
@@ -271,9 +271,9 @@ module Xrb
             :control_id, :uint16,
             :len, :uint16,
             :num_valuators, :uint32,
-            :resolution_values, [:num_valuators, :string],
-            :resolution_min, [:num_valuators, :string],
-            :resolution_max, [:num_valuators, :string]
+            :resolution_values, [:num_valuators, :uint32, :list],
+            :resolution_min, [:num_valuators, :uint32, :list],
+            :resolution_max, [:num_valuators, :uint32, :list]
       end
       
       class DeviceAbsCalibState < Xrb::Message
@@ -331,7 +331,7 @@ module Xrb
             :len, :uint16,
             :first_valuator, :uint8,
             :num_valuators, :uint8,
-            :resolution_values, [:num_valuators, :string]
+            :resolution_values, [:num_valuators, :uint32, :list]
       end
       
       class DeviceAbsCalibCtl < Xrb::Message

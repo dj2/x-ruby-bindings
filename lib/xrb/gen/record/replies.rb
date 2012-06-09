@@ -25,7 +25,7 @@ module Xrb
             :pad1, [:uint8, 3],
             :num_intercepted_clients, :uint32,
             :pad2, [:uint8, 16],
-            :intercepted_clients, [:num_intercepted_clients, :string]
+            :intercepted_clients, [:num_intercepted_clients, :ClientInfo, :list]
       end
       
       class EnableContext < Xrb::Message
@@ -41,7 +41,7 @@ module Xrb
             :server_time, :uint32,
             :rec_sequence_num, :uint32,
             :pad2, [:uint8, 8],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
     end

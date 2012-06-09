@@ -172,7 +172,7 @@ module Xrb
           :pad1, [:uint8, 1],
           :visuals_len, :uint16,
           :pad2, [:uint8, 4],
-          :visuals, [:visuals_len, :string]
+          :visuals, [:visuals_len, :VISUALTYPE, :list]
     end
     
     class Screen < Xrb::Message
@@ -193,7 +193,7 @@ module Xrb
           :save_unders, :bool,
           :root_depth, :uint8,
           :allowed_depths_len, :uint8,
-          :allowed_depths, [:allowed_depths_len, :string]
+          :allowed_depths, [:allowed_depths_len, :DEPTH, :list]
     end
     
     class SetupRequest < Xrb::Message
@@ -205,8 +205,8 @@ module Xrb
           :authorization_protocol_name_len, :uint16,
           :authorization_protocol_data_len, :uint16,
           :pad2, [:uint8, 2],
-          :authorization_protocol_name, [:authorization_protocol_name_len, :string],
-          :authorization_protocol_data, [:authorization_protocol_data_len, :string]
+          :authorization_protocol_name, [:authorization_protocol_name_len, :char, :string],
+          :authorization_protocol_data, [:authorization_protocol_data_len, :char, :string]
     end
     
     class SetupFailed < Xrb::Message
@@ -216,7 +216,7 @@ module Xrb
           :protocol_major_version, :uint16,
           :protocol_minor_version, :uint16,
           :length, :uint16,
-          :reason, [:reason_len, :string]
+          :reason, [:reason_len, :char, :string]
     end
     
     class SetupAuthenticate < Xrb::Message
@@ -224,7 +224,7 @@ module Xrb
           :status, :uint8,
           :pad1, [:uint8, 5],
           :length, :uint16,
-          :reason, [:length, :string]
+          :reason, [:length, :char, :string]
     end
     
     class Setup < Xrb::Message
@@ -249,9 +249,9 @@ module Xrb
           :min_keycode, :uint8,
           :max_keycode, :uint8,
           :pad2, [:uint8, 4],
-          :vendor, [:vendor_len, :string],
-          :pixmap_formats, [:pixmap_formats_len, :string],
-          :roots, [:roots_len, :string]
+          :vendor, [:vendor_len, :char, :string],
+          :pixmap_formats, [:pixmap_formats_len, :FORMAT, :list],
+          :roots, [:roots_len, :SCREEN, :list]
     end
     
     class ClientMessageData < Xrb::Message
@@ -287,7 +287,7 @@ module Xrb
     class Str < Xrb::Message
       layout \
           :name_len, :uint8,
-          :name, [:name_len, :string]
+          :name, [:name_len, :char, :string]
     end
     
     class Segment < Xrb::Message
@@ -321,7 +321,7 @@ module Xrb
           :family, :uint8,
           :pad1, [:uint8, 1],
           :address_len, :uint16,
-          :address, [:address_len, :string]
+          :address, [:address_len, :uint8, :list]
     end
     
   end

@@ -69,7 +69,7 @@ module Xrb
             :yhot, :uint16,
             :cursor_serial, :uint32,
             :pad2, [:uint8, 8],
-            :cursor_image, [:width, :string]
+            :cursor_image, [:width, :uint32, :list]
       end
       
       class CreateRegion < Xrb::Message
@@ -239,7 +239,7 @@ module Xrb
             :length, :uint16,
             :extents, :RECTANGLE,
             :pad2, [:uint8, 16],
-            :rectangles, [:length, :string]
+            :rectangles, [:length, :RECTANGLE, :list]
       end
       
       class SetGcClipRegion < Xrb::Message
@@ -293,7 +293,7 @@ module Xrb
             :cursor, :uint32,
             :nbytes, :uint16,
             :pad1, [:uint8, 2],
-            :name, [:nbytes, :string]
+            :name, [:nbytes, :char, :string]
       end
       
       class GetCursorName < Xrb::Message
@@ -306,7 +306,7 @@ module Xrb
             :atom, :uint32,
             :nbytes, :uint16,
             :pad2, [:uint8, 18],
-            :name, [:nbytes, :string]
+            :name, [:nbytes, :char, :string]
       end
       
       class GetCursorImageAndName < Xrb::Message
@@ -326,8 +326,8 @@ module Xrb
             :cursor_atom, :uint32,
             :nbytes, :uint16,
             :pad2, [:uint8, 2],
-            :name, [:nbytes, :string],
-            :cursor_image, [:width, :string]
+            :name, [:nbytes, :char, :string],
+            :cursor_image, [:width, :uint32, :list]
       end
       
       class ChangeCursor < Xrb::Message
@@ -351,7 +351,7 @@ module Xrb
             :src, :uint32,
             :nbytes, :uint16,
             :pad1, [:uint8, 2],
-            :name, [:nbytes, :string]
+            :name, [:nbytes, :char, :string]
       end
       
       class ExpandRegion < Xrb::Message

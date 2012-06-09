@@ -23,7 +23,7 @@ module Xrb
             :length, :uint32,
             :num_clients, :uint32,
             :pad2, [:uint8, 20],
-            :clients, [:num_clients, :string]
+            :clients, [:num_clients, :Client, :list]
       end
       
       class QueryClientResources < Xrb::Message
@@ -34,7 +34,7 @@ module Xrb
             :length, :uint32,
             :num_types, :uint32,
             :pad2, [:uint8, 20],
-            :types, [:num_types, :string]
+            :types, [:num_types, :Type, :list]
       end
       
       class QueryClientPixmapBytes < Xrb::Message

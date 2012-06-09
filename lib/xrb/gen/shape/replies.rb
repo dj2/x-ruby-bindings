@@ -50,7 +50,7 @@ module Xrb
             :length, :uint32,
             :rectangles_len, :uint32,
             :pad1, [:uint8, 20],
-            :rectangles, [:rectangles_len, :string]
+            :rectangles, [:rectangles_len, :RECTANGLE, :list]
       end
       
     end
