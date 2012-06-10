@@ -42,8 +42,8 @@ module Xrb
             :num_formats, :uint16,
             :type, :uint8,
             :pad1, [:uint8, 1],
-            :name, [:name_size, :string],
-            :formats, [:num_formats, :string]
+            :name, [:name_size, :char, :string],
+            :formats, [:num_formats, :Format, :list]
       end
       
       class EncodingInfo < Xrb::Message
@@ -54,7 +54,7 @@ module Xrb
             :height, :uint16,
             :pad1, [:uint8, 2],
             :rate, :Rational,
-            :name, [:name_size, :string]
+            :name, [:name_size, :char, :string]
       end
       
       class Image < Xrb::Message
@@ -64,9 +64,9 @@ module Xrb
             :height, :uint16,
             :data_size, :uint32,
             :num_planes, :uint32,
-            :pitches, [:num_planes, :string],
-            :offsets, [:num_planes, :string],
-            :data, [:data_size, :string]
+            :pitches, [:num_planes, :uint32, :list],
+            :offsets, [:num_planes, :uint32, :list],
+            :data, [:data_size, :uint8, :list]
       end
       
       class AttributeInfo < Xrb::Message
@@ -75,7 +75,7 @@ module Xrb
             :min, :int32,
             :max, :int32,
             :size, :uint32,
-            :name, [:size, :string]
+            :name, [:size, :char, :string]
       end
       
       class ImageFormatInfo < Xrb::Message

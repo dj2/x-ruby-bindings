@@ -23,7 +23,7 @@ module Xrb
             :length, :uint32,
             :listCount, :uint32,
             :pad2, [:uint8, 20],
-            :printers, [:listCount, :string]
+            :printers, [:listCount, :PRINTER, :list]
       end
       
       class PrintGetContext < Xrb::Message
@@ -54,7 +54,7 @@ module Xrb
             :finished_flag, :uint32,
             :dataLen, :uint32,
             :pad2, [:uint8, 12],
-            :data, [:dataLen, :string]
+            :data, [:dataLen, :uint8, :list]
       end
       
       class PrintInputSelected < Xrb::Message
@@ -86,7 +86,7 @@ module Xrb
             :length, :uint32,
             :valueLen, :uint32,
             :pad2, [:uint8, 20],
-            :value, [:valueLen, :string]
+            :value, [:valueLen, :char, :string]
       end
       
       class PrintGetPageDimensions < Xrb::Message
@@ -111,7 +111,7 @@ module Xrb
             :length, :uint32,
             :listCount, :uint32,
             :pad2, [:uint8, 20],
-            :roots, [:listCount, :string]
+            :roots, [:listCount, :uint32, :list]
       end
       
       class PrintSetImageResolution < Xrb::Message

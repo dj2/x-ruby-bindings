@@ -62,7 +62,7 @@ module Xrb
             :length, :uint32,
             :number, :uint32,
             :pad2, [:uint8, 20],
-            :screen_info, [:number, :string]
+            :screen_info, [:number, :ScreenInfo, :list]
       end
       
     end

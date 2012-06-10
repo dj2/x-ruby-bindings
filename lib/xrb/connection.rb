@@ -22,6 +22,7 @@ module Xrb
         raise RuntimeException.new("Only handle MIT-MAGIC-COOKIE-1 for auth.")
       end
 p auth
+
       @xid = {
         last: 0,
         base: xid_base,

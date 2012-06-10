@@ -232,8 +232,13 @@ module Xrb
           if field.members.first.is_a?(ValueField)
             @p.format(":#{field.name}, " +
                 "[:#{field.type.name}, #{field.members.first.size}]")
+
           elsif field.members.first.is_a?(FieldRefField)
-            @p.format(":#{field.name}, [:#{field.members.first.name}, :string]")
+            # We want [:len_field_name, :type, :[string | list]]
+            type = field.type.name == :char ? ':string' : ':list'
+
+            @p.format(":#{field.name}, [:#{field.members.first.name}, " +
+                ":#{field.type.name}, #{type}]")
           else
             puts "Unhandled list type: #{field.members.first.to_s}"
           end

@@ -23,7 +23,7 @@ module Xrb
             :length, :uint32,
             :num_adaptors, :uint16,
             :pad2, [:uint8, 22],
-            :info, [:num_adaptors, :string]
+            :info, [:num_adaptors, :AdaptorInfo, :list]
       end
       
       class QueryEncodings < Xrb::Message
@@ -34,7 +34,7 @@ module Xrb
             :length, :uint32,
             :num_encodings, :uint16,
             :pad2, [:uint8, 22],
-            :info, [:num_encodings, :string]
+            :info, [:num_encodings, :EncodingInfo, :list]
       end
       
       class GrabPort < Xrb::Message
@@ -73,7 +73,7 @@ module Xrb
             :num_attributes, :uint32,
             :text_size, :uint32,
             :pad2, [:uint8, 16],
-            :attributes, [:num_attributes, :string]
+            :attributes, [:num_attributes, :AttributeInfo, :list]
       end
       
       class ListImageFormats < Xrb::Message
@@ -84,7 +84,7 @@ module Xrb
             :length, :uint32,
             :num_formats, :uint32,
             :pad2, [:uint8, 20],
-            :format, [:num_formats, :string]
+            :format, [:num_formats, :ImageFormatInfo, :list]
       end
       
       class QueryImageAttributes < Xrb::Message
@@ -98,8 +98,8 @@ module Xrb
             :width, :uint16,
             :height, :uint16,
             :pad2, [:uint8, 12],
-            :pitches, [:num_planes, :string],
-            :offsets, [:num_planes, :string]
+            :pitches, [:num_planes, :uint32, :list],
+            :offsets, [:num_planes, :uint32, :list]
       end
       
     end

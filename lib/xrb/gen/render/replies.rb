@@ -28,9 +28,9 @@ module Xrb
             :num_visuals, :uint32,
             :num_subpixel, :uint32,
             :pad2, [:uint8, 4],
-            :formats, [:num_formats, :string],
-            :screens, [:num_screens, :string],
-            :subpixels, [:num_subpixel, :string]
+            :formats, [:num_formats, :PICTFORMINFO, :list],
+            :screens, [:num_screens, :PICTSCREEN, :list],
+            :subpixels, [:num_subpixel, :uint32, :list]
       end
       
       class QueryPictIndexValues < Xrb::Message
@@ -41,7 +41,7 @@ module Xrb
             :length, :uint32,
             :num_values, :uint32,
             :pad2, [:uint8, 20],
-            :values, [:num_values, :string]
+            :values, [:num_values, :INDEXVALUE, :list]
       end
       
       class QueryFilters < Xrb::Message
@@ -53,8 +53,8 @@ module Xrb
             :num_aliases, :uint32,
             :num_filters, :uint32,
             :pad2, [:uint8, 16],
-            :aliases, [:num_aliases, :string],
-            :filters, [:num_filters, :string]
+            :aliases, [:num_aliases, :uint16, :list],
+            :filters, [:num_filters, :STR, :list]
       end
       
     end

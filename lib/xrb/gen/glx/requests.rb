@@ -26,7 +26,7 @@ module Xrb
             :request_num, :uint16,
             :request_total, :uint16,
             :data_len, :uint32,
-            :data, [:data_len, :string]
+            :data, [:data_len, :uint8, :list]
       end
       
       class CreateContext < Xrb::Message
@@ -169,7 +169,7 @@ module Xrb
             :num_visuals, :uint32,
             :num_properties, :uint32,
             :pad2, [:uint8, 16],
-            :property_list, [:length, :string]
+            :property_list, [:length, :uint32, :list]
       end
       
       class DestroyGlxPixmap < Xrb::Message
@@ -202,7 +202,7 @@ module Xrb
             :length, :uint16,
             :retval, :uint32,
             :data1, [:uint8, 24],
-            :data2, [:length, :string]
+            :data2, [:length, :uint8, :list]
       end
       
       class QueryExtensionsString < Xrb::Message
@@ -227,7 +227,7 @@ module Xrb
             :pad2, [:uint8, 4],
             :str_len, :uint32,
             :pad3, [:uint8, 16],
-            :string, [:str_len, :string]
+            :string, [:str_len, :char, :string]
       end
       
       class ClientInfo < Xrb::Message
@@ -240,7 +240,7 @@ module Xrb
             :major_version, :uint32,
             :minor_version, :uint32,
             :str_len, :uint32,
-            :string, [:str_len, :string]
+            :string, [:str_len, :char, :string]
       end
       
       class GetFbConfigs < Xrb::Message
@@ -253,7 +253,7 @@ module Xrb
             :num_FB_configs, :uint32,
             :num_properties, :uint32,
             :pad2, [:uint8, 16],
-            :property_list, [:length, :string]
+            :property_list, [:length, :uint32, :list]
       end
       
       class CreatePixmap < Xrb::Message
@@ -268,7 +268,7 @@ module Xrb
             :pixmap, :uint32,
             :glx_pixmap, :uint32,
             :num_attribs, :uint32,
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class DestroyPixmap < Xrb::Message
@@ -306,7 +306,7 @@ module Xrb
             :length, :uint16,
             :num_attribs, :uint32,
             :pad2, [:uint8, 20],
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class MakeContextCurrent < Xrb::Message
@@ -331,7 +331,7 @@ module Xrb
             :fbconfig, :uint32,
             :pbuffer, :uint32,
             :num_attribs, :uint32,
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class DestroyPbuffer < Xrb::Message
@@ -353,7 +353,7 @@ module Xrb
             :length, :uint16,
             :num_attribs, :uint32,
             :pad2, [:uint8, 20],
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class ChangeDrawableAttributes < Xrb::Message
@@ -365,7 +365,7 @@ module Xrb
             :length, :uint16,
             :drawable, :uint32,
             :num_attribs, :uint32,
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class CreateWindow < Xrb::Message
@@ -380,7 +380,7 @@ module Xrb
             :window, :uint32,
             :glx_window, :uint32,
             :num_attribs, :uint32,
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class DeleteWindow < Xrb::Message
@@ -405,9 +405,9 @@ module Xrb
             :num_versions, :uint32,
             :gl_str_len, :uint32,
             :glx_str_len, :uint32,
-            :gl_versions, [:num_versions, :string],
-            :gl_extension_string, [:gl_str_len, :string],
-            :glx_extension_string, [:glx_str_len, :string]
+            :gl_versions, [:num_versions, :uint32, :list],
+            :gl_extension_string, [:gl_str_len, :char, :string],
+            :glx_extension_string, [:glx_str_len, :char, :string]
       end
       
       class CreateContextAttribsArb < Xrb::Message
@@ -424,7 +424,7 @@ module Xrb
             :is_direct, :bool,
             :pad1, [:uint8, 3],
             :num_attribs, :uint32,
-            :attribs, [:num_attribs, :string]
+            :attribs, [:num_attribs, :uint32, :list]
       end
       
       class SetClientInfo_2arb < Xrb::Message
@@ -439,9 +439,9 @@ module Xrb
             :num_versions, :uint32,
             :gl_str_len, :uint32,
             :glx_str_len, :uint32,
-            :gl_versions, [:num_versions, :string],
-            :gl_extension_string, [:gl_str_len, :string],
-            :glx_extension_string, [:glx_str_len, :string]
+            :gl_versions, [:num_versions, :uint32, :list],
+            :gl_extension_string, [:gl_str_len, :char, :string],
+            :glx_extension_string, [:glx_str_len, :char, :string]
       end
       
       class NewList < Xrb::Message
@@ -522,7 +522,7 @@ module Xrb
             :n, :uint32,
             :new_mode, :uint32,
             :pad2, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :uint32, :list]
       end
       
       class Finish < Xrb::Message
@@ -566,7 +566,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetBooleanv < Xrb::Message
@@ -580,7 +580,7 @@ module Xrb
             :n, :uint32,
             :datum, :bool,
             :pad3, [:uint8, 15],
-            :data, [:n, :string]
+            :data, [:n, :bool, :list]
       end
       
       class GetClipPlane < Xrb::Message
@@ -591,7 +591,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :double, :list]
       end
       
       class GetDoublev < Xrb::Message
@@ -605,7 +605,7 @@ module Xrb
             :n, :uint32,
             :datum, :double,
             :pad3, [:uint8, 8],
-            :data, [:n, :string]
+            :data, [:n, :double, :list]
       end
       
       class GetError < Xrb::Message
@@ -629,7 +629,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetIntegerv < Xrb::Message
@@ -643,7 +643,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetLightfv < Xrb::Message
@@ -657,7 +657,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetLightiv < Xrb::Message
@@ -671,7 +671,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetMapdv < Xrb::Message
@@ -685,7 +685,7 @@ module Xrb
             :n, :uint32,
             :datum, :double,
             :pad3, [:uint8, 8],
-            :data, [:n, :string]
+            :data, [:n, :double, :list]
       end
       
       class GetMapfv < Xrb::Message
@@ -699,7 +699,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetMapiv < Xrb::Message
@@ -713,7 +713,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetMaterialfv < Xrb::Message
@@ -727,7 +727,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetMaterialiv < Xrb::Message
@@ -741,7 +741,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetPixelMapfv < Xrb::Message
@@ -755,7 +755,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetPixelMapuiv < Xrb::Message
@@ -769,7 +769,7 @@ module Xrb
             :n, :uint32,
             :datum, :uint32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :uint32, :list]
       end
       
       class GetPixelMapusv < Xrb::Message
@@ -783,7 +783,7 @@ module Xrb
             :n, :uint32,
             :datum, :uint16,
             :pad3, [:uint8, 16],
-            :data, [:n, :string]
+            :data, [:n, :uint16, :list]
       end
       
       class GetPolygonStipple < Xrb::Message
@@ -794,7 +794,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetString < Xrb::Message
@@ -807,7 +807,7 @@ module Xrb
             :pad2, [:uint8, 4],
             :n, :uint32,
             :pad3, [:uint8, 16],
-            :string, [:n, :string]
+            :string, [:n, :char, :string]
       end
       
       class GetTexEnvfv < Xrb::Message
@@ -821,7 +821,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetTexEnviv < Xrb::Message
@@ -835,7 +835,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetTexGendv < Xrb::Message
@@ -849,7 +849,7 @@ module Xrb
             :n, :uint32,
             :datum, :double,
             :pad3, [:uint8, 8],
-            :data, [:n, :string]
+            :data, [:n, :double, :list]
       end
       
       class GetTexGenfv < Xrb::Message
@@ -863,7 +863,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetTexGeniv < Xrb::Message
@@ -877,7 +877,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetTexImage < Xrb::Message
@@ -892,7 +892,7 @@ module Xrb
             :height, :int32,
             :depth, :int32,
             :pad3, [:uint8, 4],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetTexParameterfv < Xrb::Message
@@ -906,7 +906,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetTexParameteriv < Xrb::Message
@@ -920,7 +920,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetTexLevelParameterfv < Xrb::Message
@@ -934,7 +934,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetTexLevelParameteriv < Xrb::Message
@@ -948,7 +948,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class IsList < Xrb::Message
@@ -980,7 +980,7 @@ module Xrb
             :length, :uint16,
             :ret_val, :uint32,
             :pad2, [:uint8, 20],
-            :data, [:length, :string]
+            :data, [:length, :bool, :list]
       end
       
       class DeleteTextures < Xrb::Message
@@ -992,7 +992,7 @@ module Xrb
             :length, :uint16,
             :context_tag, :uint32,
             :n, :int32,
-            :textures, [:n, :string]
+            :textures, [:n, :uint32, :list]
       end
       
       class GenTextures < Xrb::Message
@@ -1003,7 +1003,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :uint32, :list]
       end
       
       class IsTexture < Xrb::Message
@@ -1026,7 +1026,7 @@ module Xrb
             :pad2, [:uint8, 8],
             :width, :int32,
             :pad3, [:uint8, 12],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetColorTableParameterfv < Xrb::Message
@@ -1040,7 +1040,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetColorTableParameteriv < Xrb::Message
@@ -1054,7 +1054,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetConvolutionFilter < Xrb::Message
@@ -1068,7 +1068,7 @@ module Xrb
             :width, :int32,
             :height, :int32,
             :pad3, [:uint8, 8],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetConvolutionParameterfv < Xrb::Message
@@ -1082,7 +1082,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetConvolutionParameteriv < Xrb::Message
@@ -1096,7 +1096,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetSeparableFilter < Xrb::Message
@@ -1110,7 +1110,7 @@ module Xrb
             :row_w, :int32,
             :col_h, :int32,
             :pad3, [:uint8, 8],
-            :rows_and_cols, [:length, :string]
+            :rows_and_cols, [:length, :uint8, :list]
       end
       
       class GetHistogram < Xrb::Message
@@ -1123,7 +1123,7 @@ module Xrb
             :pad2, [:uint8, 8],
             :width, :int32,
             :pad3, [:uint8, 12],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetHistogramParameterfv < Xrb::Message
@@ -1137,7 +1137,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetHistogramParameteriv < Xrb::Message
@@ -1151,7 +1151,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetMinmax < Xrb::Message
@@ -1162,7 +1162,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class GetMinmaxParameterfv < Xrb::Message
@@ -1176,7 +1176,7 @@ module Xrb
             :n, :uint32,
             :datum, :float,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :float, :list]
       end
       
       class GetMinmaxParameteriv < Xrb::Message
@@ -1190,7 +1190,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetCompressedTexImageArb < Xrb::Message
@@ -1203,7 +1203,7 @@ module Xrb
             :pad2, [:uint8, 8],
             :size, :int32,
             :pad3, [:uint8, 12],
-            :data, [:length, :string]
+            :data, [:length, :uint8, :list]
       end
       
       class DeleteQueriesArb < Xrb::Message
@@ -1215,7 +1215,7 @@ module Xrb
             :length, :uint16,
             :context_tag, :uint32,
             :n, :int32,
-            :ids, [:n, :string]
+            :ids, [:n, :uint32, :list]
       end
       
       class GenQueriesArb < Xrb::Message
@@ -1226,7 +1226,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :pad2, [:uint8, 24],
-            :data, [:length, :string]
+            :data, [:length, :uint32, :list]
       end
       
       class IsQueryArb < Xrb::Message
@@ -1250,7 +1250,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetQueryObjectivArb < Xrb::Message
@@ -1264,7 +1264,7 @@ module Xrb
             :n, :uint32,
             :datum, :int32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :int32, :list]
       end
       
       class GetQueryObjectuivArb < Xrb::Message
@@ -1278,7 +1278,7 @@ module Xrb
             :n, :uint32,
             :datum, :uint32,
             :pad3, [:uint8, 12],
-            :data, [:n, :string]
+            :data, [:n, :uint32, :list]
       end
       
     end

@@ -25,7 +25,7 @@ module Xrb
             :length, :uint32,
             :devices_len, :uint8,
             :pad2, [:uint8, 23],
-            :devices, [:devices_len, :string]
+            :devices, [:devices_len, :DeviceInfo, :list]
       end
       
       class OpenDevice < Xrb::Message
@@ -36,7 +36,7 @@ module Xrb
             :length, :uint32,
             :num_classes, :uint8,
             :pad2, [:uint8, 23],
-            :class_info, [:num_classes, :string]
+            :class_info, [:num_classes, :InputClassInfo, :list]
       end
       
       class SetDeviceMode < Xrb::Message
@@ -58,8 +58,8 @@ module Xrb
             :num_this_classes, :uint16,
             :num_all_classes, :uint16,
             :pad2, [:uint8, 20],
-            :this_classes, [:num_this_classes, :string],
-            :all_classes, [:num_all_classes, :string]
+            :this_classes, [:num_this_classes, :uint32, :list],
+            :all_classes, [:num_all_classes, :uint32, :list]
       end
       
       class GetDeviceDontPropagateList < Xrb::Message
@@ -70,7 +70,7 @@ module Xrb
             :length, :uint32,
             :num_classes, :uint16,
             :pad2, [:uint8, 22],
-            :classes, [:num_classes, :string]
+            :classes, [:num_classes, :uint32, :list]
       end
       
       class GetDeviceMotionEvents < Xrb::Message
@@ -145,7 +145,7 @@ module Xrb
             :length, :uint32,
             :keysyms_per_keycode, :uint8,
             :pad2, [:uint8, 23],
-            :keysyms, [:length, :string]
+            :keysyms, [:length, :uint32, :list]
       end
       
       class GetDeviceModifierMapping < Xrb::Message
@@ -156,7 +156,7 @@ module Xrb
             :length, :uint32,
             :keycodes_per_modifier, :uint8,
             :pad2, [:uint8, 23],
-            :keymaps, [:keycodes_per_modifier, :string]
+            :keymaps, [:keycodes_per_modifier, :uint8, :list]
       end
       
       class SetDeviceModifierMapping < Xrb::Message
@@ -177,7 +177,7 @@ module Xrb
             :length, :uint32,
             :map_size, :uint8,
             :pad2, [:uint8, 23],
-            :map, [:map_size, :string]
+            :map, [:map_size, :uint8, :list]
       end
       
       class SetDeviceButtonMapping < Xrb::Message

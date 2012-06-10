@@ -44,8 +44,8 @@ module Xrb
             :rate, :uint16,
             :nInfo, :uint16,
             :pad1, [:uint8, 2],
-            :sizes, [:nSizes, :string],
-            :rates, [:nInfo, :string]
+            :sizes, [:nSizes, :ScreenSize, :list],
+            :rates, [:nInfo, :RefreshRates, :list]
       end
       
       class GetScreenSizeRange < Xrb::Message
@@ -74,10 +74,10 @@ module Xrb
             :num_modes, :uint16,
             :names_len, :uint16,
             :pad2, [:uint8, 8],
-            :crtcs, [:num_crtcs, :string],
-            :outputs, [:num_outputs, :string],
-            :modes, [:num_modes, :string],
-            :names, [:names_len, :string]
+            :crtcs, [:num_crtcs, :uint32, :list],
+            :outputs, [:num_outputs, :uint32, :list],
+            :modes, [:num_modes, :ModeInfo, :list],
+            :names, [:names_len, :uint8, :list]
       end
       
       class GetOutputInfo < Xrb::Message
@@ -97,10 +97,10 @@ module Xrb
             :num_preferred, :uint16,
             :num_clones, :uint16,
             :name_len, :uint16,
-            :crtcs, [:num_crtcs, :string],
-            :modes, [:num_modes, :string],
-            :clones, [:num_clones, :string],
-            :name, [:name_len, :string]
+            :crtcs, [:num_crtcs, :uint32, :list],
+            :modes, [:num_modes, :uint32, :list],
+            :clones, [:num_clones, :uint32, :list],
+            :name, [:name_len, :uint8, :list]
       end
       
       class ListOutputProperties < Xrb::Message
@@ -111,7 +111,7 @@ module Xrb
             :length, :uint32,
             :num_atoms, :uint16,
             :pad2, [:uint8, 22],
-            :atoms, [:num_atoms, :string]
+            :atoms, [:num_atoms, :uint32, :list]
       end
       
       class QueryOutputProperty < Xrb::Message
@@ -124,7 +124,7 @@ module Xrb
             :range, :bool,
             :immutable, :bool,
             :pad2, [:uint8, 21],
-            :validValues, [:length, :string]
+            :validValues, [:length, :int32, :list]
       end
       
       class GetOutputProperty < Xrb::Message
@@ -137,7 +137,7 @@ module Xrb
             :bytes_after, :uint32,
             :num_items, :uint32,
             :pad1, [:uint8, 12],
-            :data, [:format, :string]
+            :data, [:format, :uint8, :list]
       end
       
       class CreateMode < Xrb::Message
@@ -166,8 +166,8 @@ module Xrb
             :rotations, :uint16,
             :num_outputs, :uint16,
             :num_possible_outputs, :uint16,
-            :outputs, [:num_outputs, :string],
-            :possible, [:num_possible_outputs, :string]
+            :outputs, [:num_outputs, :uint32, :list],
+            :possible, [:num_possible_outputs, :uint32, :list]
       end
       
       class SetCrtcConfig < Xrb::Message
@@ -198,9 +198,9 @@ module Xrb
             :length, :uint32,
             :size, :uint16,
             :pad2, [:uint8, 22],
-            :red, [:size, :string],
-            :green, [:size, :string],
-            :blue, [:size, :string]
+            :red, [:size, :uint16, :list],
+            :green, [:size, :uint16, :list],
+            :blue, [:size, :uint16, :list]
       end
       
       class GetScreenResourcesCurrent < Xrb::Message
@@ -216,10 +216,10 @@ module Xrb
             :num_modes, :uint16,
             :names_len, :uint16,
             :pad2, [:uint8, 8],
-            :crtcs, [:num_crtcs, :string],
-            :outputs, [:num_outputs, :string],
-            :modes, [:num_modes, :string],
-            :names, [:names_len, :string]
+            :crtcs, [:num_crtcs, :uint32, :list],
+            :outputs, [:num_outputs, :uint32, :list],
+            :modes, [:num_modes, :ModeInfo, :list],
+            :names, [:names_len, :uint8, :list]
       end
       
       class GetCrtcTransform < Xrb::Message
@@ -237,10 +237,10 @@ module Xrb
             :pending_nparams, :uint16,
             :current_len, :uint16,
             :current_nparams, :uint16,
-            :pending_filter_name, [:pending_len, :string],
-            :pending_params, [:pending_nparams, :string],
-            :current_filter_name, [:current_len, :string],
-            :current_params, [:current_nparams, :string]
+            :pending_filter_name, [:pending_len, :char, :string],
+            :pending_params, [:pending_nparams, :int32, :list],
+            :current_filter_name, [:current_len, :char, :string],
+            :current_params, [:current_nparams, :int32, :list]
       end
       
       class GetPanning < Xrb::Message

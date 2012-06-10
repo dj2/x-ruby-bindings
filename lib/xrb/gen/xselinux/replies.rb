@@ -23,7 +23,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetDeviceContext < Xrb::Message
@@ -34,7 +34,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetWindowCreateContext < Xrb::Message
@@ -45,7 +45,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetWindowContext < Xrb::Message
@@ -56,7 +56,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetPropertyCreateContext < Xrb::Message
@@ -67,7 +67,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetPropertyUseContext < Xrb::Message
@@ -78,7 +78,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetPropertyContext < Xrb::Message
@@ -89,7 +89,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetPropertyDataContext < Xrb::Message
@@ -100,7 +100,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class ListProperties < Xrb::Message
@@ -111,7 +111,7 @@ module Xrb
             :length, :uint32,
             :properties_len, :uint32,
             :pad2, [:uint8, 20],
-            :properties, [:properties_len, :string]
+            :properties, [:properties_len, :ListItem, :list]
       end
       
       class GetSelectionCreateContext < Xrb::Message
@@ -122,7 +122,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetSelectionUseContext < Xrb::Message
@@ -133,7 +133,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetSelectionContext < Xrb::Message
@@ -144,7 +144,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class GetSelectionDataContext < Xrb::Message
@@ -155,7 +155,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
       class ListSelections < Xrb::Message
@@ -166,7 +166,7 @@ module Xrb
             :length, :uint32,
             :selections_len, :uint32,
             :pad2, [:uint8, 20],
-            :selections, [:selections_len, :string]
+            :selections, [:selections_len, :ListItem, :list]
       end
       
       class GetClientContext < Xrb::Message
@@ -177,7 +177,7 @@ module Xrb
             :length, :uint32,
             :context_len, :uint32,
             :pad2, [:uint8, 20],
-            :context, [:context_len, :string]
+            :context, [:context_len, :char, :string]
       end
       
     end

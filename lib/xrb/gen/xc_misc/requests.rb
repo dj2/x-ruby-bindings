@@ -36,7 +36,7 @@ module Xrb
             :length, :uint16,
             :ids_len, :uint32,
             :pad2, [:uint8, 20],
-            :ids, [:ids_len, :string]
+            :ids, [:ids_len, :uint32, :list]
       end
       
     end
