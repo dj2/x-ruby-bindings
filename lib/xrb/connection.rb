@@ -17,7 +17,7 @@ module Xrb
       end
 
       auth = Xrb::Auth.find(@host, @display)
-p auth
+
       @xid = {
         last: 0,
         base: xid_base,
