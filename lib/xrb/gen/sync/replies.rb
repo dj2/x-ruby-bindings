@@ -8,29 +8,29 @@ module Xrb
       class Initialize < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major_version, :uint8,
             :minor_version, :uint8,
-            :pad2, [:uint8, 22]
+            :pad2, [22, :uint8]
       end
       
       class ListSystemCounters < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :counters_len, :uint32,
-            :pad2, [:uint8, 20],
-            :counters, [:counters_len, :SYSTEMCOUNTER, :list]
+            :pad2, [20, :uint8],
+            :counters, [:counters_len, Systemcounter, :list]
       end
       
       class QueryCounter < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :counter_value, :INT64
@@ -39,20 +39,20 @@ module Xrb
       class QueryAlarm < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :trigger, :TRIGGER,
             :delta, :INT64,
             :events, :bool,
             :state, :uint8,
-            :pad2, [:uint8, 2]
+            :pad2, [2, :uint8]
       end
       
       class GetPriority < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :priority, :int32
@@ -61,11 +61,11 @@ module Xrb
       class QueryFence < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :triggered, :bool,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
     end

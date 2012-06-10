@@ -151,7 +151,7 @@ module Xrb
           :depth, :uint8,
           :bits_per_pixel, :uint8,
           :scanline_pad, :uint8,
-          :pad1, [:uint8, 5]
+          :pad1, [5, :uint8]
     end
     
     class VisualType < Xrb::Message
@@ -163,16 +163,16 @@ module Xrb
           :red_mask, :uint32,
           :green_mask, :uint32,
           :blue_mask, :uint32,
-          :pad1, [:uint8, 4]
+          :pad1, [4, :uint8]
     end
     
     class Depth < Xrb::Message
       layout \
           :depth, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :visuals_len, :uint16,
-          :pad2, [:uint8, 4],
-          :visuals, [:visuals_len, :VISUALTYPE, :list]
+          :pad2, [4, :uint8],
+          :visuals, [:visuals_len, VisualType, :list]
     end
     
     class Screen < Xrb::Message
@@ -193,18 +193,18 @@ module Xrb
           :save_unders, :bool,
           :root_depth, :uint8,
           :allowed_depths_len, :uint8,
-          :allowed_depths, [:allowed_depths_len, :DEPTH, :list]
+          :allowed_depths, [:allowed_depths_len, Depth, :list]
     end
     
     class SetupRequest < Xrb::Message
       layout \
           :byte_order, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :protocol_major_version, :uint16,
           :protocol_minor_version, :uint16,
           :authorization_protocol_name_len, :uint16,
           :authorization_protocol_data_len, :uint16,
-          :pad2, [:uint8, 2],
+          :pad2, [2, :uint8],
           :authorization_protocol_name, [:authorization_protocol_name_len, :char, :string],
           :authorization_protocol_data, [:authorization_protocol_data_len, :char, :string]
     end
@@ -222,7 +222,7 @@ module Xrb
     class SetupAuthenticate < Xrb::Message
       layout \
           :status, :uint8,
-          :pad1, [:uint8, 5],
+          :pad1, [5, :uint8],
           :length, :uint16,
           :reason, [:length, :char, :string]
     end
@@ -230,7 +230,7 @@ module Xrb
     class Setup < Xrb::Message
       layout \
           :status, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :protocol_major_version, :uint16,
           :protocol_minor_version, :uint16,
           :length, :uint16,
@@ -248,10 +248,10 @@ module Xrb
           :bitmap_format_scanline_pad, :uint8,
           :min_keycode, :uint8,
           :max_keycode, :uint8,
-          :pad2, [:uint8, 4],
+          :pad2, [4, :uint8],
           :vendor, [:vendor_len, :char, :string],
-          :pixmap_formats, [:pixmap_formats_len, :FORMAT, :list],
-          :roots, [:roots_len, :SCREEN, :list]
+          :pixmap_formats, [:pixmap_formats_len, Format, :list],
+          :roots, [:roots_len, Screen, :list]
     end
     
     class ClientMessageData < Xrb::Message
@@ -305,7 +305,7 @@ module Xrb
           :green, :uint16,
           :blue, :uint16,
           :flags, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class RGB < Xrb::Message
@@ -313,13 +313,13 @@ module Xrb
           :red, :uint16,
           :green, :uint16,
           :blue, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class Host < Xrb::Message
       layout \
           :family, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :address_len, :uint16,
           :address, [:address_len, :uint8, :list]
     end

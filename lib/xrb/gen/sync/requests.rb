@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint8,
             :minor_version, :uint8,
-            :pad2, [:uint8, 22]
+            :pad2, [22, :uint8]
       end
       
       class ListSystemCounters < Xrb::Message
@@ -25,8 +25,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :counters_len, :uint32,
-            :pad2, [:uint8, 20],
-            :counters, [:counters_len, :SYSTEMCOUNTER, :list]
+            :pad2, [20, :uint8],
+            :counters, [:counters_len, Systemcounter, :list]
       end
       
       class CreateCounter < Xrb::Message
@@ -134,7 +134,7 @@ module Xrb
             :delta, :INT64,
             :events, :bool,
             :state, :uint8,
-            :pad2, [:uint8, 2]
+            :pad2, [2, :uint8]
       end
       
       class SetPriority < Xrb::Message
@@ -208,7 +208,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :triggered, :bool,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class AwaitFence < Xrb::Message

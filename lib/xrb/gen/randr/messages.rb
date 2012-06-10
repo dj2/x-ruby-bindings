@@ -67,7 +67,7 @@ module Xrb
             :crtc, :uint32,
             :mode, :uint32,
             :rotation, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :x, :int16,
             :y, :int16,
             :width, :uint16,
@@ -94,7 +94,7 @@ module Xrb
             :atom, :uint32,
             :timestamp, :uint32,
             :status, :uint8,
-            :pad1, [:uint8, 11]
+            :pad1, [11, :uint8]
       end
       
       class NotifyData < Xrb::Message

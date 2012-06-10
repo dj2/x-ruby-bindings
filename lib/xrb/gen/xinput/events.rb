@@ -160,7 +160,7 @@ module Xrb
             :window, :uint32,
             :mode, :uint8,
             :device_id, :uint8,
-            :pad1, [:uint8, 18]
+            :pad1, [18, :uint8]
       end
       
       class FocusOut < Xrb::Message
@@ -173,7 +173,7 @@ module Xrb
             :window, :uint32,
             :mode, :uint8,
             :device_id, :uint8,
-            :pad1, [:uint8, 18]
+            :pad1, [18, :uint8]
       end
       
       class DeviceStateNotify < Xrb::Message
@@ -201,9 +201,9 @@ module Xrb
             :request, :uint8,
             :first_keycode, :uint8,
             :count, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :time, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class ChangeDeviceNotify < Xrb::Message
@@ -214,7 +214,7 @@ module Xrb
             :device_id, :uint8,
             :time, :uint32,
             :request, :uint8,
-            :pad1, [:uint8, 23]
+            :pad1, [23, :uint8]
       end
       
       class DeviceKeyStateNotify < Xrb::Message
@@ -240,12 +240,12 @@ module Xrb
         
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :time, :uint32,
             :devchange, :uint8,
             :device_id, :uint8,
             :control, :uint16,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
     end

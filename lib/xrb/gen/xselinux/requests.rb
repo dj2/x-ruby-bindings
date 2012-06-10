@@ -35,7 +35,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -59,7 +59,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -82,7 +82,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -94,7 +94,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -117,7 +117,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -140,7 +140,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -152,7 +152,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -164,7 +164,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -176,8 +176,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :properties_len, :uint32,
-            :pad2, [:uint8, 20],
-            :properties, [:properties_len, :ListItem, :list]
+            :pad2, [20, :uint8],
+            :properties, [:properties_len, ListItem, :list]
       end
       
       class SetSelectionCreateContext < Xrb::Message
@@ -199,7 +199,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -222,7 +222,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -234,7 +234,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -246,7 +246,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
@@ -258,8 +258,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :selections_len, :uint32,
-            :pad2, [:uint8, 20],
-            :selections, [:selections_len, :ListItem, :list]
+            :pad2, [20, :uint8],
+            :selections, [:selections_len, ListItem, :list]
       end
       
       class GetClientContext < Xrb::Message
@@ -270,7 +270,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       

@@ -24,8 +24,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num, :uint32,
-            :pad2, [:uint8, 20],
-            :surfaces, [:num, :SurfaceInfo, :list]
+            :pad2, [20, :uint8],
+            :surfaces, [:num, SurfaceInfo, :list]
       end
       
       class CreateContext < Xrb::Message
@@ -38,7 +38,7 @@ module Xrb
             :width_actual, :uint16,
             :height_actual, :uint16,
             :flags_return, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :priv_data, [:length, :uint32, :list]
       end
       
@@ -59,7 +59,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :priv_data, [:length, :uint32, :list]
       end
       
@@ -85,7 +85,7 @@ module Xrb
             :num_palette_entries, :uint16,
             :entry_bytes, :uint16,
             :component_order, [:uint8, 4],
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :priv_data, [:length, :uint32, :list]
       end
       
@@ -107,8 +107,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num, :uint32,
-            :pad2, [:uint8, 20],
-            :types, [:num, :ImageFormatInfo, :list]
+            :pad2, [20, :uint8],
+            :types, [:num, ImageFormatInfo, :list]
       end
       
     end

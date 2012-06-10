@@ -35,7 +35,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :ids_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :ids, [:ids_len, :uint32, :list]
       end
       

@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class RedirectWindow < Xrb::Message
@@ -26,7 +26,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :update, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class RedirectSubwindows < Xrb::Message
@@ -38,7 +38,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :update, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class UnredirectWindow < Xrb::Message
@@ -50,7 +50,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :update, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class UnredirectSubwindows < Xrb::Message
@@ -62,7 +62,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :update, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class CreateRegionFromBorderClip < Xrb::Message
@@ -95,7 +95,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :overlay_win, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class ReleaseOverlayWindow < Xrb::Message

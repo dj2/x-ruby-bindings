@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class SetScreenConfig < Xrb::Message
@@ -28,7 +28,7 @@ module Xrb
             :config_timestamp, :uint32,
             :root, :uint32,
             :subpixel_order, :uint16,
-            :pad1, [:uint8, 10]
+            :pad1, [10, :uint8]
       end
       
       class SelectInput < Xrb::Message
@@ -40,7 +40,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :enable, :uint16,
-            :pad1, [:uint8, 2]
+            :pad1, [2, :uint8]
       end
       
       class GetScreenInfo < Xrb::Message
@@ -58,9 +58,9 @@ module Xrb
             :rotation, :uint16,
             :rate, :uint16,
             :nInfo, :uint16,
-            :pad1, [:uint8, 2],
-            :sizes, [:nSizes, :ScreenSize, :list],
-            :rates, [:nInfo, :RefreshRates, :list]
+            :pad1, [2, :uint8],
+            :sizes, [:nSizes, ScreenSize, :list],
+            :rates, [:nInfo, RefreshRates, :list]
       end
       
       class GetScreenSizeRange < Xrb::Message
@@ -74,7 +74,7 @@ module Xrb
             :min_height, :uint16,
             :max_width, :uint16,
             :max_height, :uint16,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class SetScreenSize < Xrb::Message
@@ -104,10 +104,10 @@ module Xrb
             :num_outputs, :uint16,
             :num_modes, :uint16,
             :names_len, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :crtcs, [:num_crtcs, :uint32, :list],
             :outputs, [:num_outputs, :uint32, :list],
-            :modes, [:num_modes, :ModeInfo, :list],
+            :modes, [:num_modes, ModeInfo, :list],
             :names, [:names_len, :uint8, :list]
       end
       
@@ -143,7 +143,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_atoms, :uint16,
-            :pad2, [:uint8, 22],
+            :pad2, [22, :uint8],
             :atoms, [:num_atoms, :uint32, :list]
       end
       
@@ -157,7 +157,7 @@ module Xrb
             :pending, :bool,
             :range, :bool,
             :immutable, :bool,
-            :pad2, [:uint8, 21],
+            :pad2, [21, :uint8],
             :validValues, [:length, :int32, :list]
       end
       
@@ -172,7 +172,7 @@ module Xrb
             :property, :uint32,
             :pending, :bool,
             :range, :bool,
-            :pad1, [:uint8, 2]
+            :pad1, [2, :uint8]
       end
       
       class ChangeOutputProperty < Xrb::Message
@@ -187,7 +187,7 @@ module Xrb
             :type, :uint32,
             :format, :uint8,
             :mode, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :num_units, :uint32,
             :data, [:num_units, :uint8, :list]
       end
@@ -213,7 +213,7 @@ module Xrb
             :type, :uint32,
             :bytes_after, :uint32,
             :num_items, :uint32,
-            :pad1, [:uint8, 12],
+            :pad1, [12, :uint8],
             :data, [:format, :uint8, :list]
       end
       
@@ -225,7 +225,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :mode, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class DestroyMode < Xrb::Message
@@ -289,7 +289,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :timestamp, :uint32,
-            :pad1, [:uint8, 20]
+            :pad1, [20, :uint8]
       end
       
       class GetCrtcGammaSize < Xrb::Message
@@ -300,7 +300,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :size, :uint16,
-            :pad2, [:uint8, 22]
+            :pad2, [22, :uint8]
       end
       
       class GetCrtcGamma < Xrb::Message
@@ -311,7 +311,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :size, :uint16,
-            :pad2, [:uint8, 22],
+            :pad2, [22, :uint8],
             :red, [:size, :uint16, :list],
             :green, [:size, :uint16, :list],
             :blue, [:size, :uint16, :list]
@@ -326,7 +326,7 @@ module Xrb
             :length, :uint16,
             :crtc, :uint32,
             :size, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :red, [:size, :uint16, :list],
             :green, [:size, :uint16, :list],
             :blue, [:size, :uint16, :list]
@@ -345,10 +345,10 @@ module Xrb
             :num_outputs, :uint16,
             :num_modes, :uint16,
             :names_len, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :crtcs, [:num_crtcs, :uint32, :list],
             :outputs, [:num_outputs, :uint32, :list],
-            :modes, [:num_modes, :ModeInfo, :list],
+            :modes, [:num_modes, ModeInfo, :list],
             :names, [:names_len, :uint8, :list]
       end
       
@@ -362,7 +362,7 @@ module Xrb
             :crtc, :uint32,
             :transform, :TRANSFORM,
             :filter_len, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :filter_name, [:filter_len, :char, :string]
       end
       
@@ -375,9 +375,9 @@ module Xrb
             :length, :uint16,
             :pending_transform, :TRANSFORM,
             :has_transforms, :bool,
-            :pad2, [:uint8, 3],
+            :pad2, [3, :uint8],
             :current_transform, :TRANSFORM,
-            :pad3, [:uint8, 4],
+            :pad3, [4, :uint8],
             :pending_len, :uint16,
             :pending_nparams, :uint16,
             :current_len, :uint16,

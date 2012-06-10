@@ -17,7 +17,7 @@ module Xrb
             :timestamp, :uint32,
             :count, :uint16,
             :destroyed, :bool,
-            :pad1, [:uint8, 1]
+            :pad1, [1, :uint8]
       end
       
       class AlarmNotify < Xrb::Message
@@ -31,7 +31,7 @@ module Xrb
             :alarm_value, :INT64,
             :timestamp, :uint32,
             :state, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
     end

@@ -41,7 +41,7 @@ module Xrb
             :screen, :uint32,
             :share_list, :uint32,
             :is_direct, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class DestroyContext < Xrb::Message
@@ -62,7 +62,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_tag, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class IsDirect < Xrb::Message
@@ -73,7 +73,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :is_direct, :bool,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class QueryVersion < Xrb::Message
@@ -85,7 +85,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class WaitGl < Xrb::Message
@@ -168,7 +168,7 @@ module Xrb
             :length, :uint16,
             :num_visuals, :uint32,
             :num_properties, :uint32,
-            :pad2, [:uint8, 16],
+            :pad2, [16, :uint8],
             :property_list, [:length, :uint32, :list]
       end
       
@@ -212,9 +212,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
-            :pad3, [:uint8, 16]
+            :pad3, [16, :uint8]
       end
       
       class QueryServerString < Xrb::Message
@@ -224,9 +224,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :str_len, :uint32,
-            :pad3, [:uint8, 16],
+            :pad3, [16, :uint8],
             :string, [:str_len, :char, :string]
       end
       
@@ -252,7 +252,7 @@ module Xrb
             :length, :uint16,
             :num_FB_configs, :uint32,
             :num_properties, :uint32,
-            :pad2, [:uint8, 16],
+            :pad2, [16, :uint8],
             :property_list, [:length, :uint32, :list]
       end
       
@@ -294,7 +294,7 @@ module Xrb
             :render_type, :uint32,
             :share_list, :uint32,
             :is_direct, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class QueryContext < Xrb::Message
@@ -305,7 +305,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_attribs, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :attribs, [:num_attribs, :uint32, :list]
       end
       
@@ -317,7 +317,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :context_tag, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class CreatePbuffer < Xrb::Message
@@ -352,7 +352,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_attribs, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :attribs, [:num_attribs, :uint32, :list]
       end
       
@@ -422,7 +422,7 @@ module Xrb
             :screen, :uint32,
             :share_list, :uint32,
             :is_direct, :bool,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :num_attribs, :uint32,
             :attribs, [:num_attribs, :uint32, :list]
       end
@@ -521,7 +521,7 @@ module Xrb
             :ret_val, :uint32,
             :n, :uint32,
             :new_mode, :uint32,
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :data, [:n, :uint32, :list]
       end
       
@@ -565,7 +565,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -576,10 +576,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :bool,
-            :pad3, [:uint8, 15],
+            :pad3, [15, :uint8],
             :data, [:n, :bool, :list]
       end
       
@@ -590,7 +590,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :double, :list]
       end
       
@@ -601,10 +601,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :double,
-            :pad3, [:uint8, 8],
+            :pad3, [8, :uint8],
             :data, [:n, :double, :list]
       end
       
@@ -625,10 +625,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -639,10 +639,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -653,10 +653,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -667,10 +667,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -681,10 +681,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :double,
-            :pad3, [:uint8, 8],
+            :pad3, [8, :uint8],
             :data, [:n, :double, :list]
       end
       
@@ -695,10 +695,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -709,10 +709,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -723,10 +723,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -737,10 +737,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -751,10 +751,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -765,10 +765,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :uint32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :uint32, :list]
       end
       
@@ -779,10 +779,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :uint16,
-            :pad3, [:uint8, 16],
+            :pad3, [16, :uint8],
             :data, [:n, :uint16, :list]
       end
       
@@ -793,7 +793,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -804,9 +804,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
-            :pad3, [:uint8, 16],
+            :pad3, [16, :uint8],
             :string, [:n, :char, :string]
       end
       
@@ -817,10 +817,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -831,10 +831,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -845,10 +845,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :double,
-            :pad3, [:uint8, 8],
+            :pad3, [8, :uint8],
             :data, [:n, :double, :list]
       end
       
@@ -859,10 +859,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -873,10 +873,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -887,11 +887,11 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :width, :int32,
             :height, :int32,
             :depth, :int32,
-            :pad3, [:uint8, 4],
+            :pad3, [4, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -902,10 +902,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -916,10 +916,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -930,10 +930,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -944,10 +944,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -979,7 +979,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :ret_val, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :data, [:length, :bool, :list]
       end
       
@@ -1002,7 +1002,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :uint32, :list]
       end
       
@@ -1023,9 +1023,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :width, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -1036,10 +1036,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -1050,10 +1050,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1064,10 +1064,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :width, :int32,
             :height, :int32,
-            :pad3, [:uint8, 8],
+            :pad3, [8, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -1078,10 +1078,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -1092,10 +1092,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1106,10 +1106,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :row_w, :int32,
             :col_h, :int32,
-            :pad3, [:uint8, 8],
+            :pad3, [8, :uint8],
             :rows_and_cols, [:length, :uint8, :list]
       end
       
@@ -1120,9 +1120,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :width, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -1133,10 +1133,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -1147,10 +1147,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1161,7 +1161,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -1172,10 +1172,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :float,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :float, :list]
       end
       
@@ -1186,10 +1186,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1200,9 +1200,9 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :size, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:length, :uint8, :list]
       end
       
@@ -1225,7 +1225,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24],
+            :pad2, [24, :uint8],
             :data, [:length, :uint32, :list]
       end
       
@@ -1246,10 +1246,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1260,10 +1260,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :int32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :int32, :list]
       end
       
@@ -1274,10 +1274,10 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 4],
+            :pad2, [4, :uint8],
             :n, :uint32,
             :datum, :uint32,
-            :pad3, [:uint8, 12],
+            :pad3, [12, :uint8],
             :data, [:n, :uint32, :list]
       end
       

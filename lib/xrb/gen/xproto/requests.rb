@@ -28,7 +28,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32,
           :value_mask, :uint32
@@ -54,7 +54,7 @@ module Xrb
           :all_event_masks, :uint32,
           :your_event_mask, :uint32,
           :do_not_propagate_mask, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class DestroyWindow < Xrb::Message
@@ -62,7 +62,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -72,7 +72,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -92,7 +92,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32,
           :parent, :uint32,
@@ -105,7 +105,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -115,7 +115,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -125,7 +125,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -135,7 +135,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32
     end
@@ -145,11 +145,11 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32,
           :value_mask, :uint16,
-          :pad2, [:uint8, 2],
+          :pad2, [2, :uint8],
           :value_mask, :uint16
     end
     
@@ -175,7 +175,7 @@ module Xrb
           :width, :uint16,
           :height, :uint16,
           :border_width, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class QueryTree < Xrb::Message
@@ -187,7 +187,7 @@ module Xrb
           :length, :uint16,
           :parent, :uint32,
           :children_len, :uint16,
-          :pad2, [:uint8, 14],
+          :pad2, [14, :uint8],
           :children, [:children_len, :uint32, :list]
     end
     
@@ -207,7 +207,7 @@ module Xrb
           :major_opcode, :uint8,
           :name_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
+          :pad2, [22, :uint8],
           :name, [:name_len, :char, :string]
     end
     
@@ -222,7 +222,7 @@ module Xrb
           :property, :uint32,
           :type, :uint32,
           :format, :uint8,
-          :pad1, [:uint8, 3],
+          :pad1, [3, :uint8],
           :data_len, :uint32,
           :data, [:data_len, :uint8, :list]
     end
@@ -232,7 +232,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32,
           :property, :uint32
@@ -247,7 +247,7 @@ module Xrb
           :length, :uint16,
           :bytes_after, :uint32,
           :value_len, :uint32,
-          :pad1, [:uint8, 12],
+          :pad1, [12, :uint8],
           :value, [:format, :uint8, :list]
     end
     
@@ -258,7 +258,7 @@ module Xrb
           :major_opcode, :uint8,
           :atoms_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
+          :pad2, [22, :uint8],
           :atoms, [:atoms_len, :uint32, :list]
     end
     
@@ -267,7 +267,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :owner, :uint32,
           :selection, :uint32,
@@ -288,7 +288,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :requestor, :uint32,
           :selection, :uint32,
@@ -314,7 +314,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -323,7 +323,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :time, :uint32
     end
@@ -342,7 +342,7 @@ module Xrb
           :confine_to, :uint32,
           :cursor, :uint32,
           :button, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :modifiers, :uint16
     end
     
@@ -355,7 +355,7 @@ module Xrb
           :length, :uint16,
           :grab_window, :uint32,
           :modifiers, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class ChangeActivePointerGrab < Xrb::Message
@@ -363,12 +363,12 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cursor, :uint32,
           :time, :uint32,
           :event_mask, :uint16,
-          :pad2, [:uint8, 2]
+          :pad2, [2, :uint8]
     end
     
     class GrabKeyboard < Xrb::Message
@@ -376,7 +376,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -385,7 +385,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :time, :uint32
     end
@@ -402,7 +402,7 @@ module Xrb
           :key, :uint8,
           :pointer_mode, :uint8,
           :keyboard_mode, :uint8,
-          :pad1, [:uint8, 3]
+          :pad1, [3, :uint8]
     end
     
     class UngrabKey < Xrb::Message
@@ -414,7 +414,7 @@ module Xrb
           :length, :uint16,
           :grab_window, :uint32,
           :modifiers, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class AllowEvents < Xrb::Message
@@ -432,7 +432,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -441,7 +441,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -458,7 +458,7 @@ module Xrb
           :win_x, :int16,
           :win_y, :int16,
           :mask, :uint16,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class GetMotionEvents < Xrb::Message
@@ -468,8 +468,8 @@ module Xrb
           :major_opcode, :uint8,
           :events_len, :uint32,
           :length, :uint16,
-          :pad2, [:uint8, 20],
-          :events, [:events_len, :TIMECOORD, :list]
+          :pad2, [20, :uint8],
+          :events, [:events_len, TimeCoord, :list]
     end
     
     class TranslateCoordinates < Xrb::Message
@@ -488,7 +488,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :src_window, :uint32,
           :dst_window, :uint32,
@@ -534,11 +534,11 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :fid, :uint32,
           :name_len, :uint16,
-          :pad2, [:uint8, 2],
+          :pad2, [2, :uint8],
           :name, [:name_len, :char, :string]
     end
     
@@ -547,7 +547,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :font, :uint32
     end
@@ -559,9 +559,9 @@ module Xrb
           :major_opcode, :uint8,
           :min_bounds, :CHARINFO,
           :length, :uint16,
-          :pad2, [:uint8, 4],
+          :pad2, [4, :uint8],
           :max_bounds, :CHARINFO,
-          :pad3, [:uint8, 4],
+          :pad3, [4, :uint8],
           :min_char_or_byte2, :uint16,
           :max_char_or_byte2, :uint16,
           :default_char, :uint16,
@@ -573,8 +573,8 @@ module Xrb
           :font_ascent, :int16,
           :font_descent, :int16,
           :char_infos_len, :uint32,
-          :properties, [:properties_len, :FONTPROP, :list],
-          :char_infos, [:char_infos_len, :CHARINFO, :list]
+          :properties, [:properties_len, FontProp, :list],
+          :char_infos, [:char_infos_len, CharInfo, :list]
     end
     
     class QueryTextExtents < Xrb::Message
@@ -599,8 +599,8 @@ module Xrb
           :major_opcode, :uint8,
           :names_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
-          :names, [:names_len, :STR, :list]
+          :pad2, [22, :uint8],
+          :names, [:names_len, Str, :list]
     end
     
     class ListFontsWithInfo < Xrb::Message
@@ -610,9 +610,9 @@ module Xrb
           :major_opcode, :uint8,
           :min_bounds, :CHARINFO,
           :length, :uint16,
-          :pad1, [:uint8, 4],
+          :pad1, [4, :uint8],
           :max_bounds, :CHARINFO,
-          :pad2, [:uint8, 4],
+          :pad2, [4, :uint8],
           :min_char_or_byte2, :uint16,
           :max_char_or_byte2, :uint16,
           :default_char, :uint16,
@@ -624,7 +624,7 @@ module Xrb
           :font_ascent, :int16,
           :font_descent, :int16,
           :replies_hint, :uint32,
-          :properties, [:properties_len, :FONTPROP, :list],
+          :properties, [:properties_len, FontProp, :list],
           :name, [:name_len, :char, :string]
     end
     
@@ -633,11 +633,11 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :font_qty, :uint16,
-          :pad2, [:uint8, 2],
-          :font, [:font_qty, :STR, :list]
+          :pad2, [2, :uint8],
+          :font, [:font_qty, Str, :list]
     end
     
     class GetFontPath < Xrb::Message
@@ -647,8 +647,8 @@ module Xrb
           :major_opcode, :uint8,
           :path_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
-          :path, [:path_len, :STR, :list]
+          :pad2, [22, :uint8],
+          :path, [:path_len, Str, :list]
     end
     
     class CreatePixmap < Xrb::Message
@@ -669,7 +669,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :pixmap, :uint32
     end
@@ -679,7 +679,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cid, :uint32,
           :drawable, :uint32,
@@ -691,7 +691,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :gc, :uint32,
           :value_mask, :uint32
@@ -702,7 +702,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :src_gc, :uint32,
           :dst_gc, :uint32,
@@ -714,7 +714,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :gc, :uint32,
           :dash_offset, :uint16,
@@ -739,7 +739,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :gc, :uint32
     end
@@ -763,7 +763,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :src_drawable, :uint32,
           :dst_drawable, :uint32,
@@ -781,7 +781,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :src_drawable, :uint32,
           :dst_drawable, :uint32,
@@ -822,7 +822,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32
@@ -833,7 +833,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32
@@ -844,7 +844,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32
@@ -855,13 +855,13 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32,
           :shape, :uint8,
           :coordinate_mode, :uint8,
-          :pad2, [:uint8, 2]
+          :pad2, [2, :uint8]
     end
     
     class PolyFillRectangle < Xrb::Message
@@ -869,7 +869,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32
@@ -880,7 +880,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32
@@ -901,7 +901,7 @@ module Xrb
           :dst_y, :int16,
           :left_pad, :uint8,
           :depth, :uint8,
-          :pad1, [:uint8, 2]
+          :pad1, [2, :uint8]
     end
     
     class GetImage < Xrb::Message
@@ -911,7 +911,7 @@ module Xrb
           :major_opcode, :uint8,
           :visual, :uint32,
           :length, :uint16,
-          :pad1, [:uint8, 20],
+          :pad1, [20, :uint8],
           :data, [:length, :uint8, :list]
     end
     
@@ -920,7 +920,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32,
@@ -933,7 +933,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :drawable, :uint32,
           :gc, :uint32,
@@ -966,7 +966,7 @@ module Xrb
           :gc, :uint32,
           :x, :int16,
           :y, :int16,
-          :string, [:string_len, :CHAR2B, :list]
+          :string, [:string_len, Char2b, :list]
     end
     
     class CreateColormap < Xrb::Message
@@ -986,7 +986,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cmap, :uint32
     end
@@ -996,7 +996,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :mid, :uint32,
           :src_cmap, :uint32
@@ -1007,7 +1007,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cmap, :uint32
     end
@@ -1017,7 +1017,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cmap, :uint32
     end
@@ -1029,7 +1029,7 @@ module Xrb
           :major_opcode, :uint8,
           :cmaps_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
+          :pad2, [22, :uint8],
           :cmaps, [:cmaps_len, :uint32, :list]
     end
     
@@ -1042,7 +1042,7 @@ module Xrb
           :length, :uint16,
           :green, :uint16,
           :blue, :uint16,
-          :pad2, [:uint8, 2],
+          :pad2, [2, :uint8],
           :pixel, :uint32
     end
     
@@ -1069,7 +1069,7 @@ module Xrb
           :pixels_len, :uint16,
           :length, :uint16,
           :masks_len, :uint16,
-          :pad2, [:uint8, 20],
+          :pad2, [20, :uint8],
           :pixels, [:pixels_len, :uint32, :list],
           :masks, [:masks_len, :uint32, :list]
     end
@@ -1081,11 +1081,11 @@ module Xrb
           :major_opcode, :uint8,
           :pixels_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 2],
+          :pad2, [2, :uint8],
           :red_mask, :uint32,
           :green_mask, :uint32,
           :blue_mask, :uint32,
-          :pad3, [:uint8, 8],
+          :pad3, [8, :uint8],
           :pixels, [:pixels_len, :uint32, :list]
     end
     
@@ -1094,7 +1094,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cmap, :uint32,
           :plane_mask, :uint32
@@ -1105,7 +1105,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cmap, :uint32
     end
@@ -1120,7 +1120,7 @@ module Xrb
           :cmap, :uint32,
           :pixel, :uint32,
           :name_len, :uint16,
-          :pad1, [:uint8, 2],
+          :pad1, [2, :uint8],
           :name, [:name_len, :char, :string]
     end
     
@@ -1131,8 +1131,8 @@ module Xrb
           :major_opcode, :uint8,
           :colors_len, :uint16,
           :length, :uint16,
-          :pad2, [:uint8, 22],
-          :colors, [:colors_len, :RGB, :list]
+          :pad2, [22, :uint8],
+          :colors, [:colors_len, RGB, :list]
     end
     
     class LookupColor < Xrb::Message
@@ -1154,7 +1154,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cid, :uint32,
           :source, :uint32,
@@ -1174,7 +1174,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cid, :uint32,
           :source_font, :uint32,
@@ -1194,7 +1194,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cursor, :uint32
     end
@@ -1204,7 +1204,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :cursor, :uint32,
           :fore_red, :uint16,
@@ -1242,9 +1242,9 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 24],
+          :pad1, [24, :uint8],
           :length, :uint16,
-          :names, [:names_len, :STR, :list]
+          :names, [:names_len, Str, :list]
     end
     
     class ChangeKeyboardMapping < Xrb::Message
@@ -1256,7 +1256,7 @@ module Xrb
           :length, :uint16,
           :first_keycode, :uint8,
           :keysyms_per_keycode, :uint8,
-          :pad1, [:uint8, 2],
+          :pad1, [2, :uint8],
           :keysyms, [:keycode_count, :uint32, :list]
     end
     
@@ -1265,7 +1265,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 24],
+          :pad1, [24, :uint8],
           :length, :uint16,
           :keysyms, [:length, :uint32, :list]
     end
@@ -1275,7 +1275,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :value_mask, :uint32
     end
@@ -1291,7 +1291,7 @@ module Xrb
           :bell_percent, :uint8,
           :bell_pitch, :uint16,
           :bell_duration, :uint16,
-          :pad1, [:uint8, 2],
+          :pad1, [2, :uint8],
           :auto_repeats, [:uint8, 32]
     end
     
@@ -1309,7 +1309,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :acceleration_numerator, :int16,
           :acceleration_denominator, :int16,
@@ -1327,7 +1327,7 @@ module Xrb
           :length, :uint16,
           :acceleration_denominator, :uint16,
           :threshold, :uint16,
-          :pad2, [:uint8, 18]
+          :pad2, [18, :uint8]
     end
     
     class SetScreenSaver < Xrb::Message
@@ -1335,7 +1335,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :timeout, :int16,
           :interval, :int16,
@@ -1353,7 +1353,7 @@ module Xrb
           :interval, :uint16,
           :prefer_blanking, :uint8,
           :allow_exposures, :uint8,
-          :pad2, [:uint8, 18]
+          :pad2, [18, :uint8]
     end
     
     class ChangeHosts < Xrb::Message
@@ -1364,7 +1364,7 @@ module Xrb
           :mode, :uint8,
           :length, :uint16,
           :family, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :address_len, :uint16,
           :address, [:address_len, :uint8, :list]
     end
@@ -1376,8 +1376,8 @@ module Xrb
           :major_opcode, :uint8,
           :hosts_len, :uint16,
           :length, :uint16,
-          :pad1, [:uint8, 22],
-          :hosts, [:hosts_len, :HOST, :list]
+          :pad1, [22, :uint8],
+          :hosts, [:hosts_len, Host, :list]
     end
     
     class SetAccessControl < Xrb::Message
@@ -1403,7 +1403,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :resource, :uint32
     end
@@ -1413,7 +1413,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :length, :uint16,
           :window, :uint32,
           :atoms_len, :uint16,
@@ -1435,7 +1435,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -1444,7 +1444,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 24],
+          :pad1, [24, :uint8],
           :length, :uint16,
           :map, [:map_len, :uint8, :list]
     end
@@ -1454,7 +1454,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     
@@ -1463,7 +1463,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad1, [:uint8, 24],
+          :pad1, [24, :uint8],
           :length, :uint16,
           :keycodes, [:keycodes_per_modifier, :uint8, :list]
     end
@@ -1473,7 +1473,7 @@ module Xrb
       
       layout \
           :major_opcode, :uint8,
-          :pad0, [:uint8, 1],
+          :pad0, [1, :uint8],
           :length, :uint16
     end
     

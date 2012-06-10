@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :server_major, :uint16,
@@ -18,29 +18,29 @@ module Xrb
       class QueryClients < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :num_clients, :uint32,
-            :pad2, [:uint8, 20],
-            :clients, [:num_clients, :Client, :list]
+            :pad2, [20, :uint8],
+            :clients, [:num_clients, Client, :list]
       end
       
       class QueryClientResources < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :num_types, :uint32,
-            :pad2, [:uint8, 20],
-            :types, [:num_types, :Type, :list]
+            :pad2, [20, :uint8],
+            :types, [:num_types, Type, :list]
       end
       
       class QueryClientPixmapBytes < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :bytes, :uint32,

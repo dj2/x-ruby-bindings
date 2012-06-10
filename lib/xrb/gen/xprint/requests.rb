@@ -24,8 +24,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :listCount, :uint32,
-            :pad2, [:uint8, 20],
-            :printers, [:listCount, :PRINTER, :list]
+            :pad2, [20, :uint8],
+            :printers, [:listCount, Printer, :list]
       end
       
       class PrintRehashPrinterList < Xrb::Message
@@ -155,7 +155,7 @@ module Xrb
             :status_code, :uint32,
             :finished_flag, :uint32,
             :dataLen, :uint32,
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :data, [:dataLen, :uint8, :list]
       end
       
@@ -177,7 +177,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :cancel, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class PrintSelectInput < Xrb::Message
@@ -210,7 +210,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :stringLen, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :attributes, :char
       end
       
@@ -222,7 +222,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :valueLen, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :value, [:valueLen, :char, :string]
       end
       
@@ -237,7 +237,7 @@ module Xrb
             :stringLen, :uint32,
             :pool, :uint8,
             :rule, :uint8,
-            :pad1, [:uint8, 2]
+            :pad1, [2, :uint8]
       end
       
       class PrintGetPageDimensions < Xrb::Message
@@ -263,7 +263,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :listCount, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :roots, [:listCount, :uint32, :list]
       end
       

@@ -8,12 +8,12 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class SetScreenConfig < Xrb::Message
@@ -26,7 +26,7 @@ module Xrb
             :config_timestamp, :uint32,
             :root, :uint32,
             :subpixel_order, :uint16,
-            :pad1, [:uint8, 10]
+            :pad1, [10, :uint8]
       end
       
       class GetScreenInfo < Xrb::Message
@@ -43,28 +43,28 @@ module Xrb
             :rotation, :uint16,
             :rate, :uint16,
             :nInfo, :uint16,
-            :pad1, [:uint8, 2],
-            :sizes, [:nSizes, :ScreenSize, :list],
-            :rates, [:nInfo, :RefreshRates, :list]
+            :pad1, [2, :uint8],
+            :sizes, [:nSizes, ScreenSize, :list],
+            :rates, [:nInfo, RefreshRates, :list]
       end
       
       class GetScreenSizeRange < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :min_width, :uint16,
             :min_height, :uint16,
             :max_width, :uint16,
             :max_height, :uint16,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class GetScreenResources < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :timestamp, :uint32,
@@ -73,10 +73,10 @@ module Xrb
             :num_outputs, :uint16,
             :num_modes, :uint16,
             :names_len, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :crtcs, [:num_crtcs, :uint32, :list],
             :outputs, [:num_outputs, :uint32, :list],
-            :modes, [:num_modes, :ModeInfo, :list],
+            :modes, [:num_modes, ModeInfo, :list],
             :names, [:names_len, :uint8, :list]
       end
       
@@ -106,24 +106,24 @@ module Xrb
       class ListOutputProperties < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :num_atoms, :uint16,
-            :pad2, [:uint8, 22],
+            :pad2, [22, :uint8],
             :atoms, [:num_atoms, :uint32, :list]
       end
       
       class QueryOutputProperty < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :pending, :bool,
             :range, :bool,
             :immutable, :bool,
-            :pad2, [:uint8, 21],
+            :pad2, [21, :uint8],
             :validValues, [:length, :int32, :list]
       end
       
@@ -136,18 +136,18 @@ module Xrb
             :type, :uint32,
             :bytes_after, :uint32,
             :num_items, :uint32,
-            :pad1, [:uint8, 12],
+            :pad1, [12, :uint8],
             :data, [:format, :uint8, :list]
       end
       
       class CreateMode < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :mode, :uint32,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class GetCrtcInfo < Xrb::Message
@@ -177,27 +177,27 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :timestamp, :uint32,
-            :pad1, [:uint8, 20]
+            :pad1, [20, :uint8]
       end
       
       class GetCrtcGammaSize < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :size, :uint16,
-            :pad2, [:uint8, 22]
+            :pad2, [22, :uint8]
       end
       
       class GetCrtcGamma < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :size, :uint16,
-            :pad2, [:uint8, 22],
+            :pad2, [22, :uint8],
             :red, [:size, :uint16, :list],
             :green, [:size, :uint16, :list],
             :blue, [:size, :uint16, :list]
@@ -206,7 +206,7 @@ module Xrb
       class GetScreenResourcesCurrent < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :timestamp, :uint32,
@@ -215,24 +215,24 @@ module Xrb
             :num_outputs, :uint16,
             :num_modes, :uint16,
             :names_len, :uint16,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :crtcs, [:num_crtcs, :uint32, :list],
             :outputs, [:num_outputs, :uint32, :list],
-            :modes, [:num_modes, :ModeInfo, :list],
+            :modes, [:num_modes, ModeInfo, :list],
             :names, [:names_len, :uint8, :list]
       end
       
       class GetCrtcTransform < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :pending_transform, :TRANSFORM,
             :has_transforms, :bool,
-            :pad2, [:uint8, 3],
+            :pad2, [3, :uint8],
             :current_transform, :TRANSFORM,
-            :pad3, [:uint8, 4],
+            :pad3, [4, :uint8],
             :pending_len, :uint16,
             :pending_nparams, :uint16,
             :current_len, :uint16,
@@ -276,7 +276,7 @@ module Xrb
       class GetOutputPrimary < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :output, :uint32

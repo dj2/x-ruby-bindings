@@ -37,7 +37,7 @@ module Xrb
             :sarea_handle_low, :uint32,
             :sarea_handle_high, :uint32,
             :bus_id_len, :uint32,
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :bus_id, [:bus_id_len, :char, :string]
       end
       
@@ -62,7 +62,7 @@ module Xrb
             :client_driver_minor_version, :uint32,
             :client_driver_patch_version, :uint32,
             :client_driver_name_len, :uint32,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :client_driver_name, [:client_driver_name_len, :char, :string]
       end
       
@@ -125,8 +125,8 @@ module Xrb
             :back_x, :int16,
             :back_y, :int16,
             :num_back_clip_rects, :uint32,
-            :clip_rects, [:num_clip_rects, :DrmClipRect, :list],
-            :back_clip_rects, [:num_back_clip_rects, :DrmClipRect, :list]
+            :clip_rects, [:num_clip_rects, DrmClipRect, :list],
+            :back_clip_rects, [:num_back_clip_rects, DrmClipRect, :list]
       end
       
       class GetDeviceInfo < Xrb::Message

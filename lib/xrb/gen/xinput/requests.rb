@@ -15,7 +15,7 @@ module Xrb
             :server_major, :uint16,
             :server_minor, :uint16,
             :present, :bool,
-            :pad2, [:uint8, 19]
+            :pad2, [19, :uint8]
       end
       
       class ListInputDevices < Xrb::Message
@@ -26,8 +26,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :devices_len, :uint8,
-            :pad2, [:uint8, 23],
-            :devices, [:devices_len, :DeviceInfo, :list]
+            :pad2, [23, :uint8],
+            :devices, [:devices_len, DeviceInfo, :list]
       end
       
       class OpenDevice < Xrb::Message
@@ -38,8 +38,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_classes, :uint8,
-            :pad2, [:uint8, 23],
-            :class_info, [:num_classes, :InputClassInfo, :list]
+            :pad2, [23, :uint8],
+            :class_info, [:num_classes, InputClassInfo, :list]
       end
       
       class CloseDevice < Xrb::Message
@@ -50,7 +50,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :device_id, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class SetDeviceMode < Xrb::Message
@@ -61,7 +61,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class SelectExtensionEvent < Xrb::Message
@@ -73,7 +73,7 @@ module Xrb
             :length, :uint16,
             :window, :uint32,
             :num_classes, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :classes, [:num_classes, :uint32, :list]
       end
       
@@ -86,7 +86,7 @@ module Xrb
             :length, :uint16,
             :num_this_classes, :uint16,
             :num_all_classes, :uint16,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :this_classes, [:num_this_classes, :uint32, :list],
             :all_classes, [:num_all_classes, :uint32, :list]
       end
@@ -101,7 +101,7 @@ module Xrb
             :window, :uint32,
             :num_classes, :uint16,
             :mode, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :classes, [:num_classes, :uint32, :list]
       end
       
@@ -113,7 +113,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_classes, :uint16,
-            :pad2, [:uint8, 22],
+            :pad2, [22, :uint8],
             :classes, [:num_classes, :uint32, :list]
       end
       
@@ -127,7 +127,7 @@ module Xrb
             :num_coords, :uint32,
             :num_axes, :uint8,
             :device_mode, :uint8,
-            :pad2, [:uint8, 18]
+            :pad2, [18, :uint8]
       end
       
       class ChangeKeyboardDevice < Xrb::Message
@@ -138,7 +138,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class ChangePointerDevice < Xrb::Message
@@ -149,7 +149,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class GrabDevice < Xrb::Message
@@ -160,7 +160,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class UngrabDevice < Xrb::Message
@@ -190,7 +190,7 @@ module Xrb
             :this_device_mode, :uint8,
             :other_device_mode, :uint8,
             :owner_events, :bool,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :classes, [:num_classes, :uint32, :list]
       end
       
@@ -224,7 +224,7 @@ module Xrb
             :other_device_mode, :uint8,
             :button, :uint8,
             :owner_events, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :classes, [:num_classes, :uint32, :list]
       end
       
@@ -264,7 +264,7 @@ module Xrb
             :focus, :uint32,
             :time, :uint32,
             :revert_to, :uint8,
-            :pad2, [:uint8, 15]
+            :pad2, [15, :uint8]
       end
       
       class SetDeviceFocus < Xrb::Message
@@ -288,7 +288,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_feedback, :uint16,
-            :pad2, [:uint8, 22]
+            :pad2, [22, :uint8]
       end
       
       class GetDeviceKeyMapping < Xrb::Message
@@ -299,7 +299,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :keysyms_per_keycode, :uint8,
-            :pad2, [:uint8, 23],
+            :pad2, [23, :uint8],
             :keysyms, [:length, :uint32, :list]
       end
       
@@ -325,7 +325,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :keycodes_per_modifier, :uint8,
-            :pad2, [:uint8, 23],
+            :pad2, [23, :uint8],
             :keymaps, [:keycodes_per_modifier, :uint8, :list]
       end
       
@@ -337,7 +337,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class GetDeviceButtonMapping < Xrb::Message
@@ -348,7 +348,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :map_size, :uint8,
-            :pad2, [:uint8, 23],
+            :pad2, [23, :uint8],
             :map, [:map_size, :uint8, :list]
       end
       
@@ -360,7 +360,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class QueryDeviceState < Xrb::Message
@@ -371,7 +371,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_classes, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class SendExtensionEvent < Xrb::Message
@@ -386,7 +386,7 @@ module Xrb
             :propagate, :bool,
             :num_classes, :uint16,
             :num_events, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :events, [:num_events, :char, :string],
             :classes, [:num_classes, :uint32, :list]
       end
@@ -412,7 +412,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class GetDeviceControl < Xrb::Message
@@ -423,7 +423,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :status, :uint8,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
     end

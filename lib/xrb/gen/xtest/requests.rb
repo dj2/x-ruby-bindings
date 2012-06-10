@@ -33,13 +33,13 @@ module Xrb
             :length, :uint16,
             :type, :uint8,
             :detail, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :time, :uint32,
             :root, :uint32,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :rootX, :int16,
             :rootY, :int16,
-            :pad3, [:uint8, 7],
+            :pad3, [7, :uint8],
             :deviceid, :uint8
       end
       
@@ -51,7 +51,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :impervious, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
     end

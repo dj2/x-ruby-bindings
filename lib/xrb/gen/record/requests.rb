@@ -25,11 +25,11 @@ module Xrb
             :length, :uint16,
             :context, :uint32,
             :element_header, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :num_client_specs, :uint32,
             :num_ranges, :uint32,
             :client_specs, [:num_client_specs, :uint32, :list],
-            :ranges, [:num_ranges, :Range, :list]
+            :ranges, [:num_ranges, Range, :list]
       end
       
       class RegisterClients < Xrb::Message
@@ -41,11 +41,11 @@ module Xrb
             :length, :uint16,
             :context, :uint32,
             :element_header, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :num_client_specs, :uint32,
             :num_ranges, :uint32,
             :client_specs, [:num_client_specs, :uint32, :list],
-            :ranges, [:num_ranges, :Range, :list]
+            :ranges, [:num_ranges, Range, :list]
       end
       
       class UnregisterClients < Xrb::Message
@@ -68,10 +68,10 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :element_header, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :num_intercepted_clients, :uint32,
-            :pad2, [:uint8, 16],
-            :intercepted_clients, [:num_intercepted_clients, :ClientInfo, :list]
+            :pad2, [16, :uint8],
+            :intercepted_clients, [:num_intercepted_clients, ClientInfo, :list]
       end
       
       class EnableContext < Xrb::Message
@@ -83,11 +83,11 @@ module Xrb
             :length, :uint16,
             :element_header, :uint8,
             :client_swapped, :bool,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :xid_base, :uint32,
             :server_time, :uint32,
             :rec_sequence_num, :uint32,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :data, [:length, :uint8, :list]
       end
       

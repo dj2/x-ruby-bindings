@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class Create < Xrb::Message
@@ -27,7 +27,7 @@ module Xrb
             :damage, :uint32,
             :drawable, :uint32,
             :level, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class Destroy < Xrb::Message

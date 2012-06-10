@@ -8,7 +8,7 @@ module Xrb
       class GetVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :server_major_version, :uint16,
@@ -18,7 +18,7 @@ module Xrb
       class GetXidRange < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :start_id, :uint32,
@@ -28,11 +28,11 @@ module Xrb
       class GetXidList < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :ids_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :ids, [:ids_len, :uint32, :list]
       end
       

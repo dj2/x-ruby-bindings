@@ -31,7 +31,7 @@ module Xrb
         layout \
             :visual, :uint32,
             :depth, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class AdaptorInfo < Xrb::Message
@@ -41,9 +41,9 @@ module Xrb
             :num_ports, :uint16,
             :num_formats, :uint16,
             :type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :name, [:name_size, :char, :string],
-            :formats, [:num_formats, :Format, :list]
+            :formats, [:num_formats, Format, :list]
       end
       
       class EncodingInfo < Xrb::Message
@@ -52,7 +52,7 @@ module Xrb
             :name_size, :uint16,
             :width, :uint16,
             :height, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :rate, :Rational,
             :name, [:name_size, :char, :string]
       end
@@ -83,18 +83,18 @@ module Xrb
             :id, :uint32,
             :type, :uint8,
             :byte_order, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :guid, [:uint8, 16],
             :bpp, :uint8,
             :num_planes, :uint8,
-            :pad2, [:uint8, 2],
+            :pad2, [2, :uint8],
             :depth, :uint8,
-            :pad3, [:uint8, 3],
+            :pad3, [3, :uint8],
             :red_mask, :uint32,
             :green_mask, :uint32,
             :blue_mask, :uint32,
             :format, :uint8,
-            :pad4, [:uint8, 3],
+            :pad4, [3, :uint8],
             :y_sample_bits, :uint32,
             :u_sample_bits, :uint32,
             :v_sample_bits, :uint32,
@@ -106,7 +106,7 @@ module Xrb
             :vvert_v_period, :uint32,
             :vcomp_order, [:uint8, 32],
             :vscanline_order, :uint8,
-            :pad5, [:uint8, 11]
+            :pad5, [11, :uint8]
       end
       
     end

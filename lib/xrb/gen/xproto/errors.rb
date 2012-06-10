@@ -14,7 +14,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Match < Xrb::Message
@@ -27,7 +27,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Access < Xrb::Message
@@ -40,7 +40,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Alloc < Xrb::Message
@@ -53,7 +53,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Name < Xrb::Message
@@ -66,7 +66,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Length < Xrb::Message
@@ -79,7 +79,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Implementation < Xrb::Message
@@ -92,7 +92,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Value < Xrb::Message
@@ -105,7 +105,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Window < Xrb::Message
@@ -118,7 +118,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Pixmap < Xrb::Message
@@ -131,7 +131,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Atom < Xrb::Message
@@ -144,7 +144,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Cursor < Xrb::Message
@@ -157,7 +157,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Font < Xrb::Message
@@ -170,7 +170,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Drawable < Xrb::Message
@@ -183,7 +183,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class Colormap < Xrb::Message
@@ -196,7 +196,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class GContext < Xrb::Message
@@ -209,7 +209,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class IdChoice < Xrb::Message
@@ -222,7 +222,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class BadSeg < Xrb::Message
@@ -235,7 +235,7 @@ module Xrb
           :bad_value, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
   end

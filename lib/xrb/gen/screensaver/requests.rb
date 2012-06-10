@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :server_major_version, :uint16,
             :server_minor_version, :uint16,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class QueryInfo < Xrb::Message
@@ -29,7 +29,7 @@ module Xrb
             :ms_since_user_input, :uint32,
             :event_mask, :uint32,
             :kind, :uint8,
-            :pad1, [:uint8, 7]
+            :pad1, [7, :uint8]
       end
       
       class SelectInput < Xrb::Message
@@ -80,7 +80,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :suspend, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
     end

@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major_version, :uint32,
@@ -18,12 +18,12 @@ module Xrb
       class Connect < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :driver_name_length, :uint32,
             :device_name_length, :uint32,
-            :pad2, [:uint8, 16],
+            :pad2, [16, :uint8],
             :driver_name, [:driver_name_length, :char, :string],
             :alignment_pad, [:uint8, 3],
             :device_name, [:device_name_length, :char, :string]
@@ -32,7 +32,7 @@ module Xrb
       class Authenticate < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :authenticated, :uint32
@@ -41,20 +41,20 @@ module Xrb
       class GetBuffers < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12],
-            :buffers, [:count, :DRI2Buffer, :list]
+            :pad2, [12, :uint8],
+            :buffers, [:count, Dri2buffer, :list]
       end
       
       class CopyRegion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32
       end
@@ -62,20 +62,20 @@ module Xrb
       class GetBuffersWithFormat < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12],
-            :buffers, [:count, :DRI2Buffer, :list]
+            :pad2, [12, :uint8],
+            :buffers, [:count, Dri2buffer, :list]
       end
       
       class SwapBuffers < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :swap_hi, :uint32,
@@ -85,7 +85,7 @@ module Xrb
       class GetMsc < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :ust_hi, :uint32,
@@ -99,7 +99,7 @@ module Xrb
       class WaitMsc < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :ust_hi, :uint32,
@@ -113,7 +113,7 @@ module Xrb
       class WaitSbc < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :ust_hi, :uint32,

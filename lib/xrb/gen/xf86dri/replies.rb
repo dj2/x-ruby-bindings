@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :dri_major_version, :uint16,
@@ -19,7 +19,7 @@ module Xrb
       class QueryDirectRenderingCapable < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :is_capable, :bool
@@ -28,34 +28,34 @@ module Xrb
       class OpenConnection < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :sarea_handle_low, :uint32,
             :sarea_handle_high, :uint32,
             :bus_id_len, :uint32,
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :bus_id, [:bus_id_len, :char, :string]
       end
       
       class GetClientDriverName < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :client_driver_major_version, :uint32,
             :client_driver_minor_version, :uint32,
             :client_driver_patch_version, :uint32,
             :client_driver_name_len, :uint32,
-            :pad2, [:uint8, 8],
+            :pad2, [8, :uint8],
             :client_driver_name, [:client_driver_name_len, :char, :string]
       end
       
       class CreateContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :hw_context, :uint32
@@ -64,7 +64,7 @@ module Xrb
       class CreateDrawable < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :hw_drawable_handle, :uint32
@@ -73,7 +73,7 @@ module Xrb
       class GetDrawableInfo < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :drawable_table_index, :uint32,
@@ -86,14 +86,14 @@ module Xrb
             :back_x, :int16,
             :back_y, :int16,
             :num_back_clip_rects, :uint32,
-            :clip_rects, [:num_clip_rects, :DrmClipRect, :list],
-            :back_clip_rects, [:num_back_clip_rects, :DrmClipRect, :list]
+            :clip_rects, [:num_clip_rects, DrmClipRect, :list],
+            :back_clip_rects, [:num_back_clip_rects, DrmClipRect, :list]
       end
       
       class GetDeviceInfo < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :framebuffer_handle_low, :uint32,
@@ -108,7 +108,7 @@ module Xrb
       class AuthConnection < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :authenticated, :uint32

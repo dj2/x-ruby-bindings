@@ -16,7 +16,7 @@ module Xrb
             :uid, :uint16,
             :gid, :uint16,
             :pixmap_format, :uint8,
-            :pad1, [:uint8, 15]
+            :pad1, [15, :uint8]
       end
       
       class GetImage < Xrb::Message

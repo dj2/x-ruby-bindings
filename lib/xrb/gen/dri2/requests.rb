@@ -25,7 +25,7 @@ module Xrb
             :length, :uint16,
             :driver_name_length, :uint32,
             :device_name_length, :uint32,
-            :pad2, [:uint8, 16],
+            :pad2, [16, :uint8],
             :driver_name, [:driver_name_length, :char, :string],
             :alignment_pad, [:uint8, 3],
             :device_name, [:device_name_length, :char, :string]
@@ -71,8 +71,8 @@ module Xrb
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12],
-            :buffers, [:count, :DRI2Buffer, :list]
+            :pad2, [12, :uint8],
+            :buffers, [:count, Dri2buffer, :list]
       end
       
       class CopyRegion < Xrb::Message
@@ -94,8 +94,8 @@ module Xrb
             :width, :uint32,
             :height, :uint32,
             :count, :uint32,
-            :pad2, [:uint8, 12],
-            :buffers, [:count, :DRI2Buffer, :list]
+            :pad2, [12, :uint8],
+            :buffers, [:count, Dri2buffer, :list]
       end
       
       class SwapBuffers < Xrb::Message

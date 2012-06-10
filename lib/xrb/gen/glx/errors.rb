@@ -15,7 +15,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadContext < Xrb::Message
@@ -28,7 +28,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadContextState < Xrb::Message
@@ -41,7 +41,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadDrawable < Xrb::Message
@@ -54,7 +54,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadPixmap < Xrb::Message
@@ -67,7 +67,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadContextTag < Xrb::Message
@@ -80,7 +80,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadCurrentWindow < Xrb::Message
@@ -93,7 +93,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadRenderRequest < Xrb::Message
@@ -106,7 +106,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadLargeRequest < Xrb::Message
@@ -119,7 +119,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class UnsupportedPrivateRequest < Xrb::Message
@@ -132,7 +132,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadFbConfig < Xrb::Message
@@ -145,7 +145,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadPbuffer < Xrb::Message
@@ -158,7 +158,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadCurrentDrawable < Xrb::Message
@@ -171,7 +171,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class BadWindow < Xrb::Message
@@ -184,7 +184,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
       class GlxBadProfileArb < Xrb::Message
@@ -197,7 +197,7 @@ module Xrb
             :bad_value, :uint32,
             :minor_opcode, :uint16,
             :major_opcode, :uint8,
-            :pad1, [:uint8, 21]
+            :pad1, [21, :uint8]
       end
       
     end

@@ -18,7 +18,7 @@ module Xrb
             :extents_height, :uint16,
             :server_time, :uint32,
             :shaped, :bool,
-            :pad1, [:uint8, 11]
+            :pad1, [11, :uint8]
       end
       
     end

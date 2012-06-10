@@ -17,7 +17,7 @@ module Xrb
             :uid, :uint16,
             :gid, :uint16,
             :pixmap_format, :uint8,
-            :pad1, [:uint8, 15]
+            :pad1, [15, :uint8]
       end
       
       class Attach < Xrb::Message
@@ -30,7 +30,7 @@ module Xrb
             :shmseg, :uint32,
             :shmid, :uint32,
             :read_only, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class Detach < Xrb::Message
@@ -63,7 +63,7 @@ module Xrb
             :depth, :uint8,
             :format, :uint8,
             :send_event, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :shmseg, :uint32,
             :offset, :uint32
       end
@@ -91,7 +91,7 @@ module Xrb
             :width, :uint16,
             :height, :uint16,
             :depth, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :shmseg, :uint32,
             :offset, :uint32
       end

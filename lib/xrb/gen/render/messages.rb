@@ -62,7 +62,7 @@ module Xrb
             :id, :uint32,
             :type, :uint8,
             :depth, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :direct, :DIRECTFORMAT,
             :colormap, :uint32
       end
@@ -76,17 +76,17 @@ module Xrb
       class Pictdepth < Xrb::Message
         layout \
             :depth, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :num_visuals, :uint16,
-            :pad2, [:uint8, 4],
-            :visuals, [:num_visuals, :PICTVISUAL, :list]
+            :pad2, [4, :uint8],
+            :visuals, [:num_visuals, Pictvisual, :list]
       end
       
       class Pictscreen < Xrb::Message
         layout \
             :num_depths, :uint32,
             :fallback, :uint32,
-            :depths, [:num_depths, :PICTDEPTH, :list]
+            :depths, [:num_depths, Pictdepth, :list]
       end
       
       class Indexvalue < Xrb::Message

@@ -24,7 +24,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :capable, :bool,
-            :pad2, [:uint8, 23]
+            :pad2, [23, :uint8]
       end
       
       class GetTimeouts < Xrb::Message
@@ -37,7 +37,7 @@ module Xrb
             :standby_timeout, :uint16,
             :suspend_timeout, :uint16,
             :off_timeout, :uint16,
-            :pad2, [:uint8, 18]
+            :pad2, [18, :uint8]
       end
       
       class SetTimeouts < Xrb::Message
@@ -89,7 +89,7 @@ module Xrb
             :length, :uint16,
             :power_level, :uint16,
             :state, :bool,
-            :pad2, [:uint8, 21]
+            :pad2, [21, :uint8]
       end
       
     end

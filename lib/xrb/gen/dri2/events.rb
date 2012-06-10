@@ -10,9 +10,9 @@ module Xrb
         
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :event_type, :uint16,
-            :pad2, [:uint8, 2],
+            :pad2, [2, :uint8],
             :drawable, :uint32,
             :ust_hi, :uint32,
             :ust_lo, :uint32,
@@ -26,7 +26,7 @@ module Xrb
         
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :drawable, :uint32
       end
       

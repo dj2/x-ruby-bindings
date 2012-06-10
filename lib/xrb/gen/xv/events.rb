@@ -21,7 +21,7 @@ module Xrb
         
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :time, :uint32,
             :port, :uint32,
             :attribute, :uint32,

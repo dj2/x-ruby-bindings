@@ -8,7 +8,7 @@ module Xrb
       class PrintQueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major_version, :uint16,
@@ -18,18 +18,18 @@ module Xrb
       class PrintGetPrinterList < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :listCount, :uint32,
-            :pad2, [:uint8, 20],
-            :printers, [:listCount, :PRINTER, :list]
+            :pad2, [20, :uint8],
+            :printers, [:listCount, Printer, :list]
       end
       
       class PrintGetContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context, :uint32
@@ -38,7 +38,7 @@ module Xrb
       class PrintGetScreenOfContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :root, :uint32
@@ -47,20 +47,20 @@ module Xrb
       class PrintGetDocumentData < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :status_code, :uint32,
             :finished_flag, :uint32,
             :dataLen, :uint32,
-            :pad2, [:uint8, 12],
+            :pad2, [12, :uint8],
             :data, [:dataLen, :uint8, :list]
       end
       
       class PrintInputSelected < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :event_mask, :uint32,
@@ -70,29 +70,29 @@ module Xrb
       class PrintGetAttributes < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :stringLen, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :attributes, :char
       end
       
       class PrintGetOneAttributes < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :valueLen, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :value, [:valueLen, :char, :string]
       end
       
       class PrintGetPageDimensions < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :width, :uint16,
@@ -106,11 +106,11 @@ module Xrb
       class PrintQueryScreens < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :listCount, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :roots, [:listCount, :uint32, :list]
       end
       
@@ -126,7 +126,7 @@ module Xrb
       class PrintGetImageResolution < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :image_resolution, :uint16

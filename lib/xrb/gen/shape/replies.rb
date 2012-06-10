@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major_version, :uint16,
@@ -18,12 +18,12 @@ module Xrb
       class QueryExtents < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :bounding_shaped, :bool,
             :clip_shaped, :bool,
-            :pad2, [:uint8, 2],
+            :pad2, [2, :uint8],
             :bounding_shape_extents_x, :int16,
             :bounding_shape_extents_y, :int16,
             :bounding_shape_extents_width, :uint16,
@@ -49,8 +49,8 @@ module Xrb
             :sequence, :uint16,
             :length, :uint32,
             :rectangles_len, :uint32,
-            :pad1, [:uint8, 20],
-            :rectangles, [:rectangles_len, :RECTANGLE, :list]
+            :pad1, [20, :uint8],
+            :rectangles, [:rectangles_len, Rectangle, :list]
       end
       
     end

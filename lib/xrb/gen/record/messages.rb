@@ -64,7 +64,7 @@ module Xrb
         layout \
             :client_resource, :uint32,
             :num_ranges, :uint32,
-            :ranges, [:num_ranges, :Range, :list]
+            :ranges, [:num_ranges, Range, :list]
       end
       
     end

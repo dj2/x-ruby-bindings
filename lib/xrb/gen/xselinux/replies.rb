@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :server_major, :uint16,
@@ -18,165 +18,165 @@ module Xrb
       class GetDeviceCreateContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetDeviceContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetWindowCreateContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetWindowContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetPropertyCreateContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetPropertyUseContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetPropertyContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetPropertyDataContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class ListProperties < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :properties_len, :uint32,
-            :pad2, [:uint8, 20],
-            :properties, [:properties_len, :ListItem, :list]
+            :pad2, [20, :uint8],
+            :properties, [:properties_len, ListItem, :list]
       end
       
       class GetSelectionCreateContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetSelectionUseContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetSelectionContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class GetSelectionDataContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       
       class ListSelections < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :selections_len, :uint32,
-            :pad2, [:uint8, 20],
-            :selections, [:selections_len, :ListItem, :list]
+            :pad2, [20, :uint8],
+            :selections, [:selections_len, ListItem, :list]
       end
       
       class GetClientContext < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :context_len, :uint32,
-            :pad2, [:uint8, 20],
+            :pad2, [20, :uint8],
             :context, [:context_len, :char, :string]
       end
       

@@ -26,7 +26,7 @@ module Xrb
             :operation, :uint8,
             :destination_kind, :uint8,
             :ordering, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :destination_window, :uint32,
             :x_offset, :int16,
             :y_offset, :int16
@@ -41,7 +41,7 @@ module Xrb
             :length, :uint16,
             :operation, :uint8,
             :destination_kind, :uint8,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :destination_window, :uint32,
             :x_offset, :int16,
             :y_offset, :int16,
@@ -58,7 +58,7 @@ module Xrb
             :operation, :uint8,
             :destination_kind, :uint8,
             :source_kind, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :destination_window, :uint32,
             :x_offset, :int16,
             :y_offset, :int16,
@@ -73,7 +73,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :destination_kind, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :destination_window, :uint32,
             :x_offset, :int16,
             :y_offset, :int16
@@ -88,7 +88,7 @@ module Xrb
             :length, :uint16,
             :bounding_shaped, :bool,
             :clip_shaped, :bool,
-            :pad2, [:uint8, 2],
+            :pad2, [2, :uint8],
             :bounding_shape_extents_x, :int16,
             :bounding_shape_extents_y, :int16,
             :bounding_shape_extents_width, :uint16,
@@ -108,7 +108,7 @@ module Xrb
             :length, :uint16,
             :destination_window, :uint32,
             :enable, :bool,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class InputSelected < Xrb::Message
@@ -128,8 +128,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :rectangles_len, :uint32,
-            :pad1, [:uint8, 20],
-            :rectangles, [:rectangles_len, :RECTANGLE, :list]
+            :pad1, [20, :uint8],
+            :rectangles, [:rectangles_len, Rectangle, :list]
       end
       
     end

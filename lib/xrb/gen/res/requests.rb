@@ -24,8 +24,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_clients, :uint32,
-            :pad2, [:uint8, 20],
-            :clients, [:num_clients, :Client, :list]
+            :pad2, [20, :uint8],
+            :clients, [:num_clients, Client, :list]
       end
       
       class QueryClientResources < Xrb::Message
@@ -36,8 +36,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_types, :uint32,
-            :pad2, [:uint8, 20],
-            :types, [:num_types, :Type, :list]
+            :pad2, [20, :uint8],
+            :types, [:num_types, Type, :list]
       end
       
       class QueryClientPixmapBytes < Xrb::Message

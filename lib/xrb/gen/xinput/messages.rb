@@ -27,7 +27,7 @@ module Xrb
             :device_id, :uint8,
             :num_class_info, :uint8,
             :device_use, :uint8,
-            :pad1, [:uint8, 1]
+            :pad1, [1, :uint8]
       end
       
       class InputInfo < Xrb::Message
@@ -43,7 +43,7 @@ module Xrb
             :min_keycode, :uint8,
             :max_keycode, :uint8,
             :num_keys, :uint16,
-            :pad1, [:uint8, 2]
+            :pad1, [2, :uint8]
       end
       
       class ButtonInfo < Xrb::Message
@@ -67,7 +67,7 @@ module Xrb
             :axes_len, :uint8,
             :mode, :uint8,
             :motion_size, :uint32,
-            :axes, [:axes_len, :AxisInfo, :list]
+            :axes, [:axes_len, AxisInfo, :list]
       end
       
       class InputClassInfo < Xrb::Message
@@ -100,7 +100,7 @@ module Xrb
             :global_auto_repeat, :bool,
             :click, :uint8,
             :percent, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :auto_repeats, [:uint8, 32]
       end
       
@@ -109,7 +109,7 @@ module Xrb
             :class_id, :uint8,
             :id, :uint8,
             :len, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :accel_num, :uint16,
             :accel_denom, :uint16,
             :threshold, :uint16
@@ -141,7 +141,7 @@ module Xrb
             :id, :uint8,
             :len, :uint16,
             :percent, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :pitch, :uint16,
             :duration, :uint16
       end
@@ -182,7 +182,7 @@ module Xrb
             :class_id, :uint8,
             :id, :uint8,
             :len, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :num, :int16,
             :denom, :int16,
             :threshold, :int16
@@ -201,7 +201,7 @@ module Xrb
             :class_id, :uint8,
             :id, :uint8,
             :len, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :num_keysyms, :uint16,
             :keysyms, [:num_keysyms, :uint32, :list]
       end
@@ -212,7 +212,7 @@ module Xrb
             :id, :uint8,
             :len, :uint16,
             :percent, :int8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :pitch, :int16,
             :duration, :int16
       end
@@ -238,7 +238,7 @@ module Xrb
             :class_id, :uint8,
             :len, :uint8,
             :num_keys, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :keys, [:uint8, 32]
       end
       
@@ -247,7 +247,7 @@ module Xrb
             :class_id, :uint8,
             :len, :uint8,
             :num_buttons, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :buttons, [:uint8, 32]
       end
       
@@ -308,7 +308,7 @@ module Xrb
             :len, :uint16,
             :status, :uint8,
             :iscore, :uint8,
-            :pad1, [:uint8, 2]
+            :pad1, [2, :uint8]
       end
       
       class DeviceEnableState < Xrb::Message
@@ -316,7 +316,7 @@ module Xrb
             :control_id, :uint16,
             :len, :uint16,
             :enable, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class DeviceCtl < Xrb::Message
@@ -365,7 +365,7 @@ module Xrb
             :control_id, :uint16,
             :len, :uint16,
             :status, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
       class DeviceEnableCtrl < Xrb::Message
@@ -373,7 +373,7 @@ module Xrb
             :control_id, :uint16,
             :len, :uint16,
             :enable, :uint8,
-            :pad1, [:uint8, 3]
+            :pad1, [3, :uint8]
       end
       
     end

@@ -8,7 +8,7 @@ module Xrb
       class QueryVersion < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :major, :uint16,
@@ -36,7 +36,7 @@ module Xrb
       class GetScreenSize < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :width, :uint32,
@@ -48,7 +48,7 @@ module Xrb
       class IsActive < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :state, :uint32
@@ -57,12 +57,12 @@ module Xrb
       class QueryScreens < Xrb::Message
         layout \
             :response_type, :uint8,
-            :pad1, [:uint8, 1],
+            :pad1, [1, :uint8],
             :sequence, :uint16,
             :length, :uint32,
             :number, :uint32,
-            :pad2, [:uint8, 20],
-            :screen_info, [:number, :ScreenInfo, :list]
+            :pad2, [20, :uint8],
+            :screen_info, [:number, ScreenInfo, :list]
       end
       
     end

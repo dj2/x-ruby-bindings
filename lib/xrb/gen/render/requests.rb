@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :major_version, :uint32,
             :minor_version, :uint32,
-            :pad2, [:uint8, 16]
+            :pad2, [16, :uint8]
       end
       
       class QueryPictFormats < Xrb::Message
@@ -29,9 +29,9 @@ module Xrb
             :num_depths, :uint32,
             :num_visuals, :uint32,
             :num_subpixel, :uint32,
-            :pad2, [:uint8, 4],
-            :formats, [:num_formats, :PICTFORMINFO, :list],
-            :screens, [:num_screens, :PICTSCREEN, :list],
+            :pad2, [4, :uint8],
+            :formats, [:num_formats, Pictforminfo, :list],
+            :screens, [:num_screens, Pictscreen, :list],
             :subpixels, [:num_subpixel, :uint32, :list]
       end
       
@@ -43,8 +43,8 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :num_values, :uint32,
-            :pad2, [:uint8, 20],
-            :values, [:num_values, :INDEXVALUE, :list]
+            :pad2, [20, :uint8],
+            :values, [:num_values, Indexvalue, :list]
       end
       
       class CreatePicture < Xrb::Message
@@ -101,7 +101,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :mask, :uint32,
             :dst, :uint32,
@@ -123,7 +123,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -139,7 +139,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -155,7 +155,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -171,7 +171,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -221,7 +221,7 @@ module Xrb
             :glyphset, :uint32,
             :glyphs_len, :uint32,
             :glyphids, [:glyphs_len, :uint32, :list],
-            :glyphs, [:glyphs_len, :GLYPHINFO, :list]
+            :glyphs, [:glyphs_len, Glyphinfo, :list]
       end
       
       class FreeGlyphs < Xrb::Message
@@ -242,7 +242,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -259,7 +259,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -276,7 +276,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :src, :uint32,
             :dst, :uint32,
             :mask_format, :uint32,
@@ -293,7 +293,7 @@ module Xrb
             :minor_opcode, :uint8,
             :length, :uint16,
             :op, :uint8,
-            :pad1, [:uint8, 3],
+            :pad1, [3, :uint8],
             :dst, :uint32,
             :color, :COLOR
       end
@@ -331,9 +331,9 @@ module Xrb
             :length, :uint16,
             :num_aliases, :uint32,
             :num_filters, :uint32,
-            :pad2, [:uint8, 16],
+            :pad2, [16, :uint8],
             :aliases, [:num_aliases, :uint16, :list],
-            :filters, [:num_filters, :STR, :list]
+            :filters, [:num_filters, Str, :list]
       end
       
       class SetPictureFilter < Xrb::Message
@@ -345,7 +345,7 @@ module Xrb
             :length, :uint16,
             :picture, :uint32,
             :filter_len, :uint16,
-            :pad1, [:uint8, 2],
+            :pad1, [2, :uint8],
             :filter, [:filter_len, :char, :string]
       end
       
@@ -394,7 +394,7 @@ module Xrb
             :p2, :POINTFIX,
             :num_stops, :uint32,
             :stops, [:num_stops, :int32, :list],
-            :colors, [:num_stops, :COLOR, :list]
+            :colors, [:num_stops, Color, :list]
       end
       
       class CreateRadialGradient < Xrb::Message
@@ -411,7 +411,7 @@ module Xrb
             :outer_radius, :int32,
             :num_stops, :uint32,
             :stops, [:num_stops, :int32, :list],
-            :colors, [:num_stops, :COLOR, :list]
+            :colors, [:num_stops, Color, :list]
       end
       
       class CreateConicalGradient < Xrb::Message
@@ -426,7 +426,7 @@ module Xrb
             :angle, :int32,
             :num_stops, :uint32,
             :stops, [:num_stops, :int32, :list],
-            :colors, [:num_stops, :COLOR, :list]
+            :colors, [:num_stops, Color, :list]
       end
       
     end

@@ -20,7 +20,7 @@ module Xrb
           :event_y, :int16,
           :state, :uint16,
           :same_screen, :bool,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class KeyRelease < Xrb::Message
@@ -39,7 +39,7 @@ module Xrb
           :event_y, :int16,
           :state, :uint16,
           :same_screen, :bool,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class ButtonPress < Xrb::Message
@@ -58,7 +58,7 @@ module Xrb
           :event_y, :int16,
           :state, :uint16,
           :same_screen, :bool,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class ButtonRelease < Xrb::Message
@@ -77,7 +77,7 @@ module Xrb
           :event_y, :int16,
           :state, :uint16,
           :same_screen, :bool,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class MotionNotify < Xrb::Message
@@ -96,7 +96,7 @@ module Xrb
           :event_y, :int16,
           :state, :uint16,
           :same_screen, :bool,
-          :pad1, [:uint8, 1]
+          :pad1, [1, :uint8]
     end
     
     class EnterNotify < Xrb::Message
@@ -145,7 +145,7 @@ module Xrb
           :detail, :uint8,
           :event, :uint32,
           :mode, :uint8,
-          :pad1, [:uint8, 3]
+          :pad1, [3, :uint8]
     end
     
     class FocusOut < Xrb::Message
@@ -156,7 +156,7 @@ module Xrb
           :detail, :uint8,
           :event, :uint32,
           :mode, :uint8,
-          :pad1, [:uint8, 3]
+          :pad1, [3, :uint8]
     end
     
     class KeymapNotify < Xrb::Message
@@ -172,14 +172,14 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :window, :uint32,
           :x, :uint16,
           :y, :uint16,
           :width, :uint16,
           :height, :uint16,
           :count, :uint16,
-          :pad2, [:uint8, 2]
+          :pad2, [2, :uint8]
     end
     
     class GraphicsExposure < Xrb::Message
@@ -187,7 +187,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :drawable, :uint32,
           :x, :uint16,
           :y, :uint16,
@@ -196,7 +196,7 @@ module Xrb
           :minor_opcode, :uint16,
           :count, :uint16,
           :major_opcode, :uint8,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class NoExposure < Xrb::Message
@@ -204,11 +204,11 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :drawable, :uint32,
           :minor_opcode, :uint16,
           :major_opcode, :uint8,
-          :pad2, [:uint8, 1]
+          :pad2, [1, :uint8]
     end
     
     class VisibilityNotify < Xrb::Message
@@ -216,10 +216,10 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :window, :uint32,
           :state, :uint8,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class CreateNotify < Xrb::Message
@@ -227,7 +227,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :parent, :uint32,
           :window, :uint32,
           :x, :int16,
@@ -236,7 +236,7 @@ module Xrb
           :height, :uint16,
           :border_width, :uint16,
           :override_redirect, :bool,
-          :pad2, [:uint8, 1]
+          :pad2, [1, :uint8]
     end
     
     class DestroyNotify < Xrb::Message
@@ -244,7 +244,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32
     end
@@ -254,11 +254,11 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
           :from_configure, :bool,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class MapNotify < Xrb::Message
@@ -266,11 +266,11 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
           :override_redirect, :bool,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class MapRequest < Xrb::Message
@@ -278,7 +278,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :parent, :uint32,
           :window, :uint32
     end
@@ -288,14 +288,14 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
           :parent, :uint32,
           :x, :int16,
           :y, :int16,
           :override_redirect, :bool,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class ConfigureNotify < Xrb::Message
@@ -303,7 +303,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
           :above_sibling, :uint32,
@@ -313,7 +313,7 @@ module Xrb
           :height, :uint16,
           :border_width, :uint16,
           :override_redirect, :bool,
-          :pad2, [:uint8, 1]
+          :pad2, [1, :uint8]
     end
     
     class ConfigureRequest < Xrb::Message
@@ -338,7 +338,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
           :x, :int16,
@@ -350,7 +350,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :window, :uint32,
           :width, :uint16,
           :height, :uint16
@@ -361,12 +361,12 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
-          :pad2, [:uint8, 4],
+          :pad2, [4, :uint8],
           :place, :uint8,
-          :pad3, [:uint8, 3]
+          :pad3, [3, :uint8]
     end
     
     class CirculateRequest < Xrb::Message
@@ -374,12 +374,12 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :event, :uint32,
           :window, :uint32,
-          :pad2, [:uint8, 4],
+          :pad2, [4, :uint8],
           :place, :uint8,
-          :pad3, [:uint8, 3]
+          :pad3, [3, :uint8]
     end
     
     class PropertyNotify < Xrb::Message
@@ -387,12 +387,12 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :window, :uint32,
           :atom, :uint32,
           :time, :uint32,
           :state, :uint8,
-          :pad2, [:uint8, 3]
+          :pad2, [3, :uint8]
     end
     
     class SelectionClear < Xrb::Message
@@ -400,7 +400,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :time, :uint32,
           :owner, :uint32,
           :selection, :uint32
@@ -411,7 +411,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :time, :uint32,
           :owner, :uint32,
           :requestor, :uint32,
@@ -425,7 +425,7 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :time, :uint32,
           :requestor, :uint32,
           :selection, :uint32,
@@ -438,12 +438,12 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :window, :uint32,
           :colormap, :uint32,
           :new, :bool,
           :state, :uint8,
-          :pad2, [:uint8, 2]
+          :pad2, [2, :uint8]
     end
     
     class ClientMessage < Xrb::Message
@@ -462,11 +462,11 @@ module Xrb
       
       layout \
           :response_type, :uint8,
-          :pad1, [:uint8, 1],
+          :pad1, [1, :uint8],
           :request, :uint8,
           :first_keycode, :uint8,
           :count, :uint8,
-          :pad2, [:uint8, 1]
+          :pad2, [1, :uint8]
     end
     
   end

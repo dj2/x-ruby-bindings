@@ -14,7 +14,7 @@ module Xrb
             :length, :uint16,
             :server_major_version, :uint16,
             :server_minor_version, :uint16,
-            :pad2, [:uint8, 20]
+            :pad2, [20, :uint8]
       end
       
       class Start < Xrb::Message
@@ -24,7 +24,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24]
+            :pad2, [24, :uint8]
       end
       
       class End < Xrb::Message
@@ -34,7 +34,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24]
+            :pad2, [24, :uint8]
       end
       
       class Send < Xrb::Message
@@ -44,7 +44,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24]
+            :pad2, [24, :uint8]
       end
       
       class SelectInput < Xrb::Message
@@ -54,7 +54,7 @@ module Xrb
             :major_opcode, :uint8,
             :minor_opcode, :uint8,
             :length, :uint16,
-            :pad2, [:uint8, 24]
+            :pad2, [24, :uint8]
       end
       
     end

@@ -7,7 +7,7 @@ module Xrb
     class Message
       class Event < Xrb::Message
         layout \
-            :pad1, [:uint8, 32]
+            :pad1, [32, :uint8]
       end
       
     end

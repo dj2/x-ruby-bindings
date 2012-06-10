@@ -16,7 +16,7 @@ module Xrb
             :selection, :uint32,
             :timestamp, :uint32,
             :selection_timestamp, :uint32,
-            :pad1, [:uint8, 8]
+            :pad1, [8, :uint8]
       end
       
       class CursorNotify < Xrb::Message
@@ -29,7 +29,7 @@ module Xrb
             :cursor_serial, :uint32,
             :timestamp, :uint32,
             :name, :uint32,
-            :pad1, [:uint8, 12]
+            :pad1, [12, :uint8]
       end
       
     end
