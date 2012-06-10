@@ -9,15 +9,17 @@ module Xrb
 
       screen = o[:screen]
       if o[:parent].nil? || o[:visual].nil?
-        screen = o[:screen] || conn.setup.screens.first
+        screen = o[:screen] || @conn.setup.roots.first
         o[:parent] = screen.root
-        o[:visual] = screen.visual
+        o[:visual] = screen.root_visual
       end
 
-      @id = conn.generate_id
+      @id = @conn.generate_id
       o[:id] = @id
 
-      @conn.send(Xrb::Request::CreateWindow.new(o))
+      request = Xrb::Request::CreateWindow.new
+      
+      @conn.send(request.pack)
     end
 
     def show(flush = true)

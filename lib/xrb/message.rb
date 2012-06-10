@@ -1,7 +1,5 @@
 require 'xrb/cardinal'
 
-require 'pp'
-
 module Xrb
   class Message
     def self.layout(*args)
@@ -9,7 +7,7 @@ module Xrb
       @fields.each_pair do |key, value|
         if value.is_a?(Array)
           if value.length >= 3
-            value[1] = Xrb::Cardinal.all[value[1]]
+            value[1] = value[1].is_a?(Class) ? value[1] : Xrb::Cardinal.all[value[1]]
           end
           value[-1] = Xrb::Cardinal.all[value[-1]]
 
@@ -34,17 +32,28 @@ module Xrb
       end
     end
 
-    def self.unpack(data)
+    def self.unpack(data, padded = true)
       ret = self.new
 
       @fields.each_pair do |key, v|
         size, type, kind = v.is_a?(Array) ? v : [1, v, v]
 
-        data_value = if kind.is_list?
+        if key =~ /^pad[0-9]*/
+          data.read(type.size * size)
+          next
+
+        elsif kind.is_list?
           tmp = data.read(ret.send(size))
 
-          if kind.is_string?
+          data_value = if kind.is_string?
+            if padded
+              padding = (4 - (ret.send(size) % 4)) % 4
+              data.read(padding)
+            end
+
             tmp
+          elsif type.is_a?(Class)
+            data_value = Array(type.unpack(data, padded))
           else
             list = []
             idx = 0
@@ -56,29 +65,36 @@ module Xrb
           end
         else
           data_value = data.read(type.size * size)
-          next if key =~ /^pad[0-9]*/
-
-          data_value.unpack(type.directive).first
+          data_value = data_value.unpack(type.directive).first
         end
+
         ret.send("#{key}=", data_value)
       end
-
       ret
+    end
+
+    def self.fields
+      @fields
     end
 
     def pack
       str = ''
-      @fields.each_pair do |key, v|
-        size, type = v.is_a?(Array) ? [v[0], v[1]] : [1, v]
+      self.class.fields.each_pair do |key, v|
+        size, type, kind = v.is_a?(Array) ? v : [1, v, v]
 
-        str << if type.is_string?
-          self.send(key)
-        else
-          if key =~ /^pad[0-9]*/
-            "\x00" * size
+        str << if key =~ /^pad[0-9]*/
+          "\x00" * size
+
+        elsif kind.is_list?
+          if kind.is_string?
+            v = self.send(key)
+            v += "\x00" * (-v.length & 3)
           else
-            self.send(key).pack(type.directive)
+            self.send(key).collect { |obj| obj.pack }.join
           end
+
+        else
+          [self.send(key)].pack(type.directive)
         end
       end
       str

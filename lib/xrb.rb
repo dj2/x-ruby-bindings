@@ -7,7 +7,12 @@ require 'xrb/setup'
 require 'xrb/window'
 
 module Xrb
+  @@connection = nil
+  
   def self.connection(display = nil)
-    @@connection ||= Xrb::Connection.new(display).connect
+    return @@connection unless @@connection.nil?
+    @@connection = Xrb::Connection.new(display)
+    @@connection.connect
+    @@connection
   end
 end

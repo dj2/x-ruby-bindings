@@ -237,8 +237,13 @@ module Xrb
             # We want [:len_field_name, :type, :[string | list]]
             type = field.type.name == :char ? ':string' : ':list'
 
-            @p.format(":#{field.name}, [:#{field.members.first.name}, " +
-                ":#{field.type.name}, #{type}]")
+            if type == ':string' || !@p.cardinals[field.type.name].nil?
+              @p.format(":#{field.name}, [:#{field.members.first.name}, " +
+                  ":#{field.type.name}, #{type}]")
+            else
+              @p.format(":#{field.name}, [:#{field.members.first.name}, " +
+                  "#{@p.type_name(field.type.name)}, #{type}]")
+            end
           else
             puts "Unhandled list type: #{field.members.first.to_s}"
           end
@@ -246,7 +251,7 @@ module Xrb
 
         def process_padfield(field)
           @p.format(":#{field.name}#{field.index}, " +
-              "[:#{field.type.name}, #{field.bytes}]")
+              "[#{field.bytes}, :#{field.type.name}]")
         end
 
         def process_itemfield(field)
