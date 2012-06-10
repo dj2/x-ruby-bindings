@@ -17,6 +17,10 @@ module Xrb
       end
 
       auth = Xrb::Auth.find(@host, @display)
+
+      if auth && auth.name != 'MIT-MAGIC-COOKIE-1'
+        raise RuntimeException.new("Only handle MIT-MAGIC-COOKIE-1 for auth.")
+      end
 p auth
       @xid = {
         last: 0,
