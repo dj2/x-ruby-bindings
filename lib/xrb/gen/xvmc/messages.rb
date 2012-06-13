@@ -31,15 +31,15 @@ module Xrb
       
       class SurfaceInfo < Xrb::Message
         layout \
-            :id, :uint32,
-            :chroma_format, :uint16,
-            :pad0, :uint16,
-            :max_width, :uint16,
-            :max_height, :uint16,
-            :subpicture_max_width, :uint16,
-            :subpicture_max_height, :uint16,
-            :mc_type, :uint32,
-            :flags, :uint32
+            :id, {type: :uint32},
+            :chroma_format, {type: :uint16},
+            :pad0, {type: :uint16},
+            :max_width, {type: :uint16},
+            :max_height, {type: :uint16},
+            :subpicture_max_width, {type: :uint16},
+            :subpicture_max_height, {type: :uint16},
+            :mc_type, {type: :uint32},
+            :flags, {type: :uint32}
       end
       
     end

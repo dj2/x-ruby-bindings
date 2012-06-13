@@ -7,33 +7,33 @@ module Xrb
     module Reply
       class GetVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :server_major_version, :uint16,
-            :server_minor_version, :uint16
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :server_major_version, {type: :uint16},
+            :server_minor_version, {type: :uint16}
       end
       
       class GetXidRange < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :start_id, :uint32,
-            :count, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :start_id, {type: :uint32},
+            :count, {type: :uint32}
       end
       
       class GetXidList < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ids_len, :uint32,
-            :pad2, [20, :uint8],
-            :ids, [:ids_len, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ids_len, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :ids, {length_field: :ids_len, type: :uint32, kind: :list}
       end
       
     end

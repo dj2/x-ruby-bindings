@@ -6,8 +6,8 @@ module Xrb
   class Message
     class Char2b < Xrb::Message
       layout \
-          :byte1, :uint8,
-          :byte2, :uint8
+          :byte1, {type: :uint8},
+          :byte2, {type: :uint8}
     end
     
     class Window
@@ -124,204 +124,204 @@ module Xrb
     
     class Point < Xrb::Message
       layout \
-          :x, :int16,
-          :y, :int16
+          :x, {type: :int16},
+          :y, {type: :int16}
     end
     
     class Rectangle < Xrb::Message
       layout \
-          :x, :int16,
-          :y, :int16,
-          :width, :uint16,
-          :height, :uint16
+          :x, {type: :int16},
+          :y, {type: :int16},
+          :width, {type: :uint16},
+          :height, {type: :uint16}
     end
     
     class Arc < Xrb::Message
       layout \
-          :x, :int16,
-          :y, :int16,
-          :width, :uint16,
-          :height, :uint16,
-          :angle1, :int16,
-          :angle2, :int16
+          :x, {type: :int16},
+          :y, {type: :int16},
+          :width, {type: :uint16},
+          :height, {type: :uint16},
+          :angle1, {type: :int16},
+          :angle2, {type: :int16}
     end
     
     class Format < Xrb::Message
       layout \
-          :depth, :uint8,
-          :bits_per_pixel, :uint8,
-          :scanline_pad, :uint8,
-          :pad1, [5, :uint8]
+          :depth, {type: :uint8},
+          :bits_per_pixel, {type: :uint8},
+          :scanline_pad, {type: :uint8},
+          :pad1, {size: 5, type: :uint8}
     end
     
     class VisualType < Xrb::Message
       layout \
-          :visual_id, :uint32,
-          :class, :uint8,
-          :bits_per_rgb_value, :uint8,
-          :colormap_entries, :uint16,
-          :red_mask, :uint32,
-          :green_mask, :uint32,
-          :blue_mask, :uint32,
-          :pad1, [4, :uint8]
+          :visual_id, {type: :uint32},
+          :class, {type: :uint8},
+          :bits_per_rgb_value, {type: :uint8},
+          :colormap_entries, {type: :uint16},
+          :red_mask, {type: :uint32},
+          :green_mask, {type: :uint32},
+          :blue_mask, {type: :uint32},
+          :pad1, {size: 4, type: :uint8}
     end
     
     class Depth < Xrb::Message
       layout \
-          :depth, :uint8,
-          :pad1, [1, :uint8],
-          :visuals_len, :uint16,
-          :pad2, [4, :uint8],
-          :visuals, [:visuals_len, VisualType, :list]
+          :depth, {type: :uint8},
+          :pad1, {size: 1, type: :uint8},
+          :visuals_len, {type: :uint16},
+          :pad2, {size: 4, type: :uint8},
+          :visuals, {length_field: :visuals_len, type: VisualType, kind: :list}
     end
     
     class Screen < Xrb::Message
       layout \
-          :root, :uint32,
-          :default_colormap, :uint32,
-          :white_pixel, :uint32,
-          :black_pixel, :uint32,
-          :current_input_masks, :uint32,
-          :width_in_pixels, :uint16,
-          :height_in_pixels, :uint16,
-          :width_in_millimeters, :uint16,
-          :height_in_millimeters, :uint16,
-          :min_installed_maps, :uint16,
-          :max_installed_maps, :uint16,
-          :root_visual, :uint32,
-          :backing_stores, :uint8,
-          :save_unders, :bool,
-          :root_depth, :uint8,
-          :allowed_depths_len, :uint8,
-          :allowed_depths, [:allowed_depths_len, Depth, :list]
+          :root, {type: :uint32},
+          :default_colormap, {type: :uint32},
+          :white_pixel, {type: :uint32},
+          :black_pixel, {type: :uint32},
+          :current_input_masks, {type: :uint32},
+          :width_in_pixels, {type: :uint16},
+          :height_in_pixels, {type: :uint16},
+          :width_in_millimeters, {type: :uint16},
+          :height_in_millimeters, {type: :uint16},
+          :min_installed_maps, {type: :uint16},
+          :max_installed_maps, {type: :uint16},
+          :root_visual, {type: :uint32},
+          :backing_stores, {type: :uint8},
+          :save_unders, {type: :bool},
+          :root_depth, {type: :uint8},
+          :allowed_depths_len, {type: :uint8},
+          :allowed_depths, {length_field: :allowed_depths_len, type: Depth, kind: :list}
     end
     
     class SetupRequest < Xrb::Message
       layout \
-          :byte_order, :uint8,
-          :pad1, [1, :uint8],
-          :protocol_major_version, :uint16,
-          :protocol_minor_version, :uint16,
-          :authorization_protocol_name_len, :uint16,
-          :authorization_protocol_data_len, :uint16,
-          :pad2, [2, :uint8],
-          :authorization_protocol_name, [:authorization_protocol_name_len, :char, :string],
-          :authorization_protocol_data, [:authorization_protocol_data_len, :char, :string]
+          :byte_order, {type: :uint8},
+          :pad1, {size: 1, type: :uint8},
+          :protocol_major_version, {type: :uint16},
+          :protocol_minor_version, {type: :uint16},
+          :authorization_protocol_name_len, {type: :uint16},
+          :authorization_protocol_data_len, {type: :uint16},
+          :pad2, {size: 2, type: :uint8},
+          :authorization_protocol_name, {length_field: :authorization_protocol_name_len, type: :char, kind: :string},
+          :authorization_protocol_data, {length_field: :authorization_protocol_data_len, type: :char, kind: :string}
     end
     
     class SetupFailed < Xrb::Message
       layout \
-          :status, :uint8,
-          :reason_len, :uint8,
-          :protocol_major_version, :uint16,
-          :protocol_minor_version, :uint16,
-          :length, :uint16,
-          :reason, [:reason_len, :char, :string]
+          :status, {type: :uint8},
+          :reason_len, {type: :uint8},
+          :protocol_major_version, {type: :uint16},
+          :protocol_minor_version, {type: :uint16},
+          :length, {type: :uint16},
+          :reason, {length_field: :reason_len, type: :char, kind: :string}
     end
     
     class SetupAuthenticate < Xrb::Message
       layout \
-          :status, :uint8,
-          :pad1, [5, :uint8],
-          :length, :uint16,
-          :reason, [:length, :char, :string]
+          :status, {type: :uint8},
+          :pad1, {size: 5, type: :uint8},
+          :length, {type: :uint16},
+          :reason, {length_field: :length, type: :char, kind: :string}
     end
     
     class Setup < Xrb::Message
       layout \
-          :status, :uint8,
-          :pad1, [1, :uint8],
-          :protocol_major_version, :uint16,
-          :protocol_minor_version, :uint16,
-          :length, :uint16,
-          :release_number, :uint32,
-          :resource_id_base, :uint32,
-          :resource_id_mask, :uint32,
-          :motion_buffer_size, :uint32,
-          :vendor_len, :uint16,
-          :maximum_request_length, :uint16,
-          :roots_len, :uint8,
-          :pixmap_formats_len, :uint8,
-          :image_byte_order, :uint8,
-          :bitmap_format_bit_order, :uint8,
-          :bitmap_format_scanline_unit, :uint8,
-          :bitmap_format_scanline_pad, :uint8,
-          :min_keycode, :uint8,
-          :max_keycode, :uint8,
-          :pad2, [4, :uint8],
-          :vendor, [:vendor_len, :char, :string],
-          :pixmap_formats, [:pixmap_formats_len, Format, :list],
-          :roots, [:roots_len, Screen, :list]
+          :status, {type: :uint8},
+          :pad1, {size: 1, type: :uint8},
+          :protocol_major_version, {type: :uint16},
+          :protocol_minor_version, {type: :uint16},
+          :length, {type: :uint16},
+          :release_number, {type: :uint32},
+          :resource_id_base, {type: :uint32},
+          :resource_id_mask, {type: :uint32},
+          :motion_buffer_size, {type: :uint32},
+          :vendor_len, {type: :uint16},
+          :maximum_request_length, {type: :uint16},
+          :roots_len, {type: :uint8},
+          :pixmap_formats_len, {type: :uint8},
+          :image_byte_order, {type: :uint8},
+          :bitmap_format_bit_order, {type: :uint8},
+          :bitmap_format_scanline_unit, {type: :uint8},
+          :bitmap_format_scanline_pad, {type: :uint8},
+          :min_keycode, {type: :uint8},
+          :max_keycode, {type: :uint8},
+          :pad2, {size: 4, type: :uint8},
+          :vendor, {length_field: :vendor_len, type: :char, kind: :string},
+          :pixmap_formats, {length_field: :pixmap_formats_len, type: Format, kind: :list},
+          :roots, {length_field: :roots_len, type: Screen, kind: :list}
     end
     
     class ClientMessageData < Xrb::Message
       union \
-          :data8, [:uint8, 20],
-          :data16, [:uint16, 10],
-          :data32, [:uint32, 5]
+          :data8, {type: :uint8, size: 20},
+          :data16, {type: :uint16, size: 10},
+          :data32, {type: :uint32, size: 5}
     end
     
     class TimeCoord < Xrb::Message
       layout \
-          :time, :uint32,
-          :x, :int16,
-          :y, :int16
+          :time, {type: :uint32},
+          :x, {type: :int16},
+          :y, {type: :int16}
     end
     
     class FontProp < Xrb::Message
       layout \
-          :name, :uint32,
-          :value, :uint32
+          :name, {type: :uint32},
+          :value, {type: :uint32}
     end
     
     class CharInfo < Xrb::Message
       layout \
-          :left_side_bearing, :int16,
-          :right_side_bearing, :int16,
-          :character_width, :int16,
-          :ascent, :int16,
-          :descent, :int16,
-          :attributes, :uint16
+          :left_side_bearing, {type: :int16},
+          :right_side_bearing, {type: :int16},
+          :character_width, {type: :int16},
+          :ascent, {type: :int16},
+          :descent, {type: :int16},
+          :attributes, {type: :uint16}
     end
     
     class Str < Xrb::Message
       layout \
-          :name_len, :uint8,
-          :name, [:name_len, :char, :string]
+          :name_len, {type: :uint8},
+          :name, {length_field: :name_len, type: :char, kind: :string}
     end
     
     class Segment < Xrb::Message
       layout \
-          :x1, :int16,
-          :y1, :int16,
-          :x2, :int16,
-          :y2, :int16
+          :x1, {type: :int16},
+          :y1, {type: :int16},
+          :x2, {type: :int16},
+          :y2, {type: :int16}
     end
     
     class ColorItem < Xrb::Message
       layout \
-          :pixel, :uint32,
-          :red, :uint16,
-          :green, :uint16,
-          :blue, :uint16,
-          :flags, :uint8,
-          :pad1, [1, :uint8]
+          :pixel, {type: :uint32},
+          :red, {type: :uint16},
+          :green, {type: :uint16},
+          :blue, {type: :uint16},
+          :flags, {type: :uint8},
+          :pad1, {size: 1, type: :uint8}
     end
     
     class RGB < Xrb::Message
       layout \
-          :red, :uint16,
-          :green, :uint16,
-          :blue, :uint16,
-          :pad1, [2, :uint8]
+          :red, {type: :uint16},
+          :green, {type: :uint16},
+          :blue, {type: :uint16},
+          :pad1, {size: 2, type: :uint8}
     end
     
     class Host < Xrb::Message
       layout \
-          :family, :uint8,
-          :pad1, [1, :uint8],
-          :address_len, :uint16,
-          :address, [:address_len, :uint8, :list]
+          :family, {type: :uint8},
+          :pad1, {size: 1, type: :uint8},
+          :address_len, {type: :uint16},
+          :address, {length_field: :address_len, type: :uint8, kind: :list}
     end
     
   end

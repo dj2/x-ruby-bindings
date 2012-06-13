@@ -9,19 +9,25 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :code, :uint8,
-            :state, :uint8,
-            :pad1, [1, :uint8],
-            :sequence_number, :uint16,
-            :time, :uint32,
-            :root, :uint32,
-            :window, :uint32,
-            :kind, :uint8,
-            :forced, :bool,
-            :pad2, [14, :uint8]
+            :response_type, {type: :uint8},
+            :code, {type: :uint8},
+            :state, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence_number, {type: :uint16},
+            :time, {type: :uint32},
+            :root, {type: :uint32},
+            :window, {type: :uint32},
+            :kind, {type: :uint8},
+            :forced, {type: :bool},
+            :pad2, {size: 14, type: :uint8}
       end
       
+      @op_map = {
+        0 => Notify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

@@ -9,31 +9,38 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :kind, :uint8,
-            :counter, :uint32,
-            :wait_value, :INT64,
-            :counter_value, :INT64,
-            :timestamp, :uint32,
-            :count, :uint16,
-            :destroyed, :bool,
-            :pad1, [1, :uint8]
+            :response_type, {type: :uint8},
+            :kind, {type: :uint8},
+            :counter, {type: :uint32},
+            :wait_value, {type: :INT64},
+            :counter_value, {type: :INT64},
+            :timestamp, {type: :uint32},
+            :count, {type: :uint16},
+            :destroyed, {type: :bool},
+            :pad1, {size: 1, type: :uint8}
       end
       
       class AlarmNotify < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :kind, :uint8,
-            :alarm, :uint32,
-            :counter_value, :INT64,
-            :alarm_value, :INT64,
-            :timestamp, :uint32,
-            :state, :uint8,
-            :pad1, [3, :uint8]
+            :response_type, {type: :uint8},
+            :kind, {type: :uint8},
+            :alarm, {type: :uint32},
+            :counter_value, {type: :INT64},
+            :alarm_value, {type: :INT64},
+            :timestamp, {type: :uint32},
+            :state, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
       
+      @op_map = {
+        0 => CounterNotify,
+1 => AlarmNotify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

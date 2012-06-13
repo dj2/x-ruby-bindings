@@ -31,30 +31,30 @@ module Xrb
       
       class Int64 < Xrb::Message
         layout \
-            :hi, :int32,
-            :lo, :uint32
+            :hi, {type: :int32},
+            :lo, {type: :uint32}
       end
       
       class Systemcounter < Xrb::Message
         layout \
-            :counter, :uint32,
-            :resolution, :INT64,
-            :name_len, :uint16,
-            :name, [:name_len, :char, :string]
+            :counter, {type: :uint32},
+            :resolution, {type: :INT64},
+            :name_len, {type: :uint16},
+            :name, {length_field: :name_len, type: :char, kind: :string}
       end
       
       class Trigger < Xrb::Message
         layout \
-            :counter, :uint32,
-            :wait_type, :uint32,
-            :wait_value, :INT64,
-            :test_type, :uint32
+            :counter, {type: :uint32},
+            :wait_type, {type: :uint32},
+            :wait_value, {type: :INT64},
+            :test_type, {type: :uint32}
       end
       
       class Waitcondition < Xrb::Message
         layout \
-            :trigger, :TRIGGER,
-            :event_threshold, :INT64
+            :trigger, {type: :TRIGGER},
+            :event_threshold, {type: :INT64}
       end
       
     end

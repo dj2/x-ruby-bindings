@@ -7,111 +7,111 @@ module Xrb
     module Reply
       class QueryVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :dri_major_version, :uint16,
-            :dri_minor_version, :uint16,
-            :dri_minor_patch, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :dri_major_version, {type: :uint16},
+            :dri_minor_version, {type: :uint16},
+            :dri_minor_patch, {type: :uint32}
       end
       
       class QueryDirectRenderingCapable < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :is_capable, :bool
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :is_capable, {type: :bool}
       end
       
       class OpenConnection < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :sarea_handle_low, :uint32,
-            :sarea_handle_high, :uint32,
-            :bus_id_len, :uint32,
-            :pad2, [12, :uint8],
-            :bus_id, [:bus_id_len, :char, :string]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :sarea_handle_low, {type: :uint32},
+            :sarea_handle_high, {type: :uint32},
+            :bus_id_len, {type: :uint32},
+            :pad2, {size: 12, type: :uint8},
+            :bus_id, {length_field: :bus_id_len, type: :char, kind: :string}
       end
       
       class GetClientDriverName < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :client_driver_major_version, :uint32,
-            :client_driver_minor_version, :uint32,
-            :client_driver_patch_version, :uint32,
-            :client_driver_name_len, :uint32,
-            :pad2, [8, :uint8],
-            :client_driver_name, [:client_driver_name_len, :char, :string]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :client_driver_major_version, {type: :uint32},
+            :client_driver_minor_version, {type: :uint32},
+            :client_driver_patch_version, {type: :uint32},
+            :client_driver_name_len, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :client_driver_name, {length_field: :client_driver_name_len, type: :char, kind: :string}
       end
       
       class CreateContext < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :hw_context, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :hw_context, {type: :uint32}
       end
       
       class CreateDrawable < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :hw_drawable_handle, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :hw_drawable_handle, {type: :uint32}
       end
       
       class GetDrawableInfo < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :drawable_table_index, :uint32,
-            :drawable_table_stamp, :uint32,
-            :drawable_origin_X, :int16,
-            :drawable_origin_Y, :int16,
-            :drawable_size_W, :int16,
-            :drawable_size_H, :int16,
-            :num_clip_rects, :uint32,
-            :back_x, :int16,
-            :back_y, :int16,
-            :num_back_clip_rects, :uint32,
-            :clip_rects, [:num_clip_rects, DrmClipRect, :list],
-            :back_clip_rects, [:num_back_clip_rects, DrmClipRect, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :drawable_table_index, {type: :uint32},
+            :drawable_table_stamp, {type: :uint32},
+            :drawable_origin_X, {type: :int16},
+            :drawable_origin_Y, {type: :int16},
+            :drawable_size_W, {type: :int16},
+            :drawable_size_H, {type: :int16},
+            :num_clip_rects, {type: :uint32},
+            :back_x, {type: :int16},
+            :back_y, {type: :int16},
+            :num_back_clip_rects, {type: :uint32},
+            :clip_rects, {length_field: :num_clip_rects, type: DrmClipRect, kind: :list},
+            :back_clip_rects, {length_field: :num_back_clip_rects, type: DrmClipRect, kind: :list}
       end
       
       class GetDeviceInfo < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :framebuffer_handle_low, :uint32,
-            :framebuffer_handle_high, :uint32,
-            :framebuffer_origin_offset, :uint32,
-            :framebuffer_size, :uint32,
-            :framebuffer_stride, :uint32,
-            :device_private_size, :uint32,
-            :device_private, [:device_private_size, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :framebuffer_handle_low, {type: :uint32},
+            :framebuffer_handle_high, {type: :uint32},
+            :framebuffer_origin_offset, {type: :uint32},
+            :framebuffer_size, {type: :uint32},
+            :framebuffer_stride, {type: :uint32},
+            :device_private_size, {type: :uint32},
+            :device_private, {length_field: :device_private_size, type: :uint32, kind: :list}
       end
       
       class AuthConnection < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :authenticated, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :authenticated, {type: :uint32}
       end
       
     end

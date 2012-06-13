@@ -9,18 +9,24 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :shape_kind, :uint8,
-            :affected_window, :uint32,
-            :extents_x, :int16,
-            :extents_y, :int16,
-            :extents_width, :uint16,
-            :extents_height, :uint16,
-            :server_time, :uint32,
-            :shaped, :bool,
-            :pad1, [11, :uint8]
+            :response_type, {type: :uint8},
+            :shape_kind, {type: :uint8},
+            :affected_window, {type: :uint32},
+            :extents_x, {type: :int16},
+            :extents_y, {type: :int16},
+            :extents_width, {type: :uint16},
+            :extents_height, {type: :uint16},
+            :server_time, {type: :uint32},
+            :shaped, {type: :bool},
+            :pad1, {size: 11, type: :uint8}
       end
       
+      @op_map = {
+        0 => Notify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

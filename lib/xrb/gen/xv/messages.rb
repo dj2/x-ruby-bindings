@@ -23,90 +23,90 @@ module Xrb
       
       class Rational < Xrb::Message
         layout \
-            :numerator, :int32,
-            :denominator, :int32
+            :numerator, {type: :int32},
+            :denominator, {type: :int32}
       end
       
       class Format < Xrb::Message
         layout \
-            :visual, :uint32,
-            :depth, :uint8,
-            :pad1, [3, :uint8]
+            :visual, {type: :uint32},
+            :depth, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
       
       class AdaptorInfo < Xrb::Message
         layout \
-            :base_id, :uint32,
-            :name_size, :uint16,
-            :num_ports, :uint16,
-            :num_formats, :uint16,
-            :type, :uint8,
-            :pad1, [1, :uint8],
-            :name, [:name_size, :char, :string],
-            :formats, [:num_formats, Format, :list]
+            :base_id, {type: :uint32},
+            :name_size, {type: :uint16},
+            :num_ports, {type: :uint16},
+            :num_formats, {type: :uint16},
+            :type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :name, {length_field: :name_size, type: :char, kind: :string},
+            :formats, {length_field: :num_formats, type: Format, kind: :list}
       end
       
       class EncodingInfo < Xrb::Message
         layout \
-            :encoding, :uint32,
-            :name_size, :uint16,
-            :width, :uint16,
-            :height, :uint16,
-            :pad1, [2, :uint8],
-            :rate, :Rational,
-            :name, [:name_size, :char, :string]
+            :encoding, {type: :uint32},
+            :name_size, {type: :uint16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :pad1, {size: 2, type: :uint8},
+            :rate, {type: :Rational},
+            :name, {length_field: :name_size, type: :char, kind: :string}
       end
       
       class Image < Xrb::Message
         layout \
-            :id, :uint32,
-            :width, :uint16,
-            :height, :uint16,
-            :data_size, :uint32,
-            :num_planes, :uint32,
-            :pitches, [:num_planes, :uint32, :list],
-            :offsets, [:num_planes, :uint32, :list],
-            :data, [:data_size, :uint8, :list]
+            :id, {type: :uint32},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :data_size, {type: :uint32},
+            :num_planes, {type: :uint32},
+            :pitches, {length_field: :num_planes, type: :uint32, kind: :list},
+            :offsets, {length_field: :num_planes, type: :uint32, kind: :list},
+            :data, {length_field: :data_size, type: :uint8, kind: :list}
       end
       
       class AttributeInfo < Xrb::Message
         layout \
-            :flags, :uint32,
-            :min, :int32,
-            :max, :int32,
-            :size, :uint32,
-            :name, [:size, :char, :string]
+            :flags, {type: :uint32},
+            :min, {type: :int32},
+            :max, {type: :int32},
+            :size, {type: :uint32},
+            :name, {length_field: :size, type: :char, kind: :string}
       end
       
       class ImageFormatInfo < Xrb::Message
         layout \
-            :id, :uint32,
-            :type, :uint8,
-            :byte_order, :uint8,
-            :pad1, [2, :uint8],
-            :guid, [:uint8, 16],
-            :bpp, :uint8,
-            :num_planes, :uint8,
-            :pad2, [2, :uint8],
-            :depth, :uint8,
-            :pad3, [3, :uint8],
-            :red_mask, :uint32,
-            :green_mask, :uint32,
-            :blue_mask, :uint32,
-            :format, :uint8,
-            :pad4, [3, :uint8],
-            :y_sample_bits, :uint32,
-            :u_sample_bits, :uint32,
-            :v_sample_bits, :uint32,
-            :vhorz_y_period, :uint32,
-            :vhorz_u_period, :uint32,
-            :vhorz_v_period, :uint32,
-            :vvert_y_period, :uint32,
-            :vvert_u_period, :uint32,
-            :vvert_v_period, :uint32,
-            :vcomp_order, [:uint8, 32],
-            :vscanline_order, :uint8,
-            :pad5, [11, :uint8]
+            :id, {type: :uint32},
+            :type, {type: :uint8},
+            :byte_order, {type: :uint8},
+            :pad1, {size: 2, type: :uint8},
+            :guid, {type: :uint8, size: 16},
+            :bpp, {type: :uint8},
+            :num_planes, {type: :uint8},
+            :pad2, {size: 2, type: :uint8},
+            :depth, {type: :uint8},
+            :pad3, {size: 3, type: :uint8},
+            :red_mask, {type: :uint32},
+            :green_mask, {type: :uint32},
+            :blue_mask, {type: :uint32},
+            :format, {type: :uint8},
+            :pad4, {size: 3, type: :uint8},
+            :y_sample_bits, {type: :uint32},
+            :u_sample_bits, {type: :uint32},
+            :v_sample_bits, {type: :uint32},
+            :vhorz_y_period, {type: :uint32},
+            :vhorz_u_period, {type: :uint32},
+            :vhorz_v_period, {type: :uint32},
+            :vvert_y_period, {type: :uint32},
+            :vvert_u_period, {type: :uint32},
+            :vvert_v_period, {type: :uint32},
+            :vcomp_order, {type: :uint8, size: 32},
+            :vscanline_order, {type: :uint8},
+            :pad5, {size: 11, type: :uint8}
       end
       
     end

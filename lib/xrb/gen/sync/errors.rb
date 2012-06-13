@@ -9,26 +9,33 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :error_code, :uint8,
-            :sequence, :uint16,
-            :bad_counter, :uint32,
-            :minor_opcode, :uint16,
-            :major_opcode, :uint8
+            :response_type, {type: :uint8},
+            :error_code, {type: :uint8},
+            :sequence, {type: :uint16},
+            :bad_counter, {type: :uint32},
+            :minor_opcode, {type: :uint16},
+            :major_opcode, {type: :uint8}
       end
       
       class Alarm < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :error_code, :uint8,
-            :sequence, :uint16,
-            :bad_alarm, :uint32,
-            :minor_opcode, :uint16,
-            :major_opcode, :uint8
+            :response_type, {type: :uint8},
+            :error_code, {type: :uint8},
+            :sequence, {type: :uint16},
+            :bad_alarm, {type: :uint32},
+            :minor_opcode, {type: :uint16},
+            :major_opcode, {type: :uint8}
       end
       
+      @op_map = {
+        0 => Counter,
+1 => Alarm
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

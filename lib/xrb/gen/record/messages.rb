@@ -15,33 +15,33 @@ module Xrb
       
       class Range_8 < Xrb::Message
         layout \
-            :first, :uint8,
-            :last, :uint8
+            :first, {type: :uint8},
+            :last, {type: :uint8}
       end
       
       class Range_16 < Xrb::Message
         layout \
-            :first, :uint16,
-            :last, :uint16
+            :first, {type: :uint16},
+            :last, {type: :uint16}
       end
       
       class ExtRange < Xrb::Message
         layout \
-            :major, :Range8,
-            :minor, :Range16
+            :major, {type: :Range8},
+            :minor, {type: :Range16}
       end
       
       class Range < Xrb::Message
         layout \
-            :core_requests, :Range8,
-            :core_replies, :Range8,
-            :ext_requests, :ExtRange,
-            :ext_replies, :ExtRange,
-            :delivered_events, :Range8,
-            :device_events, :Range8,
-            :errors, :Range8,
-            :client_started, :bool,
-            :client_died, :bool
+            :core_requests, {type: :Range8},
+            :core_replies, {type: :Range8},
+            :ext_requests, {type: :ExtRange},
+            :ext_replies, {type: :ExtRange},
+            :delivered_events, {type: :Range8},
+            :device_events, {type: :Range8},
+            :errors, {type: :Range8},
+            :client_started, {type: :bool},
+            :client_died, {type: :bool}
       end
       
       class ElementHeader
@@ -62,9 +62,9 @@ module Xrb
       
       class ClientInfo < Xrb::Message
         layout \
-            :client_resource, :uint32,
-            :num_ranges, :uint32,
-            :ranges, [:num_ranges, Range, :list]
+            :client_resource, {type: :uint32},
+            :num_ranges, {type: :uint32},
+            :ranges, {length_field: :num_ranges, type: Range, kind: :list}
       end
       
     end

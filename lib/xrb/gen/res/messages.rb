@@ -7,14 +7,14 @@ module Xrb
     class Message
       class Client < Xrb::Message
         layout \
-            :resource_base, :uint32,
-            :resource_mask, :uint32
+            :resource_base, {type: :uint32},
+            :resource_mask, {type: :uint32}
       end
       
       class Type < Xrb::Message
         layout \
-            :resource_type, :uint32,
-            :count, :uint32
+            :resource_type, {type: :uint32},
+            :count, {type: :uint32}
       end
       
     end

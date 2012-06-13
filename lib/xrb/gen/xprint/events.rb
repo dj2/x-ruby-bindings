@@ -9,21 +9,28 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :detail, :uint8,
-            :context, :uint32,
-            :cancel, :bool
+            :response_type, {type: :uint8},
+            :detail, {type: :uint8},
+            :context, {type: :uint32},
+            :cancel, {type: :bool}
       end
       
       class AttributNotify < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :detail, :uint8,
-            :context, :uint32
+            :response_type, {type: :uint8},
+            :detail, {type: :uint8},
+            :context, {type: :uint32}
       end
       
+      @op_map = {
+        0 => Notify,
+1 => AttributNotify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

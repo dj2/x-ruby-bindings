@@ -15,10 +15,10 @@ module Xrb
       
       class Printer < Xrb::Message
         layout \
-            :nameLen, :uint32,
-            :name, [:nameLen, :char, :string],
-            :descLen, :uint32,
-            :description, [:descLen, :char, :string]
+            :nameLen, {type: :uint32},
+            :name, {length_field: :nameLen, type: :char, kind: :string},
+            :descLen, {type: :uint32},
+            :description, {length_field: :descLen, type: :char, kind: :string}
       end
       
       class Pcontext

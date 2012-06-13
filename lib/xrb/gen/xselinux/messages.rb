@@ -7,11 +7,11 @@ module Xrb
     class Message
       class ListItem < Xrb::Message
         layout \
-            :name, :uint32,
-            :object_context_len, :uint32,
-            :data_context_len, :uint32,
-            :object_context, [:object_context_len, :char, :string],
-            :data_context, [:data_context_len, :char, :string]
+            :name, {type: :uint32},
+            :object_context_len, {type: :uint32},
+            :data_context_len, {type: :uint32},
+            :object_context, {length_field: :object_context_len, type: :char, kind: :string},
+            :data_context, {length_field: :data_context_len, type: :char, kind: :string}
       end
       
     end

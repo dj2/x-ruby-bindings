@@ -9,15 +9,21 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :level, :uint8,
-            :drawable, :uint32,
-            :damage, :uint32,
-            :timestamp, :uint32,
-            :area, :RECTANGLE,
-            :geometry, :RECTANGLE
+            :response_type, {type: :uint8},
+            :level, {type: :uint8},
+            :drawable, {type: :uint32},
+            :damage, {type: :uint32},
+            :timestamp, {type: :uint32},
+            :area, {type: :RECTANGLE},
+            :geometry, {type: :RECTANGLE}
       end
       
+      @op_map = {
+        0 => Notify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

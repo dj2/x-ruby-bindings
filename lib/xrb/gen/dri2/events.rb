@@ -9,27 +9,34 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :event_type, :uint16,
-            :pad2, [2, :uint8],
-            :drawable, :uint32,
-            :ust_hi, :uint32,
-            :ust_lo, :uint32,
-            :msc_hi, :uint32,
-            :msc_lo, :uint32,
-            :sbc, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :event_type, {type: :uint16},
+            :pad2, {size: 2, type: :uint8},
+            :drawable, {type: :uint32},
+            :ust_hi, {type: :uint32},
+            :ust_lo, {type: :uint32},
+            :msc_hi, {type: :uint32},
+            :msc_lo, {type: :uint32},
+            :sbc, {type: :uint32}
       end
       
       class InvalidateBuffers < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :drawable, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :drawable, {type: :uint32}
       end
       
+      @op_map = {
+        0 => BufferSwapComplete,
+1 => InvalidateBuffers
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

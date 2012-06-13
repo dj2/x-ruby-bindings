@@ -9,16 +9,22 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :drawable, :uint32,
-            :minor_event, :uint16,
-            :major_event, :uint8,
-            :pad2, [1, :uint8],
-            :shmseg, :uint32,
-            :offset, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :drawable, {type: :uint32},
+            :minor_event, {type: :uint16},
+            :major_event, {type: :uint8},
+            :pad2, {size: 1, type: :uint8},
+            :shmseg, {type: :uint32},
+            :offset, {type: :uint32}
       end
       
+      @op_map = {
+        0 => Completion
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

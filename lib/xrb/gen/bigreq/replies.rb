@@ -7,11 +7,11 @@ module Xrb
     module Reply
       class Enable < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :maximum_request_length, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :maximum_request_length, {type: :uint32}
       end
       
     end

@@ -7,17 +7,17 @@ module Xrb
     class Message
       class Dri2buffer < Xrb::Message
         layout \
-            :attachment, :uint32,
-            :name, :uint32,
-            :pitch, :uint32,
-            :cpp, :uint32,
-            :flags, :uint32
+            :attachment, {type: :uint32},
+            :name, {type: :uint32},
+            :pitch, {type: :uint32},
+            :cpp, {type: :uint32},
+            :flags, {type: :uint32}
       end
       
       class AttachFormat < Xrb::Message
         layout \
-            :attachment, :uint32,
-            :format, :uint32
+            :attachment, {type: :uint32},
+            :format, {type: :uint32}
       end
       
     end

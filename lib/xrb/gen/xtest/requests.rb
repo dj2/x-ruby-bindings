@@ -6,52 +6,60 @@ module Xrb
   module Test
     module Request
       class GetVersion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :minor_version, :uint16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :minor_version, {type: :uint16}
       end
       
       class CompareCursor < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16}
       end
       
       class FakeInput < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :type, :uint8,
-            :detail, :uint8,
-            :pad1, [2, :uint8],
-            :time, :uint32,
-            :root, :uint32,
-            :pad2, [8, :uint8],
-            :rootX, :int16,
-            :rootY, :int16,
-            :pad3, [7, :uint8],
-            :deviceid, :uint8
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :type, {type: :uint8},
+            :detail, {type: :uint8},
+            :pad1, {size: 2, type: :uint8},
+            :time, {type: :uint32},
+            :root, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :rootX, {type: :int16},
+            :rootY, {type: :int16},
+            :pad3, {size: 7, type: :uint8},
+            :deviceid, {type: :uint8}
       end
       
       class GrabControl < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :impervious, :bool,
-            :pad1, [3, :uint8]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :impervious, {type: :bool},
+            :pad1, {size: 3, type: :uint8}
       end
       
     end

@@ -6,37 +6,43 @@ module Xrb
   module XCMisc
     module Request
       class GetVersion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :server_major_version, :uint16,
-            :server_minor_version, :uint16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :server_major_version, {type: :uint16},
+            :server_minor_version, {type: :uint16}
       end
       
       class GetXidRange < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :start_id, :uint32,
-            :count, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :start_id, {type: :uint32},
+            :count, {type: :uint32}
       end
       
       class GetXidList < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :ids_len, :uint32,
-            :pad2, [20, :uint8],
-            :ids, [:ids_len, :uint32, :list]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :ids_len, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :ids, {length_field: :ids_len, type: :uint32, kind: :list}
       end
       
     end

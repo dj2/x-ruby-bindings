@@ -7,10 +7,10 @@ module Xrb
     class Message
       class DrmClipRect < Xrb::Message
         layout \
-            :x1, :int16,
-            :y1, :int16,
-            :x2, :int16,
-            :x3, :int16
+            :x1, {type: :int16},
+            :y1, {type: :int16},
+            :x2, {type: :int16},
+            :x3, {type: :int16}
       end
       
     end

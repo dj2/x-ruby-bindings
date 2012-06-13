@@ -31,77 +31,77 @@ module Xrb
       
       class ScreenSize < Xrb::Message
         layout \
-            :width, :uint16,
-            :height, :uint16,
-            :mwidth, :uint16,
-            :mheight, :uint16
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :mwidth, {type: :uint16},
+            :mheight, {type: :uint16}
       end
       
       class RefreshRates < Xrb::Message
         layout \
-            :nRates, :uint16,
-            :rates, [:nRates, :uint16, :list]
+            :nRates, {type: :uint16},
+            :rates, {length_field: :nRates, type: :uint16, kind: :list}
       end
       
       class ModeInfo < Xrb::Message
         layout \
-            :id, :uint32,
-            :width, :uint16,
-            :height, :uint16,
-            :dot_clock, :uint32,
-            :hsync_start, :uint16,
-            :hsync_end, :uint16,
-            :htotal, :uint16,
-            :hskew, :uint16,
-            :vsync_start, :uint16,
-            :vsync_end, :uint16,
-            :vtotal, :uint16,
-            :name_len, :uint16,
-            :mode_flags, :uint32
+            :id, {type: :uint32},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :dot_clock, {type: :uint32},
+            :hsync_start, {type: :uint16},
+            :hsync_end, {type: :uint16},
+            :htotal, {type: :uint16},
+            :hskew, {type: :uint16},
+            :vsync_start, {type: :uint16},
+            :vsync_end, {type: :uint16},
+            :vtotal, {type: :uint16},
+            :name_len, {type: :uint16},
+            :mode_flags, {type: :uint32}
       end
       
       class CrtcChange < Xrb::Message
         layout \
-            :timestamp, :uint32,
-            :window, :uint32,
-            :crtc, :uint32,
-            :mode, :uint32,
-            :rotation, :uint16,
-            :pad1, [2, :uint8],
-            :x, :int16,
-            :y, :int16,
-            :width, :uint16,
-            :height, :uint16
+            :timestamp, {type: :uint32},
+            :window, {type: :uint32},
+            :crtc, {type: :uint32},
+            :mode, {type: :uint32},
+            :rotation, {type: :uint16},
+            :pad1, {size: 2, type: :uint8},
+            :x, {type: :int16},
+            :y, {type: :int16},
+            :width, {type: :uint16},
+            :height, {type: :uint16}
       end
       
       class OutputChange < Xrb::Message
         layout \
-            :timestamp, :uint32,
-            :config_timestamp, :uint32,
-            :window, :uint32,
-            :output, :uint32,
-            :crtc, :uint32,
-            :mode, :uint32,
-            :rotation, :uint16,
-            :connection, :uint8,
-            :subpixel_order, :uint8
+            :timestamp, {type: :uint32},
+            :config_timestamp, {type: :uint32},
+            :window, {type: :uint32},
+            :output, {type: :uint32},
+            :crtc, {type: :uint32},
+            :mode, {type: :uint32},
+            :rotation, {type: :uint16},
+            :connection, {type: :uint8},
+            :subpixel_order, {type: :uint8}
       end
       
       class OutputProperty < Xrb::Message
         layout \
-            :window, :uint32,
-            :output, :uint32,
-            :atom, :uint32,
-            :timestamp, :uint32,
-            :status, :uint8,
-            :pad1, [11, :uint8]
+            :window, {type: :uint32},
+            :output, {type: :uint32},
+            :atom, {type: :uint32},
+            :timestamp, {type: :uint32},
+            :status, {type: :uint8},
+            :pad1, {size: 11, type: :uint8}
       end
       
       class NotifyData < Xrb::Message
         union \
-            :cc, :CrtcChange,
-            :oc, :OutputChange,
-            :op, :OutputProperty
+            :cc, {type: :CrtcChange},
+            :oc, {type: :OutputChange},
+            :op, {type: :OutputProperty}
       end
       
     end

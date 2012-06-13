@@ -7,19 +7,19 @@ module Xrb
     module Reply
       class GetVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :major_version, :uint8,
-            :sequence, :uint16,
-            :length, :uint32,
-            :minor_version, :uint16
+            :response_type, {type: :uint8},
+            :major_version, {type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :minor_version, {type: :uint16}
       end
       
       class CompareCursor < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :same, :bool,
-            :sequence, :uint16,
-            :length, :uint32
+            :response_type, {type: :uint8},
+            :same, {type: :bool},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32}
       end
       
     end

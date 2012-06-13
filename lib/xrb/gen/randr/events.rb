@@ -9,29 +9,36 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :rotation, :uint8,
-            :timestamp, :uint32,
-            :config_timestamp, :uint32,
-            :root, :uint32,
-            :request_window, :uint32,
-            :sizeID, :uint16,
-            :subpixel_order, :uint16,
-            :width, :uint16,
-            :height, :uint16,
-            :mwidth, :uint16,
-            :mheight, :uint16
+            :response_type, {type: :uint8},
+            :rotation, {type: :uint8},
+            :timestamp, {type: :uint32},
+            :config_timestamp, {type: :uint32},
+            :root, {type: :uint32},
+            :request_window, {type: :uint32},
+            :sizeID, {type: :uint16},
+            :subpixel_order, {type: :uint16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :mwidth, {type: :uint16},
+            :mheight, {type: :uint16}
       end
       
       class Notify < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :subCode, :uint8,
-            :u, :NotifyData
+            :response_type, {type: :uint8},
+            :subCode, {type: :uint8},
+            :u, {type: :NotifyData}
       end
       
+      @op_map = {
+        0 => ScreenChangeNotify,
+1 => Notify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

@@ -7,790 +7,790 @@ module Xrb
     module Reply
       class MakeCurrent < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :context_tag, :uint32,
-            :pad2, [20, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :context_tag, {type: :uint32},
+            :pad2, {size: 20, type: :uint8}
       end
       
       class IsDirect < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :is_direct, :bool,
-            :pad2, [23, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :is_direct, {type: :bool},
+            :pad2, {size: 23, type: :uint8}
       end
       
       class QueryVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :major_version, :uint32,
-            :minor_version, :uint32,
-            :pad2, [16, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :major_version, {type: :uint32},
+            :minor_version, {type: :uint32},
+            :pad2, {size: 16, type: :uint8}
       end
       
       class GetVisualConfigs < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :num_visuals, :uint32,
-            :num_properties, :uint32,
-            :pad2, [16, :uint8],
-            :property_list, [:length, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :num_visuals, {type: :uint32},
+            :num_properties, {type: :uint32},
+            :pad2, {size: 16, type: :uint8},
+            :property_list, {length_field: :length, type: :uint32, kind: :list}
       end
       
       class VendorPrivateWithReply < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :retval, :uint32,
-            :data1, [:uint8, 24],
-            :data2, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :retval, {type: :uint32},
+            :data1, {type: :uint8, size: 24},
+            :data2, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class QueryExtensionsString < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :pad3, [16, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :pad3, {size: 16, type: :uint8}
       end
       
       class QueryServerString < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :str_len, :uint32,
-            :pad3, [16, :uint8],
-            :string, [:str_len, :char, :string]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :str_len, {type: :uint32},
+            :pad3, {size: 16, type: :uint8},
+            :string, {length_field: :str_len, type: :char, kind: :string}
       end
       
       class GetFbConfigs < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :num_FB_configs, :uint32,
-            :num_properties, :uint32,
-            :pad2, [16, :uint8],
-            :property_list, [:length, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :num_FB_configs, {type: :uint32},
+            :num_properties, {type: :uint32},
+            :pad2, {size: 16, type: :uint8},
+            :property_list, {length_field: :length, type: :uint32, kind: :list}
       end
       
       class QueryContext < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :num_attribs, :uint32,
-            :pad2, [20, :uint8],
-            :attribs, [:num_attribs, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :num_attribs, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
       end
       
       class MakeContextCurrent < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :context_tag, :uint32,
-            :pad2, [20, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :context_tag, {type: :uint32},
+            :pad2, {size: 20, type: :uint8}
       end
       
       class GetDrawableAttributes < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :num_attribs, :uint32,
-            :pad2, [20, :uint8],
-            :attribs, [:num_attribs, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :num_attribs, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
       end
       
       class GenLists < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32}
       end
       
       class RenderMode < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32,
-            :n, :uint32,
-            :new_mode, :uint32,
-            :pad2, [12, :uint8],
-            :data, [:n, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32},
+            :n, {type: :uint32},
+            :new_mode, {type: :uint32},
+            :pad2, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :uint32, kind: :list}
       end
       
       class Finish < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32}
       end
       
       class ReadPixels < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetBooleanv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :bool,
-            :pad3, [15, :uint8],
-            :data, [:n, :bool, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :bool},
+            :pad3, {size: 15, type: :uint8},
+            :data, {length_field: :n, type: :bool, kind: :list}
       end
       
       class GetClipPlane < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :double, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :double, kind: :list}
       end
       
       class GetDoublev < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :double,
-            :pad3, [8, :uint8],
-            :data, [:n, :double, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :double},
+            :pad3, {size: 8, type: :uint8},
+            :data, {length_field: :n, type: :double, kind: :list}
       end
       
       class GetError < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :error, :int32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :error, {type: :int32}
       end
       
       class GetFloatv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetIntegerv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetLightfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetLightiv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetMapdv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :double,
-            :pad3, [8, :uint8],
-            :data, [:n, :double, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :double},
+            :pad3, {size: 8, type: :uint8},
+            :data, {length_field: :n, type: :double, kind: :list}
       end
       
       class GetMapfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetMapiv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetMaterialfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetMaterialiv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetPixelMapfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetPixelMapuiv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :uint32,
-            :pad3, [12, :uint8],
-            :data, [:n, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :uint32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :uint32, kind: :list}
       end
       
       class GetPixelMapusv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :uint16,
-            :pad3, [16, :uint8],
-            :data, [:n, :uint16, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :uint16},
+            :pad3, {size: 16, type: :uint8},
+            :data, {length_field: :n, type: :uint16, kind: :list}
       end
       
       class GetPolygonStipple < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetString < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :pad3, [16, :uint8],
-            :string, [:n, :char, :string]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :pad3, {size: 16, type: :uint8},
+            :string, {length_field: :n, type: :char, kind: :string}
       end
       
       class GetTexEnvfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetTexEnviv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetTexGendv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :double,
-            :pad3, [8, :uint8],
-            :data, [:n, :double, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :double},
+            :pad3, {size: 8, type: :uint8},
+            :data, {length_field: :n, type: :double, kind: :list}
       end
       
       class GetTexGenfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetTexGeniv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetTexImage < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :width, :int32,
-            :height, :int32,
-            :depth, :int32,
-            :pad3, [4, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :width, {type: :int32},
+            :height, {type: :int32},
+            :depth, {type: :int32},
+            :pad3, {size: 4, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetTexParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetTexParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetTexLevelParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetTexLevelParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class IsList < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32}
       end
       
       class AreTexturesResident < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32,
-            :pad2, [20, :uint8],
-            :data, [:length, :bool, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :data, {length_field: :length, type: :bool, kind: :list}
       end
       
       class GenTextures < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :uint32, kind: :list}
       end
       
       class IsTexture < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32}
       end
       
       class GetColorTable < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :width, :int32,
-            :pad3, [12, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :width, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetColorTableParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetColorTableParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetConvolutionFilter < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :width, :int32,
-            :height, :int32,
-            :pad3, [8, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :width, {type: :int32},
+            :height, {type: :int32},
+            :pad3, {size: 8, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetConvolutionParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetConvolutionParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetSeparableFilter < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :row_w, :int32,
-            :col_h, :int32,
-            :pad3, [8, :uint8],
-            :rows_and_cols, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :row_w, {type: :int32},
+            :col_h, {type: :int32},
+            :pad3, {size: 8, type: :uint8},
+            :rows_and_cols, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetHistogram < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :width, :int32,
-            :pad3, [12, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :width, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetHistogramParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetHistogramParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetMinmax < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GetMinmaxParameterfv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :float,
-            :pad3, [12, :uint8],
-            :data, [:n, :float, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :float},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :float, kind: :list}
       end
       
       class GetMinmaxParameteriv < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetCompressedTexImageArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [8, :uint8],
-            :size, :int32,
-            :pad3, [12, :uint8],
-            :data, [:length, :uint8, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :size, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :length, type: :uint8, kind: :list}
       end
       
       class GenQueriesArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [24, :uint8],
-            :data, [:length, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 24, type: :uint8},
+            :data, {length_field: :length, type: :uint32, kind: :list}
       end
       
       class IsQueryArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :ret_val, :uint32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :ret_val, {type: :uint32}
       end
       
       class GetQueryivArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetQueryObjectivArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :int32,
-            :pad3, [12, :uint8],
-            :data, [:n, :int32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :int32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :int32, kind: :list}
       end
       
       class GetQueryObjectuivArb < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :pad2, [4, :uint8],
-            :n, :uint32,
-            :datum, :uint32,
-            :pad3, [12, :uint8],
-            :data, [:n, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :pad2, {size: 4, type: :uint8},
+            :n, {type: :uint32},
+            :datum, {type: :uint32},
+            :pad3, {size: 12, type: :uint8},
+            :data, {length_field: :n, type: :uint32, kind: :list}
       end
       
     end

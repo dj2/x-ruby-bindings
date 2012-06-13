@@ -7,65 +7,65 @@ module Xrb
     module Reply
       class Initialize < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :major_version, :uint8,
-            :minor_version, :uint8,
-            :pad2, [22, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :major_version, {type: :uint8},
+            :minor_version, {type: :uint8},
+            :pad2, {size: 22, type: :uint8}
       end
       
       class ListSystemCounters < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :counters_len, :uint32,
-            :pad2, [20, :uint8],
-            :counters, [:counters_len, Systemcounter, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :counters_len, {type: :uint32},
+            :pad2, {size: 20, type: :uint8},
+            :counters, {length_field: :counters_len, type: Systemcounter, kind: :list}
       end
       
       class QueryCounter < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :counter_value, :INT64
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :counter_value, {type: :INT64}
       end
       
       class QueryAlarm < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :trigger, :TRIGGER,
-            :delta, :INT64,
-            :events, :bool,
-            :state, :uint8,
-            :pad2, [2, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :trigger, {type: :TRIGGER},
+            :delta, {type: :INT64},
+            :events, {type: :bool},
+            :state, {type: :uint8},
+            :pad2, {size: 2, type: :uint8}
       end
       
       class GetPriority < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :priority, :int32
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :priority, {type: :int32}
       end
       
       class QueryFence < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :triggered, :bool,
-            :pad2, [23, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :triggered, {type: :bool},
+            :pad2, {size: 23, type: :uint8}
       end
       
     end

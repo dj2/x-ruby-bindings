@@ -7,73 +7,73 @@ module Xrb
     module Reply
       class QueryVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :major_version, :uint32,
-            :minor_version, :uint32,
-            :pad2, [16, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :major_version, {type: :uint32},
+            :minor_version, {type: :uint32},
+            :pad2, {size: 16, type: :uint8}
       end
       
       class GetCursorImage < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :x, :int16,
-            :y, :int16,
-            :width, :uint16,
-            :height, :uint16,
-            :xhot, :uint16,
-            :yhot, :uint16,
-            :cursor_serial, :uint32,
-            :pad2, [8, :uint8],
-            :cursor_image, [:width, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :x, {type: :int16},
+            :y, {type: :int16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :xhot, {type: :uint16},
+            :yhot, {type: :uint16},
+            :cursor_serial, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
       
       class FetchRegion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :extents, :RECTANGLE,
-            :pad2, [16, :uint8],
-            :rectangles, [:length, Rectangle, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :extents, {type: :RECTANGLE},
+            :pad2, {size: 16, type: :uint8},
+            :rectangles, {length_field: :length, type: Rectangle, kind: :list}
       end
       
       class GetCursorName < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :atom, :uint32,
-            :nbytes, :uint16,
-            :pad2, [18, :uint8],
-            :name, [:nbytes, :char, :string]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :atom, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad2, {size: 18, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string}
       end
       
       class GetCursorImageAndName < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :x, :int16,
-            :y, :int16,
-            :width, :uint16,
-            :height, :uint16,
-            :xhot, :uint16,
-            :yhot, :uint16,
-            :cursor_serial, :uint32,
-            :cursor_atom, :uint32,
-            :nbytes, :uint16,
-            :pad2, [2, :uint8],
-            :name, [:nbytes, :char, :string],
-            :cursor_image, [:width, :uint32, :list]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :x, {type: :int16},
+            :y, {type: :int16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :xhot, {type: :uint16},
+            :yhot, {type: :uint16},
+            :cursor_serial, {type: :uint32},
+            :cursor_atom, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad2, {size: 2, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string},
+            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
       
     end

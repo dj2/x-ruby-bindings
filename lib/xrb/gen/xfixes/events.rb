@@ -9,29 +9,36 @@ module Xrb
         OPCODE = 0
         
         layout \
-            :response_type, :uint8,
-            :subtype, :uint8,
-            :window, :uint32,
-            :owner, :uint32,
-            :selection, :uint32,
-            :timestamp, :uint32,
-            :selection_timestamp, :uint32,
-            :pad1, [8, :uint8]
+            :response_type, {type: :uint8},
+            :subtype, {type: :uint8},
+            :window, {type: :uint32},
+            :owner, {type: :uint32},
+            :selection, {type: :uint32},
+            :timestamp, {type: :uint32},
+            :selection_timestamp, {type: :uint32},
+            :pad1, {size: 8, type: :uint8}
       end
       
       class CursorNotify < Xrb::Message
         OPCODE = 1
         
         layout \
-            :response_type, :uint8,
-            :subtype, :uint8,
-            :window, :uint32,
-            :cursor_serial, :uint32,
-            :timestamp, :uint32,
-            :name, :uint32,
-            :pad1, [12, :uint8]
+            :response_type, {type: :uint8},
+            :subtype, {type: :uint8},
+            :window, {type: :uint32},
+            :cursor_serial, {type: :uint32},
+            :timestamp, {type: :uint32},
+            :name, {type: :uint32},
+            :pad1, {size: 12, type: :uint8}
       end
       
+      @op_map = {
+        0 => SelectionNotify,
+1 => CursorNotify
+      }
+      def self.find(opcode)
+        @op_map[opcode]
+      end
     end
   end
 end

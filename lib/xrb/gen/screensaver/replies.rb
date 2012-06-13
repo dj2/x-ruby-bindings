@@ -7,27 +7,27 @@ module Xrb
     module Reply
       class QueryVersion < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :pad1, [1, :uint8],
-            :sequence, :uint16,
-            :length, :uint32,
-            :server_major_version, :uint16,
-            :server_minor_version, :uint16,
-            :pad2, [20, :uint8]
+            :response_type, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :server_major_version, {type: :uint16},
+            :server_minor_version, {type: :uint16},
+            :pad2, {size: 20, type: :uint8}
       end
       
       class QueryInfo < Xrb::Message
         layout \
-            :response_type, :uint8,
-            :state, :uint8,
-            :sequence, :uint16,
-            :length, :uint32,
-            :saver_window, :uint32,
-            :ms_until_server, :uint32,
-            :ms_since_user_input, :uint32,
-            :event_mask, :uint32,
-            :kind, :uint8,
-            :pad1, [7, :uint8]
+            :response_type, {type: :uint8},
+            :state, {type: :uint8},
+            :sequence, {type: :uint16},
+            :length, {type: :uint32},
+            :saver_window, {type: :uint32},
+            :ms_until_server, {type: :uint32},
+            :ms_since_user_input, {type: :uint32},
+            :event_mask, {type: :uint32},
+            :kind, {type: :uint8},
+            :pad1, {size: 7, type: :uint8}
       end
       
     end

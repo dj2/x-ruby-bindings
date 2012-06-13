@@ -6,387 +6,449 @@ module Xrb
   module XFixes
     module Request
       class QueryVersion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 0
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :major_version, :uint32,
-            :minor_version, :uint32,
-            :pad2, [16, :uint8]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :major_version, {type: :uint32},
+            :minor_version, {type: :uint32},
+            :pad2, {size: 16, type: :uint8}
       end
       
       class ChangeSaveSet < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 1
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :mode, :uint8,
-            :target, :uint8,
-            :map, :uint8,
-            :pad1, [1, :uint8],
-            :window, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :mode, {type: :uint8},
+            :target, {type: :uint8},
+            :map, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :window, {type: :uint32}
       end
       
       class SelectSelectionInput < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 2
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :window, :uint32,
-            :selection, :uint32,
-            :event_mask, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :window, {type: :uint32},
+            :selection, {type: :uint32},
+            :event_mask, {type: :uint32}
       end
       
       class SelectCursorInput < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 3
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :window, :uint32,
-            :event_mask, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :window, {type: :uint32},
+            :event_mask, {type: :uint32}
       end
       
       class GetCursorImage < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 4
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :x, :int16,
-            :y, :int16,
-            :width, :uint16,
-            :height, :uint16,
-            :xhot, :uint16,
-            :yhot, :uint16,
-            :cursor_serial, :uint32,
-            :pad2, [8, :uint8],
-            :cursor_image, [:width, :uint32, :list]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :x, {type: :int16},
+            :y, {type: :int16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :xhot, {type: :uint16},
+            :yhot, {type: :uint16},
+            :cursor_serial, {type: :uint32},
+            :pad2, {size: 8, type: :uint8},
+            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
       
       class CreateRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 5
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32}
       end
       
       class CreateRegionFromBitmap < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 6
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32,
-            :bitmap, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32},
+            :bitmap, {type: :uint32}
       end
       
       class CreateRegionFromWindow < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 7
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32,
-            :window, :uint32,
-            :kind, :uint8,
-            :pad1, [3, :uint8]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32},
+            :window, {type: :uint32},
+            :kind, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
       
       class CreateRegionFromGc < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 8
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32,
-            :gc, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32},
+            :gc, {type: :uint32}
       end
       
       class CreateRegionFromPicture < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 9
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32,
-            :picture, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32},
+            :picture, {type: :uint32}
       end
       
       class DestroyRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 10
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32}
       end
       
       class SetRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 11
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32}
       end
       
       class CopyRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 12
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class UnionRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 13
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source1, :uint32,
-            :source2, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source1, {type: :uint32},
+            :source2, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class IntersectRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 14
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source1, :uint32,
-            :source2, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source1, {type: :uint32},
+            :source2, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class SubtractRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 15
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source1, :uint32,
-            :source2, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source1, {type: :uint32},
+            :source2, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class InvertRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 16
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source, :uint32,
-            :bounds, :RECTANGLE,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source, {type: :uint32},
+            :bounds, {type: :RECTANGLE},
+            :destination, {type: :uint32}
       end
       
       class TranslateRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 17
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :region, :uint32,
-            :dx, :int16,
-            :dy, :int16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :region, {type: :uint32},
+            :dx, {type: :int16},
+            :dy, {type: :int16}
       end
       
       class RegionExtents < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 18
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class FetchRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 19
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :extents, :RECTANGLE,
-            :pad2, [16, :uint8],
-            :rectangles, [:length, Rectangle, :list]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :extents, {type: :RECTANGLE},
+            :pad2, {size: 16, type: :uint8},
+            :rectangles, {length_field: :length, type: Rectangle, kind: :list}
       end
       
       class SetGcClipRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 20
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :gc, :uint32,
-            :region, :uint32,
-            :x_origin, :int16,
-            :y_origin, :int16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :gc, {type: :uint32},
+            :region, {type: :uint32},
+            :x_origin, {type: :int16},
+            :y_origin, {type: :int16}
       end
       
       class SetWindowShapeRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 21
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :dest, :uint32,
-            :dest_kind, :uint8,
-            :pad1, [3, :uint8],
-            :x_offset, :int16,
-            :y_offset, :int16,
-            :region, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :dest, {type: :uint32},
+            :dest_kind, {type: :uint8},
+            :pad1, {size: 3, type: :uint8},
+            :x_offset, {type: :int16},
+            :y_offset, {type: :int16},
+            :region, {type: :uint32}
       end
       
       class SetPictureClipRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 22
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :picture, :uint32,
-            :region, :uint32,
-            :x_origin, :int16,
-            :y_origin, :int16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :picture, {type: :uint32},
+            :region, {type: :uint32},
+            :x_origin, {type: :int16},
+            :y_origin, {type: :int16}
       end
       
       class SetCursorName < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 23
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :cursor, :uint32,
-            :nbytes, :uint16,
-            :pad1, [2, :uint8],
-            :name, [:nbytes, :char, :string]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :cursor, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad1, {size: 2, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string}
       end
       
       class GetCursorName < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 24
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :atom, :uint32,
-            :nbytes, :uint16,
-            :pad2, [18, :uint8],
-            :name, [:nbytes, :char, :string]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :atom, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad2, {size: 18, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string}
       end
       
       class GetCursorImageAndName < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 25
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :x, :int16,
-            :y, :int16,
-            :width, :uint16,
-            :height, :uint16,
-            :xhot, :uint16,
-            :yhot, :uint16,
-            :cursor_serial, :uint32,
-            :cursor_atom, :uint32,
-            :nbytes, :uint16,
-            :pad2, [2, :uint8],
-            :name, [:nbytes, :char, :string],
-            :cursor_image, [:width, :uint32, :list]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :x, {type: :int16},
+            :y, {type: :int16},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :xhot, {type: :uint16},
+            :yhot, {type: :uint16},
+            :cursor_serial, {type: :uint32},
+            :cursor_atom, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad2, {size: 2, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string},
+            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
       
       class ChangeCursor < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 26
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source, :uint32,
-            :destination, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source, {type: :uint32},
+            :destination, {type: :uint32}
       end
       
       class ChangeCursorByName < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 27
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :src, :uint32,
-            :nbytes, :uint16,
-            :pad1, [2, :uint8],
-            :name, [:nbytes, :char, :string]
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :src, {type: :uint32},
+            :nbytes, {type: :uint16},
+            :pad1, {size: 2, type: :uint8},
+            :name, {length_field: :nbytes, type: :char, kind: :string}
       end
       
       class ExpandRegion < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 28
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :source, :uint32,
-            :destination, :uint32,
-            :left, :uint16,
-            :right, :uint16,
-            :top, :uint16,
-            :bottom, :uint16
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :source, {type: :uint32},
+            :destination, {type: :uint32},
+            :left, {type: :uint16},
+            :right, {type: :uint16},
+            :top, {type: :uint16},
+            :bottom, {type: :uint16}
       end
       
       class HideCursor < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 29
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :window, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :window, {type: :uint32}
       end
       
       class ShowCursor < Xrb::Message
+        include Xrb::Request
+        
         OPCODE = 30
         
         layout \
-            :major_opcode, :uint8,
-            :minor_opcode, :uint8,
-            :length, :uint16,
-            :window, :uint32
+            :major_opcode, {type: :uint8},
+            :minor_opcode, {type: :uint8},
+            :length, {type: :uint16},
+            :window, {type: :uint32}
       end
       
     end
