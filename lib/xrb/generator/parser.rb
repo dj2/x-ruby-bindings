@@ -1,7 +1,7 @@
 require 'xrb/generator/fields'
 require 'xrb/generator/types'
 
-class Xrb
+module Xrb
   class Generator
     class Parser
       attr_reader :current_namespace
@@ -12,16 +12,16 @@ class Xrb
         @in_dir = in_dir
 
         @types.merge!({
-            UINT8: Type.new('uint8', {size: 1, ffi_name: ':uint8'}),
-            UINT16: Type.new('uint16', {size: 2, ffi_name: ':uint16'}),
-            UINT32: Type.new('uint32', {size: 4, ffi_name: ':uint32'}),
-            INT8: Type.new('int8', {size: 1, ffi_name: ':int8'}),
-            INT16: Type.new('int16', {size: 2, ffi_name: ':int16'}),
-            INT32: Type.new('int32', {size: 4, ffi_name: ':int32'}),
-            char: Type.new('char', {size: 1, ffi_name: ':uint8'}),
-            float: Type.new('float', {size: 4, ffi_name: ':float'}),
-            double: Type.new('double', {size: 8, ffi_name: ':double'}),
-            BOOL: Type.new('bool', {size: 1, ffi_name: ':bool'})
+            UINT8: Type.new(:uint8, 1),
+            UINT16: Type.new(:uint16, 2),
+            UINT32: Type.new(:uint32, 4),
+            INT8: Type.new(:int8, 1),
+            INT16: Type.new(:int16, 2),
+            INT32: Type.new(:int32, 4),
+            char: Type.new(:char, 1),
+            float: Type.new(:float, 4),
+            double: Type.new(:double, 8),
+            BOOL: Type.new(:bool, 1)
         })
 
         @types.merge!({
@@ -42,6 +42,10 @@ class Xrb
 
           parse(file)
         end
+      end
+
+      def add_cardinal_type(name, to)
+        @types[name] = to
       end
 
       def add_type(type, name)
@@ -151,9 +155,8 @@ class Xrb
       end
 
       def handle_xidtype(node)
-        type = Type.new(node.attr('name'), get_type(:CARD32))
-        add_type(type, type.name)
-        @current_namespace.types << type
+        add_cardinal_type(node.attr('name').to_sym, get_type(:CARD32))
+        @current_namespace.types << [node.attr('name').to_sym, get_type(:CARD32)]
       end
 
       def handle_xidunion(node)
@@ -161,9 +164,8 @@ class Xrb
       end
 
       def handle_typedef(node)
-        type = Type.new(node.attr('newname').to_sym, get_type(node.attr('oldname')))
-        add_type(type, type.name)
-        @current_namespace.types << type
+        add_cardinal_type(node.attr('newname').to_sym, get_type(node.attr('oldname')))
+        @current_namespace.types << [node.attr('newname').to_sym, get_type(node.attr('newname').to_sym)]
       end
 
       def handle_enum(node)

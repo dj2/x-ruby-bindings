@@ -13,8 +13,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>=1.9.2'
 
-  s.add_dependency 'ffi'
-  
   s.add_development_dependency 'nokogiri'
   s.add_development_dependency 'yard'
   s.add_development_dependency 'redcarpet'
