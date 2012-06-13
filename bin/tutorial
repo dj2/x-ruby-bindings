@@ -5,25 +5,43 @@ $: << './lib' << '../lib'
 require 'xrb'
 require 'pp'
 
-conn = Xrb.connect(nil, nil)
-setup = Xrb.get_setup(conn)
-iter = Xrb.setup_roots_iterator(setup)
+Xrb.connection.connect
 
-screen = Xrb::Screen.new(iter)
+main_thread = Thread.new do
+  while (true)
+    v1 = Xrb.connection.read(1)
+    kind = v1.unpack('w').first
+    Xrb.connection.push(v1)
+    
+    klass = case kind
+    when 0 then
+      v2 = Xrb.connection.read(1)
+      type = v2.unpack('w').first
+      Xrb.connection.push(v2)
 
-window = Xrb.generate_id(conn)
+      e = Xrb::Error.find(type)
+      Xrb.connection.read(32 - e.size)
+      e
+    when 1 then
+      puts "Reply for ..."
+      nil
+    else 
+      k = Xrb::Event.find(kind)
+      Xrb.connection.read(32 - k.size)
+      k
+    end
 
-mask = Xrb::CW_BACK_PIXEL | Xrb::CW_EVENT_MASK
-values = [screen[:white_pixel], Xrb::EVENT_MASK_EXPOSURE]
-ptr = FFI::MemoryPointer.new(:uint32, values.size)
-
-Xrb.create_window(conn, Xrb::COPY_FROM_PARENT, window, screen[:root],
-    0, 0, 150, 150, 10, Xrb::WINDOW_CLASS_INPUT_OUTPUT, screen[:root_visual],
-    mask, ptr)
-
-Xrb.map_window(conn, window)
-Xrb.flush(conn)
-
-while (true)
-
+    unless klass.nil?
+      t = klass.unpack(Xrb.connection)
+      p t
+    end
+  end
 end
+
+screen = Xrb.connection.setup.roots.first
+window = Xrb::Window.new(width: 150, height: 150,
+    value: {Xrb::CW_BACK_PIXEL => screen.white_pixel,
+             Xrb::CW_EVENT_MASK => Xrb::EVENT_MASK_EXPOSURE})
+window.show
+
+main_thread.join
