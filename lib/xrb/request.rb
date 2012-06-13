@@ -15,7 +15,6 @@ module Xrb
         s += ((val.has_key?(:size) ? val[:size] : val[:type].size) * value.length)
       end
       @length = s / 4
-p @length
     end
   end
 end

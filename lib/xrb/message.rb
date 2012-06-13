@@ -114,7 +114,6 @@ module Xrb
 
           elsif kind.is_map?
             bits, bytes = 0, []
-            p [key, self.send(key)]
             self.send(key).each_pair do |k, v|
               bits |= k
               bytes << [v].pack(type.directive)
@@ -125,7 +124,6 @@ module Xrb
           end
 
         else
-          p [key, self.send(key)]
           [self.send(key)].pack(type.directive)
         end
       end
