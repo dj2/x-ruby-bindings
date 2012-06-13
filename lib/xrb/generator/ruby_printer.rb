@@ -215,7 +215,7 @@ module Xrb
         end
 
         def process_field(field)
-          @p.format(":#{field.name}, :#{field.type.name}")
+          @p.format(":#{field.name}, {type: :#{field.type.name}}")
         end
 
         def process_autofield(field)
@@ -223,7 +223,8 @@ module Xrb
         end
 
         def process_valueparamfield(field)
-          @p.format(":#{field.name}, :#{field.type.name}")
+          name = field.name.gsub(/_mask/, '')
+          @p.format(":#{name}, {type: :#{field.type.name}, kind: :map}")
         end
 
         def process_listfield(field)
@@ -231,18 +232,18 @@ module Xrb
 
           if field.members.first.is_a?(ValueField)
             @p.format(":#{field.name}, " +
-                "[:#{field.type.name}, #{field.members.first.size}]")
+                "{type: :#{field.type.name}, size: #{field.members.first.size}}")
 
           elsif field.members.first.is_a?(FieldRefField)
             # We want [:len_field_name, :type, :[string | list]]
             type = field.type.name == :char ? ':string' : ':list'
 
             if type == ':string' || !@p.cardinals[field.type.name].nil?
-              @p.format(":#{field.name}, [:#{field.members.first.name}, " +
-                  ":#{field.type.name}, #{type}]")
+              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
+                  "type: :#{field.type.name}, kind: #{type}}")
             else
-              @p.format(":#{field.name}, [:#{field.members.first.name}, " +
-                  "#{@p.type_name(field.type.name)}, #{type}]")
+              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
+                  "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
             end
           else
             puts "Unhandled list type: #{field.members.first.to_s}"
@@ -251,7 +252,7 @@ module Xrb
 
         def process_padfield(field)
           @p.format(":#{field.name}#{field.index}, " +
-              "[#{field.bytes}, :#{field.type.name}]")
+              "{size: #{field.bytes}, type: :#{field.type.name}}")
         end
 
         def process_itemfield(field)
@@ -310,16 +311,29 @@ module Xrb
         def initialize(events, printer)
           @p = printer
           @data = events
+          @op_map = {}
         end
 
         def process
-          @data.each do |type|
-            process_event(type)
+          @data.each { |type| process_event(type) }
+
+          @p.print("@op_map = {")
+          @p.inc
+            ops = []
+            @op_map.each_pair { |k, v| ops << "#{v} => #{k}" }
+            @p.print(ops.join(",\n"))
+          @p.dec
+          @p.print("}")
+
+          @p.print("def self.find(opcode)") do
+            @p.print("@op_map[opcode]")
           end
         end
 
         def process_event(type)
           type.names.each_with_index do |name, idx|
+            @op_map[@p.type_name(name)] = type.opcodes[idx]
+
             @p.print("class #{@p.type_name(name)} < Xrb::Message") do
               @p.print("OPCODE = #{type.opcodes[idx]}")
               @p.print
@@ -335,16 +349,29 @@ module Xrb
         def initialize(errors, printer)
           @p = printer
           @data = errors
+          @op_map = {}
         end
 
         def process
-          @data.each do |type|
-            process_event(type)
+          @data.each { |type| process_event(type) }
+
+          @p.print("@op_map = {")
+          @p.inc
+            ops = []
+            @op_map.each_pair { |k, v| ops << "#{v} => #{k}" }
+            @p.print(ops.join(",\n"))
+          @p.dec
+          @p.print("}")
+
+          @p.print("def self.find(opcode)") do
+            @p.print("@op_map[opcode]")
           end
         end
 
         def process_event(type)
           type.names.each_with_index do |name, idx|
+            @op_map[@p.type_name(name)] = type.opcodes[idx]
+
             @p.print("class #{@p.type_name(name)} < Xrb::Message") do
               @p.print("OPCODE = #{type.opcodes[idx]}")
               @p.print
@@ -363,19 +390,19 @@ module Xrb
         end
 
         def process
-          @data.each do |type|
-            process_request(type)
-            @p.print
-          end
+          @data.each { |type| process_request(type) }
         end
 
         def process_request(type)
           @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
+            @p.print("include Xrb::Request")
+            @p.print
             @p.print("OPCODE = #{type.opcode}")
             @p.print
             @p.print("layout \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
           end
+          @p.print
         end
       end
 
@@ -386,16 +413,14 @@ module Xrb
         end
 
         def process
-          @data.each do |type|
-            process_cookie(type)
-            @p.print
-          end
+          @data.each { |type| process_cookie(type) }
         end
 
         def process_cookie(type)
           @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
-            @p.print("layout :sequence, :int")
+            @p.print("layout :sequence, {type: :int}")
           end
+          @p.print
         end
       end
 
@@ -406,10 +431,7 @@ module Xrb
         end
 
         def process
-          @data.each do |reply|
-            process_reply(reply)
-            @p.print
-          end
+          @data.each { |reply| process_reply(reply) }
         end
 
         def process_reply(reply)
@@ -417,6 +439,7 @@ module Xrb
             @p.print("layout \\")
             @p.inc(4) { Field.new(reply.fields, @p).process }
           end
+          @p.print
         end
       end
     end

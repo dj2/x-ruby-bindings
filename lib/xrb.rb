@@ -1,5 +1,6 @@
 require 'xrb/constants'
 require 'xrb/message'
+require 'xrb/request'
 require 'xrb/generic_types'
 require 'xrb/gen/xproto'
 require 'xrb/connection'

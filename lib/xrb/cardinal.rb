@@ -13,7 +13,11 @@ module Xrb
     end
 
     def is_list?
-      directive.nil?
+      name == :list
+    end
+
+    def is_map?
+      name == :map
     end
 
     def self.all
@@ -37,7 +41,8 @@ module Xrb
           float: Cardinal.new(:float, 4, 'f'),
           double: Cardinal.new(:double, 8, 'd'),
           string: Cardinal.new(:string, -1, nil),
-          list: Cardinal.new(:list, -1, nil)
+          list: Cardinal.new(:list, -1, nil),
+          map: Cardinal.new(:map, -1, nil)
       }
       @cardinals
     end

@@ -1,6 +1,14 @@
 module Xrb
+  module Request
+    class CreateWindow
+      def value=(value)
+        @value = value
+      end
+    end
+  end
+
   class Window
-    DEFAULT_OPTS = {x: 0, y: 0, border: 2, depth: Xrb::COPY_FROM_PARENT,
+    DEFAULT_OPTS = {x: 0, y: 0, border_width: 2, depth: Xrb::COPY_FROM_PARENT,
         class: Xrb::WINDOW_CLASS_INPUT_OUTPUT}
 
     def initialize(opts = {})
@@ -15,15 +23,15 @@ module Xrb
       end
 
       @id = @conn.generate_id
-      o[:id] = @id
+      o[:wid] = @id
 
-      request = Xrb::Request::CreateWindow.new
-      
+      request = Xrb::Request::CreateWindow.new(o)
+
       @conn.send(request.pack)
     end
 
     def show(flush = true)
-      cookie = @conn.send(Xrb::Request::MapWindow.new(id: @id))
+      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id).pack)
       @conn.flush if flush
       cookie
     end

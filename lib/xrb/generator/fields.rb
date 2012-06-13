@@ -50,7 +50,7 @@ module Xrb
     end
 
     class ValueParamField
-      attr_reader :name, :type
+      attr_reader :name, :type, :list_name
 
       def initialize(node, parser)
         @list_name = node.attr('value-list-name')

@@ -21,11 +21,13 @@ module Xrb
       end
 
       auth = Xrb::Auth.find(@host, @display)
-      auth.connection = self
 
       if auth && auth.name != 'MIT-MAGIC-COOKIE-1'
-        raise RuntimeException.new("Only handle MIT-MAGIC-COOKIE-1 for auth.")
+        raise Exception.new("Only handle MIT-MAGIC-COOKIE-1 for auth.")
       end
+
+      auth = Xrb::Auth::Info.new if auth.nil?
+      auth.connection = self
 
       @server_data = auth.handshake
 
@@ -46,6 +48,7 @@ module Xrb
     end
 
     def send(data)
+      p [:send, data]
       @socket.write(data)
     end
 
@@ -56,7 +59,7 @@ module Xrb
     def read(len)
       if (len < @byte_queue.length)
         ret = @byte_queue[0, len]
-        @byte_queue = @byte_queue[len]
+        @byte_queue = @byte_queue[len..-1]
         ret.join
       else
         ret = @byte_queue.join

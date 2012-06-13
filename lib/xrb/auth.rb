@@ -35,20 +35,20 @@ module Xrb
       attr_accessor :connection
 
       layout \
-          :family, :nint16,
-          :host_length, :nint16,
-          :host, [:host_length, :char, :string],
-          :display_length, :nint16,
-          :display, [:display_length, :char, :string],
-          :name_length, :nint16,
-          :name, [:name_length, :char, :string],
-          :data_length, :nint16,
-          :data, [:data_length, :char, :string]
+          :family, {type: :nint16},
+          :host_length, {type: :nint16},
+          :host, {length_field: :host_length, type: :char, kind: :string},
+          :display_length, {type: :nint16},
+          :display, {length_field: :display_length, type: :char, kind: :string},
+          :name_length, {type: :nint16},
+          :name, {length_field: :name_length, type: :char, kind: :string},
+          :data_length, {type: :nint16},
+          :data, {length_field: :data_length, type: :char, kind: :string}
 
       def handshake
         hs = Xrb::Message::SetupRequest.new
-        hs.auth_data = data
-        hs.auth_name = name
+        hs.auth_data = data || ""
+        hs.auth_name = name || ""
 
         connection.send(hs.pack)
         status = connection.read(1).unpack('w').first
