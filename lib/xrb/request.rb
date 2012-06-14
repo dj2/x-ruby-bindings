@@ -4,7 +4,6 @@ module Xrb
   module Request
     def initialize(opts = {})
       self.major_opcode = self.ruby_class.const_get(:OPCODE)
-
       opts.each_pair { |k, v| send("#{k}=", v) }
     end
 
