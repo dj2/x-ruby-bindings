@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :reason, {type: :uint8},
+            :sequence, {type: :uint16},
             :time, {type: :uint32},
             :drawable, {type: :uint32},
             :port, {type: :uint32}
@@ -22,6 +23,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
             :time, {type: :uint32},
             :port, {type: :uint32},
             :attribute, {type: :uint32},

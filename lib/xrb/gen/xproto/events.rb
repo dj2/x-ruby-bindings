@@ -10,6 +10,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -29,6 +30,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -48,6 +50,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -67,6 +70,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -86,6 +90,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -105,6 +110,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -124,6 +130,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
           :event, {type: :uint32},
@@ -143,6 +150,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :mode, {type: :uint8},
           :pad1, {size: 3, type: :uint8}
@@ -154,6 +162,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :mode, {type: :uint8},
           :pad1, {size: 3, type: :uint8}
@@ -173,6 +182,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :x, {type: :uint16},
           :y, {type: :uint16},
@@ -188,6 +198,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :drawable, {type: :uint32},
           :x, {type: :uint16},
           :y, {type: :uint16},
@@ -205,6 +216,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :drawable, {type: :uint32},
           :minor_opcode, {type: :uint16},
           :major_opcode, {type: :uint8},
@@ -217,6 +229,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :state, {type: :uint8},
           :pad2, {size: 3, type: :uint8}
@@ -228,6 +241,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :parent, {type: :uint32},
           :window, {type: :uint32},
           :x, {type: :int16},
@@ -245,6 +259,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32}
     end
@@ -255,6 +270,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :from_configure, {type: :bool},
@@ -267,6 +283,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :override_redirect, {type: :bool},
@@ -279,6 +296,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :parent, {type: :uint32},
           :window, {type: :uint32}
     end
@@ -289,6 +307,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :parent, {type: :uint32},
@@ -304,6 +323,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :above_sibling, {type: :uint32},
@@ -322,6 +342,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :stack_mode, {type: :uint8},
+          :sequence, {type: :uint16},
           :parent, {type: :uint32},
           :window, {type: :uint32},
           :sibling, {type: :uint32},
@@ -339,6 +360,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :x, {type: :int16},
@@ -351,6 +373,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :width, {type: :uint16},
           :height, {type: :uint16}
@@ -362,6 +385,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :pad2, {size: 4, type: :uint8},
@@ -375,6 +399,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :event, {type: :uint32},
           :window, {type: :uint32},
           :pad2, {size: 4, type: :uint8},
@@ -388,6 +413,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :atom, {type: :uint32},
           :time, {type: :uint32},
@@ -401,6 +427,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :owner, {type: :uint32},
           :selection, {type: :uint32}
@@ -412,6 +439,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :owner, {type: :uint32},
           :requestor, {type: :uint32},
@@ -426,6 +454,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :time, {type: :uint32},
           :requestor, {type: :uint32},
           :selection, {type: :uint32},
@@ -439,6 +468,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :colormap, {type: :uint32},
           :new, {type: :bool},
@@ -452,6 +482,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :format, {type: :uint8},
+          :sequence, {type: :uint16},
           :window, {type: :uint32},
           :type, {type: :uint32},
           :data, {type: :ClientMessageData}
@@ -463,6 +494,7 @@ module Xrb
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
+          :sequence, {type: :uint16},
           :request, {type: :uint8},
           :first_keycode, {type: :uint8},
           :count, {type: :uint8},
