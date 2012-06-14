@@ -72,17 +72,22 @@ module Xrb
 
       def initialize(node, parser)
         @names = [node.attr('name')]
-        @no_seq_number = node.attr('no-sequence_number') == 'true'
+        @seq_number = !(node.attr('no-sequence-number') == 'true')
 
         @opcodes = [node.attr('number')]
         @fields = [AutoField.new('response_type', parser.get_type(:CARD8))]
 
-        if @no_seq_number
-          @fields << PadField.new(1, parser.get_type(:CARD8), 0)
+        f = parser.parse_fields(node.children).first
+        @fields << f.shift
+
+        # XML lists the pad field which goes before the sequence field.
+        # You know, just to be a pain in the ass.
+        if @seq_number
           @fields << AutoField.new('sequence', parser.get_type(:CARD16))
         end
 
-        @fields << parser.parse_fields(node.children).first
+        @fields << f
+
         @fields.flatten!
       end
     end

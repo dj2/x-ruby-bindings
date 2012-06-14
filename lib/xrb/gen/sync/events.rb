@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :kind, {type: :uint8},
+            :sequence, {type: :uint16},
             :counter, {type: :uint32},
             :wait_value, {type: :INT64},
             :counter_value, {type: :INT64},
@@ -26,6 +27,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :kind, {type: :uint8},
+            :sequence, {type: :uint16},
             :alarm, {type: :uint32},
             :counter_value, {type: :INT64},
             :alarm_value, {type: :INT64},

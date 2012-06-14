@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :rotation, {type: :uint8},
+            :sequence, {type: :uint16},
             :timestamp, {type: :uint32},
             :config_timestamp, {type: :uint32},
             :root, {type: :uint32},
@@ -29,6 +30,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :subCode, {type: :uint8},
+            :sequence, {type: :uint16},
             :u, {type: :NotifyData}
       end
       

@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :detail, {type: :uint8},
+            :sequence, {type: :uint16},
             :context, {type: :uint32},
             :cancel, {type: :bool}
       end
@@ -21,6 +22,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :detail, {type: :uint8},
+            :sequence, {type: :uint16},
             :context, {type: :uint32}
       end
       
