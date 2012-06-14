@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :code, {type: :uint8},
+            :sequence, {type: :uint16},
             :state, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :sequence_number, {type: :uint16},
