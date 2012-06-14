@@ -8,10 +8,26 @@ require 'pp'
 Xrb.run do |conn|
   screen = conn.setup.roots.first
 
+  conn.on_event do |event|
+    p [:connection, event]    
+  end
+
+  conn.on_error do |error|
+    p [:connection, error]
+  end
+
   window = Xrb::Window.new(conn, width: 150, height: 150,
       value: {Xrb::CW_BACK_PIXEL => screen.white_pixel,
                Xrb::CW_EVENT_MASK =>
                   Xrb::EVENT_MASK_EXPOSURE | Xrb::EVENT_MASK_BUTTON_PRESS |
                   Xrb::EVENT_MASK_KEY_RELEASE})
+  window.on_event do |event|
+    p [:window, event]
+  end
+
+  window.on_error do |error|
+    p [:window, error]
+  end
+
   window.show
 end
