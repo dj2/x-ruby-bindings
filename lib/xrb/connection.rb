@@ -4,11 +4,20 @@ require 'xrb/auth'
 
 module Xrb
   class Connection
+    attr_reader :socket
+
+    ERROR = 0
+    REPLY = 1
+
     def initialize(display_name)
       display_name ||= ENV['DISPLAY']
 
       display_name =~ /^([\w.-]*):(\d+)(?:.(\d+))?$/
       @host, @display, @screen = $1, $2.to_i, $3
+
+      @windows = []
+      @event_handlers = []
+      @error_handlers = []
 
       @byte_queue = []
     end
@@ -43,17 +52,60 @@ module Xrb
       @server_data
     end
 
+    def register_window(window)
+      @windows << window
+    end
+
+    def on_event(&blk)
+      @event_handlers << blk if block_given?
+    end
+
+    def on_error(&blk)
+      @error_handlers << blk if block_given?
+    end
+
     def disconnect
       @socket.close
     end
 
     def send(data)
-      p [:send, data]
       @socket.write(data)
     end
 
     def push(val)
-      @byte_queue << val
+      @byte_queue.unshift(val)
+    end
+
+    def data_available
+      v1 = read(1)
+      v2 = read(1)
+      kind = v1.unpack('w').first
+      type = v2.unpack('w').first
+      push(v2)
+      push(v1)
+    
+      case kind
+      when Xrb::Connection::ERROR then
+        klass = Xrb::Error.find(type)
+        error = klass.unpack(self)
+        read(32 - klass.size)
+
+        handle_message(error, :error, @error_handlers)
+
+      when Xrb::Connection::REPLY then
+        puts "Reply for ..."
+        nil
+      else 
+        klass = Xrb::Event.find(kind)
+        if klass.nil?
+          $stderr.puts("Failed to find #{kind}")
+          return
+        end
+        event = klass.unpack(self)
+        read(32 - klass.size)
+
+        handle_message(event, :event, @event_handlers)
+      end
     end
 
     def read(len)
@@ -67,6 +119,27 @@ module Xrb
 
         ret << @socket.read(len - ret.bytesize)
       end
+    end
+
+    def handle_message(message, type, conn_handlers)
+      window_id = if message.respond_to?(:event)
+        message.event
+      elsif message.respond_to?(:window)
+        message.window
+      else
+        nil
+      end
+
+      
+      if window_id
+        window = @windows.select { |w| w.id == window_id }.first
+        if window
+          window.handle_message(message, type)
+          return
+        end
+      end
+
+      conn_handlers.each { |h| h.call(message) }
     end
 
     def flush

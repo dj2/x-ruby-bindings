@@ -5,43 +5,29 @@ $: << './lib' << '../lib'
 require 'xrb'
 require 'pp'
 
-Xrb.connection.connect
+Xrb.run do |conn|
+  screen = conn.setup.roots.first
 
-main_thread = Thread.new do
-  while (true)
-    v1 = Xrb.connection.read(1)
-    kind = v1.unpack('w').first
-    Xrb.connection.push(v1)
-    
-    klass = case kind
-    when 0 then
-      v2 = Xrb.connection.read(1)
-      type = v2.unpack('w').first
-      Xrb.connection.push(v2)
-
-      e = Xrb::Error.find(type)
-      Xrb.connection.read(32 - e.size)
-      e
-    when 1 then
-      puts "Reply for ..."
-      nil
-    else 
-      k = Xrb::Event.find(kind)
-      Xrb.connection.read(32 - k.size)
-      k
-    end
-
-    unless klass.nil?
-      t = klass.unpack(Xrb.connection)
-      p t
-    end
+  conn.on_event do |event|
+    p [:connection, event]    
   end
+
+  conn.on_error do |error|
+    p [:connection, error]
+  end
+
+  window = Xrb::Window.new(conn, width: 150, height: 150,
+      value: {Xrb::CW_BACK_PIXEL => screen.white_pixel,
+               Xrb::CW_EVENT_MASK =>
+                  Xrb::EVENT_MASK_EXPOSURE | Xrb::EVENT_MASK_BUTTON_PRESS |
+                  Xrb::EVENT_MASK_KEY_RELEASE})
+  window.on_event do |event|
+    p [:window, event]
+  end
+
+  window.on_error do |error|
+    p [:window, error]
+  end
+
+  window.show
 end
-
-screen = Xrb.connection.setup.roots.first
-window = Xrb::Window.new(width: 150, height: 150,
-    value: {Xrb::CW_BACK_PIXEL => screen.white_pixel,
-             Xrb::CW_EVENT_MASK => Xrb::EVENT_MASK_EXPOSURE})
-window.show
-
-main_thread.join
