@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :subtype, {type: :uint8},
+            :sequence, {type: :uint16},
             :window, {type: :uint32},
             :owner, {type: :uint32},
             :selection, {type: :uint32},
@@ -25,6 +26,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :subtype, {type: :uint8},
+            :sequence, {type: :uint16},
             :window, {type: :uint32},
             :cursor_serial, {type: :uint32},
             :timestamp, {type: :uint32},

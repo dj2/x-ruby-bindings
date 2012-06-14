@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
+            :sequence, {type: :uint16},
             :drawable, {type: :uint32},
             :minor_event, {type: :uint16},
             :major_event, {type: :uint8},

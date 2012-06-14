@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :shape_kind, {type: :uint8},
+            :sequence, {type: :uint16},
             :affected_window, {type: :uint32},
             :extents_x, {type: :int16},
             :extents_y, {type: :int16},

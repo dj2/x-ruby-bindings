@@ -11,6 +11,7 @@ module Xrb
         layout \
             :response_type, {type: :uint8},
             :level, {type: :uint8},
+            :sequence, {type: :uint16},
             :drawable, {type: :uint32},
             :damage, {type: :uint32},
             :timestamp, {type: :uint32},
