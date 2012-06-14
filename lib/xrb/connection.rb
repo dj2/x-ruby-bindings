@@ -4,6 +4,11 @@ require 'xrb/auth'
 
 module Xrb
   class Connection
+    attr_reader :socket
+
+    ERROR = 0
+    REPLY = 1
+
     def initialize(display_name)
       display_name ||= ENV['DISPLAY']
 
@@ -48,12 +53,44 @@ module Xrb
     end
 
     def send(data)
-      p [:send, data]
       @socket.write(data)
     end
 
     def push(val)
-      @byte_queue << val
+      @byte_queue.unshift(val)
+    end
+
+    def data_available
+      v1 = read(1)
+      v2 = read(1)
+      kind = v1.unpack('w').first
+      type = v2.unpack('w').first
+      push(v2)
+      push(v1)
+    
+      p [kind, type]
+
+      ret = nil
+      case kind
+      when Xrb::Connection::ERROR then
+        klass = Xrb::Error.find(type)
+        ret = klass.unpack(self)
+        read(32 - e.size)
+
+      when Xrb::Connection::REPLY then
+        puts "Reply for ..."
+        nil
+      else 
+        klass = Xrb::Event.find(kind)
+        if klass.nil?
+          $stderr.puts("Failed to find #{kind}")
+          return
+        end
+        ret = klass.unpack(self)
+        read(32 - klass.size)
+      end
+
+p ret
     end
 
     def read(len)

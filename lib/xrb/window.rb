@@ -1,18 +1,11 @@
 module Xrb
-  module Request
-    class CreateWindow
-      def value=(value)
-        @value = value
-      end
-    end
-  end
-
   class Window
     DEFAULT_OPTS = {x: 0, y: 0, border_width: 2, depth: Xrb::COPY_FROM_PARENT,
         class: Xrb::WINDOW_CLASS_INPUT_OUTPUT}
 
-    def initialize(opts = {})
-      @conn = Xrb.connection
+    def initialize(conn, opts = {})
+      @conn = conn
+
       o = DEFAULT_OPTS.merge(opts)
 
       screen = o[:screen]
@@ -24,10 +17,8 @@ module Xrb
 
       @id = @conn.generate_id
       o[:wid] = @id
-
-      request = Xrb::Request::CreateWindow.new(o)
-
-      @conn.send(request.pack)
+p o
+      @conn.send(Xrb::Request::CreateWindow.new(o).pack)
     end
 
     def show(flush = true)
