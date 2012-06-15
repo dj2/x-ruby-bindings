@@ -1,11 +1,16 @@
 require 'xrb/thread_pool'
 require 'xrb/constants'
 require 'xrb/message'
+require 'xrb/cookie'
 require 'xrb/request'
-require 'xrb/generic_types'
 require 'xrb/gen/xproto'
 require 'xrb/connection'
 require 'xrb/setup'
+
+require 'xrb/gc'
+require 'xrb/image'
+require 'xrb/pixmap'
+require 'xrb/colormap'
 require 'xrb/window'
 
 module Xrb
@@ -24,6 +29,7 @@ module Xrb
 
     @timers = []
     @readers = []
+    @next_ticks = []
 
     @timer_mutex = Mutex.new
     @current_time = Time.now.to_f
@@ -43,6 +49,9 @@ module Xrb
       sleep(@timers.empty? ? DEFAULT_SLEEP :
           (@timers.first[:delay] - @current_time))
       @current_time = Time.now.to_f
+
+      @next_ticks.each { |p| p.call }
+      @next_ticks.clear
     end
   end
 
@@ -87,12 +96,16 @@ module Xrb
     add_timer(interval, &wrapper)
   end
 
- # Add a timer to fire once in {delay} seconds.
+  # Add a timer to fire once in {delay} seconds.
   def self.add_timer(delay = 1, &blk)
     @timer_mutex.synchronize do
       @timers << {:delay => @current_time + delay, :block => blk}
       @timers.sort! { |a, b| a[:delay] <=> b[:delay] }
     end
+  end
+
+  def self.next_tick(&blk)
+    @next_ticks << blk
   end
 
   # Execute all ready timers

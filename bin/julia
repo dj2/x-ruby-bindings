@@ -22,6 +22,7 @@ class Julia
     @window = window
     @format = Xrb::IMAGE_FORMAT_Z_PIXMAP
 
+    @colors_setup = false
     @palette = []
   end
 
@@ -45,17 +46,28 @@ class Julia
         [65535, 65535, ((i - 255) << 10)]
       end
 
-      cookie = @color_map.allocate_color(r, g, b) do |color|
+      cookies << @color_map.allocate_color(r, g, b) do |color|
         @palette << (color.null? ? 0 : color.pixel)
       end
-      p cookie
-      cookies << cookie
     end
 
-    cookies.each { |cookie| cookie.wait_for_reply }
+    check_cookies = Proc.new do
+      @colors_setup = true
+      cookies.each do |cookie|
+        if !cookie.replied?
+          @colors_setup = false
+          break
+        end
+      end
+      
+      Xrb.next_tick { check_cookies.call } unless !@colors_setup
+    end
+    Xrb.next_tick { check_cookies.call }
   end
 
   def draw
+    return unless @colors_setup
+
     @image = Xrb::Image.new(@conn, window: @window, gc: @gc, x: 0, y: 0,
         width: WINDOW_WIDTH, height: WINDOW_HEIGHT, plane_mask: ~0,
         format: @format)
@@ -89,7 +101,7 @@ end
 Xrb.run do |conn|
   screen = conn.setup.roots.first
 
-  bg_color = Xrb::Gc.new(conn, 
+  bg_color = Xrb::Gc.new(conn,
       value: {
         Xrb::GC_FOREGROUND => screen.white_pixel,
         Xrb::GC_GRAPHICS_EXPOSURES => 0})
@@ -104,8 +116,7 @@ Xrb.run do |conn|
   rect = Xrb::Pixmap.new(conn, window: window, width: WINDOW_WIDTH,
       height: WINDOW_HEIGHT)
 
-  rect.polly_fill(bg_color, x: 0, y: 0,
-      width: WINDOW_WIDTH, height: WINDOW_HEIGHT)
+  rect.poly_fill_rectangle(bg_color, [0, 0, WINDOW_WIDTH, WINDOW_HEIGHT])
 
   window.on_event do |event|
     case event.ruby_class
