@@ -2,9 +2,7 @@
 # This file was auto-generated. Do not edit.
 #
 
-require 'xrb/generic_types'
 require 'xrb/gen/bigreq/requests'
-require 'xrb/gen/bigreq/cookies'
 require 'xrb/gen/bigreq/replies'
 
 module Xrb

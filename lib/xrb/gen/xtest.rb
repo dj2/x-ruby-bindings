@@ -2,12 +2,10 @@
 # This file was auto-generated. Do not edit.
 #
 
-require 'xrb/generic_types'
 require 'xrb/xproto'
 require 'xrb/gen/xtest/constants'
 require 'xrb/gen/xtest/messages'
 require 'xrb/gen/xtest/requests'
-require 'xrb/gen/xtest/cookies'
 require 'xrb/gen/xtest/replies'
 
 module Xrb
