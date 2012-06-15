@@ -83,7 +83,7 @@ module Xrb
       type = v2.unpack('w').first
       push(v2)
       push(v1)
-    
+
       case kind
       when Xrb::Connection::ERROR then
         klass = Xrb::Error.find(type)
@@ -130,7 +130,6 @@ module Xrb
         nil
       end
 
-      
       if window_id
         window = @windows.select { |w| w.id == window_id }.first
         if window
