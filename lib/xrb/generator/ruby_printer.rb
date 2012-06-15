@@ -109,7 +109,6 @@ module Xrb
           constants.delete_if { |r| r.nil? }
 
           imports = Proc.new do
-            print("require 'xrb/generic_types'")
             ns.imports.each { |import| print("require 'xrb/#{import}'") }
 
             name = "xrb/gen/#{ns.header}"
@@ -119,7 +118,6 @@ module Xrb
             print("require '#{name}/errors'") unless ns.errors.empty?
             if !ns.requests.empty?
               print("require '#{name}/requests'")
-              print("require '#{name}/cookies'")
             end
             print("require '#{name}/replies'") unless replies.empty?
           end
@@ -169,12 +167,6 @@ module Xrb
             file(ns, "#{ns.header}/requests") do
               print("module Request") do
                 Request.new(ns.requests, self).process
-              end
-            end
-
-            file(ns, "#{ns.header}/cookies") do
-              print("module Cookie") do |variable|
-                Cookie.new(ns.requests, self).process
               end
             end
           end
@@ -405,25 +397,7 @@ module Xrb
           @p.print
         end
       end
-
-      class Cookie
-        def initialize(requests, printer)
-          @p = printer
-          @data = requests
-        end
-
-        def process
-          @data.each { |type| process_cookie(type) }
-        end
-
-        def process_cookie(type)
-          @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
-            @p.print("layout :sequence, {type: :int}")
-          end
-          @p.print
-        end
-      end
-
+      
       class Reply
         def initialize(replies, printer)
           @p = printer
