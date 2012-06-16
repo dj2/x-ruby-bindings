@@ -59,7 +59,7 @@ class Julia
           break
         end
       end
-      
+
       Xrb.next_tick { check_cookies.call } unless !@colors_setup
     end
     Xrb.next_tick { check_cookies.call }
