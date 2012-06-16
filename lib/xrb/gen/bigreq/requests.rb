@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
     end

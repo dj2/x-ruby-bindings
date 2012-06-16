@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PrintGetPrinterList < Xrb::Message
@@ -29,6 +32,9 @@ module Xrb
             :localeLen, {type: :uint32},
             :printer_name, {length_field: :printerNameLen, type: :char, kind: :string},
             :locale, {length_field: :localeLen, type: :char, kind: :string}
+        def has_reply?
+          true
+        end
       end
 
       class PrintRehashPrinterList < Xrb::Message
@@ -40,6 +46,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class CreateContext < Xrb::Message
@@ -56,6 +65,9 @@ module Xrb
             :localeLen, {type: :uint32},
             :printerName, {length_field: :printerNameLen, type: :char, kind: :string},
             :locale, {length_field: :localeLen, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class PrintSetContext < Xrb::Message
@@ -68,6 +80,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class PrintGetContext < Xrb::Message
@@ -79,6 +94,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PrintDestroyContext < Xrb::Message
@@ -91,6 +109,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class PrintGetScreenOfContext < Xrb::Message
@@ -102,6 +123,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PrintStartJob < Xrb::Message
@@ -114,6 +138,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :output_mode, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class PrintEndJob < Xrb::Message
@@ -126,6 +153,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :cancel, {type: :bool}
+        def has_reply?
+          false
+        end
       end
 
       class PrintStartDoc < Xrb::Message
@@ -138,6 +168,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :driver_mode, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class PrintEndDoc < Xrb::Message
@@ -150,6 +183,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :cancel, {type: :bool}
+        def has_reply?
+          false
+        end
       end
 
       class PrintPutDocumentData < Xrb::Message
@@ -168,6 +204,9 @@ module Xrb
             :data, {length_field: :len_data, type: :uint8, kind: :list},
             :doc_format, {type: :char, kind: :list},
             :options, {type: :char, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class PrintGetDocumentData < Xrb::Message
@@ -181,6 +220,9 @@ module Xrb
             :length, {type: :uint16},
             :context, {type: :uint32},
             :max_bytes, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class PrintStartPage < Xrb::Message
@@ -193,6 +235,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class PrintEndPage < Xrb::Message
@@ -206,6 +251,9 @@ module Xrb
             :length, {type: :uint16},
             :cancel, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class PrintSelectInput < Xrb::Message
@@ -219,6 +267,9 @@ module Xrb
             :length, {type: :uint16},
             :context, {type: :uint32},
             :event, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class PrintInputSelected < Xrb::Message
@@ -231,6 +282,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class PrintGetAttributes < Xrb::Message
@@ -245,6 +299,9 @@ module Xrb
             :context, {type: :uint32},
             :pool, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class PrintGetOneAttributes < Xrb::Message
@@ -261,6 +318,9 @@ module Xrb
             :pool, {type: :uint8},
             :pad1, {size: 3, type: :uint8},
             :name, {length_field: :nameLen, type: :char, kind: :string}
+        def has_reply?
+          true
+        end
       end
 
       class PrintSetAttributes < Xrb::Message
@@ -278,6 +338,9 @@ module Xrb
             :rule, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
             :attributes, {type: :char, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class PrintGetPageDimensions < Xrb::Message
@@ -290,6 +353,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class PrintQueryScreens < Xrb::Message
@@ -301,6 +367,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PrintSetImageResolution < Xrb::Message
@@ -314,6 +383,9 @@ module Xrb
             :length, {type: :uint16},
             :context, {type: :uint32},
             :image_resolution, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PrintGetImageResolution < Xrb::Message
@@ -326,6 +398,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

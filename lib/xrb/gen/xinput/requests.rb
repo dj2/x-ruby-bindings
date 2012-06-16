@@ -17,6 +17,9 @@ module Xrb
             :name_len, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :name, {length_field: :name_len, type: :char, kind: :string}
+        def has_reply?
+          true
+        end
       end
 
       class ListInputDevices < Xrb::Message
@@ -28,6 +31,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class OpenDevice < Xrb::Message
@@ -41,6 +47,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class CloseDevice < Xrb::Message
@@ -54,6 +63,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class SetDeviceMode < Xrb::Message
@@ -68,6 +80,9 @@ module Xrb
             :device_id, {type: :uint8},
             :mode, {type: :uint8},
             :pad1, {size: 2, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SelectExtensionEvent < Xrb::Message
@@ -83,6 +98,9 @@ module Xrb
             :num_classes, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GetSelectedExtensionEvents < Xrb::Message
@@ -95,6 +113,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeDeviceDontPropagateList < Xrb::Message
@@ -111,6 +132,9 @@ module Xrb
             :mode, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GetDeviceDontPropagateList < Xrb::Message
@@ -123,6 +147,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetDeviceMotionEvents < Xrb::Message
@@ -137,6 +164,9 @@ module Xrb
             :start, {type: :uint32},
             :stop, {type: :uint32},
             :device_id, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeKeyboardDevice < Xrb::Message
@@ -150,6 +180,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class ChangePointerDevice < Xrb::Message
@@ -165,6 +198,9 @@ module Xrb
             :y_axis, {type: :uint8},
             :device_id, {type: :uint8},
             :pad1, {size: 1, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class GrabDevice < Xrb::Message
@@ -185,6 +221,9 @@ module Xrb
             :device_id, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class UngrabDevice < Xrb::Message
@@ -198,6 +237,9 @@ module Xrb
             :length, {type: :uint16},
             :time, {type: :uint32},
             :device_id, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GrabDeviceKey < Xrb::Message
@@ -220,6 +262,9 @@ module Xrb
             :owner_events, {type: :bool},
             :pad1, {size: 2, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class UngrabDeviceKey < Xrb::Message
@@ -236,6 +281,9 @@ module Xrb
             :modifier_device, {type: :uint8},
             :key, {type: :uint8},
             :grabbed_device, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GrabDeviceButton < Xrb::Message
@@ -258,6 +306,9 @@ module Xrb
             :owner_events, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class UngrabDeviceButton < Xrb::Message
@@ -274,6 +325,9 @@ module Xrb
             :modifier_device, {type: :uint8},
             :button, {type: :uint8},
             :grabbed_device, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class AllowDeviceEvents < Xrb::Message
@@ -288,6 +342,9 @@ module Xrb
             :time, {type: :uint32},
             :mode, {type: :uint8},
             :device_id, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GetDeviceFocus < Xrb::Message
@@ -301,6 +358,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SetDeviceFocus < Xrb::Message
@@ -316,6 +376,9 @@ module Xrb
             :time, {type: :uint32},
             :revert_to, {type: :uint8},
             :device_id, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GetFeedbackControl < Xrb::Message
@@ -329,6 +392,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class GetDeviceKeyMapping < Xrb::Message
@@ -343,6 +409,9 @@ module Xrb
             :device_id, {type: :uint8},
             :first_keycode, {type: :uint8},
             :count, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeDeviceKeyMapping < Xrb::Message
@@ -358,6 +427,9 @@ module Xrb
             :first_keycode, {type: :uint8},
             :keysyms_per_keycode, {type: :uint8},
             :keycode_count, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GetDeviceModifierMapping < Xrb::Message
@@ -371,6 +443,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SetDeviceModifierMapping < Xrb::Message
@@ -385,6 +460,9 @@ module Xrb
             :device_id, {type: :uint8},
             :keycodes_per_modifier, {type: :uint8},
             :pad1, {size: 1, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class GetDeviceButtonMapping < Xrb::Message
@@ -398,6 +476,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SetDeviceButtonMapping < Xrb::Message
@@ -413,6 +494,9 @@ module Xrb
             :map_size, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
             :map, {length_field: :map_size, type: :uint8, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class QueryDeviceState < Xrb::Message
@@ -426,6 +510,9 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SendExtensionEvent < Xrb::Message
@@ -444,6 +531,9 @@ module Xrb
             :num_events, {type: :uint8},
             :pad1, {size: 3, type: :uint8},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class DeviceBell < Xrb::Message
@@ -459,6 +549,9 @@ module Xrb
             :feedback_id, {type: :uint8},
             :feedback_class, {type: :uint8},
             :percent, {type: :int8}
+        def has_reply?
+          false
+        end
       end
 
       class SetDeviceValuators < Xrb::Message
@@ -475,6 +568,9 @@ module Xrb
             :num_valuators, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :valuators, {length_field: :num_valuators, type: :int32, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class GetDeviceControl < Xrb::Message
@@ -489,6 +585,9 @@ module Xrb
             :control_id, {type: :uint16},
             :device_id, {type: :uint8},
             :pad1, {size: 1, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
     end

@@ -17,6 +17,9 @@ module Xrb
             :major_version, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :minor_version, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class CompareCursor < Xrb::Message
@@ -30,6 +33,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :cursor, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class FakeInput < Xrb::Message
@@ -51,6 +57,9 @@ module Xrb
             :rootY, {type: :int16},
             :pad3, {size: 7, type: :uint8},
             :deviceid, {type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GrabControl < Xrb::Message
@@ -64,6 +73,9 @@ module Xrb
             :length, {type: :uint16},
             :impervious, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
     end

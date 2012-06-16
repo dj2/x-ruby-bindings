@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class Rectangles < Xrb::Message
@@ -33,6 +36,9 @@ module Xrb
             :x_offset, {type: :int16},
             :y_offset, {type: :int16},
             :rectangles, {type: Rectangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class Mask < Xrb::Message
@@ -51,6 +57,9 @@ module Xrb
             :x_offset, {type: :int16},
             :y_offset, {type: :int16},
             :source_bitmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Combine < Xrb::Message
@@ -70,6 +79,9 @@ module Xrb
             :x_offset, {type: :int16},
             :y_offset, {type: :int16},
             :source_window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Offset < Xrb::Message
@@ -86,6 +98,9 @@ module Xrb
             :destination_window, {type: :uint32},
             :x_offset, {type: :int16},
             :y_offset, {type: :int16}
+        def has_reply?
+          false
+        end
       end
 
       class QueryExtents < Xrb::Message
@@ -98,6 +113,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :destination_window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SelectInput < Xrb::Message
@@ -112,6 +130,9 @@ module Xrb
             :destination_window, {type: :uint32},
             :enable, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class InputSelected < Xrb::Message
@@ -124,6 +145,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :destination_window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetRectangles < Xrb::Message
@@ -138,6 +162,9 @@ module Xrb
             :window, {type: :uint32},
             :source_kind, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
     end

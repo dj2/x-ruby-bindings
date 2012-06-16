@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint16},
             :client_minor_version, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetXidRange < Xrb::Message
@@ -27,6 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetXidList < Xrb::Message
@@ -39,6 +45,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :count, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

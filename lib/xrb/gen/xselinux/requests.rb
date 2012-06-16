@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major, {type: :uint8},
             :client_minor, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SetDeviceCreateContext < Xrb::Message
@@ -29,6 +32,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetDeviceCreateContext < Xrb::Message
@@ -40,6 +46,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class SetDeviceContext < Xrb::Message
@@ -54,6 +63,9 @@ module Xrb
             :device, {type: :uint32},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetDeviceContext < Xrb::Message
@@ -66,6 +78,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :device, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetWindowCreateContext < Xrb::Message
@@ -79,6 +94,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetWindowCreateContext < Xrb::Message
@@ -90,6 +108,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetWindowContext < Xrb::Message
@@ -102,6 +123,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetPropertyCreateContext < Xrb::Message
@@ -115,6 +139,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetPropertyCreateContext < Xrb::Message
@@ -126,6 +153,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class SetPropertyUseContext < Xrb::Message
@@ -139,6 +169,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetPropertyUseContext < Xrb::Message
@@ -150,6 +183,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetPropertyContext < Xrb::Message
@@ -163,6 +199,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :property, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPropertyDataContext < Xrb::Message
@@ -176,6 +215,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :property, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ListProperties < Xrb::Message
@@ -188,6 +230,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetSelectionCreateContext < Xrb::Message
@@ -201,6 +246,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetSelectionCreateContext < Xrb::Message
@@ -212,6 +260,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class SetSelectionUseContext < Xrb::Message
@@ -225,6 +276,9 @@ module Xrb
             :length, {type: :uint16},
             :context_len, {type: :uint32},
             :context, {length_field: :context_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetSelectionUseContext < Xrb::Message
@@ -236,6 +290,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetSelectionContext < Xrb::Message
@@ -248,6 +305,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :selection, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetSelectionDataContext < Xrb::Message
@@ -260,6 +320,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :selection, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ListSelections < Xrb::Message
@@ -271,6 +334,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetClientContext < Xrb::Message
@@ -283,6 +349,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :resource, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

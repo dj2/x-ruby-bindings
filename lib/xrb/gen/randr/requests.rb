@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :major_version, {type: :uint32},
             :minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetScreenConfig < Xrb::Message
@@ -34,6 +37,9 @@ module Xrb
             :rotation, {type: :uint16},
             :rate, {type: :uint16},
             :pad1, {size: 2, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SelectInput < Xrb::Message
@@ -48,6 +54,9 @@ module Xrb
             :window, {type: :uint32},
             :enable, {type: :uint16},
             :pad1, {size: 2, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class GetScreenInfo < Xrb::Message
@@ -60,6 +69,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetScreenSizeRange < Xrb::Message
@@ -72,6 +84,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetScreenSize < Xrb::Message
@@ -88,6 +103,9 @@ module Xrb
             :height, {type: :uint16},
             :mm_width, {type: :uint32},
             :mm_height, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetScreenResources < Xrb::Message
@@ -100,6 +118,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetOutputInfo < Xrb::Message
@@ -113,6 +134,9 @@ module Xrb
             :length, {type: :uint16},
             :output, {type: :uint32},
             :config_timestamp, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ListOutputProperties < Xrb::Message
@@ -125,6 +149,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :output, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryOutputProperty < Xrb::Message
@@ -138,6 +165,9 @@ module Xrb
             :length, {type: :uint16},
             :output, {type: :uint32},
             :property, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ConfigureOutputProperty < Xrb::Message
@@ -155,6 +185,9 @@ module Xrb
             :range, {type: :bool},
             :pad1, {size: 2, type: :uint8},
             :values, {type: :int32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class ChangeOutputProperty < Xrb::Message
@@ -173,6 +206,9 @@ module Xrb
             :mode, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
             :num_units, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DeleteOutputProperty < Xrb::Message
@@ -186,6 +222,9 @@ module Xrb
             :length, {type: :uint16},
             :output, {type: :uint32},
             :property, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetOutputProperty < Xrb::Message
@@ -205,6 +244,9 @@ module Xrb
             :delete, {type: :bool},
             :pending, {type: :bool},
             :pad1, {size: 2, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class CreateMode < Xrb::Message
@@ -219,6 +261,9 @@ module Xrb
             :window, {type: :uint32},
             :mode_info, {type: :ModeInfo},
             :name, {type: :char, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class DestroyMode < Xrb::Message
@@ -231,6 +276,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :mode, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class AddOutputMode < Xrb::Message
@@ -244,6 +292,9 @@ module Xrb
             :length, {type: :uint16},
             :output, {type: :uint32},
             :mode, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DeleteOutputMode < Xrb::Message
@@ -257,6 +308,9 @@ module Xrb
             :length, {type: :uint16},
             :output, {type: :uint32},
             :mode, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetCrtcInfo < Xrb::Message
@@ -270,6 +324,9 @@ module Xrb
             :length, {type: :uint16},
             :crtc, {type: :uint32},
             :config_timestamp, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetCrtcConfig < Xrb::Message
@@ -290,6 +347,9 @@ module Xrb
             :rotation, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :outputs, {type: :uint32, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class GetCrtcGammaSize < Xrb::Message
@@ -302,6 +362,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :crtc, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetCrtcGamma < Xrb::Message
@@ -314,6 +377,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :crtc, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetCrtcGamma < Xrb::Message
@@ -331,6 +397,9 @@ module Xrb
             :red, {length_field: :size, type: :uint16, kind: :list},
             :green, {length_field: :size, type: :uint16, kind: :list},
             :blue, {length_field: :size, type: :uint16, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GetScreenResourcesCurrent < Xrb::Message
@@ -343,6 +412,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetCrtcTransform < Xrb::Message
@@ -360,6 +432,9 @@ module Xrb
             :pad1, {size: 2, type: :uint8},
             :filter_name, {length_field: :filter_len, type: :char, kind: :string},
             :filter_params, {type: :int32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GetCrtcTransform < Xrb::Message
@@ -372,6 +447,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :crtc, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPanning < Xrb::Message
@@ -384,6 +462,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :crtc, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetPanning < Xrb::Message
@@ -409,6 +490,9 @@ module Xrb
             :border_top, {type: :int16},
             :border_right, {type: :int16},
             :border_bottom, {type: :int16}
+        def has_reply?
+          true
+        end
       end
 
       class SetOutputPrimary < Xrb::Message
@@ -422,6 +506,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :output, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetOutputPrimary < Xrb::Message
@@ -434,6 +521,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

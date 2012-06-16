@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :major_version, {type: :uint16},
             :minor_version, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class CreateContext < Xrb::Message
@@ -34,6 +37,9 @@ module Xrb
             :num_ranges, {type: :uint32},
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list},
             :ranges, {length_field: :num_ranges, type: Range, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class RegisterClients < Xrb::Message
@@ -52,6 +58,9 @@ module Xrb
             :num_ranges, {type: :uint32},
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list},
             :ranges, {length_field: :num_ranges, type: Range, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class UnregisterClients < Xrb::Message
@@ -66,6 +75,9 @@ module Xrb
             :context, {type: :uint32},
             :num_client_specs, {type: :uint32},
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GetContext < Xrb::Message
@@ -78,6 +90,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class EnableContext < Xrb::Message
@@ -90,6 +105,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DisableContext < Xrb::Message
@@ -102,6 +120,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class FreeContext < Xrb::Message
@@ -114,6 +135,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end

@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class ListSurfaceTypes < Xrb::Message
@@ -26,6 +29,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :port_id, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreateContext < Xrb::Message
@@ -43,6 +49,9 @@ module Xrb
             :width, {type: :uint16},
             :height, {type: :uint16},
             :flags, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DestroyContext < Xrb::Message
@@ -55,6 +64,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_id, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateSurface < Xrb::Message
@@ -68,6 +80,9 @@ module Xrb
             :length, {type: :uint16},
             :surface_id, {type: :uint32},
             :context_id, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DestroySurface < Xrb::Message
@@ -80,6 +95,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :surface_id, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateSubpicture < Xrb::Message
@@ -96,6 +114,9 @@ module Xrb
             :xvimage_id, {type: :uint32},
             :width, {type: :uint16},
             :height, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class DestroySubpicture < Xrb::Message
@@ -108,6 +129,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :subpicture_id, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class ListSubpictureTypes < Xrb::Message
@@ -121,6 +145,9 @@ module Xrb
             :length, {type: :uint16},
             :port_id, {type: :uint32},
             :surface_id, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

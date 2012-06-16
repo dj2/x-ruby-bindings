@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint16},
             :client_minor_version, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class Start < Xrb::Message
@@ -28,6 +31,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class End < Xrb::Message
@@ -40,6 +46,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :cmap, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Send < Xrb::Message
@@ -54,6 +63,9 @@ module Xrb
             :event, {type: :Event},
             :data_type, {type: :uint32},
             :pad1, {size: 64, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SelectInput < Xrb::Message
@@ -66,6 +78,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :event_mask, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

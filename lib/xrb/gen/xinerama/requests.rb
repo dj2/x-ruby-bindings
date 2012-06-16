@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :major, {type: :uint8},
             :minor, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class GetState < Xrb::Message
@@ -28,6 +31,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetScreenCount < Xrb::Message
@@ -40,6 +46,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetScreenSize < Xrb::Message
@@ -53,6 +62,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class IsActive < Xrb::Message
@@ -64,6 +76,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class QueryScreens < Xrb::Message
@@ -75,6 +90,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
     end

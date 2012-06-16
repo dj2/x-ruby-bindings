@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class QueryAdaptors < Xrb::Message
@@ -26,6 +29,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryEncodings < Xrb::Message
@@ -38,6 +44,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :port, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GrabPort < Xrb::Message
@@ -51,6 +60,9 @@ module Xrb
             :length, {type: :uint16},
             :port, {type: :uint32},
             :time, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class UngrabPort < Xrb::Message
@@ -64,6 +76,9 @@ module Xrb
             :length, {type: :uint16},
             :port, {type: :uint32},
             :time, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class PutVideo < Xrb::Message
@@ -86,6 +101,9 @@ module Xrb
             :drw_y, {type: :int16},
             :drw_w, {type: :uint16},
             :drw_h, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class PutStill < Xrb::Message
@@ -108,6 +126,9 @@ module Xrb
             :drw_y, {type: :int16},
             :drw_w, {type: :uint16},
             :drw_h, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class GetVideo < Xrb::Message
@@ -130,6 +151,9 @@ module Xrb
             :drw_y, {type: :int16},
             :drw_w, {type: :uint16},
             :drw_h, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class GetStill < Xrb::Message
@@ -152,6 +176,9 @@ module Xrb
             :drw_y, {type: :int16},
             :drw_w, {type: :uint16},
             :drw_h, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class StopVideo < Xrb::Message
@@ -165,6 +192,9 @@ module Xrb
             :length, {type: :uint16},
             :port, {type: :uint32},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SelectVideoNotify < Xrb::Message
@@ -179,6 +209,9 @@ module Xrb
             :drawable, {type: :uint32},
             :onoff, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class SelectPortNotify < Xrb::Message
@@ -193,6 +226,9 @@ module Xrb
             :port, {type: :uint32},
             :onoff, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class QueryBestSize < Xrb::Message
@@ -211,6 +247,9 @@ module Xrb
             :drw_h, {type: :uint16},
             :motion, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class SetPortAttribute < Xrb::Message
@@ -225,6 +264,9 @@ module Xrb
             :port, {type: :uint32},
             :attribute, {type: :uint32},
             :value, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class GetPortAttribute < Xrb::Message
@@ -238,6 +280,9 @@ module Xrb
             :length, {type: :uint16},
             :port, {type: :uint32},
             :attribute, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryPortAttributes < Xrb::Message
@@ -250,6 +295,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :port, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ListImageFormats < Xrb::Message
@@ -262,6 +310,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :port, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryImageAttributes < Xrb::Message
@@ -277,6 +328,9 @@ module Xrb
             :id, {type: :uint32},
             :width, {type: :uint16},
             :height, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class PutImage < Xrb::Message
@@ -303,6 +357,9 @@ module Xrb
             :width, {type: :uint16},
             :height, {type: :uint16},
             :data, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class ShmPutImage < Xrb::Message
@@ -332,6 +389,9 @@ module Xrb
             :height, {type: :uint16},
             :send_event, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
     end

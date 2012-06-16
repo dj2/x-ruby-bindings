@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint32},
             :client_minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Create < Xrb::Message
@@ -31,6 +34,9 @@ module Xrb
             :drawable, {type: :uint32},
             :level, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class Destroy < Xrb::Message
@@ -43,6 +49,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :damage, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Subtract < Xrb::Message
@@ -57,6 +66,9 @@ module Xrb
             :damage, {type: :uint32},
             :repair, {type: :uint32},
             :parts, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Add < Xrb::Message
@@ -70,6 +82,9 @@ module Xrb
             :length, {type: :uint16},
             :drawable, {type: :uint32},
             :region, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end

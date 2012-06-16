@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint32},
             :client_minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryPictFormats < Xrb::Message
@@ -27,6 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class QueryPictIndexValues < Xrb::Message
@@ -39,6 +45,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :format, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreatePicture < Xrb::Message
@@ -54,6 +63,9 @@ module Xrb
             :drawable, {type: :uint32},
             :format, {type: :uint32},
             :value, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class ChangePicture < Xrb::Message
@@ -67,6 +79,9 @@ module Xrb
             :length, {type: :uint16},
             :picture, {type: :uint32},
             :value, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class SetPictureClipRectangles < Xrb::Message
@@ -82,6 +97,9 @@ module Xrb
             :clip_x_origin, {type: :int16},
             :clip_y_origin, {type: :int16},
             :rectangles, {type: Rectangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class FreePicture < Xrb::Message
@@ -94,6 +112,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :picture, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Composite < Xrb::Message
@@ -118,6 +139,9 @@ module Xrb
             :dst_y, {type: :int16},
             :width, {type: :uint16},
             :height, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class Trapezoids < Xrb::Message
@@ -137,6 +161,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :traps, {type: Trapezoid, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class Triangles < Xrb::Message
@@ -156,6 +183,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :triangles, {type: Triangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class TriStrip < Xrb::Message
@@ -175,6 +205,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :points, {type: Pointfix, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class TriFan < Xrb::Message
@@ -194,6 +227,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :points, {type: Pointfix, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateGlyphSet < Xrb::Message
@@ -207,6 +243,9 @@ module Xrb
             :length, {type: :uint16},
             :gsid, {type: :uint32},
             :format, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class ReferenceGlyphSet < Xrb::Message
@@ -220,6 +259,9 @@ module Xrb
             :length, {type: :uint16},
             :gsid, {type: :uint32},
             :existing, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class FreeGlyphSet < Xrb::Message
@@ -232,6 +274,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :glyphset, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class AddGlyphs < Xrb::Message
@@ -248,6 +293,9 @@ module Xrb
             :glyphids, {length_field: :glyphs_len, type: :uint32, kind: :list},
             :glyphs, {length_field: :glyphs_len, type: Glyphinfo, kind: :list},
             :data, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class FreeGlyphs < Xrb::Message
@@ -261,6 +309,9 @@ module Xrb
             :length, {type: :uint16},
             :glyphset, {type: :uint32},
             :glyphs, {type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CompositeGlyphs_8 < Xrb::Message
@@ -281,6 +332,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :glyphcmds, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CompositeGlyphs_16 < Xrb::Message
@@ -301,6 +355,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :glyphcmds, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CompositeGlyphs_32 < Xrb::Message
@@ -321,6 +378,9 @@ module Xrb
             :src_x, {type: :int16},
             :src_y, {type: :int16},
             :glyphcmds, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class FillRectangles < Xrb::Message
@@ -337,6 +397,9 @@ module Xrb
             :dst, {type: :uint32},
             :color, {type: :COLOR},
             :rects, {type: Rectangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateCursor < Xrb::Message
@@ -352,6 +415,9 @@ module Xrb
             :source, {type: :uint32},
             :x, {type: :uint16},
             :y, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class SetPictureTransform < Xrb::Message
@@ -365,6 +431,9 @@ module Xrb
             :length, {type: :uint16},
             :picture, {type: :uint32},
             :transform, {type: :TRANSFORM}
+        def has_reply?
+          false
+        end
       end
 
       class QueryFilters < Xrb::Message
@@ -377,6 +446,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetPictureFilter < Xrb::Message
@@ -393,6 +465,9 @@ module Xrb
             :pad1, {size: 2, type: :uint8},
             :filter, {length_field: :filter_len, type: :char, kind: :string},
             :values, {type: :int32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateAnimCursor < Xrb::Message
@@ -406,6 +481,9 @@ module Xrb
             :length, {type: :uint16},
             :cid, {type: :uint32},
             :cursors, {type: Animcursorelt, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class AddTraps < Xrb::Message
@@ -421,6 +499,9 @@ module Xrb
             :x_off, {type: :int16},
             :y_off, {type: :int16},
             :traps, {type: Trap, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateSolidFill < Xrb::Message
@@ -434,6 +515,9 @@ module Xrb
             :length, {type: :uint16},
             :picture, {type: :uint32},
             :color, {type: :COLOR}
+        def has_reply?
+          false
+        end
       end
 
       class CreateLinearGradient < Xrb::Message
@@ -451,6 +535,9 @@ module Xrb
             :num_stops, {type: :uint32},
             :stops, {length_field: :num_stops, type: :int32, kind: :list},
             :colors, {length_field: :num_stops, type: Color, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRadialGradient < Xrb::Message
@@ -470,6 +557,9 @@ module Xrb
             :num_stops, {type: :uint32},
             :stops, {length_field: :num_stops, type: :int32, kind: :list},
             :colors, {length_field: :num_stops, type: Color, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateConicalGradient < Xrb::Message
@@ -487,6 +577,9 @@ module Xrb
             :num_stops, {type: :uint32},
             :stops, {length_field: :num_stops, type: :int32, kind: :list},
             :colors, {length_field: :num_stops, type: Color, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
     end

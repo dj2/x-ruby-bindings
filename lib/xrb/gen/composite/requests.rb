@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint32},
             :client_minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class RedirectWindow < Xrb::Message
@@ -30,6 +33,9 @@ module Xrb
             :window, {type: :uint32},
             :update, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class RedirectSubwindows < Xrb::Message
@@ -44,6 +50,9 @@ module Xrb
             :window, {type: :uint32},
             :update, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class UnredirectWindow < Xrb::Message
@@ -58,6 +67,9 @@ module Xrb
             :window, {type: :uint32},
             :update, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class UnredirectSubwindows < Xrb::Message
@@ -72,6 +84,9 @@ module Xrb
             :window, {type: :uint32},
             :update, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRegionFromBorderClip < Xrb::Message
@@ -85,6 +100,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class NameWindowPixmap < Xrb::Message
@@ -98,6 +116,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :pixmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetOverlayWindow < Xrb::Message
@@ -110,6 +131,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ReleaseOverlayWindow < Xrb::Message
@@ -122,6 +146,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end

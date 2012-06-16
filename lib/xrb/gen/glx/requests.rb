@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :data, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class RenderLarge < Xrb::Message
@@ -32,6 +35,9 @@ module Xrb
             :request_total, {type: :uint16},
             :data_len, {type: :uint32},
             :data, {length_field: :data_len, type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateContext < Xrb::Message
@@ -49,6 +55,9 @@ module Xrb
             :share_list, {type: :uint32},
             :is_direct, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyContext < Xrb::Message
@@ -61,6 +70,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class MakeCurrent < Xrb::Message
@@ -75,6 +87,9 @@ module Xrb
             :drawable, {type: :uint32},
             :context, {type: :uint32},
             :old_context_tag, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class IsDirect < Xrb::Message
@@ -87,6 +102,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryVersion < Xrb::Message
@@ -100,6 +118,9 @@ module Xrb
             :length, {type: :uint16},
             :major_version, {type: :uint32},
             :minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class WaitGl < Xrb::Message
@@ -112,6 +133,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class WaitX < Xrb::Message
@@ -124,6 +148,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CopyContext < Xrb::Message
@@ -139,6 +166,9 @@ module Xrb
             :dest, {type: :uint32},
             :mask, {type: :uint32},
             :src_context_tag, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SwapBuffers < Xrb::Message
@@ -152,6 +182,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class UseXFont < Xrb::Message
@@ -168,6 +201,9 @@ module Xrb
             :first, {type: :uint32},
             :count, {type: :uint32},
             :list_base, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateGlxPixmap < Xrb::Message
@@ -183,6 +219,9 @@ module Xrb
             :visual, {type: :uint32},
             :pixmap, {type: :uint32},
             :glx_pixmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetVisualConfigs < Xrb::Message
@@ -195,6 +234,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DestroyGlxPixmap < Xrb::Message
@@ -207,6 +249,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :glx_pixmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class VendorPrivate < Xrb::Message
@@ -221,6 +266,9 @@ module Xrb
             :vendor_code, {type: :uint32},
             :context_tag, {type: :uint32},
             :data, {type: :uint8, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class VendorPrivateWithReply < Xrb::Message
@@ -235,6 +283,9 @@ module Xrb
             :vendor_code, {type: :uint32},
             :context_tag, {type: :uint32},
             :data, {type: :uint8, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class QueryExtensionsString < Xrb::Message
@@ -247,6 +298,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryServerString < Xrb::Message
@@ -260,6 +314,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :name, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ClientInfo < Xrb::Message
@@ -275,6 +332,9 @@ module Xrb
             :minor_version, {type: :uint32},
             :str_len, {type: :uint32},
             :string, {length_field: :str_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetFbConfigs < Xrb::Message
@@ -287,6 +347,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreatePixmap < Xrb::Message
@@ -303,6 +366,9 @@ module Xrb
             :pixmap, {type: :uint32},
             :glx_pixmap, {type: :uint32},
             :num_attribs, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyPixmap < Xrb::Message
@@ -315,6 +381,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :glx_pixmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateNewContext < Xrb::Message
@@ -333,6 +402,9 @@ module Xrb
             :share_list, {type: :uint32},
             :is_direct, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class QueryContext < Xrb::Message
@@ -345,6 +417,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class MakeContextCurrent < Xrb::Message
@@ -360,6 +435,9 @@ module Xrb
             :drawable, {type: :uint32},
             :read_drawable, {type: :uint32},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreatePbuffer < Xrb::Message
@@ -375,6 +453,9 @@ module Xrb
             :fbconfig, {type: :uint32},
             :pbuffer, {type: :uint32},
             :num_attribs, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyPbuffer < Xrb::Message
@@ -387,6 +468,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :pbuffer, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetDrawableAttributes < Xrb::Message
@@ -399,6 +483,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeDrawableAttributes < Xrb::Message
@@ -412,6 +499,9 @@ module Xrb
             :length, {type: :uint16},
             :drawable, {type: :uint32},
             :num_attribs, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateWindow < Xrb::Message
@@ -428,6 +518,9 @@ module Xrb
             :window, {type: :uint32},
             :glx_window, {type: :uint32},
             :num_attribs, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DeleteWindow < Xrb::Message
@@ -440,6 +533,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :glxwindow, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SetClientInfoArb < Xrb::Message
@@ -458,6 +554,9 @@ module Xrb
             :glx_str_len, {type: :uint32},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class CreateContextAttribsArb < Xrb::Message
@@ -476,6 +575,9 @@ module Xrb
             :is_direct, {type: :bool},
             :pad1, {size: 3, type: :uint8},
             :num_attribs, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SetClientInfo_2arb < Xrb::Message
@@ -494,6 +596,9 @@ module Xrb
             :glx_str_len, {type: :uint32},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class NewList < Xrb::Message
@@ -508,6 +613,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :list, {type: :uint32},
             :mode, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class EndList < Xrb::Message
@@ -520,6 +628,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DeleteLists < Xrb::Message
@@ -534,6 +645,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :list, {type: :uint32},
             :range, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class GenLists < Xrb::Message
@@ -547,6 +661,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :range, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class FeedbackBuffer < Xrb::Message
@@ -561,6 +678,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :size, {type: :int32},
             :type, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class SelectBuffer < Xrb::Message
@@ -574,6 +694,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :size, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class RenderMode < Xrb::Message
@@ -587,6 +710,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :mode, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Finish < Xrb::Message
@@ -599,6 +725,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class PixelStoref < Xrb::Message
@@ -613,6 +742,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :pname, {type: :uint32},
             :datum, {type: :float}
+        def has_reply?
+          false
+        end
       end
 
       class PixelStorei < Xrb::Message
@@ -627,6 +759,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :pname, {type: :uint32},
             :datum, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class ReadPixels < Xrb::Message
@@ -647,6 +782,9 @@ module Xrb
             :type, {type: :uint32},
             :swap_bytes, {type: :bool},
             :lsb_first, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetBooleanv < Xrb::Message
@@ -660,6 +798,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :pname, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class GetClipPlane < Xrb::Message
@@ -673,6 +814,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :plane, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class GetDoublev < Xrb::Message
@@ -686,6 +830,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetError < Xrb::Message
@@ -698,6 +845,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetFloatv < Xrb::Message
@@ -711,6 +861,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetIntegerv < Xrb::Message
@@ -724,6 +877,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetLightfv < Xrb::Message
@@ -738,6 +894,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :light, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetLightiv < Xrb::Message
@@ -752,6 +911,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :light, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMapdv < Xrb::Message
@@ -766,6 +928,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :query, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMapfv < Xrb::Message
@@ -780,6 +945,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :query, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMapiv < Xrb::Message
@@ -794,6 +962,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :query, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMaterialfv < Xrb::Message
@@ -808,6 +979,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :face, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMaterialiv < Xrb::Message
@@ -822,6 +996,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :face, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPixelMapfv < Xrb::Message
@@ -835,6 +1012,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :map, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPixelMapuiv < Xrb::Message
@@ -848,6 +1028,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :map, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPixelMapusv < Xrb::Message
@@ -861,6 +1044,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :map, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetPolygonStipple < Xrb::Message
@@ -874,6 +1060,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :lsb_first, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetString < Xrb::Message
@@ -887,6 +1076,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :name, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexEnvfv < Xrb::Message
@@ -901,6 +1093,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexEnviv < Xrb::Message
@@ -915,6 +1110,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexGendv < Xrb::Message
@@ -929,6 +1127,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :coord, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexGenfv < Xrb::Message
@@ -943,6 +1144,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :coord, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexGeniv < Xrb::Message
@@ -957,6 +1161,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :coord, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexImage < Xrb::Message
@@ -974,6 +1181,9 @@ module Xrb
             :format, {type: :uint32},
             :type, {type: :uint32},
             :swap_bytes, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexParameterfv < Xrb::Message
@@ -988,6 +1198,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexParameteriv < Xrb::Message
@@ -1002,6 +1215,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexLevelParameterfv < Xrb::Message
@@ -1017,6 +1233,9 @@ module Xrb
             :target, {type: :uint32},
             :level, {type: :int32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetTexLevelParameteriv < Xrb::Message
@@ -1032,6 +1251,9 @@ module Xrb
             :target, {type: :uint32},
             :level, {type: :int32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class IsList < Xrb::Message
@@ -1045,6 +1267,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :list, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Flush < Xrb::Message
@@ -1057,6 +1282,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class AreTexturesResident < Xrb::Message
@@ -1071,6 +1299,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :n, {type: :int32},
             :textures, {length_field: :n, type: :uint32, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class DeleteTextures < Xrb::Message
@@ -1085,6 +1316,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :n, {type: :int32},
             :textures, {length_field: :n, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GenTextures < Xrb::Message
@@ -1098,6 +1332,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :n, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class IsTexture < Xrb::Message
@@ -1111,6 +1348,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :texture, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetColorTable < Xrb::Message
@@ -1127,6 +1367,9 @@ module Xrb
             :format, {type: :uint32},
             :type, {type: :uint32},
             :swap_bytes, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetColorTableParameterfv < Xrb::Message
@@ -1141,6 +1384,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetColorTableParameteriv < Xrb::Message
@@ -1155,6 +1401,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetConvolutionFilter < Xrb::Message
@@ -1171,6 +1420,9 @@ module Xrb
             :format, {type: :uint32},
             :type, {type: :uint32},
             :swap_bytes, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetConvolutionParameterfv < Xrb::Message
@@ -1185,6 +1437,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetConvolutionParameteriv < Xrb::Message
@@ -1199,6 +1454,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetSeparableFilter < Xrb::Message
@@ -1215,6 +1473,9 @@ module Xrb
             :format, {type: :uint32},
             :type, {type: :uint32},
             :swap_bytes, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetHistogram < Xrb::Message
@@ -1232,6 +1493,9 @@ module Xrb
             :type, {type: :uint32},
             :swap_bytes, {type: :bool},
             :reset, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetHistogramParameterfv < Xrb::Message
@@ -1246,6 +1510,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetHistogramParameteriv < Xrb::Message
@@ -1260,6 +1527,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMinmax < Xrb::Message
@@ -1277,6 +1547,9 @@ module Xrb
             :type, {type: :uint32},
             :swap_bytes, {type: :bool},
             :reset, {type: :bool}
+        def has_reply?
+          true
+        end
       end
 
       class GetMinmaxParameterfv < Xrb::Message
@@ -1291,6 +1564,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMinmaxParameteriv < Xrb::Message
@@ -1305,6 +1581,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetCompressedTexImageArb < Xrb::Message
@@ -1319,6 +1598,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :level, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class DeleteQueriesArb < Xrb::Message
@@ -1333,6 +1615,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :n, {type: :int32},
             :ids, {length_field: :n, type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class GenQueriesArb < Xrb::Message
@@ -1346,6 +1631,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :n, {type: :int32}
+        def has_reply?
+          true
+        end
       end
 
       class IsQueryArb < Xrb::Message
@@ -1359,6 +1647,9 @@ module Xrb
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
             :id, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetQueryivArb < Xrb::Message
@@ -1373,6 +1664,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :target, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetQueryObjectivArb < Xrb::Message
@@ -1387,6 +1681,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :id, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetQueryObjectuivArb < Xrb::Message
@@ -1401,6 +1698,9 @@ module Xrb
             :context_tag, {type: :uint32},
             :id, {type: :uint32},
             :pname, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

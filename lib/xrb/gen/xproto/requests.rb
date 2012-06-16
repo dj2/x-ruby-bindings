@@ -23,6 +23,9 @@ module Xrb
           :class, {type: :uint16},
           :visual, {type: :uint32},
           :value, {type: :uint32, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class ChangeWindowAttributes < Xrb::Message
@@ -36,6 +39,9 @@ module Xrb
           :length, {type: :uint16},
           :window, {type: :uint32},
           :value, {type: :uint32, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class GetWindowAttributes < Xrb::Message
@@ -48,6 +54,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class DestroyWindow < Xrb::Message
@@ -60,6 +69,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class DestroySubwindows < Xrb::Message
@@ -72,6 +84,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class ChangeSaveSet < Xrb::Message
@@ -84,6 +99,9 @@ module Xrb
           :mode, {type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class ReparentWindow < Xrb::Message
@@ -99,6 +117,9 @@ module Xrb
           :parent, {type: :uint32},
           :x, {type: :int16},
           :y, {type: :int16}
+      def has_reply?
+        false
+      end
     end
 
     class MapWindow < Xrb::Message
@@ -111,6 +132,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class MapSubwindows < Xrb::Message
@@ -123,6 +147,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class UnmapWindow < Xrb::Message
@@ -135,6 +162,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class UnmapSubwindows < Xrb::Message
@@ -147,6 +177,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class ConfigureWindow < Xrb::Message
@@ -162,6 +195,9 @@ module Xrb
           :value_mask, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :value, {type: :uint16, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class CirculateWindow < Xrb::Message
@@ -174,6 +210,9 @@ module Xrb
           :direction, {type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GetGeometry < Xrb::Message
@@ -186,6 +225,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class QueryTree < Xrb::Message
@@ -198,6 +240,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class InternAtom < Xrb::Message
@@ -212,6 +257,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad1, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class GetAtomName < Xrb::Message
@@ -224,6 +272,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :atom, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class ChangeProperty < Xrb::Message
@@ -241,6 +292,9 @@ module Xrb
           :format, {type: :uint8},
           :pad1, {size: 3, type: :uint8},
           :data_len, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class DeleteProperty < Xrb::Message
@@ -254,6 +308,9 @@ module Xrb
           :length, {type: :uint16},
           :window, {type: :uint32},
           :property, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GetProperty < Xrb::Message
@@ -270,6 +327,9 @@ module Xrb
           :type, {type: :uint32},
           :long_offset, {type: :uint32},
           :long_length, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class ListProperties < Xrb::Message
@@ -282,6 +342,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class SetSelectionOwner < Xrb::Message
@@ -296,6 +359,9 @@ module Xrb
           :owner, {type: :uint32},
           :selection, {type: :uint32},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GetSelectionOwner < Xrb::Message
@@ -308,6 +374,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :selection, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class ConvertSelection < Xrb::Message
@@ -324,6 +393,9 @@ module Xrb
           :target, {type: :uint32},
           :property, {type: :uint32},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class SendEvent < Xrb::Message
@@ -338,6 +410,9 @@ module Xrb
           :destination, {type: :uint32},
           :event_mask, {type: :uint32},
           :event, {type: :char, size: 32}
+      def has_reply?
+        false
+      end
     end
 
     class GrabPointer < Xrb::Message
@@ -356,6 +431,9 @@ module Xrb
           :confine_to, {type: :uint32},
           :cursor, {type: :uint32},
           :time, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class UngrabPointer < Xrb::Message
@@ -368,6 +446,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GrabButton < Xrb::Message
@@ -388,6 +469,9 @@ module Xrb
           :button, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
           :modifiers, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class UngrabButton < Xrb::Message
@@ -402,6 +486,9 @@ module Xrb
           :grab_window, {type: :uint32},
           :modifiers, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class ChangeActivePointerGrab < Xrb::Message
@@ -417,6 +504,9 @@ module Xrb
           :time, {type: :uint32},
           :event_mask, {type: :uint16},
           :pad2, {size: 2, type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class GrabKeyboard < Xrb::Message
@@ -433,6 +523,9 @@ module Xrb
           :pointer_mode, {type: :uint8},
           :keyboard_mode, {type: :uint8},
           :pad1, {size: 2, type: :uint8}
+      def has_reply?
+        true
+      end
     end
 
     class UngrabKeyboard < Xrb::Message
@@ -445,6 +538,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GrabKey < Xrb::Message
@@ -462,6 +558,9 @@ module Xrb
           :pointer_mode, {type: :uint8},
           :keyboard_mode, {type: :uint8},
           :pad1, {size: 3, type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class UngrabKey < Xrb::Message
@@ -476,6 +575,9 @@ module Xrb
           :grab_window, {type: :uint32},
           :modifiers, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class AllowEvents < Xrb::Message
@@ -488,6 +590,9 @@ module Xrb
           :mode, {type: :uint8},
           :length, {type: :uint16},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GrabServer < Xrb::Message
@@ -499,6 +604,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class UngrabServer < Xrb::Message
@@ -510,6 +618,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class QueryPointer < Xrb::Message
@@ -522,6 +633,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class GetMotionEvents < Xrb::Message
@@ -536,6 +650,9 @@ module Xrb
           :window, {type: :uint32},
           :start, {type: :uint32},
           :stop, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class TranslateCoordinates < Xrb::Message
@@ -551,6 +668,9 @@ module Xrb
           :dst_window, {type: :uint32},
           :src_x, {type: :int16},
           :src_y, {type: :int16}
+      def has_reply?
+        true
+      end
     end
 
     class WarpPointer < Xrb::Message
@@ -570,6 +690,9 @@ module Xrb
           :src_height, {type: :uint16},
           :dst_x, {type: :int16},
           :dst_y, {type: :int16}
+      def has_reply?
+        false
+      end
     end
 
     class SetInputFocus < Xrb::Message
@@ -583,6 +706,9 @@ module Xrb
           :length, {type: :uint16},
           :focus, {type: :uint32},
           :time, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class GetInputFocus < Xrb::Message
@@ -594,6 +720,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class QueryKeymap < Xrb::Message
@@ -605,6 +734,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class OpenFont < Xrb::Message
@@ -620,6 +752,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        false
+      end
     end
 
     class CloseFont < Xrb::Message
@@ -632,6 +767,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :font, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class QueryFont < Xrb::Message
@@ -644,6 +782,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :font, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class QueryTextExtents < Xrb::Message
@@ -656,6 +797,9 @@ module Xrb
           :length, {type: :uint16},
           :font, {type: :uint32},
           :string, {type: Char2b, kind: :list}
+      def has_reply?
+        true
+      end
     end
 
     class ListFonts < Xrb::Message
@@ -670,6 +814,9 @@ module Xrb
           :max_names, {type: :uint16},
           :pattern_len, {type: :uint16},
           :pattern, {length_field: :pattern_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class ListFontsWithInfo < Xrb::Message
@@ -684,6 +831,9 @@ module Xrb
           :max_names, {type: :uint16},
           :pattern_len, {type: :uint16},
           :pattern, {length_field: :pattern_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class SetFontPath < Xrb::Message
@@ -698,6 +848,9 @@ module Xrb
           :font_qty, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :font, {length_field: :font_qty, type: Str, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class GetFontPath < Xrb::Message
@@ -709,6 +862,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class CreatePixmap < Xrb::Message
@@ -724,6 +880,9 @@ module Xrb
           :drawable, {type: :uint32},
           :width, {type: :uint16},
           :height, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class FreePixmap < Xrb::Message
@@ -736,6 +895,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :pixmap, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class CreateGc < Xrb::Message
@@ -750,6 +912,9 @@ module Xrb
           :cid, {type: :uint32},
           :drawable, {type: :uint32},
           :value, {type: :uint32, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class ChangeGc < Xrb::Message
@@ -763,6 +928,9 @@ module Xrb
           :length, {type: :uint16},
           :gc, {type: :uint32},
           :value, {type: :uint32, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class CopyGc < Xrb::Message
@@ -777,6 +945,9 @@ module Xrb
           :src_gc, {type: :uint32},
           :dst_gc, {type: :uint32},
           :value_mask, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class SetDashes < Xrb::Message
@@ -792,6 +963,9 @@ module Xrb
           :dash_offset, {type: :uint16},
           :dashes_len, {type: :uint16},
           :dashes, {length_field: :dashes_len, type: :uint8, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class SetClipRectangles < Xrb::Message
@@ -807,6 +981,9 @@ module Xrb
           :clip_x_origin, {type: :int16},
           :clip_y_origin, {type: :int16},
           :rectangles, {type: Rectangle, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class FreeGc < Xrb::Message
@@ -819,6 +996,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :gc, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class ClearArea < Xrb::Message
@@ -835,6 +1015,9 @@ module Xrb
           :y, {type: :int16},
           :width, {type: :uint16},
           :height, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class CopyArea < Xrb::Message
@@ -855,6 +1038,9 @@ module Xrb
           :dst_y, {type: :int16},
           :width, {type: :uint16},
           :height, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class CopyPlane < Xrb::Message
@@ -876,6 +1062,9 @@ module Xrb
           :width, {type: :uint16},
           :height, {type: :uint16},
           :bit_plane, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class PolyPoint < Xrb::Message
@@ -890,6 +1079,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :points, {type: Point, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyLine < Xrb::Message
@@ -904,6 +1096,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :points, {type: Point, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolySegment < Xrb::Message
@@ -918,6 +1113,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :segments, {type: Segment, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyRectangle < Xrb::Message
@@ -932,6 +1130,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :rectangles, {type: Rectangle, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyArc < Xrb::Message
@@ -946,6 +1147,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :arcs, {type: Arc, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class FillPoly < Xrb::Message
@@ -963,6 +1167,9 @@ module Xrb
           :coordinate_mode, {type: :uint8},
           :pad2, {size: 2, type: :uint8},
           :points, {type: Point, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyFillRectangle < Xrb::Message
@@ -977,6 +1184,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :rectangles, {type: Rectangle, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyFillArc < Xrb::Message
@@ -991,6 +1201,9 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :arcs, {type: Arc, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PutImage < Xrb::Message
@@ -1012,6 +1225,9 @@ module Xrb
           :depth, {type: :uint8},
           :pad1, {size: 2, type: :uint8},
           :data, {type: :uint8, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class GetImage < Xrb::Message
@@ -1029,6 +1245,9 @@ module Xrb
           :width, {type: :uint16},
           :height, {type: :uint16},
           :plane_mask, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class PolyText_8 < Xrb::Message
@@ -1045,6 +1264,9 @@ module Xrb
           :x, {type: :int16},
           :y, {type: :int16},
           :items, {type: :uint8, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class PolyText_16 < Xrb::Message
@@ -1061,6 +1283,9 @@ module Xrb
           :x, {type: :int16},
           :y, {type: :int16},
           :items, {type: :uint8, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class ImageText_8 < Xrb::Message
@@ -1077,6 +1302,9 @@ module Xrb
           :x, {type: :int16},
           :y, {type: :int16},
           :string, {length_field: :string_len, type: :char, kind: :string}
+      def has_reply?
+        false
+      end
     end
 
     class ImageText_16 < Xrb::Message
@@ -1093,6 +1321,9 @@ module Xrb
           :x, {type: :int16},
           :y, {type: :int16},
           :string, {length_field: :string_len, type: Char2b, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class CreateColormap < Xrb::Message
@@ -1107,6 +1338,9 @@ module Xrb
           :mid, {type: :uint32},
           :window, {type: :uint32},
           :visual, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class FreeColormap < Xrb::Message
@@ -1119,6 +1353,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :cmap, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class CopyColormapAndFree < Xrb::Message
@@ -1132,6 +1369,9 @@ module Xrb
           :length, {type: :uint16},
           :mid, {type: :uint32},
           :src_cmap, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class InstallColormap < Xrb::Message
@@ -1144,6 +1384,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :cmap, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class UninstallColormap < Xrb::Message
@@ -1156,6 +1399,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :cmap, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class ListInstalledColormaps < Xrb::Message
@@ -1168,6 +1414,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :window, {type: :uint32}
+      def has_reply?
+        true
+      end
     end
 
     class AllocColor < Xrb::Message
@@ -1184,6 +1433,9 @@ module Xrb
           :green, {type: :uint16},
           :blue, {type: :uint16},
           :pad2, {size: 2, type: :uint8}
+      def has_reply?
+        true
+      end
     end
 
     class AllocNamedColor < Xrb::Message
@@ -1199,6 +1451,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class AllocColorCells < Xrb::Message
@@ -1213,6 +1468,9 @@ module Xrb
           :cmap, {type: :uint32},
           :colors, {type: :uint16},
           :planes, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class AllocColorPlanes < Xrb::Message
@@ -1229,6 +1487,9 @@ module Xrb
           :reds, {type: :uint16},
           :greens, {type: :uint16},
           :blues, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class FreeColors < Xrb::Message
@@ -1243,6 +1504,9 @@ module Xrb
           :cmap, {type: :uint32},
           :plane_mask, {type: :uint32},
           :pixels, {type: :uint32, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class StoreColors < Xrb::Message
@@ -1256,6 +1520,9 @@ module Xrb
           :length, {type: :uint16},
           :cmap, {type: :uint32},
           :items, {type: ColorItem, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class StoreNamedColor < Xrb::Message
@@ -1272,6 +1539,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad1, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        false
+      end
     end
 
     class QueryColors < Xrb::Message
@@ -1285,6 +1555,9 @@ module Xrb
           :length, {type: :uint16},
           :cmap, {type: :uint32},
           :pixels, {type: :uint32, kind: :list}
+      def has_reply?
+        true
+      end
     end
 
     class LookupColor < Xrb::Message
@@ -1300,6 +1573,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class CreateCursor < Xrb::Message
@@ -1322,6 +1598,9 @@ module Xrb
           :back_blue, {type: :uint16},
           :x, {type: :uint16},
           :y, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class CreateGlyphCursor < Xrb::Message
@@ -1344,6 +1623,9 @@ module Xrb
           :back_red, {type: :uint16},
           :back_green, {type: :uint16},
           :back_blue, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class FreeCursor < Xrb::Message
@@ -1356,6 +1638,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :cursor, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class RecolorCursor < Xrb::Message
@@ -1374,6 +1659,9 @@ module Xrb
           :back_red, {type: :uint16},
           :back_green, {type: :uint16},
           :back_blue, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class QueryBestSize < Xrb::Message
@@ -1388,6 +1676,9 @@ module Xrb
           :drawable, {type: :uint32},
           :width, {type: :uint16},
           :height, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class QueryExtension < Xrb::Message
@@ -1402,6 +1693,9 @@ module Xrb
           :name_len, {type: :uint16},
           :pad2, {size: 2, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
+      def has_reply?
+        true
+      end
     end
 
     class ListExtensions < Xrb::Message
@@ -1413,6 +1707,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class ChangeKeyboardMapping < Xrb::Message
@@ -1427,6 +1724,9 @@ module Xrb
           :first_keycode, {type: :uint8},
           :keysyms_per_keycode, {type: :uint8},
           :pad1, {size: 2, type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class GetKeyboardMapping < Xrb::Message
@@ -1440,6 +1740,9 @@ module Xrb
           :length, {type: :uint16},
           :first_keycode, {type: :uint8},
           :count, {type: :uint8}
+      def has_reply?
+        true
+      end
     end
 
     class ChangeKeyboardControl < Xrb::Message
@@ -1452,6 +1755,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :value, {type: :uint32, kind: :map}
+      def has_reply?
+        false
+      end
     end
 
     class GetKeyboardControl < Xrb::Message
@@ -1463,6 +1769,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class Bell < Xrb::Message
@@ -1474,6 +1783,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :percent, {type: :int8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class ChangePointerControl < Xrb::Message
@@ -1490,6 +1802,9 @@ module Xrb
           :threshold, {type: :int16},
           :do_acceleration, {type: :bool},
           :do_threshold, {type: :bool}
+      def has_reply?
+        false
+      end
     end
 
     class GetPointerControl < Xrb::Message
@@ -1501,6 +1816,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class SetScreenSaver < Xrb::Message
@@ -1516,6 +1834,9 @@ module Xrb
           :interval, {type: :int16},
           :prefer_blanking, {type: :uint8},
           :allow_exposures, {type: :uint8}
+      def has_reply?
+        false
+      end
     end
 
     class GetScreenSaver < Xrb::Message
@@ -1527,6 +1848,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class ChangeHosts < Xrb::Message
@@ -1542,6 +1866,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :address_len, {type: :uint16},
           :address, {length_field: :address_len, type: :uint8, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class ListHosts < Xrb::Message
@@ -1553,6 +1880,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class SetAccessControl < Xrb::Message
@@ -1564,6 +1894,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :mode, {type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class SetCloseDownMode < Xrb::Message
@@ -1575,6 +1908,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :mode, {type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class KillClient < Xrb::Message
@@ -1587,6 +1923,9 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :resource, {type: :uint32}
+      def has_reply?
+        false
+      end
     end
 
     class RotateProperties < Xrb::Message
@@ -1602,6 +1941,9 @@ module Xrb
           :atoms_len, {type: :uint16},
           :delta, {type: :int16},
           :atoms, {length_field: :atoms_len, type: :uint32, kind: :list}
+      def has_reply?
+        false
+      end
     end
 
     class ForceScreenSaver < Xrb::Message
@@ -1613,6 +1955,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :mode, {type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
     class SetPointerMapping < Xrb::Message
@@ -1625,6 +1970,9 @@ module Xrb
           :map_len, {type: :uint8},
           :length, {type: :uint16},
           :map, {length_field: :map_len, type: :uint8, kind: :list}
+      def has_reply?
+        true
+      end
     end
 
     class GetPointerMapping < Xrb::Message
@@ -1636,6 +1984,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class SetModifierMapping < Xrb::Message
@@ -1647,6 +1998,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :keycodes_per_modifier, {type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class GetModifierMapping < Xrb::Message
@@ -1658,6 +2012,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        true
+      end
     end
 
     class NoOperation < Xrb::Message
@@ -1669,6 +2026,9 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
+      def has_reply?
+        false
+      end
     end
 
   end

@@ -17,6 +17,9 @@ module Xrb
             :client_major_version, {type: :uint8},
             :client_minor_version, {type: :uint8},
             :pad1, {size: 2, type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class QueryInfo < Xrb::Message
@@ -29,6 +32,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SelectInput < Xrb::Message
@@ -42,6 +48,9 @@ module Xrb
             :length, {type: :uint16},
             :drawable, {type: :uint32},
             :event_mask, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SetAttributes < Xrb::Message
@@ -63,6 +72,9 @@ module Xrb
             :depth, {type: :uint8},
             :visual, {type: :uint32},
             :value, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class UnsetAttributes < Xrb::Message
@@ -75,6 +87,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class Suspend < Xrb::Message
@@ -88,6 +103,9 @@ module Xrb
             :length, {type: :uint16},
             :suspend, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
     end

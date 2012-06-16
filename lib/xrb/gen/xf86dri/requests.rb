@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class QueryDirectRenderingCapable < Xrb::Message
@@ -26,6 +29,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class OpenConnection < Xrb::Message
@@ -38,6 +44,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CloseConnection < Xrb::Message
@@ -50,6 +59,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetClientDriverName < Xrb::Message
@@ -62,6 +74,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreateContext < Xrb::Message
@@ -76,6 +91,9 @@ module Xrb
             :screen, {type: :uint32},
             :visual, {type: :uint32},
             :context, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DestroyContext < Xrb::Message
@@ -89,6 +107,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :context, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateDrawable < Xrb::Message
@@ -102,6 +123,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class DestroyDrawable < Xrb::Message
@@ -115,6 +139,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetDrawableInfo < Xrb::Message
@@ -128,6 +155,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetDeviceInfo < Xrb::Message
@@ -140,6 +170,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :screen, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class AuthConnection < Xrb::Message
@@ -153,6 +186,9 @@ module Xrb
             :length, {type: :uint16},
             :screen, {type: :uint32},
             :magic, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

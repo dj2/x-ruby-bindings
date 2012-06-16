@@ -14,6 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class Attach < Xrb::Message
@@ -29,6 +32,9 @@ module Xrb
             :shmid, {type: :uint32},
             :read_only, {type: :bool},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class Detach < Xrb::Message
@@ -41,6 +47,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :shmseg, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class PutImage < Xrb::Message
@@ -68,6 +77,9 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetImage < Xrb::Message
@@ -89,6 +101,9 @@ module Xrb
             :pad1, {size: 3, type: :uint8},
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreatePixmap < Xrb::Message
@@ -108,6 +123,9 @@ module Xrb
             :pad1, {size: 3, type: :uint8},
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end

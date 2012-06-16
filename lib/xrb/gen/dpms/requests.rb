@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint16},
             :client_minor_version, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class Capable < Xrb::Message
@@ -27,6 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class GetTimeouts < Xrb::Message
@@ -38,6 +44,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class SetTimeouts < Xrb::Message
@@ -52,6 +61,9 @@ module Xrb
             :standby_timeout, {type: :uint16},
             :suspend_timeout, {type: :uint16},
             :off_timeout, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class Enable < Xrb::Message
@@ -63,6 +75,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class Disable < Xrb::Message
@@ -74,6 +89,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class ForceLevel < Xrb::Message
@@ -86,6 +104,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :power_level, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class Info < Xrb::Message
@@ -97,6 +118,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
     end

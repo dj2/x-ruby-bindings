@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major, {type: :uint8},
             :client_minor, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class QueryClients < Xrb::Message
@@ -27,6 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class QueryClientResources < Xrb::Message
@@ -39,6 +45,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :xid, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class QueryClientPixmapBytes < Xrb::Message
@@ -51,6 +60,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :xid, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
     end

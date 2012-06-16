@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :desired_major_version, {type: :uint8},
             :desired_minor_version, {type: :uint8}
+        def has_reply?
+          true
+        end
       end
 
       class ListSystemCounters < Xrb::Message
@@ -27,6 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class CreateCounter < Xrb::Message
@@ -40,6 +46,9 @@ module Xrb
             :length, {type: :uint16},
             :id, {type: :uint32},
             :initial_value, {type: :INT64}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyCounter < Xrb::Message
@@ -52,6 +61,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :counter, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class QueryCounter < Xrb::Message
@@ -64,6 +76,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :counter, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Await < Xrb::Message
@@ -76,6 +91,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :wait_list, {type: Waitcondition, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class ChangeCounter < Xrb::Message
@@ -89,6 +107,9 @@ module Xrb
             :length, {type: :uint16},
             :counter, {type: :uint32},
             :amount, {type: :INT64}
+        def has_reply?
+          false
+        end
       end
 
       class SetCounter < Xrb::Message
@@ -102,6 +123,9 @@ module Xrb
             :length, {type: :uint16},
             :counter, {type: :uint32},
             :value, {type: :INT64}
+        def has_reply?
+          false
+        end
       end
 
       class CreateAlarm < Xrb::Message
@@ -115,6 +139,9 @@ module Xrb
             :length, {type: :uint16},
             :id, {type: :uint32},
             :value, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class ChangeAlarm < Xrb::Message
@@ -128,6 +155,9 @@ module Xrb
             :length, {type: :uint16},
             :id, {type: :uint32},
             :value, {type: :uint32, kind: :map}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyAlarm < Xrb::Message
@@ -140,6 +170,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :alarm, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class QueryAlarm < Xrb::Message
@@ -152,6 +185,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :alarm, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetPriority < Xrb::Message
@@ -165,6 +201,9 @@ module Xrb
             :length, {type: :uint16},
             :id, {type: :uint32},
             :priority, {type: :int32}
+        def has_reply?
+          false
+        end
       end
 
       class GetPriority < Xrb::Message
@@ -177,6 +216,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :id, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreateFence < Xrb::Message
@@ -191,6 +233,9 @@ module Xrb
             :drawable, {type: :uint32},
             :fence, {type: :uint32},
             :initially_triggered, {type: :bool}
+        def has_reply?
+          false
+        end
       end
 
       class TriggerFence < Xrb::Message
@@ -203,6 +248,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :fence, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class ResetFence < Xrb::Message
@@ -215,6 +263,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :fence, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyFence < Xrb::Message
@@ -227,6 +278,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :fence, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class QueryFence < Xrb::Message
@@ -239,6 +293,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :fence, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class AwaitFence < Xrb::Message
@@ -251,6 +308,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :fence_list, {type: :uint32, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
     end

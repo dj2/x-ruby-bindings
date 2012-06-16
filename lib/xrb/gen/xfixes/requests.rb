@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :client_major_version, {type: :uint32},
             :client_minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeSaveSet < Xrb::Message
@@ -32,6 +35,9 @@ module Xrb
             :map, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SelectSelectionInput < Xrb::Message
@@ -46,6 +52,9 @@ module Xrb
             :window, {type: :uint32},
             :selection, {type: :uint32},
             :event_mask, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SelectCursorInput < Xrb::Message
@@ -59,6 +68,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :event_mask, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetCursorImage < Xrb::Message
@@ -70,6 +82,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class CreateRegion < Xrb::Message
@@ -83,6 +98,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :rectangles, {type: Rectangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRegionFromBitmap < Xrb::Message
@@ -96,6 +114,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :bitmap, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRegionFromWindow < Xrb::Message
@@ -111,6 +132,9 @@ module Xrb
             :window, {type: :uint32},
             :kind, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRegionFromGc < Xrb::Message
@@ -124,6 +148,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :gc, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class CreateRegionFromPicture < Xrb::Message
@@ -137,6 +164,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :picture, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyRegion < Xrb::Message
@@ -149,6 +179,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :region, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SetRegion < Xrb::Message
@@ -162,6 +195,9 @@ module Xrb
             :length, {type: :uint16},
             :region, {type: :uint32},
             :rectangles, {type: Rectangle, kind: :list}
+        def has_reply?
+          false
+        end
       end
 
       class CopyRegion < Xrb::Message
@@ -175,6 +211,9 @@ module Xrb
             :length, {type: :uint16},
             :source, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class UnionRegion < Xrb::Message
@@ -189,6 +228,9 @@ module Xrb
             :source1, {type: :uint32},
             :source2, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class IntersectRegion < Xrb::Message
@@ -203,6 +245,9 @@ module Xrb
             :source1, {type: :uint32},
             :source2, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SubtractRegion < Xrb::Message
@@ -217,6 +262,9 @@ module Xrb
             :source1, {type: :uint32},
             :source2, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class InvertRegion < Xrb::Message
@@ -231,6 +279,9 @@ module Xrb
             :source, {type: :uint32},
             :bounds, {type: :RECTANGLE},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class TranslateRegion < Xrb::Message
@@ -245,6 +296,9 @@ module Xrb
             :region, {type: :uint32},
             :dx, {type: :int16},
             :dy, {type: :int16}
+        def has_reply?
+          false
+        end
       end
 
       class RegionExtents < Xrb::Message
@@ -258,6 +312,9 @@ module Xrb
             :length, {type: :uint16},
             :source, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class FetchRegion < Xrb::Message
@@ -270,6 +327,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :region, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SetGcClipRegion < Xrb::Message
@@ -285,6 +345,9 @@ module Xrb
             :region, {type: :uint32},
             :x_origin, {type: :int16},
             :y_origin, {type: :int16}
+        def has_reply?
+          false
+        end
       end
 
       class SetWindowShapeRegion < Xrb::Message
@@ -302,6 +365,9 @@ module Xrb
             :x_offset, {type: :int16},
             :y_offset, {type: :int16},
             :region, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class SetPictureClipRegion < Xrb::Message
@@ -317,6 +383,9 @@ module Xrb
             :region, {type: :uint32},
             :x_origin, {type: :int16},
             :y_origin, {type: :int16}
+        def has_reply?
+          false
+        end
       end
 
       class SetCursorName < Xrb::Message
@@ -332,6 +401,9 @@ module Xrb
             :nbytes, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :name, {length_field: :nbytes, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class GetCursorName < Xrb::Message
@@ -344,6 +416,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :cursor, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetCursorImageAndName < Xrb::Message
@@ -355,6 +430,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
+        def has_reply?
+          true
+        end
       end
 
       class ChangeCursor < Xrb::Message
@@ -368,6 +446,9 @@ module Xrb
             :length, {type: :uint16},
             :source, {type: :uint32},
             :destination, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class ChangeCursorByName < Xrb::Message
@@ -383,6 +464,9 @@ module Xrb
             :nbytes, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :name, {length_field: :nbytes, type: :char, kind: :string}
+        def has_reply?
+          false
+        end
       end
 
       class ExpandRegion < Xrb::Message
@@ -400,6 +484,9 @@ module Xrb
             :right, {type: :uint16},
             :top, {type: :uint16},
             :bottom, {type: :uint16}
+        def has_reply?
+          false
+        end
       end
 
       class HideCursor < Xrb::Message
@@ -412,6 +499,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class ShowCursor < Xrb::Message
@@ -424,6 +514,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :window, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end

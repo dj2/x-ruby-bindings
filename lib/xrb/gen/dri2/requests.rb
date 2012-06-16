@@ -16,6 +16,9 @@ module Xrb
             :length, {type: :uint16},
             :major_version, {type: :uint32},
             :minor_version, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Connect < Xrb::Message
@@ -29,6 +32,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :driver_type, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class Authenticate < Xrb::Message
@@ -42,6 +48,9 @@ module Xrb
             :length, {type: :uint16},
             :window, {type: :uint32},
             :magic, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class CreateDrawable < Xrb::Message
@@ -54,6 +63,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class DestroyDrawable < Xrb::Message
@@ -66,6 +78,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
       class GetBuffers < Xrb::Message
@@ -80,6 +95,9 @@ module Xrb
             :drawable, {type: :uint32},
             :count, {type: :uint32},
             :attachments, {type: :uint32, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class CopyRegion < Xrb::Message
@@ -95,6 +113,9 @@ module Xrb
             :region, {type: :uint32},
             :dest, {type: :uint32},
             :src, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetBuffersWithFormat < Xrb::Message
@@ -109,6 +130,9 @@ module Xrb
             :drawable, {type: :uint32},
             :count, {type: :uint32},
             :attachments, {type: AttachFormat, kind: :list}
+        def has_reply?
+          true
+        end
       end
 
       class SwapBuffers < Xrb::Message
@@ -127,6 +151,9 @@ module Xrb
             :divisor_lo, {type: :uint32},
             :remainder_hi, {type: :uint32},
             :remainder_lo, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class GetMsc < Xrb::Message
@@ -139,6 +166,9 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class WaitMsc < Xrb::Message
@@ -157,6 +187,9 @@ module Xrb
             :divisor_lo, {type: :uint32},
             :remainder_hi, {type: :uint32},
             :remainder_lo, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class WaitSbc < Xrb::Message
@@ -171,6 +204,9 @@ module Xrb
             :drawable, {type: :uint32},
             :target_sbc_hi, {type: :uint32},
             :target_sbc_lo, {type: :uint32}
+        def has_reply?
+          true
+        end
       end
 
       class SwapInterval < Xrb::Message
@@ -184,6 +220,9 @@ module Xrb
             :length, {type: :uint16},
             :drawable, {type: :uint32},
             :interval, {type: :uint32}
+        def has_reply?
+          false
+        end
       end
 
     end
