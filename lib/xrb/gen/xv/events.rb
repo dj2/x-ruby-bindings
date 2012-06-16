@@ -15,6 +15,10 @@ module Xrb
             :time, {type: :uint32},
             :drawable, {type: :uint32},
             :port, {type: :uint32}
+
+        def to_sym
+          :VideoNotify
+        end
       end
 
       class PortNotify < Xrb::Message
@@ -28,6 +32,10 @@ module Xrb
             :port, {type: :uint32},
             :attribute, {type: :uint32},
             :value, {type: :int32}
+
+        def to_sym
+          :PortNotify
+        end
       end
 
       @op_map = {

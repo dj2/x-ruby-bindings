@@ -17,6 +17,10 @@ module Xrb
             :timestamp, {type: :uint32},
             :area, {type: :RECTANGLE},
             :geometry, {type: :RECTANGLE}
+
+        def to_sym
+          :Notify
+        end
       end
 
       @op_map = {

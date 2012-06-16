@@ -16,6 +16,10 @@ module Xrb
             :num_valuators, {type: :uint8},
             :first_valuator, {type: :uint8},
             :valuators, {type: :int32, size: 6}
+
+        def to_sym
+          :DeviceValuator
+        end
       end
 
       class DeviceKeyPress < Xrb::Message
@@ -36,6 +40,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceKeyPress
+        end
       end
 
       class DeviceKeyRelease < Xrb::Message
@@ -56,6 +64,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceKeyRelease
+        end
       end
 
       class DeviceButtonPress < Xrb::Message
@@ -76,6 +88,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceButtonPress
+        end
       end
 
       class DeviceButtonRelease < Xrb::Message
@@ -96,6 +112,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceButtonRelease
+        end
       end
 
       class DeviceMotionNotify < Xrb::Message
@@ -116,6 +136,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceMotionNotify
+        end
       end
 
       class ProximityIn < Xrb::Message
@@ -136,6 +160,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :ProximityIn
+        end
       end
 
       class ProximityOut < Xrb::Message
@@ -156,6 +184,10 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :ProximityOut
+        end
       end
 
       class FocusIn < Xrb::Message
@@ -170,6 +202,10 @@ module Xrb
             :mode, {type: :uint8},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
+
+        def to_sym
+          :FocusIn
+        end
       end
 
       class FocusOut < Xrb::Message
@@ -184,6 +220,10 @@ module Xrb
             :mode, {type: :uint8},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
+
+        def to_sym
+          :FocusOut
+        end
       end
 
       class DeviceStateNotify < Xrb::Message
@@ -201,6 +241,10 @@ module Xrb
             :buttons, {type: :uint8, size: 4},
             :keys, {type: :uint8, size: 4},
             :valuators, {type: :uint32, size: 3}
+
+        def to_sym
+          :DeviceStateNotify
+        end
       end
 
       class DeviceMappingNotify < Xrb::Message
@@ -216,6 +260,10 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :time, {type: :uint32},
             :pad2, {size: 20, type: :uint8}
+
+        def to_sym
+          :DeviceMappingNotify
+        end
       end
 
       class ChangeDeviceNotify < Xrb::Message
@@ -228,6 +276,10 @@ module Xrb
             :time, {type: :uint32},
             :request, {type: :uint8},
             :pad1, {size: 23, type: :uint8}
+
+        def to_sym
+          :ChangeDeviceNotify
+        end
       end
 
       class DeviceKeyStateNotify < Xrb::Message
@@ -238,6 +290,10 @@ module Xrb
             :device_id, {type: :uint8},
             :sequence, {type: :uint16},
             :keys, {type: :uint8, size: 28}
+
+        def to_sym
+          :DeviceKeyStateNotify
+        end
       end
 
       class DeviceButtonStateNotify < Xrb::Message
@@ -248,6 +304,10 @@ module Xrb
             :device_id, {type: :uint8},
             :sequence, {type: :uint16},
             :buttons, {type: :uint8, size: 28}
+
+        def to_sym
+          :DeviceButtonStateNotify
+        end
       end
 
       class DevicePresenceNotify < Xrb::Message
@@ -262,6 +322,10 @@ module Xrb
             :device_id, {type: :uint8},
             :control, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
+
+        def to_sym
+          :DevicePresenceNotify
+        end
       end
 
       @op_map = {

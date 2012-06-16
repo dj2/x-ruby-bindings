@@ -21,6 +21,10 @@ module Xrb
             :kind, {type: :uint8},
             :forced, {type: :bool},
             :pad2, {size: 14, type: :uint8}
+
+        def to_sym
+          :Notify
+        end
       end
 
       @op_map = {

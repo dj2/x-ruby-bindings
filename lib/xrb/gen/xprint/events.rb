@@ -14,6 +14,10 @@ module Xrb
             :sequence, {type: :uint16},
             :context, {type: :uint32},
             :cancel, {type: :bool}
+
+        def to_sym
+          :Notify
+        end
       end
 
       class AttributNotify < Xrb::Message
@@ -24,6 +28,10 @@ module Xrb
             :detail, {type: :uint8},
             :sequence, {type: :uint16},
             :context, {type: :uint32}
+
+        def to_sym
+          :AttributNotify
+        end
       end
 
       @op_map = {

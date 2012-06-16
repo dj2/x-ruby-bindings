@@ -20,6 +20,10 @@ module Xrb
             :server_time, {type: :uint32},
             :shaped, {type: :bool},
             :pad1, {size: 11, type: :uint8}
+
+        def to_sym
+          :Notify
+        end
       end
 
       @op_map = {

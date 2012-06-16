@@ -22,6 +22,10 @@ module Xrb
             :height, {type: :uint16},
             :mwidth, {type: :uint16},
             :mheight, {type: :uint16}
+
+        def to_sym
+          :ScreenChangeNotify
+        end
       end
 
       class Notify < Xrb::Message
@@ -32,6 +36,10 @@ module Xrb
             :subCode, {type: :uint8},
             :sequence, {type: :uint16},
             :u, {type: :NotifyData}
+
+        def to_sym
+          :Notify
+        end
       end
 
       @op_map = {

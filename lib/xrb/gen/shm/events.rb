@@ -18,6 +18,10 @@ module Xrb
             :pad2, {size: 1, type: :uint8},
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
+
+        def to_sym
+          :Completion
+        end
       end
 
       @op_map = {
