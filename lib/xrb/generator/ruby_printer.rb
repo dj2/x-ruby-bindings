@@ -221,21 +221,34 @@ module Xrb
         end
 
         def process_listfield(field)
-          return if field.members.empty?
+          if field.members.empty?
 
-          if field.members.first.is_a?(ValueField)
+            type = @p.cardinals[field.type.name]
+            type = if type.nil?
+              @p.type_name(field.type.name)
+            else
+              ":#{type.name}"
+            end
+
             @p.format(":#{field.name}, " +
-                "{type: :#{field.type.name}, size: #{field.members.first.size}}")
+                "{type: #{type}, kind: :list}")
+
+          elsif field.members.first.is_a?(ValueField)
+            @p.format(":#{field.name}, " +
+                "{type: :#{field.type.name}, " +
+                "size: #{field.members.first.size}}")
 
           elsif field.members.first.is_a?(FieldRefField)
             # We want [:len_field_name, :type, :[string | list]]
             type = field.type.name == :char ? ':string' : ':list'
 
             if type == ':string' || !@p.cardinals[field.type.name].nil?
-              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
+              @p.format(":#{field.name}, " +
+                  "{length_field: :#{field.members.first.name}, " +
                   "type: :#{field.type.name}, kind: #{type}}")
             else
-              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
+              @p.format(":#{field.name}, " +
+                  "{length_field: :#{field.members.first.name}, " +
                   "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
             end
           else
@@ -398,7 +411,7 @@ module Xrb
           @p.print
         end
       end
-      
+
       class Reply
         def initialize(replies, printer)
           @p = printer
