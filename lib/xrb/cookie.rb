@@ -1,7 +1,7 @@
 module Xrb
   class Cookie
-    class Message < Xrb::Message
-      layout :sequence, {type: :int}
+    def initialize(sequence_num)
+      @sequence_num = sequence_num
     end
 
     def replied?
