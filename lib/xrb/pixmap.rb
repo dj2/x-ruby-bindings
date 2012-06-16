@@ -18,5 +18,21 @@ module Xrb
       o = {gc: color.id, drawable: @id, rectangles: rect}
       @conn.send(Xrb::Request::PolyFillRectangle.new(o))
     end
+
+    def copy_area(opts)
+      o = {
+        src_drawable: @id,
+        dst_drawable: opts[:dest].id,
+        gc: opts[:gc].id,
+        src_x: opts[:from].first,
+        src_y: opts[:from].last,
+        dst_x: opts[:to].first,
+        dst_y: opts[:to].last,
+        width: opts[:size].first,
+        height: opts[:size].last
+      }
+
+      @conn.send(Xrb::Request::CopyArea.new(o))
+    end
   end
 end
