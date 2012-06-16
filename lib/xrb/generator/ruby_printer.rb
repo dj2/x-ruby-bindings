@@ -408,6 +408,10 @@ module Xrb
             @p.print
             @p.print("layout \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
+
+            @p.print("def has_reply?") do
+              @p.print(type.reply.nil? ? "false" : "true")
+            end
           end
           @p.print
         end
