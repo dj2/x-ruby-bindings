@@ -307,7 +307,8 @@ module Xrb
             :drw_w, {type: :uint16},
             :drw_h, {type: :uint16},
             :width, {type: :uint16},
-            :height, {type: :uint16}
+            :height, {type: :uint16},
+            :data, {type: :uint8, kind: :list}
       end
 
       class ShmPutImage < Xrb::Message

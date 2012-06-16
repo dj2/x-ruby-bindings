@@ -92,7 +92,8 @@ module Xrb
             :length, {type: :uint16},
             :picture, {type: :uint32},
             :clip_x_origin, {type: :int16},
-            :clip_y_origin, {type: :int16}
+            :clip_y_origin, {type: :int16},
+            :rectangles, {type: Rectangle, kind: :list}
       end
 
       class FreePicture < Xrb::Message
@@ -146,7 +147,8 @@ module Xrb
             :dst, {type: :uint32},
             :mask_format, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :traps, {type: Trapezoid, kind: :list}
       end
 
       class Triangles < Xrb::Message
@@ -164,7 +166,8 @@ module Xrb
             :dst, {type: :uint32},
             :mask_format, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :triangles, {type: Triangle, kind: :list}
       end
 
       class TriStrip < Xrb::Message
@@ -182,7 +185,8 @@ module Xrb
             :dst, {type: :uint32},
             :mask_format, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :points, {type: Pointfix, kind: :list}
       end
 
       class TriFan < Xrb::Message
@@ -200,7 +204,8 @@ module Xrb
             :dst, {type: :uint32},
             :mask_format, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :points, {type: Pointfix, kind: :list}
       end
 
       class CreateGlyphSet < Xrb::Message
@@ -253,7 +258,8 @@ module Xrb
             :glyphset, {type: :uint32},
             :glyphs_len, {type: :uint32},
             :glyphids, {length_field: :glyphs_len, type: :uint32, kind: :list},
-            :glyphs, {length_field: :glyphs_len, type: Glyphinfo, kind: :list}
+            :glyphs, {length_field: :glyphs_len, type: Glyphinfo, kind: :list},
+            :data, {type: :uint8, kind: :list}
       end
 
       class FreeGlyphs < Xrb::Message
@@ -265,7 +271,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :glyphset, {type: :uint32}
+            :glyphset, {type: :uint32},
+            :glyphs, {type: :uint32, kind: :list}
       end
 
       class CompositeGlyphs_8 < Xrb::Message
@@ -284,7 +291,8 @@ module Xrb
             :mask_format, {type: :uint32},
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :glyphcmds, {type: :uint8, kind: :list}
       end
 
       class CompositeGlyphs_16 < Xrb::Message
@@ -303,7 +311,8 @@ module Xrb
             :mask_format, {type: :uint32},
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :glyphcmds, {type: :uint8, kind: :list}
       end
 
       class CompositeGlyphs_32 < Xrb::Message
@@ -322,7 +331,8 @@ module Xrb
             :mask_format, {type: :uint32},
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
-            :src_y, {type: :int16}
+            :src_y, {type: :int16},
+            :glyphcmds, {type: :uint8, kind: :list}
       end
 
       class FillRectangles < Xrb::Message
@@ -337,7 +347,8 @@ module Xrb
             :op, {type: :uint8},
             :pad1, {size: 3, type: :uint8},
             :dst, {type: :uint32},
-            :color, {type: :COLOR}
+            :color, {type: :COLOR},
+            :rects, {type: Rectangle, kind: :list}
       end
 
       class CreateCursor < Xrb::Message
@@ -396,7 +407,8 @@ module Xrb
             :picture, {type: :uint32},
             :filter_len, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
-            :filter, {length_field: :filter_len, type: :char, kind: :string}
+            :filter, {length_field: :filter_len, type: :char, kind: :string},
+            :values, {type: :int32, kind: :list}
       end
 
       class CreateAnimCursor < Xrb::Message
@@ -408,7 +420,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :cid, {type: :uint32}
+            :cid, {type: :uint32},
+            :cursors, {type: Animcursorelt, kind: :list}
       end
 
       class AddTraps < Xrb::Message
@@ -422,7 +435,8 @@ module Xrb
             :length, {type: :uint16},
             :picture, {type: :uint32},
             :x_off, {type: :int16},
-            :y_off, {type: :int16}
+            :y_off, {type: :int16},
+            :traps, {type: Trap, kind: :list}
       end
 
       class CreateSolidFill < Xrb::Message

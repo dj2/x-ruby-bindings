@@ -91,7 +91,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :region, {type: :uint32}
+            :region, {type: :uint32},
+            :rectangles, {type: Rectangle, kind: :list}
       end
 
       class CreateRegionFromBitmap < Xrb::Message
@@ -169,7 +170,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :region, {type: :uint32}
+            :region, {type: :uint32},
+            :rectangles, {type: Rectangle, kind: :list}
       end
 
       class CopyRegion < Xrb::Message

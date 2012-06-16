@@ -33,7 +33,8 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :destination_window, {type: :uint32},
             :x_offset, {type: :int16},
-            :y_offset, {type: :int16}
+            :y_offset, {type: :int16},
+            :rectangles, {type: Rectangle, kind: :list}
       end
 
       class Mask < Xrb::Message

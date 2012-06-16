@@ -849,7 +849,8 @@ module Xrb
           :length, {type: :uint16},
           :gc, {type: :uint32},
           :clip_x_origin, {type: :int16},
-          :clip_y_origin, {type: :int16}
+          :clip_y_origin, {type: :int16},
+          :rectangles, {type: Rectangle, kind: :list}
     end
 
     class FreeGc < Xrb::Message
@@ -931,7 +932,8 @@ module Xrb
           :coordinate_mode, {type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :points, {type: Point, kind: :list}
     end
 
     class PolyLine < Xrb::Message
@@ -944,7 +946,8 @@ module Xrb
           :coordinate_mode, {type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :points, {type: Point, kind: :list}
     end
 
     class PolySegment < Xrb::Message
@@ -957,7 +960,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :segments, {type: Segment, kind: :list}
     end
 
     class PolyRectangle < Xrb::Message
@@ -970,7 +974,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :rectangles, {type: Rectangle, kind: :list}
     end
 
     class PolyArc < Xrb::Message
@@ -983,7 +988,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :arcs, {type: Arc, kind: :list}
     end
 
     class FillPoly < Xrb::Message
@@ -999,7 +1005,8 @@ module Xrb
           :gc, {type: :uint32},
           :shape, {type: :uint8},
           :coordinate_mode, {type: :uint8},
-          :pad2, {size: 2, type: :uint8}
+          :pad2, {size: 2, type: :uint8},
+          :points, {type: Point, kind: :list}
     end
 
     class PolyFillRectangle < Xrb::Message
@@ -1012,7 +1019,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :rectangles, {type: Rectangle, kind: :list}
     end
 
     class PolyFillArc < Xrb::Message
@@ -1025,7 +1033,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
-          :gc, {type: :uint32}
+          :gc, {type: :uint32},
+          :arcs, {type: Arc, kind: :list}
     end
 
     class PutImage < Xrb::Message
@@ -1045,7 +1054,8 @@ module Xrb
           :dst_y, {type: :int16},
           :left_pad, {type: :uint8},
           :depth, {type: :uint8},
-          :pad1, {size: 2, type: :uint8}
+          :pad1, {size: 2, type: :uint8},
+          :data, {type: :uint8, kind: :list}
     end
 
     class GetImage < Xrb::Message
@@ -1073,7 +1083,8 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :x, {type: :int16},
-          :y, {type: :int16}
+          :y, {type: :int16},
+          :items, {type: :uint8, kind: :list}
     end
 
     class PolyText_16 < Xrb::Message
@@ -1088,7 +1099,8 @@ module Xrb
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
           :x, {type: :int16},
-          :y, {type: :int16}
+          :y, {type: :int16},
+          :items, {type: :uint8, kind: :list}
     end
 
     class ImageText_8 < Xrb::Message
@@ -1273,7 +1285,8 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
           :cmap, {type: :uint32},
-          :plane_mask, {type: :uint32}
+          :plane_mask, {type: :uint32},
+          :pixels, {type: :uint32, kind: :list}
     end
 
     class StoreColors < Xrb::Message
@@ -1285,7 +1298,8 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :cmap, {type: :uint32}
+          :cmap, {type: :uint32},
+          :items, {type: ColorItem, kind: :list}
     end
 
     class StoreNamedColor < Xrb::Message

@@ -14,7 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_tag, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :data, {type: :uint8, kind: :list}
       end
 
       class RenderLarge < Xrb::Message
@@ -222,7 +223,8 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :vendor_code, {type: :uint32},
-            :context_tag, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :data, {type: :uint8, kind: :list}
       end
 
       class VendorPrivateWithReply < Xrb::Message

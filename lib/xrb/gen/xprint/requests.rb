@@ -168,7 +168,9 @@ module Xrb
             :len_data, {type: :uint32},
             :len_fmt, {type: :uint16},
             :len_options, {type: :uint16},
-            :data, {length_field: :len_data, type: :uint8, kind: :list}
+            :data, {length_field: :len_data, type: :uint8, kind: :list},
+            :doc_format, {type: :char, kind: :list},
+            :options, {type: :char, kind: :list}
       end
 
       class PrintGetDocumentData < Xrb::Message
@@ -279,7 +281,8 @@ module Xrb
             :stringLen, {type: :uint32},
             :pool, {type: :uint8},
             :rule, {type: :uint8},
-            :pad1, {size: 2, type: :uint8}
+            :pad1, {size: 2, type: :uint8},
+            :attributes, {type: :char, kind: :list}
       end
 
       class PrintGetPageDimensions < Xrb::Message

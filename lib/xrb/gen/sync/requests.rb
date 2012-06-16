@@ -78,7 +78,8 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :wait_list, {type: Waitcondition, kind: :list}
       end
 
       class ChangeCounter < Xrb::Message
@@ -257,7 +258,8 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :fence_list, {type: :uint32, kind: :list}
       end
 
     end

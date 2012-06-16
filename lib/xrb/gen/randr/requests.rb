@@ -194,7 +194,8 @@ module Xrb
             :property, {type: :uint32},
             :pending, {type: :bool},
             :range, {type: :bool},
-            :pad1, {size: 2, type: :uint8}
+            :pad1, {size: 2, type: :uint8},
+            :values, {type: :int32, kind: :list}
       end
 
       class ChangeOutputProperty < Xrb::Message
@@ -413,7 +414,8 @@ module Xrb
             :transform, {type: :TRANSFORM},
             :filter_len, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
-            :filter_name, {length_field: :filter_len, type: :char, kind: :string}
+            :filter_name, {length_field: :filter_len, type: :char, kind: :string},
+            :filter_params, {type: :int32, kind: :list}
       end
 
       class GetCrtcTransform < Xrb::Message
