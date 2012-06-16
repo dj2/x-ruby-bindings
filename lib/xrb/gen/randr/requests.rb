@@ -7,9 +7,9 @@ module Xrb
     module Request
       class QueryVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -18,12 +18,12 @@ module Xrb
             :minor_version, {type: :uint32},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class SetScreenConfig < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -34,12 +34,12 @@ module Xrb
             :subpixel_order, {type: :uint16},
             :pad1, {size: 10, type: :uint8}
       end
-      
+
       class SelectInput < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 4
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -48,12 +48,12 @@ module Xrb
             :enable, {type: :uint16},
             :pad1, {size: 2, type: :uint8}
       end
-      
+
       class GetScreenInfo < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 5
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -70,12 +70,12 @@ module Xrb
             :sizes, {length_field: :nSizes, type: ScreenSize, kind: :list},
             :rates, {length_field: :nInfo, type: RefreshRates, kind: :list}
       end
-      
+
       class GetScreenSizeRange < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 6
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -86,12 +86,12 @@ module Xrb
             :max_height, {type: :uint16},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class SetScreenSize < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 7
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -102,12 +102,12 @@ module Xrb
             :mm_width, {type: :uint32},
             :mm_height, {type: :uint32}
       end
-      
+
       class GetScreenResources < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 8
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -124,12 +124,12 @@ module Xrb
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
             :names, {length_field: :names_len, type: :uint8, kind: :list}
       end
-      
+
       class GetOutputInfo < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 9
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -150,12 +150,12 @@ module Xrb
             :clones, {length_field: :num_clones, type: :uint32, kind: :list},
             :name, {length_field: :name_len, type: :uint8, kind: :list}
       end
-      
+
       class ListOutputProperties < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 10
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -164,12 +164,12 @@ module Xrb
             :pad2, {size: 22, type: :uint8},
             :atoms, {length_field: :num_atoms, type: :uint32, kind: :list}
       end
-      
+
       class QueryOutputProperty < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 11
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -180,12 +180,12 @@ module Xrb
             :pad2, {size: 21, type: :uint8},
             :validValues, {length_field: :length, type: :int32, kind: :list}
       end
-      
+
       class ConfigureOutputProperty < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 12
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -196,12 +196,12 @@ module Xrb
             :range, {type: :bool},
             :pad1, {size: 2, type: :uint8}
       end
-      
+
       class ChangeOutputProperty < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 13
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -215,12 +215,12 @@ module Xrb
             :num_units, {type: :uint32},
             :data, {length_field: :num_units, type: :uint8, kind: :list}
       end
-      
+
       class DeleteOutputProperty < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 14
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -228,12 +228,12 @@ module Xrb
             :output, {type: :uint32},
             :property, {type: :uint32}
       end
-      
+
       class GetOutputProperty < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 15
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -244,12 +244,12 @@ module Xrb
             :pad1, {size: 12, type: :uint8},
             :data, {length_field: :format, type: :uint8, kind: :list}
       end
-      
+
       class CreateMode < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 16
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -257,24 +257,24 @@ module Xrb
             :mode, {type: :uint32},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class DestroyMode < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 17
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :mode, {type: :uint32}
       end
-      
+
       class AddOutputMode < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 18
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -282,12 +282,12 @@ module Xrb
             :output, {type: :uint32},
             :mode, {type: :uint32}
       end
-      
+
       class DeleteOutputMode < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 19
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -295,12 +295,12 @@ module Xrb
             :output, {type: :uint32},
             :mode, {type: :uint32}
       end
-      
+
       class GetCrtcInfo < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 20
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -318,12 +318,12 @@ module Xrb
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :possible, {length_field: :num_possible_outputs, type: :uint32, kind: :list}
       end
-      
+
       class SetCrtcConfig < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 21
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -331,12 +331,12 @@ module Xrb
             :timestamp, {type: :uint32},
             :pad1, {size: 20, type: :uint8}
       end
-      
+
       class GetCrtcGammaSize < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 22
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -344,12 +344,12 @@ module Xrb
             :size, {type: :uint16},
             :pad2, {size: 22, type: :uint8}
       end
-      
+
       class GetCrtcGamma < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 23
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -360,12 +360,12 @@ module Xrb
             :green, {length_field: :size, type: :uint16, kind: :list},
             :blue, {length_field: :size, type: :uint16, kind: :list}
       end
-      
+
       class SetCrtcGamma < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 24
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -377,12 +377,12 @@ module Xrb
             :green, {length_field: :size, type: :uint16, kind: :list},
             :blue, {length_field: :size, type: :uint16, kind: :list}
       end
-      
+
       class GetScreenResourcesCurrent < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 25
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -399,12 +399,12 @@ module Xrb
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
             :names, {length_field: :names_len, type: :uint8, kind: :list}
       end
-      
+
       class SetCrtcTransform < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 26
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -415,12 +415,12 @@ module Xrb
             :pad1, {size: 2, type: :uint8},
             :filter_name, {length_field: :filter_len, type: :char, kind: :string}
       end
-      
+
       class GetCrtcTransform < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 27
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -439,12 +439,12 @@ module Xrb
             :current_filter_name, {length_field: :current_len, type: :char, kind: :string},
             :current_params, {length_field: :current_nparams, type: :int32, kind: :list}
       end
-      
+
       class GetPanning < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 28
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -463,24 +463,24 @@ module Xrb
             :border_right, {type: :int16},
             :border_bottom, {type: :int16}
       end
-      
+
       class SetPanning < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 29
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :timestamp, {type: :uint32}
       end
-      
+
       class SetOutputPrimary < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 30
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -488,19 +488,19 @@ module Xrb
             :window, {type: :uint32},
             :output, {type: :uint32}
       end
-      
+
       class GetOutputPrimary < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 31
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :output, {type: :uint32}
       end
-      
+
     end
   end
 end

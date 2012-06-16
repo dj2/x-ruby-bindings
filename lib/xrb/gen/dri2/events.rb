@@ -7,7 +7,7 @@ module Xrb
     module Event
       class BufferSwapComplete < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
@@ -21,17 +21,17 @@ module Xrb
             :msc_lo, {type: :uint32},
             :sbc, {type: :uint32}
       end
-      
+
       class InvalidateBuffers < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :drawable, {type: :uint32}
       end
-      
+
       @op_map = {
         0 => BufferSwapComplete,
 1 => InvalidateBuffers

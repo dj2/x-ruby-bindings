@@ -15,7 +15,7 @@ module Xrb
             :server_minor_version, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class QueryInfo < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -29,7 +29,7 @@ module Xrb
             :kind, {type: :uint8},
             :pad1, {size: 7, type: :uint8}
       end
-      
+
     end
   end
 end

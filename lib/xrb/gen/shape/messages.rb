@@ -7,20 +7,20 @@ module Xrb
     class Message
       class Op
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('C')
         end
       end
-      
+
       class Kind
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('C')
         end
       end
-      
+
     end
   end
 end

@@ -15,7 +15,7 @@ module Xrb
             :minor_version, {type: :uint32},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class GetOverlayWindow < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -25,7 +25,7 @@ module Xrb
             :overlay_win, {type: :uint32},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
     end
   end
 end

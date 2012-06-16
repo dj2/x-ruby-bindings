@@ -13,7 +13,7 @@ module Xrb
             :length, {type: :uint32},
             :maximum_request_length, {type: :uint32}
       end
-      
+
     end
   end
 end

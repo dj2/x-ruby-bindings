@@ -7,9 +7,9 @@ module Xrb
     module Request
       class QueryVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -18,12 +18,12 @@ module Xrb
             :server_minor_version, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class QueryInfo < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 1
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -35,12 +35,12 @@ module Xrb
             :kind, {type: :uint8},
             :pad1, {size: 7, type: :uint8}
       end
-      
+
       class SelectInput < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -48,12 +48,12 @@ module Xrb
             :drawable, {type: :uint32},
             :event_mask, {type: :uint32}
       end
-      
+
       class SetAttributes < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 3
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -69,24 +69,24 @@ module Xrb
             :visual, {type: :uint32},
             :value, {type: :uint32, kind: :map}
       end
-      
+
       class UnsetAttributes < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 4
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32}
       end
-      
+
       class Suspend < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 5
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -94,7 +94,7 @@ module Xrb
             :suspend, {type: :bool},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
     end
   end
 end

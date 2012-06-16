@@ -7,6 +7,6 @@ module Xrb
     # Redirect
     REDIRECT_AUTOMATIC = (1),
     REDIRECT_MANUAL = (2)
-    
+
   end
 end

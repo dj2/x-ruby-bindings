@@ -14,7 +14,7 @@ module Xrb
             :major_version, {type: :uint16},
             :minor_version, {type: :uint16}
       end
-      
+
       class GetContext < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -27,7 +27,7 @@ module Xrb
             :pad2, {size: 16, type: :uint8},
             :intercepted_clients, {length_field: :num_intercepted_clients, type: ClientInfo, kind: :list}
       end
-      
+
       class EnableContext < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -43,7 +43,7 @@ module Xrb
             :pad2, {size: 8, type: :uint8},
             :data, {length_field: :length, type: :uint8, kind: :list}
       end
-      
+
     end
   end
 end

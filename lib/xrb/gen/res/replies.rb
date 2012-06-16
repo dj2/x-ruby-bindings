@@ -14,7 +14,7 @@ module Xrb
             :server_major, {type: :uint16},
             :server_minor, {type: :uint16}
       end
-      
+
       class QueryClients < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -25,7 +25,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :clients, {length_field: :num_clients, type: Client, kind: :list}
       end
-      
+
       class QueryClientResources < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -36,7 +36,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :types, {length_field: :num_types, type: Type, kind: :list}
       end
-      
+
       class QueryClientPixmapBytes < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -46,7 +46,7 @@ module Xrb
             :bytes, {type: :uint32},
             :bytes_overflow, {type: :uint32}
       end
-      
+
     end
   end
 end

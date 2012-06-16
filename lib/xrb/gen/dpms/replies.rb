@@ -14,7 +14,7 @@ module Xrb
             :server_major_version, {type: :uint16},
             :server_minor_version, {type: :uint16}
       end
-      
+
       class Capable < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -24,7 +24,7 @@ module Xrb
             :capable, {type: :bool},
             :pad2, {size: 23, type: :uint8}
       end
-      
+
       class GetTimeouts < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -36,7 +36,7 @@ module Xrb
             :off_timeout, {type: :uint16},
             :pad2, {size: 18, type: :uint8}
       end
-      
+
       class Info < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -47,7 +47,7 @@ module Xrb
             :state, {type: :bool},
             :pad2, {size: 21, type: :uint8}
       end
-      
+
     end
   end
 end

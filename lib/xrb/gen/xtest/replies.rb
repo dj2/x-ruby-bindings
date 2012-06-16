@@ -13,7 +13,7 @@ module Xrb
             :length, {type: :uint32},
             :minor_version, {type: :uint16}
       end
-      
+
       class CompareCursor < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -21,7 +21,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32}
       end
-      
+
     end
   end
 end

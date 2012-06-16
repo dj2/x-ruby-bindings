@@ -15,7 +15,7 @@ module Xrb
             :minor_version, {type: :uint32},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class GetCursorImage < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -32,7 +32,7 @@ module Xrb
             :pad2, {size: 8, type: :uint8},
             :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
-      
+
       class FetchRegion < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -43,7 +43,7 @@ module Xrb
             :pad2, {size: 16, type: :uint8},
             :rectangles, {length_field: :length, type: Rectangle, kind: :list}
       end
-      
+
       class GetCursorName < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -55,7 +55,7 @@ module Xrb
             :pad2, {size: 18, type: :uint8},
             :name, {length_field: :nbytes, type: :char, kind: :string}
       end
-      
+
       class GetCursorImageAndName < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -75,7 +75,7 @@ module Xrb
             :name, {length_field: :nbytes, type: :char, kind: :string},
             :cursor_image, {length_field: :width, type: :uint32, kind: :list}
       end
-      
+
     end
   end
 end

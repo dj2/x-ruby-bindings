@@ -9,125 +9,125 @@ module Xrb
           :byte1, {type: :uint8},
           :byte2, {type: :uint8}
     end
-    
+
     class Window
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Pixmap
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Cursor
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Font
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class GContext
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Colormap
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Atom
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Drawable
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Fontable
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class VisualId
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Timestamp
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Keysym
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('L')
       end
     end
-    
+
     class Keycode
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('C')
       end
     end
-    
+
     class Button
       attr_accessor :id
-      
+
       def to_wire
         [id].pack('C')
       end
     end
-    
+
     class Point < Xrb::Message
       layout \
           :x, {type: :int16},
           :y, {type: :int16}
     end
-    
+
     class Rectangle < Xrb::Message
       layout \
           :x, {type: :int16},
@@ -135,7 +135,7 @@ module Xrb
           :width, {type: :uint16},
           :height, {type: :uint16}
     end
-    
+
     class Arc < Xrb::Message
       layout \
           :x, {type: :int16},
@@ -145,7 +145,7 @@ module Xrb
           :angle1, {type: :int16},
           :angle2, {type: :int16}
     end
-    
+
     class Format < Xrb::Message
       layout \
           :depth, {type: :uint8},
@@ -153,7 +153,7 @@ module Xrb
           :scanline_pad, {type: :uint8},
           :pad1, {size: 5, type: :uint8}
     end
-    
+
     class VisualType < Xrb::Message
       layout \
           :visual_id, {type: :uint32},
@@ -165,7 +165,7 @@ module Xrb
           :blue_mask, {type: :uint32},
           :pad1, {size: 4, type: :uint8}
     end
-    
+
     class Depth < Xrb::Message
       layout \
           :depth, {type: :uint8},
@@ -174,7 +174,7 @@ module Xrb
           :pad2, {size: 4, type: :uint8},
           :visuals, {length_field: :visuals_len, type: VisualType, kind: :list}
     end
-    
+
     class Screen < Xrb::Message
       layout \
           :root, {type: :uint32},
@@ -195,7 +195,7 @@ module Xrb
           :allowed_depths_len, {type: :uint8},
           :allowed_depths, {length_field: :allowed_depths_len, type: Depth, kind: :list}
     end
-    
+
     class SetupRequest < Xrb::Message
       layout \
           :byte_order, {type: :uint8},
@@ -208,7 +208,7 @@ module Xrb
           :authorization_protocol_name, {length_field: :authorization_protocol_name_len, type: :char, kind: :string},
           :authorization_protocol_data, {length_field: :authorization_protocol_data_len, type: :char, kind: :string}
     end
-    
+
     class SetupFailed < Xrb::Message
       layout \
           :status, {type: :uint8},
@@ -218,7 +218,7 @@ module Xrb
           :length, {type: :uint16},
           :reason, {length_field: :reason_len, type: :char, kind: :string}
     end
-    
+
     class SetupAuthenticate < Xrb::Message
       layout \
           :status, {type: :uint8},
@@ -226,7 +226,7 @@ module Xrb
           :length, {type: :uint16},
           :reason, {length_field: :length, type: :char, kind: :string}
     end
-    
+
     class Setup < Xrb::Message
       layout \
           :status, {type: :uint8},
@@ -253,27 +253,27 @@ module Xrb
           :pixmap_formats, {length_field: :pixmap_formats_len, type: Format, kind: :list},
           :roots, {length_field: :roots_len, type: Screen, kind: :list}
     end
-    
+
     class ClientMessageData < Xrb::Message
       union \
           :data8, {type: :uint8, size: 20},
           :data16, {type: :uint16, size: 10},
           :data32, {type: :uint32, size: 5}
     end
-    
+
     class TimeCoord < Xrb::Message
       layout \
           :time, {type: :uint32},
           :x, {type: :int16},
           :y, {type: :int16}
     end
-    
+
     class FontProp < Xrb::Message
       layout \
           :name, {type: :uint32},
           :value, {type: :uint32}
     end
-    
+
     class CharInfo < Xrb::Message
       layout \
           :left_side_bearing, {type: :int16},
@@ -283,13 +283,13 @@ module Xrb
           :descent, {type: :int16},
           :attributes, {type: :uint16}
     end
-    
+
     class Str < Xrb::Message
       layout \
           :name_len, {type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
     end
-    
+
     class Segment < Xrb::Message
       layout \
           :x1, {type: :int16},
@@ -297,7 +297,7 @@ module Xrb
           :x2, {type: :int16},
           :y2, {type: :int16}
     end
-    
+
     class ColorItem < Xrb::Message
       layout \
           :pixel, {type: :uint32},
@@ -307,7 +307,7 @@ module Xrb
           :flags, {type: :uint8},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class RGB < Xrb::Message
       layout \
           :red, {type: :uint16},
@@ -315,7 +315,7 @@ module Xrb
           :blue, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
     end
-    
+
     class Host < Xrb::Message
       layout \
           :family, {type: :uint8},
@@ -323,6 +323,6 @@ module Xrb
           :address_len, {type: :uint16},
           :address, {length_field: :address_len, type: :uint8, kind: :list}
     end
-    
+
   end
 end

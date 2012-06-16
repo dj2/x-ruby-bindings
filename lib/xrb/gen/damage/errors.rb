@@ -7,13 +7,13 @@ module Xrb
     module Error
       class BadDamage < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :error_code, {type: :uint8},
             :sequence, {type: :uint16}
       end
-      
+
       @op_map = {
         0 => BadDamage
       }

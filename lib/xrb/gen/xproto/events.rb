@@ -6,7 +6,7 @@ module Xrb
   module Event
     class KeyPress < Xrb::Message
       OPCODE = 2
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -23,10 +23,10 @@ module Xrb
           :same_screen, {type: :bool},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class KeyRelease < Xrb::Message
       OPCODE = 3
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -43,10 +43,10 @@ module Xrb
           :same_screen, {type: :bool},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class ButtonPress < Xrb::Message
       OPCODE = 4
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -63,10 +63,10 @@ module Xrb
           :same_screen, {type: :bool},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class ButtonRelease < Xrb::Message
       OPCODE = 5
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -83,10 +83,10 @@ module Xrb
           :same_screen, {type: :bool},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class MotionNotify < Xrb::Message
       OPCODE = 6
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -103,10 +103,10 @@ module Xrb
           :same_screen, {type: :bool},
           :pad1, {size: 1, type: :uint8}
     end
-    
+
     class EnterNotify < Xrb::Message
       OPCODE = 7
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -123,10 +123,10 @@ module Xrb
           :mode, {type: :uint8},
           :same_screen_focus, {type: :uint8}
     end
-    
+
     class LeaveNotify < Xrb::Message
       OPCODE = 8
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -143,10 +143,10 @@ module Xrb
           :mode, {type: :uint8},
           :same_screen_focus, {type: :uint8}
     end
-    
+
     class FocusIn < Xrb::Message
       OPCODE = 9
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -155,10 +155,10 @@ module Xrb
           :mode, {type: :uint8},
           :pad1, {size: 3, type: :uint8}
     end
-    
+
     class FocusOut < Xrb::Message
       OPCODE = 10
-      
+
       layout \
           :response_type, {type: :uint8},
           :detail, {type: :uint8},
@@ -167,18 +167,18 @@ module Xrb
           :mode, {type: :uint8},
           :pad1, {size: 3, type: :uint8}
     end
-    
+
     class KeymapNotify < Xrb::Message
       OPCODE = 11
-      
+
       layout \
           :response_type, {type: :uint8},
           :keys, {type: :uint8, size: 31}
     end
-    
+
     class Expose < Xrb::Message
       OPCODE = 12
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -191,10 +191,10 @@ module Xrb
           :count, {type: :uint16},
           :pad2, {size: 2, type: :uint8}
     end
-    
+
     class GraphicsExposure < Xrb::Message
       OPCODE = 13
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -209,10 +209,10 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class NoExposure < Xrb::Message
       OPCODE = 14
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -222,10 +222,10 @@ module Xrb
           :major_opcode, {type: :uint8},
           :pad2, {size: 1, type: :uint8}
     end
-    
+
     class VisibilityNotify < Xrb::Message
       OPCODE = 15
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -234,10 +234,10 @@ module Xrb
           :state, {type: :uint8},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class CreateNotify < Xrb::Message
       OPCODE = 16
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -252,10 +252,10 @@ module Xrb
           :override_redirect, {type: :bool},
           :pad2, {size: 1, type: :uint8}
     end
-    
+
     class DestroyNotify < Xrb::Message
       OPCODE = 17
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -263,10 +263,10 @@ module Xrb
           :event, {type: :uint32},
           :window, {type: :uint32}
     end
-    
+
     class UnmapNotify < Xrb::Message
       OPCODE = 18
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -276,10 +276,10 @@ module Xrb
           :from_configure, {type: :bool},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class MapNotify < Xrb::Message
       OPCODE = 19
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -289,10 +289,10 @@ module Xrb
           :override_redirect, {type: :bool},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class MapRequest < Xrb::Message
       OPCODE = 20
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -300,10 +300,10 @@ module Xrb
           :parent, {type: :uint32},
           :window, {type: :uint32}
     end
-    
+
     class ReparentNotify < Xrb::Message
       OPCODE = 21
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -316,10 +316,10 @@ module Xrb
           :override_redirect, {type: :bool},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class ConfigureNotify < Xrb::Message
       OPCODE = 22
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -335,10 +335,10 @@ module Xrb
           :override_redirect, {type: :bool},
           :pad2, {size: 1, type: :uint8}
     end
-    
+
     class ConfigureRequest < Xrb::Message
       OPCODE = 23
-      
+
       layout \
           :response_type, {type: :uint8},
           :stack_mode, {type: :uint8},
@@ -353,10 +353,10 @@ module Xrb
           :border_width, {type: :uint16},
           :value_mask, {type: :uint16}
     end
-    
+
     class GravityNotify < Xrb::Message
       OPCODE = 24
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -366,10 +366,10 @@ module Xrb
           :x, {type: :int16},
           :y, {type: :int16}
     end
-    
+
     class ResizeRequest < Xrb::Message
       OPCODE = 25
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -378,10 +378,10 @@ module Xrb
           :width, {type: :uint16},
           :height, {type: :uint16}
     end
-    
+
     class CirculateNotify < Xrb::Message
       OPCODE = 26
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -392,10 +392,10 @@ module Xrb
           :place, {type: :uint8},
           :pad3, {size: 3, type: :uint8}
     end
-    
+
     class CirculateRequest < Xrb::Message
       OPCODE = 27
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -406,10 +406,10 @@ module Xrb
           :place, {type: :uint8},
           :pad3, {size: 3, type: :uint8}
     end
-    
+
     class PropertyNotify < Xrb::Message
       OPCODE = 28
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -420,10 +420,10 @@ module Xrb
           :state, {type: :uint8},
           :pad2, {size: 3, type: :uint8}
     end
-    
+
     class SelectionClear < Xrb::Message
       OPCODE = 29
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -432,10 +432,10 @@ module Xrb
           :owner, {type: :uint32},
           :selection, {type: :uint32}
     end
-    
+
     class SelectionRequest < Xrb::Message
       OPCODE = 30
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -447,10 +447,10 @@ module Xrb
           :target, {type: :uint32},
           :property, {type: :uint32}
     end
-    
+
     class SelectionNotify < Xrb::Message
       OPCODE = 31
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -461,10 +461,10 @@ module Xrb
           :target, {type: :uint32},
           :property, {type: :uint32}
     end
-    
+
     class ColormapNotify < Xrb::Message
       OPCODE = 32
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -475,10 +475,10 @@ module Xrb
           :state, {type: :uint8},
           :pad2, {size: 2, type: :uint8}
     end
-    
+
     class ClientMessage < Xrb::Message
       OPCODE = 33
-      
+
       layout \
           :response_type, {type: :uint8},
           :format, {type: :uint8},
@@ -487,10 +487,10 @@ module Xrb
           :type, {type: :uint32},
           :data, {type: :ClientMessageData}
     end
-    
+
     class MappingNotify < Xrb::Message
       OPCODE = 34
-      
+
       layout \
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
@@ -500,7 +500,7 @@ module Xrb
           :count, {type: :uint8},
           :pad2, {size: 1, type: :uint8}
     end
-    
+
     @op_map = {
       2 => KeyPress,
 3 => KeyRelease,

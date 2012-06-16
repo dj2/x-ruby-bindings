@@ -14,7 +14,7 @@ module Xrb
             :server_major_version, {type: :uint16},
             :server_minor_version, {type: :uint16}
       end
-      
+
       class GetXidRange < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -24,7 +24,7 @@ module Xrb
             :start_id, {type: :uint32},
             :count, {type: :uint32}
       end
-      
+
       class GetXidList < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -35,7 +35,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :ids, {length_field: :ids_len, type: :uint32, kind: :list}
       end
-      
+
     end
   end
 end

@@ -14,7 +14,7 @@ module Xrb
             :major_version, {type: :uint16},
             :minor_version, {type: :uint16}
       end
-      
+
       class QueryExtents < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -33,7 +33,7 @@ module Xrb
             :clip_shape_extents_width, {type: :uint16},
             :clip_shape_extents_height, {type: :uint16}
       end
-      
+
       class InputSelected < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -41,7 +41,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32}
       end
-      
+
       class GetRectangles < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -52,7 +52,7 @@ module Xrb
             :pad1, {size: 20, type: :uint8},
             :rectangles, {length_field: :rectangles_len, type: Rectangle, kind: :list}
       end
-      
+
     end
   end
 end

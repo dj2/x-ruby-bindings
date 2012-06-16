@@ -7,18 +7,18 @@ module Xrb
     # ValuatorMode
     VALUATOR_MODE_RELATIVE = (0),
     VALUATOR_MODE_ABSOLUTE = (1)
-    
+
     # PropagateMode
     PROPAGATE_MODE_ADD_TO_LIST = (0),
     PROPAGATE_MODE_DELETE_FROM_LIST = (1)
-    
+
     # DeviceUse
     DEVICE_USE_IS_X_POINTER = (0),
     DEVICE_USE_IS_X_KEYBOARD = (1),
     DEVICE_USE_IS_X_EXTENSION_DEVICE = (2),
     DEVICE_USE_IS_X_EXTENSION_KEYBOARD = (3),
     DEVICE_USE_IS_X_EXTENSION_POINTER = (4)
-    
+
     # InputClass
     INPUT_CLASS_KEY = (0),
     INPUT_CLASS_BUTTON = (1),
@@ -27,7 +27,7 @@ module Xrb
     INPUT_CLASS_PROXIMITY = (4),
     INPUT_CLASS_FOCUS = (5),
     INPUT_CLASS_OTHER = (6)
-    
+
     # DeviceInputMode
     DEVICE_INPUT_MODE_ASYNC_THIS_DEVICE = (1),
     DEVICE_INPUT_MODE_SYNC_THIS_DEVICE = (2),
@@ -35,7 +35,7 @@ module Xrb
     DEVICE_INPUT_MODE_ASYNC_OTHER_DEVICES = (4),
     DEVICE_INPUT_MODE_ASYNC_ALL = (5),
     DEVICE_INPUT_MODE_SYNC_ALL = (6)
-    
+
     # FeedbackClass
     FEEDBACK_CLASS_KEYBOARD = (1),
     FEEDBACK_CLASS_POINTER = (2),
@@ -43,6 +43,6 @@ module Xrb
     FEEDBACK_CLASS_INTEGER = (4),
     FEEDBACK_CLASS_LED = (5),
     FEEDBACK_CLASS_BELL = (6)
-    
+
   end
 end

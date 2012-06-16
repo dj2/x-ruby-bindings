@@ -7,32 +7,32 @@ module Xrb
     module Request
       class GetVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :minor_version, {type: :uint16}
       end
-      
+
       class CompareCursor < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 1
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
       end
-      
+
       class FakeInput < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -48,12 +48,12 @@ module Xrb
             :pad3, {size: 7, type: :uint8},
             :deviceid, {type: :uint8}
       end
-      
+
       class GrabControl < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 3
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -61,7 +61,7 @@ module Xrb
             :impervious, {type: :bool},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
     end
   end
 end

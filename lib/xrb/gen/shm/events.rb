@@ -7,7 +7,7 @@ module Xrb
     module Event
       class Completion < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
@@ -19,7 +19,7 @@ module Xrb
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
       end
-      
+
       @op_map = {
         0 => Completion
       }

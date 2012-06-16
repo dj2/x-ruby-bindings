@@ -7,20 +7,20 @@ module Xrb
     class Message
       class KeyCode
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('C')
         end
       end
-      
+
       class EventClass
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class DeviceInfo < Xrb::Message
         layout \
             :device_type, {type: :uint32},
@@ -29,13 +29,13 @@ module Xrb
             :device_use, {type: :uint8},
             :pad1, {size: 1, type: :uint8}
       end
-      
+
       class InputInfo < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :len, {type: :uint8}
       end
-      
+
       class KeyInfo < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -45,21 +45,21 @@ module Xrb
             :num_keys, {type: :uint16},
             :pad1, {size: 2, type: :uint8}
       end
-      
+
       class ButtonInfo < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :len, {type: :uint8},
             :num_buttons, {type: :uint16}
       end
-      
+
       class AxisInfo < Xrb::Message
         layout \
             :resolution, {type: :uint32},
             :minimum, {type: :int32},
             :maximum, {type: :int32}
       end
-      
+
       class ValuatorInfo < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -69,25 +69,25 @@ module Xrb
             :motion_size, {type: :uint32},
             :axes, {length_field: :axes_len, type: AxisInfo, kind: :list}
       end
-      
+
       class InputClassInfo < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :event_type_base, {type: :uint8}
       end
-      
+
       class DeviceTimeCoord < Xrb::Message
         layout \
             :time, {type: :uint32}
       end
-      
+
       class FeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :id, {type: :uint8},
             :len, {type: :uint16}
       end
-      
+
       class KbdFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -103,7 +103,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :auto_repeats, {type: :uint8, size: 32}
       end
-      
+
       class PtrFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -114,7 +114,7 @@ module Xrb
             :accel_denom, {type: :uint16},
             :threshold, {type: :uint16}
       end
-      
+
       class IntegerFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -124,7 +124,7 @@ module Xrb
             :min_value, {type: :int32},
             :max_value, {type: :int32}
       end
-      
+
       class StringFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -134,7 +134,7 @@ module Xrb
             :num_keysyms, {type: :uint16},
             :keysyms, {length_field: :num_keysyms, type: :uint32, kind: :list}
       end
-      
+
       class BellFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -145,7 +145,7 @@ module Xrb
             :pitch, {type: :uint16},
             :duration, {type: :uint16}
       end
-      
+
       class LedFeedbackState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -154,14 +154,14 @@ module Xrb
             :led_mask, {type: :uint32},
             :led_values, {type: :uint32}
       end
-      
+
       class FeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :id, {type: :uint8},
             :len, {type: :uint16}
       end
-      
+
       class KbdFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -176,7 +176,7 @@ module Xrb
             :led_mask, {type: :uint32},
             :led_values, {type: :uint32}
       end
-      
+
       class PtrFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -187,7 +187,7 @@ module Xrb
             :denom, {type: :int16},
             :threshold, {type: :int16}
       end
-      
+
       class IntegerFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -195,7 +195,7 @@ module Xrb
             :len, {type: :uint16},
             :int_to_display, {type: :int32}
       end
-      
+
       class StringFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -205,7 +205,7 @@ module Xrb
             :num_keysyms, {type: :uint16},
             :keysyms, {length_field: :num_keysyms, type: :uint32, kind: :list}
       end
-      
+
       class BellFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -216,7 +216,7 @@ module Xrb
             :pitch, {type: :int16},
             :duration, {type: :int16}
       end
-      
+
       class LedFeedbackCtl < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -225,14 +225,14 @@ module Xrb
             :led_mask, {type: :uint32},
             :led_values, {type: :uint32}
       end
-      
+
       class InputState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
             :len, {type: :uint8},
             :num_items, {type: :uint8}
       end
-      
+
       class KeyState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -241,7 +241,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :keys, {type: :uint8, size: 32}
       end
-      
+
       class ButtonState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -250,7 +250,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :buttons, {type: :uint8, size: 32}
       end
-      
+
       class ValuatorState < Xrb::Message
         layout \
             :class_id, {type: :uint8},
@@ -259,13 +259,13 @@ module Xrb
             :mode, {type: :uint8},
             :valuators, {length_field: :num_valuators, type: :uint32, kind: :list}
       end
-      
+
       class DeviceState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
             :len, {type: :uint16}
       end
-      
+
       class DeviceResolutionState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -275,7 +275,7 @@ module Xrb
             :resolution_min, {length_field: :num_valuators, type: :uint32, kind: :list},
             :resolution_max, {length_field: :num_valuators, type: :uint32, kind: :list}
       end
-      
+
       class DeviceAbsCalibState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -289,7 +289,7 @@ module Xrb
             :rotation, {type: :uint32},
             :button_threshold, {type: :uint32}
       end
-      
+
       class DeviceAbsAreaState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -301,7 +301,7 @@ module Xrb
             :screen, {type: :uint32},
             :following, {type: :uint32}
       end
-      
+
       class DeviceCoreState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -310,7 +310,7 @@ module Xrb
             :iscore, {type: :uint8},
             :pad1, {size: 2, type: :uint8}
       end
-      
+
       class DeviceEnableState < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -318,13 +318,13 @@ module Xrb
             :enable, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
       class DeviceCtl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
             :len, {type: :uint16}
       end
-      
+
       class DeviceResolutionCtl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -333,7 +333,7 @@ module Xrb
             :num_valuators, {type: :uint8},
             :resolution_values, {length_field: :num_valuators, type: :uint32, kind: :list}
       end
-      
+
       class DeviceAbsCalibCtl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -347,7 +347,7 @@ module Xrb
             :rotation, {type: :uint32},
             :button_threshold, {type: :uint32}
       end
-      
+
       class DeviceAbsAreaCtrl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -359,7 +359,7 @@ module Xrb
             :screen, {type: :int32},
             :following, {type: :uint32}
       end
-      
+
       class DeviceCoreCtrl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -367,7 +367,7 @@ module Xrb
             :status, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
       class DeviceEnableCtrl < Xrb::Message
         layout \
             :control_id, {type: :uint16},
@@ -375,7 +375,7 @@ module Xrb
             :enable, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
     end
   end
 end

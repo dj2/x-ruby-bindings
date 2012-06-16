@@ -7,7 +7,7 @@ module Xrb
     module Event
       class ScreenChangeNotify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :rotation, {type: :uint8},
@@ -23,17 +23,17 @@ module Xrb
             :mwidth, {type: :uint16},
             :mheight, {type: :uint16}
       end
-      
+
       class Notify < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :subCode, {type: :uint8},
             :sequence, {type: :uint16},
             :u, {type: :NotifyData}
       end
-      
+
       @op_map = {
         0 => ScreenChangeNotify,
 1 => Notify

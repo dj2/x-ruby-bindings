@@ -10,7 +10,7 @@ module Xrb
   VISUAL_CLASS_PSEUDO_COLOR = (3),
   VISUAL_CLASS_TRUE_COLOR = (4),
   VISUAL_CLASS_DIRECT_COLOR = (5)
-  
+
   # EventMask
   EVENT_MASK_NO_EVENT = (0),
   EVENT_MASK_KEY_PRESS = (1 << 0),
@@ -38,16 +38,16 @@ module Xrb
   EVENT_MASK_PROPERTY_CHANGE = (1 << 22),
   EVENT_MASK_COLOR_MAP_CHANGE = (1 << 23),
   EVENT_MASK_OWNER_GRAB_BUTTON = (1 << 24)
-  
+
   # BackingStore
   BACKING_STORE_NOT_USEFUL = (0),
   BACKING_STORE_WHEN_MAPPED = (1),
   BACKING_STORE_ALWAYS = (2)
-  
+
   # ImageOrder
   IMAGE_ORDER_LSB_FIRST = (0),
   IMAGE_ORDER_MSB_FIRST = (1)
-  
+
   # ModMask
   MOD_MASK_SHIFT = (1 << 0),
   MOD_MASK_LOCK = (1 << 1),
@@ -58,7 +58,7 @@ module Xrb
   MOD_MASK_4 = (1 << 6),
   MOD_MASK_5 = (1 << 7),
   MOD_MASK_ANY = (1 << 15)
-  
+
   # KeyButMask
   KEY_BUT_MASK_SHIFT = (1 << 0),
   KEY_BUT_MASK_LOCK = (1 << 1),
@@ -73,10 +73,10 @@ module Xrb
   KEY_BUT_MASK_BUTTON_3 = (1 << 10),
   KEY_BUT_MASK_BUTTON_4 = (1 << 11),
   KEY_BUT_MASK_BUTTON_5 = (1 << 12)
-  
+
   # Window
   WINDOW_NONE = (0)
-  
+
   # ButtonMask
   BUTTON_MASK_1 = (1 << 8),
   BUTTON_MASK_2 = (1 << 9),
@@ -84,11 +84,11 @@ module Xrb
   BUTTON_MASK_4 = (1 << 11),
   BUTTON_MASK_5 = (1 << 12),
   BUTTON_MASK_ANY = (1 << 15)
-  
+
   # Motion
   MOTION_NORMAL = (0),
   MOTION_HINT = (1)
-  
+
   # NotifyDetail
   NOTIFY_DETAIL_ANCESTOR = (0),
   NOTIFY_DETAIL_VIRTUAL = (1),
@@ -98,29 +98,29 @@ module Xrb
   NOTIFY_DETAIL_POINTER = (5),
   NOTIFY_DETAIL_POINTER_ROOT = (6),
   NOTIFY_DETAIL_NONE = (7)
-  
+
   # NotifyMode
   NOTIFY_MODE_NORMAL = (0),
   NOTIFY_MODE_GRAB = (1),
   NOTIFY_MODE_UNGRAB = (2),
   NOTIFY_MODE_WHILE_GRABBED = (3)
-  
+
   # Visibility
   VISIBILITY_UNOBSCURED = (0),
   VISIBILITY_PARTIALLY_OBSCURED = (1),
   VISIBILITY_FULLY_OBSCURED = (2)
-  
+
   # Place
   PLACE_ON_TOP = (0),
   PLACE_ON_BOTTOM = (1)
-  
+
   # Property
   PROPERTY_NEW_VALUE = (0),
   PROPERTY_DELETE = (1)
-  
+
   # Time
   TIME_CURRENT_TIME = (0)
-  
+
   # Atom
   ATOM_NONE = (0),
   ATOM_ANY = (0),
@@ -192,24 +192,24 @@ module Xrb
   ATOM_CAP_HEIGHT = (66),
   ATOM_WM_CLASS = (67),
   ATOM_WM_TRANSIENT_FOR = (68)
-  
+
   # ColormapState
   COLORMAP_STATE_UNINSTALLED = (0),
   COLORMAP_STATE_INSTALLED = (1)
-  
+
   # Colormap
   COLORMAP_NONE = (0)
-  
+
   # Mapping
   MAPPING_MODIFIER = (0),
   MAPPING_KEYBOARD = (1),
   MAPPING_POINTER = (2)
-  
+
   # WindowClass
   WINDOW_CLASS_COPY_FROM_PARENT = (0),
   WINDOW_CLASS_INPUT_OUTPUT = (1),
   WINDOW_CLASS_INPUT_ONLY = (2)
-  
+
   # CW
   CW_BACK_PIXMAP = (1 << 0),
   CW_BACK_PIXEL = (1 << 1),
@@ -226,11 +226,11 @@ module Xrb
   CW_DONT_PROPAGATE = (1 << 12),
   CW_COLORMAP = (1 << 13),
   CW_CURSOR = (1 << 14)
-  
+
   # BackPixmap
   BACK_PIXMAP_NONE = (0),
   BACK_PIXMAP_PARENT_RELATIVE = (1)
-  
+
   # Gravity
   GRAVITY_BIT_FORGET = (0),
   GRAVITY_WIN_UNMAP = (0),
@@ -244,16 +244,16 @@ module Xrb
   GRAVITY_SOUTH = (8),
   GRAVITY_SOUTH_EAST = (9),
   GRAVITY_STATIC = (10)
-  
+
   # MapState
   MAP_STATE_UNMAPPED = (0),
   MAP_STATE_UNVIEWABLE = (1),
   MAP_STATE_VIEWABLE = (2)
-  
+
   # SetMode
   SET_MODE_INSERT = (0),
   SET_MODE_DELETE = (1)
-  
+
   # ConfigWindow
   CONFIG_WINDOW_X = (1 << 0),
   CONFIG_WINDOW_Y = (1 << 1),
@@ -262,44 +262,44 @@ module Xrb
   CONFIG_WINDOW_BORDER_WIDTH = (1 << 4),
   CONFIG_WINDOW_SIBLING = (1 << 5),
   CONFIG_WINDOW_STACK_MODE = (1 << 6)
-  
+
   # StackMode
   STACK_MODE_ABOVE = (0),
   STACK_MODE_BELOW = (1),
   STACK_MODE_TOP_IF = (2),
   STACK_MODE_BOTTOM_IF = (3),
   STACK_MODE_OPPOSITE = (4)
-  
+
   # Circulate
   CIRCULATE_RAISE_LOWEST = (0),
   CIRCULATE_LOWER_HIGHEST = (1)
-  
+
   # PropMode
   PROP_MODE_REPLACE = (0),
   PROP_MODE_PREPEND = (1),
   PROP_MODE_APPEND = (2)
-  
+
   # GetPropertyType
   GET_PROPERTY_TYPE_ANY = (0)
-  
+
   # SendEventDest
   SEND_EVENT_DEST_POINTER_WINDOW = (0),
   SEND_EVENT_DEST_ITEM_FOCUS = (1)
-  
+
   # GrabMode
   GRAB_MODE_SYNC = (0),
   GRAB_MODE_ASYNC = (1)
-  
+
   # GrabStatus
   GRAB_STATUS_SUCCESS = (0),
   GRAB_STATUS_ALREADY_GRABBED = (1),
   GRAB_STATUS_INVALID_TIME = (2),
   GRAB_STATUS_NOT_VIEWABLE = (3),
   GRAB_STATUS_FROZEN = (4)
-  
+
   # Cursor
   CURSOR_NONE = (0)
-  
+
   # ButtonIndex
   BUTTON_INDEX_ANY = (0),
   BUTTON_INDEX_1 = (1),
@@ -307,10 +307,10 @@ module Xrb
   BUTTON_INDEX_3 = (3),
   BUTTON_INDEX_4 = (4),
   BUTTON_INDEX_5 = (5)
-  
+
   # Grab
   GRAB_ANY = (0)
-  
+
   # Allow
   ALLOW_ASYNC_POINTER = (0),
   ALLOW_SYNC_POINTER = (1),
@@ -320,17 +320,17 @@ module Xrb
   ALLOW_REPLAY_KEYBOARD = (5),
   ALLOW_ASYNC_BOTH = (6),
   ALLOW_SYNC_BOTH = (7)
-  
+
   # InputFocus
   INPUT_FOCUS_NONE = (0),
   INPUT_FOCUS_POINTER_ROOT = (1),
   INPUT_FOCUS_PARENT = (2),
   INPUT_FOCUS_FOLLOW_KEYBOARD = (3)
-  
+
   # FontDraw
   FONT_DRAW_LEFT_TO_RIGHT = (0),
   FONT_DRAW_RIGHT_TO_LEFT = (1)
-  
+
   # GC
   GC_FUNCTION = (1 << 0),
   GC_PLANE_MASK = (1 << 1),
@@ -355,7 +355,7 @@ module Xrb
   GC_DASH_OFFSET = (1 << 20),
   GC_DASH_LIST = (1 << 21),
   GC_ARC_MODE = (1 << 22)
-  
+
   # GX
   G_XCLEAR = (0),
   G_XAND = (1),
@@ -373,81 +373,81 @@ module Xrb
   G_XOR_INVERTED = (13),
   G_XNAND = (14),
   G_XSET = (15)
-  
+
   # LineStyle
   LINE_STYLE_SOLID = (0),
   LINE_STYLE_ON_OFF_DASH = (1),
   LINE_STYLE_DOUBLE_DASH = (2)
-  
+
   # CapStyle
   CAP_STYLE_NOT_LAST = (0),
   CAP_STYLE_BUTT = (1),
   CAP_STYLE_ROUND = (2),
   CAP_STYLE_PROJECTING = (3)
-  
+
   # JoinStyle
   JOIN_STYLE_MITER = (0),
   JOIN_STYLE_ROUND = (1),
   JOIN_STYLE_BEVEL = (2)
-  
+
   # FillStyle
   FILL_STYLE_SOLID = (0),
   FILL_STYLE_TILED = (1),
   FILL_STYLE_STIPPLED = (2),
   FILL_STYLE_OPAQUE_STIPPLED = (3)
-  
+
   # FillRule
   FILL_RULE_EVEN_ODD = (0),
   FILL_RULE_WINDING = (1)
-  
+
   # SubwindowMode
   SUBWINDOW_MODE_CLIP_BY_CHILDREN = (0),
   SUBWINDOW_MODE_INCLUDE_INFERIORS = (1)
-  
+
   # ArcMode
   ARC_MODE_CHORD = (0),
   ARC_MODE_PIE_SLICE = (1)
-  
+
   # ClipOrdering
   CLIP_ORDERING_UNSORTED = (0),
   CLIP_ORDERING_Y_SORTED = (1),
   CLIP_ORDERING_YX_SORTED = (2),
   CLIP_ORDERING_YX_BANDED = (3)
-  
+
   # CoordMode
   COORD_MODE_ORIGIN = (0),
   COORD_MODE_PREVIOUS = (1)
-  
+
   # PolyShape
   POLY_SHAPE_COMPLEX = (0),
   POLY_SHAPE_NONCONVEX = (1),
   POLY_SHAPE_CONVEX = (2)
-  
+
   # ImageFormat
   IMAGE_FORMAT_XY_BITMAP = (0),
   IMAGE_FORMAT_XY_PIXMAP = (1),
   IMAGE_FORMAT_Z_PIXMAP = (2)
-  
+
   # ColormapAlloc
   COLORMAP_ALLOC_NONE = (0),
   COLORMAP_ALLOC_ALL = (1)
-  
+
   # ColorFlag
   COLOR_FLAG_RED = (1 << 0),
   COLOR_FLAG_GREEN = (1 << 1),
   COLOR_FLAG_BLUE = (1 << 2)
-  
+
   # Pixmap
   PIXMAP_NONE = (0)
-  
+
   # Font
   FONT_NONE = (0)
-  
+
   # QueryShapeOf
   QUERY_SHAPE_OF_LARGEST_CURSOR = (0),
   QUERY_SHAPE_OF_FASTEST_TILE = (1),
   QUERY_SHAPE_OF_FASTEST_STIPPLE = (2)
-  
+
   # KB
   KB_KEY_CLICK_PERCENT = (1 << 0),
   KB_BELL_PERCENT = (1 << 1),
@@ -457,58 +457,58 @@ module Xrb
   KB_LED_MODE = (1 << 5),
   KB_KEY = (1 << 6),
   KB_AUTO_REPEAT_MODE = (1 << 7)
-  
+
   # LedMode
   LED_MODE_OFF = (0),
   LED_MODE_ON = (1)
-  
+
   # AutoRepeatMode
   AUTO_REPEAT_MODE_OFF = (0),
   AUTO_REPEAT_MODE_ON = (1),
   AUTO_REPEAT_MODE_DEFAULT = (2)
-  
+
   # Blanking
   BLANKING_NOT_PREFERRED = (0),
   BLANKING_PREFERRED = (1),
   BLANKING_DEFAULT = (2)
-  
+
   # Exposures
   EXPOSURES_NOT_ALLOWED = (0),
   EXPOSURES_ALLOWED = (1),
   EXPOSURES_DEFAULT = (2)
-  
+
   # HostMode
   HOST_MODE_INSERT = (0),
   HOST_MODE_DELETE = (1)
-  
+
   # Family
   FAMILY_INTERNET = (0),
   FAMILY_DE_CNET = (1),
   FAMILY_CHAOS = (2),
   FAMILY_SERVER_INTERPRETED = (5),
   FAMILY_INTERNET_6 = (6)
-  
+
   # AccessControl
   ACCESS_CONTROL_DISABLE = (0),
   ACCESS_CONTROL_ENABLE = (1)
-  
+
   # CloseDown
   CLOSE_DOWN_DESTROY_ALL = (0),
   CLOSE_DOWN_RETAIN_PERMANENT = (1),
   CLOSE_DOWN_RETAIN_TEMPORARY = (2)
-  
+
   # Kill
   KILL_ALL_TEMPORARY = (0)
-  
+
   # ScreenSaver
   SCREEN_SAVER_RESET = (0),
   SCREEN_SAVER_ACTIVE = (1)
-  
+
   # MappingStatus
   MAPPING_STATUS_SUCCESS = (0),
   MAPPING_STATUS_BUSY = (1),
   MAPPING_STATUS_FAILURE = (2)
-  
+
   # MapIndex
   MAP_INDEX_SHIFT = (0),
   MAP_INDEX_LOCK = (1),
@@ -518,5 +518,5 @@ module Xrb
   MAP_INDEX_3 = (5),
   MAP_INDEX_4 = (6),
   MAP_INDEX_5 = (7)
-  
+
 end

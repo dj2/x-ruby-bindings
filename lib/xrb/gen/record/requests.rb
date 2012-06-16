@@ -7,9 +7,9 @@ module Xrb
     module Request
       class QueryVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -17,12 +17,12 @@ module Xrb
             :major_version, {type: :uint16},
             :minor_version, {type: :uint16}
       end
-      
+
       class CreateContext < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 1
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -35,12 +35,12 @@ module Xrb
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list},
             :ranges, {length_field: :num_ranges, type: Range, kind: :list}
       end
-      
+
       class RegisterClients < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -53,12 +53,12 @@ module Xrb
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list},
             :ranges, {length_field: :num_ranges, type: Range, kind: :list}
       end
-      
+
       class UnregisterClients < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 3
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -67,12 +67,12 @@ module Xrb
             :num_client_specs, {type: :uint32},
             :client_specs, {length_field: :num_client_specs, type: :uint32, kind: :list}
       end
-      
+
       class GetContext < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 4
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -83,12 +83,12 @@ module Xrb
             :pad2, {size: 16, type: :uint8},
             :intercepted_clients, {length_field: :num_intercepted_clients, type: ClientInfo, kind: :list}
       end
-      
+
       class EnableContext < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 5
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -102,31 +102,31 @@ module Xrb
             :pad2, {size: 8, type: :uint8},
             :data, {length_field: :length, type: :uint8, kind: :list}
       end
-      
+
       class DisableContext < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 6
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
       end
-      
+
       class FreeContext < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 7
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context, {type: :uint32}
       end
-      
+
     end
   end
 end

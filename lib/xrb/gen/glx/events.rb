@@ -7,7 +7,7 @@ module Xrb
     module Event
       class PbufferClobber < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
@@ -24,7 +24,7 @@ module Xrb
             :count, {type: :uint16},
             :pad2, {size: 4, type: :uint8}
       end
-      
+
       @op_map = {
         0 => PbufferClobber
       }

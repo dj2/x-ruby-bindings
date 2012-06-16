@@ -7,6 +7,6 @@ module Xrb
     # Cursor
     CURSOR_NONE = (0),
     CURSOR_CURRENT = (1)
-    
+
   end
 end

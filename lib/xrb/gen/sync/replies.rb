@@ -15,7 +15,7 @@ module Xrb
             :minor_version, {type: :uint8},
             :pad2, {size: 22, type: :uint8}
       end
-      
+
       class ListSystemCounters < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -26,7 +26,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :counters, {length_field: :counters_len, type: Systemcounter, kind: :list}
       end
-      
+
       class QueryCounter < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -35,7 +35,7 @@ module Xrb
             :length, {type: :uint32},
             :counter_value, {type: :INT64}
       end
-      
+
       class QueryAlarm < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -48,7 +48,7 @@ module Xrb
             :state, {type: :uint8},
             :pad2, {size: 2, type: :uint8}
       end
-      
+
       class GetPriority < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -57,7 +57,7 @@ module Xrb
             :length, {type: :uint32},
             :priority, {type: :int32}
       end
-      
+
       class QueryFence < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -67,7 +67,7 @@ module Xrb
             :triggered, {type: :bool},
             :pad2, {size: 23, type: :uint8}
       end
-      
+
     end
   end
 end

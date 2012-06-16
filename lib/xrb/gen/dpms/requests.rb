@@ -7,9 +7,9 @@ module Xrb
     module Request
       class GetVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -17,12 +17,12 @@ module Xrb
             :server_major_version, {type: :uint16},
             :server_minor_version, {type: :uint16}
       end
-      
+
       class Capable < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 1
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -30,12 +30,12 @@ module Xrb
             :capable, {type: :bool},
             :pad2, {size: 23, type: :uint8}
       end
-      
+
       class GetTimeouts < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -45,12 +45,12 @@ module Xrb
             :off_timeout, {type: :uint16},
             :pad2, {size: 18, type: :uint8}
       end
-      
+
       class SetTimeouts < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 3
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -59,46 +59,46 @@ module Xrb
             :suspend_timeout, {type: :uint16},
             :off_timeout, {type: :uint16}
       end
-      
+
       class Enable < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 4
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
       end
-      
+
       class Disable < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 5
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16}
       end
-      
+
       class ForceLevel < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 6
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :power_level, {type: :uint16}
       end
-      
+
       class Info < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 7
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -107,7 +107,7 @@ module Xrb
             :state, {type: :bool},
             :pad2, {size: 21, type: :uint8}
       end
-      
+
     end
   end
 end

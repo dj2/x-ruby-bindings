@@ -7,7 +7,7 @@ module Xrb
     module Event
       class Notify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :code, {type: :uint8},
@@ -22,7 +22,7 @@ module Xrb
             :forced, {type: :bool},
             :pad2, {size: 14, type: :uint8}
       end
-      
+
       @op_map = {
         0 => Notify
       }

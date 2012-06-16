@@ -7,10 +7,10 @@ module Xrb
     # PictType
     PICT_TYPE_INDEXED = (1),
     PICT_TYPE_DIRECT = (2)
-    
+
     # Picture
     PICTURE_NONE = (1)
-    
+
     # PictOp
     PICT_OP_CLEAR = (1),
     PICT_OP_SRC = (2),
@@ -65,15 +65,15 @@ module Xrb
     PICT_OP_HSL_SATURATION = (60),
     PICT_OP_HSL_COLOR = (61),
     PICT_OP_HSL_LUMINOSITY = (62)
-    
+
     # PolyEdge
     POLY_EDGE_SHARP = (1),
     POLY_EDGE_SMOOTH = (2)
-    
+
     # PolyMode
     POLY_MODE_PRECISE = (1),
     POLY_MODE_IMPRECISE = (2)
-    
+
     # CP
     CP_REPEAT = (1 << 0),
     CP_ALPHA_MAP = (1 << 1),
@@ -88,7 +88,7 @@ module Xrb
     CP_POLY_MODE = (1 << 10),
     CP_DITHER = (1 << 11),
     CP_COMPONENT_ALPHA = (1 << 12)
-    
+
     # SubPixel
     SUB_PIXEL_UNKNOWN = (1),
     SUB_PIXEL_HORIZONTAL_RGB = (2),
@@ -96,12 +96,12 @@ module Xrb
     SUB_PIXEL_VERTICAL_RGB = (4),
     SUB_PIXEL_VERTICAL_BGR = (5),
     SUB_PIXEL_NONE = (6)
-    
+
     # Repeat
     REPEAT_NONE = (1),
     REPEAT_NORMAL = (2),
     REPEAT_PAD = (3),
     REPEAT_REFLECT = (4)
-    
+
   end
 end

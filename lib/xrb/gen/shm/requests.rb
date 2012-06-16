@@ -7,9 +7,9 @@ module Xrb
     module Request
       class QueryVersion < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 0
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -21,12 +21,12 @@ module Xrb
             :pixmap_format, {type: :uint8},
             :pad1, {size: 15, type: :uint8}
       end
-      
+
       class Attach < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 1
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -36,24 +36,24 @@ module Xrb
             :read_only, {type: :bool},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
       class Detach < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 2
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :shmseg, {type: :uint32}
       end
-      
+
       class PutImage < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 3
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -75,12 +75,12 @@ module Xrb
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
       end
-      
+
       class GetImage < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 4
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -88,12 +88,12 @@ module Xrb
             :visual, {type: :uint32},
             :size, {type: :uint32}
       end
-      
+
       class CreatePixmap < Xrb::Message
         include Xrb::Request
-        
+
         OPCODE = 5
-        
+
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
@@ -107,7 +107,7 @@ module Xrb
             :shmseg, {type: :uint32},
             :offset, {type: :uint32}
       end
-      
+
     end
   end
 end

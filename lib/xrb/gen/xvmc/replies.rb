@@ -14,7 +14,7 @@ module Xrb
             :major, {type: :uint32},
             :minor, {type: :uint32}
       end
-      
+
       class ListSurfaceTypes < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -25,7 +25,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :surfaces, {length_field: :num, type: SurfaceInfo, kind: :list}
       end
-      
+
       class CreateContext < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -38,7 +38,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :priv_data, {length_field: :length, type: :uint32, kind: :list}
       end
-      
+
       class CreateSurface < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -48,7 +48,7 @@ module Xrb
             :pad2, {size: 24, type: :uint8},
             :priv_data, {length_field: :length, type: :uint32, kind: :list}
       end
-      
+
       class CreateSubpicture < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -63,7 +63,7 @@ module Xrb
             :pad2, {size: 12, type: :uint8},
             :priv_data, {length_field: :length, type: :uint32, kind: :list}
       end
-      
+
       class ListSubpictureTypes < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -74,7 +74,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :types, {length_field: :num, type: ImageFormatInfo, kind: :list}
       end
-      
+
     end
   end
 end

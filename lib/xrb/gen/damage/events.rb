@@ -7,7 +7,7 @@ module Xrb
     module Event
       class Notify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :level, {type: :uint8},
@@ -18,7 +18,7 @@ module Xrb
             :area, {type: :RECTANGLE},
             :geometry, {type: :RECTANGLE}
       end
-      
+
       @op_map = {
         0 => Notify
       }

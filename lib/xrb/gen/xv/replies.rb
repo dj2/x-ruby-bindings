@@ -14,7 +14,7 @@ module Xrb
             :major, {type: :uint16},
             :minor, {type: :uint16}
       end
-      
+
       class QueryAdaptors < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -25,7 +25,7 @@ module Xrb
             :pad2, {size: 22, type: :uint8},
             :info, {length_field: :num_adaptors, type: AdaptorInfo, kind: :list}
       end
-      
+
       class QueryEncodings < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -36,7 +36,7 @@ module Xrb
             :pad2, {size: 22, type: :uint8},
             :info, {length_field: :num_encodings, type: EncodingInfo, kind: :list}
       end
-      
+
       class GrabPort < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -44,7 +44,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32}
       end
-      
+
       class QueryBestSize < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -54,7 +54,7 @@ module Xrb
             :actual_width, {type: :uint16},
             :actual_height, {type: :uint16}
       end
-      
+
       class GetPortAttribute < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -63,7 +63,7 @@ module Xrb
             :length, {type: :uint32},
             :value, {type: :int32}
       end
-      
+
       class QueryPortAttributes < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -75,7 +75,7 @@ module Xrb
             :pad2, {size: 16, type: :uint8},
             :attributes, {length_field: :num_attributes, type: AttributeInfo, kind: :list}
       end
-      
+
       class ListImageFormats < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -86,7 +86,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :format, {length_field: :num_formats, type: ImageFormatInfo, kind: :list}
       end
-      
+
       class QueryImageAttributes < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -101,7 +101,7 @@ module Xrb
             :pitches, {length_field: :num_planes, type: :uint32, kind: :list},
             :offsets, {length_field: :num_planes, type: :uint32, kind: :list}
       end
-      
+
     end
   end
 end

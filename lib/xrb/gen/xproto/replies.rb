@@ -26,7 +26,7 @@ module Xrb
           :do_not_propagate_mask, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
     end
-    
+
     class GetGeometry < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -41,7 +41,7 @@ module Xrb
           :border_width, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
     end
-    
+
     class QueryTree < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -54,7 +54,7 @@ module Xrb
           :pad2, {size: 14, type: :uint8},
           :children, {length_field: :children_len, type: :uint32, kind: :list}
     end
-    
+
     class InternAtom < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -63,7 +63,7 @@ module Xrb
           :length, {type: :uint32},
           :atom, {type: :uint32}
     end
-    
+
     class GetAtomName < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -74,7 +74,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :name, {length_field: :name_len, type: :char, kind: :string}
     end
-    
+
     class GetProperty < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -87,7 +87,7 @@ module Xrb
           :pad1, {size: 12, type: :uint8},
           :value, {length_field: :format, type: :uint8, kind: :list}
     end
-    
+
     class ListProperties < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -98,7 +98,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :atoms, {length_field: :atoms_len, type: :uint32, kind: :list}
     end
-    
+
     class GetSelectionOwner < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -107,7 +107,7 @@ module Xrb
           :length, {type: :uint32},
           :owner, {type: :uint32}
     end
-    
+
     class GrabPointer < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -115,7 +115,7 @@ module Xrb
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
-    
+
     class GrabKeyboard < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -123,7 +123,7 @@ module Xrb
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
-    
+
     class QueryPointer < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -139,7 +139,7 @@ module Xrb
           :mask, {type: :uint16},
           :pad1, {size: 2, type: :uint8}
     end
-    
+
     class GetMotionEvents < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -150,7 +150,7 @@ module Xrb
           :pad2, {size: 20, type: :uint8},
           :events, {length_field: :events_len, type: TimeCoord, kind: :list}
     end
-    
+
     class TranslateCoordinates < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -161,7 +161,7 @@ module Xrb
           :dst_x, {type: :int16},
           :dst_y, {type: :int16}
     end
-    
+
     class GetInputFocus < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -170,7 +170,7 @@ module Xrb
           :length, {type: :uint32},
           :focus, {type: :uint32}
     end
-    
+
     class QueryKeymap < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -179,7 +179,7 @@ module Xrb
           :length, {type: :uint32},
           :keys, {type: :uint8, size: 32}
     end
-    
+
     class QueryFont < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -204,7 +204,7 @@ module Xrb
           :properties, {length_field: :properties_len, type: FontProp, kind: :list},
           :char_infos, {length_field: :char_infos_len, type: CharInfo, kind: :list}
     end
-    
+
     class QueryTextExtents < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -219,7 +219,7 @@ module Xrb
           :overall_left, {type: :int32},
           :overall_right, {type: :int32}
     end
-    
+
     class ListFonts < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -230,7 +230,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :names, {length_field: :names_len, type: Str, kind: :list}
     end
-    
+
     class ListFontsWithInfo < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -255,7 +255,7 @@ module Xrb
           :properties, {length_field: :properties_len, type: FontProp, kind: :list},
           :name, {length_field: :name_len, type: :char, kind: :string}
     end
-    
+
     class GetFontPath < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -266,7 +266,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :path, {length_field: :path_len, type: Str, kind: :list}
     end
-    
+
     class GetImage < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -277,7 +277,7 @@ module Xrb
           :pad1, {size: 20, type: :uint8},
           :data, {length_field: :length, type: :uint8, kind: :list}
     end
-    
+
     class ListInstalledColormaps < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -288,7 +288,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :cmaps, {length_field: :cmaps_len, type: :uint32, kind: :list}
     end
-    
+
     class AllocColor < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -301,7 +301,7 @@ module Xrb
           :pad2, {size: 2, type: :uint8},
           :pixel, {type: :uint32}
     end
-    
+
     class AllocNamedColor < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -316,7 +316,7 @@ module Xrb
           :visual_green, {type: :uint16},
           :visual_blue, {type: :uint16}
     end
-    
+
     class AllocColorCells < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -329,7 +329,7 @@ module Xrb
           :pixels, {length_field: :pixels_len, type: :uint32, kind: :list},
           :masks, {length_field: :masks_len, type: :uint32, kind: :list}
     end
-    
+
     class AllocColorPlanes < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -344,7 +344,7 @@ module Xrb
           :pad3, {size: 8, type: :uint8},
           :pixels, {length_field: :pixels_len, type: :uint32, kind: :list}
     end
-    
+
     class QueryColors < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -355,7 +355,7 @@ module Xrb
           :pad2, {size: 22, type: :uint8},
           :colors, {length_field: :colors_len, type: RGB, kind: :list}
     end
-    
+
     class LookupColor < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -369,7 +369,7 @@ module Xrb
           :visual_green, {type: :uint16},
           :visual_blue, {type: :uint16}
     end
-    
+
     class QueryBestSize < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -379,7 +379,7 @@ module Xrb
           :width, {type: :uint16},
           :height, {type: :uint16}
     end
-    
+
     class QueryExtension < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -391,7 +391,7 @@ module Xrb
           :first_event, {type: :uint8},
           :first_error, {type: :uint8}
     end
-    
+
     class ListExtensions < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -401,7 +401,7 @@ module Xrb
           :pad1, {size: 24, type: :uint8},
           :names, {length_field: :names_len, type: Str, kind: :list}
     end
-    
+
     class GetKeyboardMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -411,7 +411,7 @@ module Xrb
           :pad1, {size: 24, type: :uint8},
           :keysyms, {length_field: :length, type: :uint32, kind: :list}
     end
-    
+
     class GetKeyboardControl < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -426,7 +426,7 @@ module Xrb
           :pad1, {size: 2, type: :uint8},
           :auto_repeats, {type: :uint8, size: 32}
     end
-    
+
     class GetPointerControl < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -438,7 +438,7 @@ module Xrb
           :threshold, {type: :uint16},
           :pad2, {size: 18, type: :uint8}
     end
-    
+
     class GetScreenSaver < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -451,7 +451,7 @@ module Xrb
           :allow_exposures, {type: :uint8},
           :pad2, {size: 18, type: :uint8}
     end
-    
+
     class ListHosts < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -462,7 +462,7 @@ module Xrb
           :pad1, {size: 22, type: :uint8},
           :hosts, {length_field: :hosts_len, type: Host, kind: :list}
     end
-    
+
     class SetPointerMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -470,7 +470,7 @@ module Xrb
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
-    
+
     class GetPointerMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -480,7 +480,7 @@ module Xrb
           :pad1, {size: 24, type: :uint8},
           :map, {length_field: :map_len, type: :uint8, kind: :list}
     end
-    
+
     class SetModifierMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -488,7 +488,7 @@ module Xrb
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
-    
+
     class GetModifierMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
@@ -498,6 +498,6 @@ module Xrb
           :pad1, {size: 24, type: :uint8},
           :keycodes, {length_field: :keycodes_per_modifier, type: :uint8, kind: :list}
     end
-    
+
   end
 end

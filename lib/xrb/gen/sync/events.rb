@@ -7,7 +7,7 @@ module Xrb
     module Event
       class CounterNotify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :kind, {type: :uint8},
@@ -20,10 +20,10 @@ module Xrb
             :destroyed, {type: :bool},
             :pad1, {size: 1, type: :uint8}
       end
-      
+
       class AlarmNotify < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :kind, {type: :uint8},
@@ -35,7 +35,7 @@ module Xrb
             :state, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
       @op_map = {
         0 => CounterNotify,
 1 => AlarmNotify

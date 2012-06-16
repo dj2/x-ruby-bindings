@@ -7,44 +7,44 @@ module Xrb
     class Message
       class Glyph
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Glyphset
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Picture
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Pictformat
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Fixed
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('l')
         end
       end
-      
+
       class Directformat < Xrb::Message
         layout \
             :red_shift, {type: :uint16},
@@ -56,7 +56,7 @@ module Xrb
             :alpha_shift, {type: :uint16},
             :alpha_mask, {type: :uint16}
       end
-      
+
       class Pictforminfo < Xrb::Message
         layout \
             :id, {type: :uint32},
@@ -66,13 +66,13 @@ module Xrb
             :direct, {type: :DIRECTFORMAT},
             :colormap, {type: :uint32}
       end
-      
+
       class Pictvisual < Xrb::Message
         layout \
             :visual, {type: :uint32},
             :format, {type: :uint32}
       end
-      
+
       class Pictdepth < Xrb::Message
         layout \
             :depth, {type: :uint8},
@@ -81,14 +81,14 @@ module Xrb
             :pad2, {size: 4, type: :uint8},
             :visuals, {length_field: :num_visuals, type: Pictvisual, kind: :list}
       end
-      
+
       class Pictscreen < Xrb::Message
         layout \
             :num_depths, {type: :uint32},
             :fallback, {type: :uint32},
             :depths, {length_field: :num_depths, type: Pictdepth, kind: :list}
       end
-      
+
       class Indexvalue < Xrb::Message
         layout \
             :pixel, {type: :uint32},
@@ -97,7 +97,7 @@ module Xrb
             :blue, {type: :uint16},
             :alpha, {type: :uint16}
       end
-      
+
       class Color < Xrb::Message
         layout \
             :red, {type: :uint16},
@@ -105,26 +105,26 @@ module Xrb
             :blue, {type: :uint16},
             :alpha, {type: :uint16}
       end
-      
+
       class Pointfix < Xrb::Message
         layout \
             :x, {type: :int32},
             :y, {type: :int32}
       end
-      
+
       class Linefix < Xrb::Message
         layout \
             :p1, {type: :POINTFIX},
             :p2, {type: :POINTFIX}
       end
-      
+
       class Triangle < Xrb::Message
         layout \
             :p1, {type: :POINTFIX},
             :p2, {type: :POINTFIX},
             :p3, {type: :POINTFIX}
       end
-      
+
       class Trapezoid < Xrb::Message
         layout \
             :top, {type: :int32},
@@ -132,7 +132,7 @@ module Xrb
             :left, {type: :LINEFIX},
             :right, {type: :LINEFIX}
       end
-      
+
       class Glyphinfo < Xrb::Message
         layout \
             :width, {type: :uint16},
@@ -142,7 +142,7 @@ module Xrb
             :x_off, {type: :int16},
             :y_off, {type: :int16}
       end
-      
+
       class Transform < Xrb::Message
         layout \
             :matrix11, {type: :int32},
@@ -155,26 +155,26 @@ module Xrb
             :matrix32, {type: :int32},
             :matrix33, {type: :int32}
       end
-      
+
       class Animcursorelt < Xrb::Message
         layout \
             :cursor, {type: :uint32},
             :delay, {type: :uint32}
       end
-      
+
       class Spanfix < Xrb::Message
         layout \
             :l, {type: :int32},
             :r, {type: :int32},
             :y, {type: :int32}
       end
-      
+
       class Trap < Xrb::Message
         layout \
             :top, {type: :SPANFIX},
             :bot, {type: :SPANFIX}
       end
-      
+
     end
   end
 end

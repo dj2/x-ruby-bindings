@@ -7,7 +7,7 @@ module Xrb
     module Event
       class VideoNotify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :reason, {type: :uint8},
@@ -16,10 +16,10 @@ module Xrb
             :drawable, {type: :uint32},
             :port, {type: :uint32}
       end
-      
+
       class PortNotify < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
@@ -29,7 +29,7 @@ module Xrb
             :attribute, {type: :uint32},
             :value, {type: :int32}
       end
-      
+
       @op_map = {
         0 => VideoNotify,
 1 => PortNotify

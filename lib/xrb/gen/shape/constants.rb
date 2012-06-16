@@ -10,11 +10,11 @@ module Xrb
     SO_INTERSECT = (3),
     SO_SUBTRACT = (4),
     SO_INVERT = (5)
-    
+
     # SK
     SK_BOUNDING = (1),
     SK_CLIP = (2),
     SK_INPUT = (3)
-    
+
   end
 end

@@ -7,7 +7,7 @@ module Xrb
     module Event
       class SelectionNotify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :subtype, {type: :uint8},
@@ -19,10 +19,10 @@ module Xrb
             :selection_timestamp, {type: :uint32},
             :pad1, {size: 8, type: :uint8}
       end
-      
+
       class CursorNotify < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :subtype, {type: :uint8},
@@ -33,7 +33,7 @@ module Xrb
             :name, {type: :uint32},
             :pad1, {size: 12, type: :uint8}
       end
-      
+
       @op_map = {
         0 => SelectionNotify,
 1 => CursorNotify

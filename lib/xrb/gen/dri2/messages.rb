@@ -13,13 +13,13 @@ module Xrb
             :cpp, {type: :uint32},
             :flags, {type: :uint32}
       end
-      
+
       class AttachFormat < Xrb::Message
         layout \
             :attachment, {type: :uint32},
             :format, {type: :uint32}
       end
-      
+
     end
   end
 end
