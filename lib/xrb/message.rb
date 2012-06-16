@@ -55,11 +55,12 @@ module Xrb
               data_value = []
               idx = 0
               while (idx < tmp.length)
-                data_value << tmp.byteslice(idx, size).unpack(type.directive).first
+                data_value << tmp.byteslice(idx, size).
+                    unpack(type.directive).first
                 idx += size
               end
             end
-          
+
           elsif kind.is_string?
             len = ret.send(v[:length_field])
             data_value = data.read(len)
