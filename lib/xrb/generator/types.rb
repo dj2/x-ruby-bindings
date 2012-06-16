@@ -135,7 +135,7 @@ module Xrb
         @fields = [AutoField.new('response_type', parser.get_type(:CARD8))]
 
         # Handle the stupid auto-fields crap where the 2nd auto field can
-        # get replaced with the first parsed item. Again, WTF.          
+        # get replaced with the first parsed item. Again, WTF.
         f = parser.parse_fields(node.children).first
         v = f.shift
         if v == nil
@@ -153,8 +153,8 @@ module Xrb
     end
 
     class Namespace
-      attr_reader :name, :header, :imports, :types, :events, :errors, :requests
-      attr_reader :major_version, :minor_version
+      attr_reader :name, :header, :imports, :types, :events, :errors
+      attr_reader :requests, :major_version, :minor_version
 
       def initialize(root)
         @imports = []
@@ -170,7 +170,7 @@ module Xrb
         @prefix = []
 
         return if root.attr('extension-xname').nil?
-        
+
         @is_extension = true
         @major_version = root.attr('major-version')
         @minor_version = root.attr('minor-version')
