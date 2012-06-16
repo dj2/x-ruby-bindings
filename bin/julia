@@ -119,18 +119,22 @@ Xrb.run do |conn|
   bounds = Xrb::Rectangle.new(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
   rect.poly_fill_rectangle(bg_color, [bounds])
 
+  julia = Julia.new(conn, window)
+  julia.setup_graphics(screen)
+  julia.palette
+
   window.on_event do |event|
-    case event.ruby_class
-    when Xrb::Event::Expose then
-      rect.copy_area(dest: window, from: [0, 0], to: [0, 0],
+    case event.to_sym
+    when :Expose then
+      rect.copy_area(dest: window, gc: bg_color, from: [0, 0], to: [0, 0],
           size: [WINDOW_WIDTH, WINDOW_HEIGHT])
 
       julia.draw
       conn.flush
 
-    when Xrb::Event::ButtonPress then
+    when :ButtonPress then
       Xrb.stop
-    when Xrb::Event::ClientMessage then
+    when :ClientMessage then
       puts "Client Message?"
     else
       puts "Unhandled event #{event.ruby_class}"
@@ -146,10 +150,6 @@ Xrb.run do |conn|
   end
 
   window.show
-
-  julia = Julia.new(conn, window)
-  julia.setup_graphics(screen)
-  julia.palette
 
   conn.flush
 end
