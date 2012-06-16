@@ -14,7 +14,7 @@ module Xrb
         o[:drawable] = o.delete(:window).id
       end
 
-      @conn.send(Xrb::Request::CreateGc.new(o).pack)
+      @conn.send(Xrb::Request::CreateGc.new(o))
     end
   end
 end

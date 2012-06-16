@@ -92,6 +92,10 @@ module Xrb
     def calc_length
     end
 
+    def has_reply?
+      false
+    end
+
     def pack
       str = ''
 

@@ -20,6 +20,8 @@ module Xrb
       @sequence_mutex = Mutex.new
       @sequence_num = 1
 
+      @cookie_jar = {}
+
       @windows = []
       @event_handlers = []
       @error_handlers = []
@@ -44,6 +46,8 @@ module Xrb
       auth.connection = self
 
       @server_data = auth.handshake
+
+      @sequence_num = 1
 
       @xid = {
         last: 0,
@@ -73,10 +77,15 @@ module Xrb
       @socket.close
     end
 
-    def send(data)
+    def send(request)
       seq = next_sequence_num
-      @socket.write(data)
-      Cookie.new(seq)
+      @socket.write(request.pack)
+
+      if request.has_reply?
+        cookie = Cookie.new(seq, request)
+        @cookie_jar[seq] = cookie
+        cookie
+      end
     end
 
     def next_sequence_num
@@ -99,7 +108,6 @@ module Xrb
       push(v2)
       push(v1)
 
-p [kind, type]
       case kind
       when Xrb::Connection::ERROR then
         klass = Xrb::Error.find(type)
@@ -109,8 +117,24 @@ p [kind, type]
         handle_message(error, :error, @error_handlers)
 
       when Xrb::Connection::REPLY then
-        puts "Reply for ..."
-        nil
+        v1 = read(1)
+        v2 = read(1)
+        v3 = read(1)
+        v4 = read(1)
+        seq = "#{v3}#{v4}".unpack('S').first
+        push(v4)
+        push(v3)
+        push(v2)
+        push(v1)
+
+        cookie = @cookie_jar[seq]
+        reply = cookie.reply(self)
+        if reply.ruby_class.size < 32
+          read(32 - reply.ruby_class.size)
+        end
+
+        cookie.callback
+
       else
         klass = Xrb::Event.find(kind)
         if klass.nil?

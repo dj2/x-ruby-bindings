@@ -25,7 +25,7 @@ module Xrb
         event: []
       }
 
-      @conn.send(Xrb::Request::CreateWindow.new(o).pack)
+      @conn.send(Xrb::Request::CreateWindow.new(o))
       @conn.register_window(self)
     end
 
@@ -45,7 +45,7 @@ module Xrb
 
 
     def show(flush = true)
-      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id).pack)
+      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id))
       @conn.flush if flush
       cookie
     end

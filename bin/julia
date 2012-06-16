@@ -47,7 +47,7 @@ class Julia
       end
 
       cookies << @color_map.allocate_color(r, g, b) do |color|
-        @palette << (color.null? ? 0 : color.pixel)
+        @palette << color.pixel
       end
     end
 

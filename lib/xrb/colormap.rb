@@ -14,13 +14,15 @@ module Xrb
       o[:mid] = @id
       o[:window] = o[:window].id
 
-      @conn.send(Xrb::Request::CreateColormap.new(o).pack)
+      @conn.send(Xrb::Request::CreateColormap.new(o))
     end
 
-    def allocate_color(r, g, b)
+    def allocate_color(r, g, b, &blk)
       o = {cmap: @id, red: r, green: g, blue: b}
 
-      @conn.send(Xrb::Request::AllocColor.new(o).pack)
+      cookie = @conn.send(Xrb::Request::AllocColor.new(o))
+      cookie.callback = blk if block_given?
+      cookie
     end
   end
 end
