@@ -107,7 +107,7 @@ module Xrb
       type = v2.unpack('w').first
       push(v2)
       push(v1)
-
+p [kind, type]
       case kind
       when Xrb::Connection::ERROR then
         klass = Xrb::Error.find(type)
@@ -126,12 +126,14 @@ module Xrb
         push(v3)
         push(v2)
         push(v1)
-
-        cookie = @cookie_jar[seq]
+p seq
+        cookie = @cookie_jar.delete(seq)
         reply = cookie.reply(self)
-        if reply.ruby_class.size < 32
-          read(32 - reply.ruby_class.size)
-        end
+
+#        if reply.ruby_class.size < 32
+#p [:extra, 32 - reply.ruby_class.size]
+#          read(32 - reply.ruby_class.size)
+#        end
 
         cookie.callback
 

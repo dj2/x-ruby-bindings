@@ -18,7 +18,7 @@ module Xrb
     def reply(data)
       klass_name = @request.ruby_class.to_s.split("::").last
       klass = Xrb::Reply.const_get(klass_name.to_sym)
-
+p klass_name.to_sym
       @reply = klass.unpack(data)
     end
 
