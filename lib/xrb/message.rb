@@ -129,7 +129,6 @@ module Xrb
           end
 
         else
-          p [key, self.send(key)]
           [self.send(key)].pack(type.directive)
         end
       end
