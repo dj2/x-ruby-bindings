@@ -45,6 +45,7 @@ module Xrb
       end
 
       def format(str = '')
+        return str if str.empty?
         "#{' ' * @indent}#{str}"
       end
 
