@@ -3,7 +3,7 @@ require 'xrb/version'
 
 Gem::Specification.new do |s|
   s.name = 'x-ruby-bindings'
-  s.version = XRB::VERSION
+  s.version = Xrb::VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ['dan sinclair']
   s.email = ['dj2@everburning.com']
