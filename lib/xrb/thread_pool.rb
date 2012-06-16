@@ -7,8 +7,9 @@ module Xrb
       self.size = size
     end
 
-    # Set the size of the thread pool to {size}. Note, this will
-    # not decrease the size of the pool
+    # Set the size of the thread pool.
+    # @note, this will not decrease the size of the pool
+    # @param [Integer] size the thread pool size
     def size=(size)
       if (@pool.size < size)
         (size - @pool.size).times { @pool << Xrb::Thread.new }

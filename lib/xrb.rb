@@ -12,7 +12,9 @@ module Xrb
   DEFAULT_SLEEP = 0.1
 
   # Start the main run loop.
-  # This will connect to the X server and does not return until #quit is called.
+  # This will connect to the X server and does not return until
+  # {Xrb#quit} is called.
+  # @param [String] display The X11 display to connect too
   def self.run(display = nil, &blk)
     if running?
       blk.call(@conn) if block_given?
@@ -52,27 +54,30 @@ module Xrb
   end
 
   # Check if we've started the run loop
+  # @return [Boolean] true if the main loop is executing
   def self.running?
     !!@running
   end
 
-  # Return the current PID
+  # @return [Integer] the process PID
   def self.pid
     @pid
   end
 
-  # Return the current connection
+  # @return [Connection] the current X11 connection
   def self.connection
     @conn
   end
 
   # Set the size of the threadpool. Note, the thread pool will not
   # decrease in size due to this call.
+  # @param [Integer] size The size to set
   def self.thread_pool_size=(size)
     @thread_pool ? @thread_pool.size = size : @thread_pool_size = size
   end
 
-  # Add a timer to fire every {interval} seconds
+  # Add a timer to fire every interval seconds
+  # @param [Integer] interval The timer interval
   def self.add_repeating_timer(interval = 1, &blk)
     wrapper = Proc.new do
       begin
@@ -87,7 +92,8 @@ module Xrb
     add_timer(interval, &wrapper)
   end
 
- # Add a timer to fire once in {delay} seconds.
+  # Add a timer to fire once in delay seconds.
+  # @param [Integer] delay The delay until the timer fires
   def self.add_timer(delay = 1, &blk)
     @timer_mutex.synchronize do
       @timers << {:delay => @current_time + delay, :block => blk}
@@ -95,8 +101,15 @@ module Xrb
     end
   end
 
+  # Execute block on a background thread.
+  def self.execute(&blk)
+    return unless block_given?
+    @thread_pool.process(&blk)
+  end
+
+  private
+
   # Execute all ready timers
-  # @private
   def self.fire_timers
     return if @timers.empty?
 
@@ -117,7 +130,6 @@ module Xrb
   end
 
   # Check for available data on all sockets
-  # @private
   def self.check_sockets
     return if @readers.empty?
 
@@ -129,11 +141,5 @@ module Xrb
       next unless read_socks.include?(reader.socket)
       reader.data_available
     end
-  end
-
-  # Execute block on a background thread.
-  def self.execute(&blk)
-    return unless block_given?
-    @thread_pool.process(&blk)
   end
 end
