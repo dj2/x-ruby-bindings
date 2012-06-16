@@ -84,8 +84,7 @@ module Xrb
           :type, {type: :uint32},
           :bytes_after, {type: :uint32},
           :value_len, {type: :uint32},
-          :pad1, {size: 12, type: :uint8},
-          :value, {length_field: :format, type: :uint8, kind: :list}
+          :pad1, {size: 12, type: :uint8}
     end
 
     class ListProperties < Xrb::Message
@@ -274,8 +273,7 @@ module Xrb
           :sequence, {type: :uint16},
           :length, {type: :uint32},
           :visual, {type: :uint32},
-          :pad1, {size: 20, type: :uint8},
-          :data, {length_field: :length, type: :uint8, kind: :list}
+          :pad1, {size: 20, type: :uint8}
     end
 
     class ListInstalledColormaps < Xrb::Message
@@ -495,8 +493,7 @@ module Xrb
           :keycodes_per_modifier, {type: :uint8},
           :sequence, {type: :uint16},
           :length, {type: :uint32},
-          :pad1, {size: 24, type: :uint8},
-          :keycodes, {length_field: :keycodes_per_modifier, type: :uint8, kind: :list}
+          :pad1, {size: 24, type: :uint8}
     end
 
   end

@@ -223,8 +223,7 @@ module Xrb
       layout \
           :status, {type: :uint8},
           :pad1, {size: 5, type: :uint8},
-          :length, {type: :uint16},
-          :reason, {length_field: :length, type: :char, kind: :string}
+          :length, {type: :uint16}
     end
 
     class Setup < Xrb::Message

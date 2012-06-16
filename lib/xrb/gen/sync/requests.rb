@@ -14,9 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :major_version, {type: :uint8},
-            :minor_version, {type: :uint8},
-            :pad2, {size: 22, type: :uint8}
+            :desired_major_version, {type: :uint8},
+            :desired_minor_version, {type: :uint8}
       end
 
       class ListSystemCounters < Xrb::Message
@@ -27,10 +26,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :counters_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :counters, {length_field: :counters_len, type: Systemcounter, kind: :list}
+            :length, {type: :uint16}
       end
 
       class CreateCounter < Xrb::Message
@@ -67,7 +63,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :counter_value, {type: :INT64}
+            :counter, {type: :uint32}
       end
 
       class Await < Xrb::Message
@@ -155,11 +151,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :trigger, {type: :TRIGGER},
-            :delta, {type: :INT64},
-            :events, {type: :bool},
-            :state, {type: :uint8},
-            :pad2, {size: 2, type: :uint8}
+            :alarm, {type: :uint32}
       end
 
       class SetPriority < Xrb::Message
@@ -184,7 +176,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :priority, {type: :int32}
+            :id, {type: :uint32}
       end
 
       class CreateFence < Xrb::Message
@@ -246,8 +238,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :triggered, {type: :bool},
-            :pad2, {size: 23, type: :uint8}
+            :fence, {type: :uint32}
       end
 
       class AwaitFence < Xrb::Message

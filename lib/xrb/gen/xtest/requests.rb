@@ -14,6 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
+            :major_version, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
             :minor_version, {type: :uint16}
       end
 
@@ -25,7 +27,9 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :window, {type: :uint32},
+            :cursor, {type: :uint32}
       end
 
       class FakeInput < Xrb::Message

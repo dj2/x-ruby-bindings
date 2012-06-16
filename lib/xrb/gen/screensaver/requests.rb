@@ -14,9 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :server_major_version, {type: :uint16},
-            :server_minor_version, {type: :uint16},
-            :pad2, {size: 20, type: :uint8}
+            :client_major_version, {type: :uint8},
+            :client_minor_version, {type: :uint8},
+            :pad1, {size: 2, type: :uint8}
       end
 
       class QueryInfo < Xrb::Message
@@ -28,12 +28,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :saver_window, {type: :uint32},
-            :ms_until_server, {type: :uint32},
-            :ms_since_user_input, {type: :uint32},
-            :event_mask, {type: :uint32},
-            :kind, {type: :uint8},
-            :pad1, {size: 7, type: :uint8}
+            :drawable, {type: :uint32}
       end
 
       class SelectInput < Xrb::Message

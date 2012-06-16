@@ -13,9 +13,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :major, {type: :uint32},
-            :minor, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class ListSurfaceTypes < Xrb::Message
@@ -27,9 +25,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :surfaces, {length_field: :num, type: SurfaceInfo, kind: :list}
+            :port_id, {type: :uint32}
       end
 
       class CreateContext < Xrb::Message
@@ -41,11 +37,12 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :width_actual, {type: :uint16},
-            :height_actual, {type: :uint16},
-            :flags_return, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :priv_data, {length_field: :length, type: :uint32, kind: :list}
+            :context_id, {type: :uint32},
+            :port_id, {type: :uint32},
+            :surface_id, {type: :uint32},
+            :width, {type: :uint16},
+            :height, {type: :uint16},
+            :flags, {type: :uint32}
       end
 
       class DestroyContext < Xrb::Message
@@ -69,8 +66,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :priv_data, {length_field: :length, type: :uint32, kind: :list}
+            :surface_id, {type: :uint32},
+            :context_id, {type: :uint32}
       end
 
       class DestroySurface < Xrb::Message
@@ -94,13 +91,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :width_actual, {type: :uint16},
-            :height_actual, {type: :uint16},
-            :num_palette_entries, {type: :uint16},
-            :entry_bytes, {type: :uint16},
-            :component_order, {type: :uint8, size: 4},
-            :pad2, {size: 12, type: :uint8},
-            :priv_data, {length_field: :length, type: :uint32, kind: :list}
+            :subpicture_id, {type: :uint32},
+            :context, {type: :uint32},
+            :xvimage_id, {type: :uint32},
+            :width, {type: :uint16},
+            :height, {type: :uint16}
       end
 
       class DestroySubpicture < Xrb::Message
@@ -124,9 +119,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :types, {length_field: :num, type: ImageFormatInfo, kind: :list}
+            :port_id, {type: :uint32},
+            :surface_id, {type: :uint32}
       end
 
     end

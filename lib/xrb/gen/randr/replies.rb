@@ -44,8 +44,7 @@ module Xrb
             :rate, {type: :uint16},
             :nInfo, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
-            :sizes, {length_field: :nSizes, type: ScreenSize, kind: :list},
-            :rates, {length_field: :nInfo, type: RefreshRates, kind: :list}
+            :sizes, {length_field: :nSizes, type: ScreenSize, kind: :list}
       end
 
       class GetScreenSizeRange < Xrb::Message
@@ -136,8 +135,7 @@ module Xrb
             :type, {type: :uint32},
             :bytes_after, {type: :uint32},
             :num_items, {type: :uint32},
-            :pad1, {size: 12, type: :uint8},
-            :data, {length_field: :format, type: :uint8, kind: :list}
+            :pad1, {size: 12, type: :uint8}
       end
 
       class CreateMode < Xrb::Message

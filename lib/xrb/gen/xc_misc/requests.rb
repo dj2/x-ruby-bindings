@@ -14,8 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :server_major_version, {type: :uint16},
-            :server_minor_version, {type: :uint16}
+            :client_major_version, {type: :uint16},
+            :client_minor_version, {type: :uint16}
       end
 
       class GetXidRange < Xrb::Message
@@ -26,9 +26,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :start_id, {type: :uint32},
-            :count, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class GetXidList < Xrb::Message
@@ -40,9 +38,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ids_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :ids, {length_field: :ids_len, type: :uint32, kind: :list}
+            :count, {type: :uint32}
       end
 
     end

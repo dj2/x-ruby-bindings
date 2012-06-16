@@ -14,8 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :major, {type: :uint16},
-            :minor, {type: :uint16}
+            :major, {type: :uint8},
+            :minor, {type: :uint8}
       end
 
       class GetState < Xrb::Message
@@ -51,8 +51,6 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :width, {type: :uint32},
-            :height, {type: :uint32},
             :window, {type: :uint32},
             :screen, {type: :uint32}
       end
@@ -65,8 +63,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :state, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class QueryScreens < Xrb::Message
@@ -77,10 +74,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :number, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :screen_info, {length_field: :number, type: ScreenInfo, kind: :list}
+            :length, {type: :uint16}
       end
 
     end

@@ -14,8 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :server_major_version, {type: :uint16},
-            :server_minor_version, {type: :uint16}
+            :client_major_version, {type: :uint16},
+            :client_minor_version, {type: :uint16}
       end
 
       class Capable < Xrb::Message
@@ -26,9 +26,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :capable, {type: :bool},
-            :pad2, {size: 23, type: :uint8}
+            :length, {type: :uint16}
       end
 
       class GetTimeouts < Xrb::Message
@@ -39,11 +37,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :standby_timeout, {type: :uint16},
-            :suspend_timeout, {type: :uint16},
-            :off_timeout, {type: :uint16},
-            :pad2, {size: 18, type: :uint8}
+            :length, {type: :uint16}
       end
 
       class SetTimeouts < Xrb::Message
@@ -102,10 +96,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :power_level, {type: :uint16},
-            :state, {type: :bool},
-            :pad2, {size: 21, type: :uint8}
+            :length, {type: :uint16}
       end
 
     end

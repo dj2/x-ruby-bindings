@@ -13,10 +13,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :dri_major_version, {type: :uint16},
-            :dri_minor_version, {type: :uint16},
-            :dri_minor_patch, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class QueryDirectRenderingCapable < Xrb::Message
@@ -28,7 +25,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :is_capable, {type: :bool}
+            :screen, {type: :uint32}
       end
 
       class OpenConnection < Xrb::Message
@@ -40,11 +37,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :sarea_handle_low, {type: :uint32},
-            :sarea_handle_high, {type: :uint32},
-            :bus_id_len, {type: :uint32},
-            :pad2, {size: 12, type: :uint8},
-            :bus_id, {length_field: :bus_id_len, type: :char, kind: :string}
+            :screen, {type: :uint32}
       end
 
       class CloseConnection < Xrb::Message
@@ -68,12 +61,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :client_driver_major_version, {type: :uint32},
-            :client_driver_minor_version, {type: :uint32},
-            :client_driver_patch_version, {type: :uint32},
-            :client_driver_name_len, {type: :uint32},
-            :pad2, {size: 8, type: :uint8},
-            :client_driver_name, {length_field: :client_driver_name_len, type: :char, kind: :string}
+            :screen, {type: :uint32}
       end
 
       class CreateContext < Xrb::Message
@@ -85,7 +73,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :hw_context, {type: :uint32}
+            :screen, {type: :uint32},
+            :visual, {type: :uint32},
+            :context, {type: :uint32}
       end
 
       class DestroyContext < Xrb::Message
@@ -110,7 +100,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :hw_drawable_handle, {type: :uint32}
+            :screen, {type: :uint32},
+            :drawable, {type: :uint32}
       end
 
       class DestroyDrawable < Xrb::Message
@@ -135,18 +126,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :drawable_table_index, {type: :uint32},
-            :drawable_table_stamp, {type: :uint32},
-            :drawable_origin_X, {type: :int16},
-            :drawable_origin_Y, {type: :int16},
-            :drawable_size_W, {type: :int16},
-            :drawable_size_H, {type: :int16},
-            :num_clip_rects, {type: :uint32},
-            :back_x, {type: :int16},
-            :back_y, {type: :int16},
-            :num_back_clip_rects, {type: :uint32},
-            :clip_rects, {length_field: :num_clip_rects, type: DrmClipRect, kind: :list},
-            :back_clip_rects, {length_field: :num_back_clip_rects, type: DrmClipRect, kind: :list}
+            :screen, {type: :uint32},
+            :drawable, {type: :uint32}
       end
 
       class GetDeviceInfo < Xrb::Message
@@ -158,13 +139,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :framebuffer_handle_low, {type: :uint32},
-            :framebuffer_handle_high, {type: :uint32},
-            :framebuffer_origin_offset, {type: :uint32},
-            :framebuffer_size, {type: :uint32},
-            :framebuffer_stride, {type: :uint32},
-            :device_private_size, {type: :uint32},
-            :device_private, {length_field: :device_private_size, type: :uint32, kind: :list}
+            :screen, {type: :uint32}
       end
 
       class AuthConnection < Xrb::Message
@@ -176,7 +151,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :authenticated, {type: :uint32}
+            :screen, {type: :uint32},
+            :magic, {type: :uint32}
       end
 
     end

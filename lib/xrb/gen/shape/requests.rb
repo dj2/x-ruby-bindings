@@ -13,9 +13,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :major_version, {type: :uint16},
-            :minor_version, {type: :uint16}
+            :length, {type: :uint16}
       end
 
       class Rectangles < Xrb::Message
@@ -99,17 +97,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :bounding_shaped, {type: :bool},
-            :clip_shaped, {type: :bool},
-            :pad2, {size: 2, type: :uint8},
-            :bounding_shape_extents_x, {type: :int16},
-            :bounding_shape_extents_y, {type: :int16},
-            :bounding_shape_extents_width, {type: :uint16},
-            :bounding_shape_extents_height, {type: :uint16},
-            :clip_shape_extents_x, {type: :int16},
-            :clip_shape_extents_y, {type: :int16},
-            :clip_shape_extents_width, {type: :uint16},
-            :clip_shape_extents_height, {type: :uint16}
+            :destination_window, {type: :uint32}
       end
 
       class SelectInput < Xrb::Message
@@ -134,7 +122,8 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :destination_window, {type: :uint32}
       end
 
       class GetRectangles < Xrb::Message
@@ -146,9 +135,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :rectangles_len, {type: :uint32},
-            :pad1, {size: 20, type: :uint8},
-            :rectangles, {length_field: :rectangles_len, type: Rectangle, kind: :list}
+            :window, {type: :uint32},
+            :source_kind, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
     end

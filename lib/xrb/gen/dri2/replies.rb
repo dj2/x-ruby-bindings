@@ -25,7 +25,6 @@ module Xrb
             :device_name_length, {type: :uint32},
             :pad2, {size: 16, type: :uint8},
             :driver_name, {length_field: :driver_name_length, type: :char, kind: :string},
-            :alignment_pad, {type: :uint8, size: 3},
             :device_name, {length_field: :device_name_length, type: :char, kind: :string}
       end
 

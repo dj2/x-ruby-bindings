@@ -14,9 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :major_version, {type: :uint32},
-            :minor_version, {type: :uint32},
-            :pad2, {size: 16, type: :uint8}
+            :client_major_version, {type: :uint32},
+            :client_minor_version, {type: :uint32}
       end
 
       class ChangeSaveSet < Xrb::Message
@@ -70,16 +69,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :x, {type: :int16},
-            :y, {type: :int16},
-            :width, {type: :uint16},
-            :height, {type: :uint16},
-            :xhot, {type: :uint16},
-            :yhot, {type: :uint16},
-            :cursor_serial, {type: :uint32},
-            :pad2, {size: 8, type: :uint8},
-            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
+            :length, {type: :uint16}
       end
 
       class CreateRegion < Xrb::Message
@@ -279,9 +269,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :extents, {type: :RECTANGLE},
-            :pad2, {size: 16, type: :uint8},
-            :rectangles, {length_field: :length, type: Rectangle, kind: :list}
+            :region, {type: :uint32}
       end
 
       class SetGcClipRegion < Xrb::Message
@@ -355,10 +343,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :atom, {type: :uint32},
-            :nbytes, {type: :uint16},
-            :pad2, {size: 18, type: :uint8},
-            :name, {length_field: :nbytes, type: :char, kind: :string}
+            :cursor, {type: :uint32}
       end
 
       class GetCursorImageAndName < Xrb::Message
@@ -369,19 +354,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :x, {type: :int16},
-            :y, {type: :int16},
-            :width, {type: :uint16},
-            :height, {type: :uint16},
-            :xhot, {type: :uint16},
-            :yhot, {type: :uint16},
-            :cursor_serial, {type: :uint32},
-            :cursor_atom, {type: :uint32},
-            :nbytes, {type: :uint16},
-            :pad2, {size: 2, type: :uint8},
-            :name, {length_field: :nbytes, type: :char, kind: :string},
-            :cursor_image, {length_field: :width, type: :uint32, kind: :list}
+            :length, {type: :uint16}
       end
 
       class ChangeCursor < Xrb::Message

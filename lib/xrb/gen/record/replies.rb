@@ -40,8 +40,7 @@ module Xrb
             :xid_base, {type: :uint32},
             :server_time, {type: :uint32},
             :rec_sequence_num, {type: :uint32},
-            :pad2, {size: 8, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad2, {size: 8, type: :uint8}
       end
 
     end

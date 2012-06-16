@@ -14,9 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :major_version, {type: :uint32},
-            :minor_version, {type: :uint32},
-            :pad2, {size: 16, type: :uint8}
+            :client_major_version, {type: :uint32},
+            :client_minor_version, {type: :uint32}
       end
 
       class QueryPictFormats < Xrb::Message
@@ -27,16 +26,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :num_formats, {type: :uint32},
-            :num_screens, {type: :uint32},
-            :num_depths, {type: :uint32},
-            :num_visuals, {type: :uint32},
-            :num_subpixel, {type: :uint32},
-            :pad2, {size: 4, type: :uint8},
-            :formats, {length_field: :num_formats, type: Pictforminfo, kind: :list},
-            :screens, {length_field: :num_screens, type: Pictscreen, kind: :list},
-            :subpixels, {length_field: :num_subpixel, type: :uint32, kind: :list}
+            :length, {type: :uint16}
       end
 
       class QueryPictIndexValues < Xrb::Message
@@ -48,9 +38,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_values, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :values, {length_field: :num_values, type: Indexvalue, kind: :list}
+            :format, {type: :uint32}
       end
 
       class CreatePicture < Xrb::Message
@@ -388,11 +376,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_aliases, {type: :uint32},
-            :num_filters, {type: :uint32},
-            :pad2, {size: 16, type: :uint8},
-            :aliases, {length_field: :num_aliases, type: :uint16, kind: :list},
-            :filters, {length_field: :num_filters, type: Str, kind: :list}
+            :drawable, {type: :uint32}
       end
 
       class SetPictureFilter < Xrb::Message

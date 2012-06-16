@@ -55,8 +55,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :retval, {type: :uint32},
-            :data1, {type: :uint8, size: 24},
-            :data2, {length_field: :length, type: :uint8, kind: :list}
+            :data1, {type: :uint8, size: 24}
       end
 
       class QueryExtensionsString < Xrb::Message
@@ -101,8 +100,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :num_attribs, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :pad2, {size: 20, type: :uint8}
       end
 
       class MakeContextCurrent < Xrb::Message
@@ -122,8 +120,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :num_attribs, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :pad2, {size: 20, type: :uint8}
       end
 
       class GenLists < Xrb::Message
@@ -162,8 +159,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad2, {size: 24, type: :uint8}
       end
 
       class GetBooleanv < Xrb::Message
@@ -185,8 +181,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :double, kind: :list}
+            :pad2, {size: 24, type: :uint8}
       end
 
       class GetDoublev < Xrb::Message
@@ -373,8 +368,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad2, {size: 24, type: :uint8}
       end
 
       class GetString < Xrb::Message
@@ -464,8 +458,7 @@ module Xrb
             :width, {type: :int32},
             :height, {type: :int32},
             :depth, {type: :int32},
-            :pad3, {size: 4, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 4, type: :uint8}
       end
 
       class GetTexParameterfv < Xrb::Message
@@ -536,8 +529,7 @@ module Xrb
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :ret_val, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :data, {length_field: :length, type: :bool, kind: :list}
+            :pad2, {size: 20, type: :uint8}
       end
 
       class GenTextures < Xrb::Message
@@ -567,8 +559,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 8, type: :uint8},
             :width, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 12, type: :uint8}
       end
 
       class GetColorTableParameterfv < Xrb::Message
@@ -606,8 +597,7 @@ module Xrb
             :pad2, {size: 8, type: :uint8},
             :width, {type: :int32},
             :height, {type: :int32},
-            :pad3, {size: 8, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 8, type: :uint8}
       end
 
       class GetConvolutionParameterfv < Xrb::Message
@@ -645,8 +635,7 @@ module Xrb
             :pad2, {size: 8, type: :uint8},
             :row_w, {type: :int32},
             :col_h, {type: :int32},
-            :pad3, {size: 8, type: :uint8},
-            :rows_and_cols, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 8, type: :uint8}
       end
 
       class GetHistogram < Xrb::Message
@@ -657,8 +646,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 8, type: :uint8},
             :width, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 12, type: :uint8}
       end
 
       class GetHistogramParameterfv < Xrb::Message
@@ -693,8 +681,7 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad2, {size: 24, type: :uint8}
       end
 
       class GetMinmaxParameterfv < Xrb::Message
@@ -731,8 +718,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 8, type: :uint8},
             :size, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :pad3, {size: 12, type: :uint8}
       end
 
       class GenQueriesArb < Xrb::Message

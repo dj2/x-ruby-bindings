@@ -14,8 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :server_major, {type: :uint16},
-            :server_minor, {type: :uint16}
+            :client_major, {type: :uint8},
+            :client_minor, {type: :uint8}
       end
 
       class SetDeviceCreateContext < Xrb::Message
@@ -39,10 +39,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class SetDeviceContext < Xrb::Message
@@ -68,9 +65,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :device, {type: :uint32}
       end
 
       class SetWindowCreateContext < Xrb::Message
@@ -94,10 +89,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class GetWindowContext < Xrb::Message
@@ -109,9 +101,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :window, {type: :uint32}
       end
 
       class SetPropertyCreateContext < Xrb::Message
@@ -135,10 +125,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class SetPropertyUseContext < Xrb::Message
@@ -162,10 +149,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class GetPropertyContext < Xrb::Message
@@ -177,9 +161,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :window, {type: :uint32},
+            :property, {type: :uint32}
       end
 
       class GetPropertyDataContext < Xrb::Message
@@ -191,9 +174,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :window, {type: :uint32},
+            :property, {type: :uint32}
       end
 
       class ListProperties < Xrb::Message
@@ -205,9 +187,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :properties_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :properties, {length_field: :properties_len, type: ListItem, kind: :list}
+            :window, {type: :uint32}
       end
 
       class SetSelectionCreateContext < Xrb::Message
@@ -231,10 +211,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class SetSelectionUseContext < Xrb::Message
@@ -258,10 +235,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :length, {type: :uint16}
       end
 
       class GetSelectionContext < Xrb::Message
@@ -273,9 +247,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :selection, {type: :uint32}
       end
 
       class GetSelectionDataContext < Xrb::Message
@@ -287,9 +259,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :selection, {type: :uint32}
       end
 
       class ListSelections < Xrb::Message
@@ -300,10 +270,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :selections_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :selections, {length_field: :selections_len, type: ListItem, kind: :list}
+            :length, {type: :uint16}
       end
 
       class GetClientContext < Xrb::Message
@@ -315,9 +282,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_len, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :context, {length_field: :context_len, type: :char, kind: :string}
+            :resource, {type: :uint32}
       end
 
     end

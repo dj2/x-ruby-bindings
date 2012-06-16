@@ -13,9 +13,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :major, {type: :uint16},
-            :minor, {type: :uint16}
+            :length, {type: :uint16}
       end
 
       class QueryAdaptors < Xrb::Message
@@ -27,9 +25,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_adaptors, {type: :uint16},
-            :pad2, {size: 22, type: :uint8},
-            :info, {length_field: :num_adaptors, type: AdaptorInfo, kind: :list}
+            :window, {type: :uint32}
       end
 
       class QueryEncodings < Xrb::Message
@@ -41,9 +37,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_encodings, {type: :uint16},
-            :pad2, {size: 22, type: :uint8},
-            :info, {length_field: :num_encodings, type: EncodingInfo, kind: :list}
+            :port, {type: :uint32}
       end
 
       class GrabPort < Xrb::Message
@@ -54,7 +48,9 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :port, {type: :uint32},
+            :time, {type: :uint32}
       end
 
       class UngrabPort < Xrb::Message
@@ -208,8 +204,13 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :actual_width, {type: :uint16},
-            :actual_height, {type: :uint16}
+            :port, {type: :uint32},
+            :vid_w, {type: :uint16},
+            :vid_h, {type: :uint16},
+            :drw_w, {type: :uint16},
+            :drw_h, {type: :uint16},
+            :motion, {type: :bool},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class SetPortAttribute < Xrb::Message
@@ -235,7 +236,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :value, {type: :int32}
+            :port, {type: :uint32},
+            :attribute, {type: :uint32}
       end
 
       class QueryPortAttributes < Xrb::Message
@@ -247,10 +249,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_attributes, {type: :uint32},
-            :text_size, {type: :uint32},
-            :pad2, {size: 16, type: :uint8},
-            :attributes, {length_field: :num_attributes, type: AttributeInfo, kind: :list}
+            :port, {type: :uint32}
       end
 
       class ListImageFormats < Xrb::Message
@@ -262,9 +261,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_formats, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :format, {length_field: :num_formats, type: ImageFormatInfo, kind: :list}
+            :port, {type: :uint32}
       end
 
       class QueryImageAttributes < Xrb::Message
@@ -276,13 +273,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_planes, {type: :uint32},
-            :data_size, {type: :uint32},
+            :port, {type: :uint32},
+            :id, {type: :uint32},
             :width, {type: :uint16},
-            :height, {type: :uint16},
-            :pad2, {size: 12, type: :uint8},
-            :pitches, {length_field: :num_planes, type: :uint32, kind: :list},
-            :offsets, {length_field: :num_planes, type: :uint32, kind: :list}
+            :height, {type: :uint16}
       end
 
       class PutImage < Xrb::Message

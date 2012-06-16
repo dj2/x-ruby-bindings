@@ -14,9 +14,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :major_version, {type: :uint32},
-            :minor_version, {type: :uint32},
-            :pad2, {size: 16, type: :uint8}
+            :client_major_version, {type: :uint32},
+            :client_minor_version, {type: :uint32}
       end
 
       class RedirectWindow < Xrb::Message
@@ -110,8 +109,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :overlay_win, {type: :uint32},
-            :pad2, {size: 20, type: :uint8}
+            :window, {type: :uint32}
       end
 
       class ReleaseOverlayWindow < Xrb::Message

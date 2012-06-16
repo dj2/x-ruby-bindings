@@ -14,10 +14,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :server_major, {type: :uint16},
-            :server_minor, {type: :uint16},
-            :present, {type: :bool},
-            :pad2, {size: 19, type: :uint8}
+            :name_len, {type: :uint16},
+            :pad1, {size: 2, type: :uint8},
+            :name, {length_field: :name_len, type: :char, kind: :string}
       end
 
       class ListInputDevices < Xrb::Message
@@ -28,10 +27,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :devices_len, {type: :uint8},
-            :pad2, {size: 23, type: :uint8},
-            :devices, {length_field: :devices_len, type: DeviceInfo, kind: :list}
+            :length, {type: :uint16}
       end
 
       class OpenDevice < Xrb::Message
@@ -43,9 +39,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_classes, {type: :uint8},
-            :pad2, {size: 23, type: :uint8},
-            :class_info, {length_field: :num_classes, type: InputClassInfo, kind: :list}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class CloseDevice < Xrb::Message
@@ -70,8 +65,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :mode, {type: :uint8},
+            :pad1, {size: 2, type: :uint8}
       end
 
       class SelectExtensionEvent < Xrb::Message
@@ -98,11 +94,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_this_classes, {type: :uint16},
-            :num_all_classes, {type: :uint16},
-            :pad2, {size: 20, type: :uint8},
-            :this_classes, {length_field: :num_this_classes, type: :uint32, kind: :list},
-            :all_classes, {length_field: :num_all_classes, type: :uint32, kind: :list}
+            :window, {type: :uint32}
       end
 
       class ChangeDeviceDontPropagateList < Xrb::Message
@@ -130,9 +122,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_classes, {type: :uint16},
-            :pad2, {size: 22, type: :uint8},
-            :classes, {length_field: :num_classes, type: :uint32, kind: :list}
+            :window, {type: :uint32}
       end
 
       class GetDeviceMotionEvents < Xrb::Message
@@ -144,10 +134,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_coords, {type: :uint32},
-            :num_axes, {type: :uint8},
-            :device_mode, {type: :uint8},
-            :pad2, {size: 18, type: :uint8}
+            :start, {type: :uint32},
+            :stop, {type: :uint32},
+            :device_id, {type: :uint8}
       end
 
       class ChangeKeyboardDevice < Xrb::Message
@@ -159,8 +148,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class ChangePointerDevice < Xrb::Message
@@ -172,8 +161,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :x_axis, {type: :uint8},
+            :y_axis, {type: :uint8},
+            :device_id, {type: :uint8},
+            :pad1, {size: 1, type: :uint8}
       end
 
       class GrabDevice < Xrb::Message
@@ -185,8 +176,15 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :grab_window, {type: :uint32},
+            :time, {type: :uint32},
+            :num_classes, {type: :uint16},
+            :this_device_mode, {type: :uint8},
+            :other_device_mode, {type: :uint8},
+            :owner_events, {type: :bool},
+            :device_id, {type: :uint8},
+            :pad1, {size: 2, type: :uint8},
+            :classes, {length_field: :num_classes, type: :uint32, kind: :list}
       end
 
       class UngrabDevice < Xrb::Message
@@ -301,10 +299,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :focus, {type: :uint32},
-            :time, {type: :uint32},
-            :revert_to, {type: :uint8},
-            :pad2, {size: 15, type: :uint8}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class SetDeviceFocus < Xrb::Message
@@ -331,8 +327,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_feedback, {type: :uint16},
-            :pad2, {size: 22, type: :uint8}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class GetDeviceKeyMapping < Xrb::Message
@@ -344,9 +340,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :keysyms_per_keycode, {type: :uint8},
-            :pad2, {size: 23, type: :uint8},
-            :keysyms, {length_field: :length, type: :uint32, kind: :list}
+            :device_id, {type: :uint8},
+            :first_keycode, {type: :uint8},
+            :count, {type: :uint8}
       end
 
       class ChangeDeviceKeyMapping < Xrb::Message
@@ -361,8 +357,7 @@ module Xrb
             :device_id, {type: :uint8},
             :first_keycode, {type: :uint8},
             :keysyms_per_keycode, {type: :uint8},
-            :keycode_count, {type: :uint8},
-            :keysyms, {length_field: :keycode_count, type: :uint32, kind: :list}
+            :keycode_count, {type: :uint8}
       end
 
       class GetDeviceModifierMapping < Xrb::Message
@@ -374,9 +369,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :keycodes_per_modifier, {type: :uint8},
-            :pad2, {size: 23, type: :uint8},
-            :keymaps, {length_field: :keycodes_per_modifier, type: :uint8, kind: :list}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class SetDeviceModifierMapping < Xrb::Message
@@ -388,8 +382,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :keycodes_per_modifier, {type: :uint8},
+            :pad1, {size: 1, type: :uint8}
       end
 
       class GetDeviceButtonMapping < Xrb::Message
@@ -401,9 +396,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :map_size, {type: :uint8},
-            :pad2, {size: 23, type: :uint8},
-            :map, {length_field: :map_size, type: :uint8, kind: :list}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class SetDeviceButtonMapping < Xrb::Message
@@ -415,8 +409,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :map_size, {type: :uint8},
+            :pad1, {size: 2, type: :uint8},
+            :map, {length_field: :map_size, type: :uint8, kind: :list}
       end
 
       class QueryDeviceState < Xrb::Message
@@ -428,8 +424,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_classes, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class SendExtensionEvent < Xrb::Message
@@ -447,7 +443,6 @@ module Xrb
             :num_classes, {type: :uint16},
             :num_events, {type: :uint8},
             :pad1, {size: 3, type: :uint8},
-            :events, {length_field: :num_events, type: :char, kind: :string},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
       end
 
@@ -475,8 +470,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :device_id, {type: :uint8},
+            :first_valuator, {type: :uint8},
+            :num_valuators, {type: :uint8},
+            :pad1, {size: 1, type: :uint8},
+            :valuators, {length_field: :num_valuators, type: :int32, kind: :list}
       end
 
       class GetDeviceControl < Xrb::Message
@@ -488,8 +486,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status, {type: :uint8},
-            :pad2, {size: 23, type: :uint8}
+            :control_id, {type: :uint16},
+            :device_id, {type: :uint8},
+            :pad1, {size: 1, type: :uint8}
       end
 
     end

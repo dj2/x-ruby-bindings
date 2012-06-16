@@ -72,8 +72,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_tag, {type: :uint32},
-            :pad2, {size: 20, type: :uint8}
+            :drawable, {type: :uint32},
+            :context, {type: :uint32},
+            :old_context_tag, {type: :uint32}
       end
 
       class IsDirect < Xrb::Message
@@ -85,8 +86,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :is_direct, {type: :bool},
-            :pad2, {size: 23, type: :uint8}
+            :context, {type: :uint32}
       end
 
       class QueryVersion < Xrb::Message
@@ -99,8 +99,7 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :major_version, {type: :uint32},
-            :minor_version, {type: :uint32},
-            :pad2, {size: 16, type: :uint8}
+            :minor_version, {type: :uint32}
       end
 
       class WaitGl < Xrb::Message
@@ -195,10 +194,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_visuals, {type: :uint32},
-            :num_properties, {type: :uint32},
-            :pad2, {size: 16, type: :uint8},
-            :property_list, {length_field: :length, type: :uint32, kind: :list}
+            :screen, {type: :uint32}
       end
 
       class DestroyGlxPixmap < Xrb::Message
@@ -236,9 +232,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :retval, {type: :uint32},
-            :data1, {type: :uint8, size: 24},
-            :data2, {length_field: :length, type: :uint8, kind: :list}
+            :vendor_code, {type: :uint32},
+            :context_tag, {type: :uint32},
+            :data, {type: :uint8, kind: :list}
       end
 
       class QueryExtensionsString < Xrb::Message
@@ -250,9 +246,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :pad3, {size: 16, type: :uint8}
+            :screen, {type: :uint32}
       end
 
       class QueryServerString < Xrb::Message
@@ -264,10 +258,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :str_len, {type: :uint32},
-            :pad3, {size: 16, type: :uint8},
-            :string, {length_field: :str_len, type: :char, kind: :string}
+            :screen, {type: :uint32},
+            :name, {type: :uint32}
       end
 
       class ClientInfo < Xrb::Message
@@ -294,10 +286,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_FB_configs, {type: :uint32},
-            :num_properties, {type: :uint32},
-            :pad2, {size: 16, type: :uint8},
-            :property_list, {length_field: :length, type: :uint32, kind: :list}
+            :screen, {type: :uint32}
       end
 
       class CreatePixmap < Xrb::Message
@@ -313,8 +302,7 @@ module Xrb
             :fbconfig, {type: :uint32},
             :pixmap, {type: :uint32},
             :glx_pixmap, {type: :uint32},
-            :num_attribs, {type: :uint32},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :num_attribs, {type: :uint32}
       end
 
       class DestroyPixmap < Xrb::Message
@@ -356,9 +344,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_attribs, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :context, {type: :uint32}
       end
 
       class MakeContextCurrent < Xrb::Message
@@ -370,8 +356,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :context_tag, {type: :uint32},
-            :pad2, {size: 20, type: :uint8}
+            :old_context_tag, {type: :uint32},
+            :drawable, {type: :uint32},
+            :read_drawable, {type: :uint32},
+            :context, {type: :uint32}
       end
 
       class CreatePbuffer < Xrb::Message
@@ -386,8 +374,7 @@ module Xrb
             :screen, {type: :uint32},
             :fbconfig, {type: :uint32},
             :pbuffer, {type: :uint32},
-            :num_attribs, {type: :uint32},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :num_attribs, {type: :uint32}
       end
 
       class DestroyPbuffer < Xrb::Message
@@ -411,9 +398,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :num_attribs, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :drawable, {type: :uint32}
       end
 
       class ChangeDrawableAttributes < Xrb::Message
@@ -426,8 +411,7 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32},
-            :num_attribs, {type: :uint32},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :num_attribs, {type: :uint32}
       end
 
       class CreateWindow < Xrb::Message
@@ -443,8 +427,7 @@ module Xrb
             :fbconfig, {type: :uint32},
             :window, {type: :uint32},
             :glx_window, {type: :uint32},
-            :num_attribs, {type: :uint32},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :num_attribs, {type: :uint32}
       end
 
       class DeleteWindow < Xrb::Message
@@ -473,7 +456,6 @@ module Xrb
             :num_versions, {type: :uint32},
             :gl_str_len, {type: :uint32},
             :glx_str_len, {type: :uint32},
-            :gl_versions, {length_field: :num_versions, type: :uint32, kind: :list},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
       end
@@ -493,8 +475,7 @@ module Xrb
             :share_list, {type: :uint32},
             :is_direct, {type: :bool},
             :pad1, {size: 3, type: :uint8},
-            :num_attribs, {type: :uint32},
-            :attribs, {length_field: :num_attribs, type: :uint32, kind: :list}
+            :num_attribs, {type: :uint32}
       end
 
       class SetClientInfo_2arb < Xrb::Message
@@ -511,7 +492,6 @@ module Xrb
             :num_versions, {type: :uint32},
             :gl_str_len, {type: :uint32},
             :glx_str_len, {type: :uint32},
-            :gl_versions, {length_field: :num_versions, type: :uint32, kind: :list},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
       end
@@ -565,7 +545,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :range, {type: :int32}
       end
 
       class FeedbackBuffer < Xrb::Message
@@ -604,11 +585,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32},
-            :n, {type: :uint32},
-            :new_mode, {type: :uint32},
-            :pad2, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :uint32, kind: :list}
+            :context_tag, {type: :uint32},
+            :mode, {type: :uint32}
       end
 
       class Finish < Xrb::Message
@@ -619,7 +597,8 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16}
+            :length, {type: :uint16},
+            :context_tag, {type: :uint32}
       end
 
       class PixelStoref < Xrb::Message
@@ -659,8 +638,15 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :x, {type: :int32},
+            :y, {type: :int32},
+            :width, {type: :int32},
+            :height, {type: :int32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool},
+            :lsb_first, {type: :bool}
       end
 
       class GetBooleanv < Xrb::Message
@@ -672,11 +658,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :bool},
-            :pad3, {size: 15, type: :uint8},
-            :data, {length_field: :n, type: :bool, kind: :list}
+            :context_tag, {type: :uint32},
+            :pname, {type: :int32}
       end
 
       class GetClipPlane < Xrb::Message
@@ -688,8 +671,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :double, kind: :list}
+            :context_tag, {type: :uint32},
+            :plane, {type: :int32}
       end
 
       class GetDoublev < Xrb::Message
@@ -701,11 +684,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :double},
-            :pad3, {size: 8, type: :uint8},
-            :data, {length_field: :n, type: :double, kind: :list}
+            :context_tag, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetError < Xrb::Message
@@ -717,7 +697,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :error, {type: :int32}
+            :context_tag, {type: :uint32}
       end
 
       class GetFloatv < Xrb::Message
@@ -729,11 +709,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetIntegerv < Xrb::Message
@@ -745,11 +722,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetLightfv < Xrb::Message
@@ -761,11 +735,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :light, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetLightiv < Xrb::Message
@@ -777,11 +749,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :light, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetMapdv < Xrb::Message
@@ -793,11 +763,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :double},
-            :pad3, {size: 8, type: :uint8},
-            :data, {length_field: :n, type: :double, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :query, {type: :uint32}
       end
 
       class GetMapfv < Xrb::Message
@@ -809,11 +777,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :query, {type: :uint32}
       end
 
       class GetMapiv < Xrb::Message
@@ -825,11 +791,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :query, {type: :uint32}
       end
 
       class GetMaterialfv < Xrb::Message
@@ -841,11 +805,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :face, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetMaterialiv < Xrb::Message
@@ -857,11 +819,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :face, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetPixelMapfv < Xrb::Message
@@ -873,11 +833,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :map, {type: :uint32}
       end
 
       class GetPixelMapuiv < Xrb::Message
@@ -889,11 +846,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :uint32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :uint32, kind: :list}
+            :context_tag, {type: :uint32},
+            :map, {type: :uint32}
       end
 
       class GetPixelMapusv < Xrb::Message
@@ -905,11 +859,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :uint16},
-            :pad3, {size: 16, type: :uint8},
-            :data, {length_field: :n, type: :uint16, kind: :list}
+            :context_tag, {type: :uint32},
+            :map, {type: :uint32}
       end
 
       class GetPolygonStipple < Xrb::Message
@@ -921,8 +872,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :lsb_first, {type: :bool}
       end
 
       class GetString < Xrb::Message
@@ -934,10 +885,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :pad3, {size: 16, type: :uint8},
-            :string, {length_field: :n, type: :char, kind: :string}
+            :context_tag, {type: :uint32},
+            :name, {type: :uint32}
       end
 
       class GetTexEnvfv < Xrb::Message
@@ -949,11 +898,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexEnviv < Xrb::Message
@@ -965,11 +912,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexGendv < Xrb::Message
@@ -981,11 +926,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :double},
-            :pad3, {size: 8, type: :uint8},
-            :data, {length_field: :n, type: :double, kind: :list}
+            :context_tag, {type: :uint32},
+            :coord, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexGenfv < Xrb::Message
@@ -997,11 +940,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :coord, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexGeniv < Xrb::Message
@@ -1013,11 +954,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :coord, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexImage < Xrb::Message
@@ -1029,12 +968,12 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :width, {type: :int32},
-            :height, {type: :int32},
-            :depth, {type: :int32},
-            :pad3, {size: 4, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :level, {type: :int32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool}
       end
 
       class GetTexParameterfv < Xrb::Message
@@ -1046,11 +985,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexParameteriv < Xrb::Message
@@ -1062,11 +999,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetTexLevelParameterfv < Xrb::Message
@@ -1078,11 +1013,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :level, {type: :int32},
+            :pname, {type: :uint32}
       end
 
       class GetTexLevelParameteriv < Xrb::Message
@@ -1094,11 +1028,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :level, {type: :int32},
+            :pname, {type: :uint32}
       end
 
       class IsList < Xrb::Message
@@ -1110,7 +1043,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :list, {type: :uint32}
       end
 
       class Flush < Xrb::Message
@@ -1134,9 +1068,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :data, {length_field: :length, type: :bool, kind: :list}
+            :context_tag, {type: :uint32},
+            :n, {type: :int32},
+            :textures, {length_field: :n, type: :uint32, kind: :list}
       end
 
       class DeleteTextures < Xrb::Message
@@ -1162,8 +1096,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint32, kind: :list}
+            :context_tag, {type: :uint32},
+            :n, {type: :int32}
       end
 
       class IsTexture < Xrb::Message
@@ -1175,7 +1109,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :texture, {type: :uint32}
       end
 
       class GetColorTable < Xrb::Message
@@ -1187,10 +1122,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :width, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool}
       end
 
       class GetColorTableParameterfv < Xrb::Message
@@ -1202,11 +1138,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetColorTableParameteriv < Xrb::Message
@@ -1218,11 +1152,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetConvolutionFilter < Xrb::Message
@@ -1234,11 +1166,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :width, {type: :int32},
-            :height, {type: :int32},
-            :pad3, {size: 8, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool}
       end
 
       class GetConvolutionParameterfv < Xrb::Message
@@ -1250,11 +1182,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetConvolutionParameteriv < Xrb::Message
@@ -1266,11 +1196,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetSeparableFilter < Xrb::Message
@@ -1282,11 +1210,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :row_w, {type: :int32},
-            :col_h, {type: :int32},
-            :pad3, {size: 8, type: :uint8},
-            :rows_and_cols, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool}
       end
 
       class GetHistogram < Xrb::Message
@@ -1298,10 +1226,12 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :width, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool},
+            :reset, {type: :bool}
       end
 
       class GetHistogramParameterfv < Xrb::Message
@@ -1313,11 +1243,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetHistogramParameteriv < Xrb::Message
@@ -1329,11 +1257,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetMinmax < Xrb::Message
@@ -1345,8 +1271,12 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :format, {type: :uint32},
+            :type, {type: :uint32},
+            :swap_bytes, {type: :bool},
+            :reset, {type: :bool}
       end
 
       class GetMinmaxParameterfv < Xrb::Message
@@ -1358,11 +1288,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :float},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :float, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetMinmaxParameteriv < Xrb::Message
@@ -1374,11 +1302,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetCompressedTexImageArb < Xrb::Message
@@ -1390,10 +1316,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 8, type: :uint8},
-            :size, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :length, type: :uint8, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :level, {type: :int32}
       end
 
       class DeleteQueriesArb < Xrb::Message
@@ -1419,8 +1344,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 24, type: :uint8},
-            :data, {length_field: :length, type: :uint32, kind: :list}
+            :context_tag, {type: :uint32},
+            :n, {type: :int32}
       end
 
       class IsQueryArb < Xrb::Message
@@ -1432,7 +1357,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :ret_val, {type: :uint32}
+            :context_tag, {type: :uint32},
+            :id, {type: :uint32}
       end
 
       class GetQueryivArb < Xrb::Message
@@ -1444,11 +1370,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :target, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetQueryObjectivArb < Xrb::Message
@@ -1460,11 +1384,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :int32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :int32, kind: :list}
+            :context_tag, {type: :uint32},
+            :id, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
       class GetQueryObjectuivArb < Xrb::Message
@@ -1476,11 +1398,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :pad2, {size: 4, type: :uint8},
-            :n, {type: :uint32},
-            :datum, {type: :uint32},
-            :pad3, {size: 12, type: :uint8},
-            :data, {length_field: :n, type: :uint32, kind: :list}
+            :context_tag, {type: :uint32},
+            :id, {type: :uint32},
+            :pname, {type: :uint32}
       end
 
     end

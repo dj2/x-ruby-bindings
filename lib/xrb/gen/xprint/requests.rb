@@ -13,9 +13,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :major_version, {type: :uint16},
-            :minor_version, {type: :uint16}
+            :length, {type: :uint16}
       end
 
       class PrintGetPrinterList < Xrb::Message
@@ -27,9 +25,10 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :listCount, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :printers, {length_field: :listCount, type: Printer, kind: :list}
+            :printerNameLen, {type: :uint32},
+            :localeLen, {type: :uint32},
+            :printer_name, {length_field: :printerNameLen, type: :char, kind: :string},
+            :locale, {length_field: :localeLen, type: :char, kind: :string}
       end
 
       class PrintRehashPrinterList < Xrb::Message
@@ -79,8 +78,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :context, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class PrintDestroyContext < Xrb::Message
@@ -103,8 +101,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :root, {type: :uint32}
+            :length, {type: :uint16}
       end
 
       class PrintStartJob < Xrb::Message
@@ -182,11 +179,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :status_code, {type: :uint32},
-            :finished_flag, {type: :uint32},
-            :dataLen, {type: :uint32},
-            :pad2, {size: 12, type: :uint8},
-            :data, {length_field: :dataLen, type: :uint8, kind: :list}
+            :context, {type: :uint32},
+            :max_bytes, {type: :uint32}
       end
 
       class PrintStartPage < Xrb::Message
@@ -236,8 +230,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :event, {type: :uint32, kind: :map},
-            :all_events, {type: :uint32, kind: :map}
+            :context, {type: :uint32}
       end
 
       class PrintGetAttributes < Xrb::Message
@@ -249,9 +242,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :stringLen, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :attributes, {type: :char}
+            :context, {type: :uint32},
+            :pool, {type: :uint8},
+            :pad1, {size: 3, type: :uint8}
       end
 
       class PrintGetOneAttributes < Xrb::Message
@@ -263,9 +256,11 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :valueLen, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :value, {length_field: :valueLen, type: :char, kind: :string}
+            :context, {type: :uint32},
+            :nameLen, {type: :uint32},
+            :pool, {type: :uint8},
+            :pad1, {size: 3, type: :uint8},
+            :name, {length_field: :nameLen, type: :char, kind: :string}
       end
 
       class PrintSetAttributes < Xrb::Message
@@ -294,12 +289,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :width, {type: :uint16},
-            :height, {type: :uint16},
-            :offset_x, {type: :uint16},
-            :offset_y, {type: :uint16},
-            :reproducible_width, {type: :uint16},
-            :reproducible_height, {type: :uint16}
+            :context, {type: :uint32}
       end
 
       class PrintQueryScreens < Xrb::Message
@@ -310,10 +300,7 @@ module Xrb
         layout \
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
-            :length, {type: :uint16},
-            :listCount, {type: :uint32},
-            :pad2, {size: 20, type: :uint8},
-            :roots, {length_field: :listCount, type: :uint32, kind: :list}
+            :length, {type: :uint16}
       end
 
       class PrintSetImageResolution < Xrb::Message
@@ -325,7 +312,8 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :previous_resolutions, {type: :uint16}
+            :context, {type: :uint32},
+            :image_resolution, {type: :uint16}
       end
 
       class PrintGetImageResolution < Xrb::Message
@@ -337,7 +325,7 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :image_resolution, {type: :uint16}
+            :context, {type: :uint32}
       end
 
     end

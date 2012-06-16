@@ -45,22 +45,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :visual, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :class, {type: :uint16},
-          :bit_gravity, {type: :uint8},
-          :win_gravity, {type: :uint8},
-          :backing_planes, {type: :uint32},
-          :backing_pixel, {type: :uint32},
-          :save_under, {type: :bool},
-          :map_is_installed, {type: :bool},
-          :map_state, {type: :uint8},
-          :override_redirect, {type: :bool},
-          :colormap, {type: :uint32},
-          :all_event_masks, {type: :uint32},
-          :your_event_mask, {type: :uint32},
-          :do_not_propagate_mask, {type: :uint16},
-          :pad1, {size: 2, type: :uint8}
+          :window, {type: :uint32}
     end
 
     class DestroyWindow < Xrb::Message
@@ -196,14 +183,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :root, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :x, {type: :int16},
-          :y, {type: :int16},
-          :width, {type: :uint16},
-          :height, {type: :uint16},
-          :border_width, {type: :uint16},
-          :pad1, {size: 2, type: :uint8}
+          :drawable, {type: :uint32}
     end
 
     class QueryTree < Xrb::Message
@@ -213,12 +195,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :root, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :parent, {type: :uint32},
-          :children_len, {type: :uint16},
-          :pad2, {size: 14, type: :uint8},
-          :children, {length_field: :children_len, type: :uint32, kind: :list}
+          :window, {type: :uint32}
     end
 
     class InternAtom < Xrb::Message
@@ -228,8 +207,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :atom, {type: :uint32},
-          :length, {type: :uint16}
+          :only_if_exists, {type: :bool},
+          :length, {type: :uint16},
+          :name_len, {type: :uint16},
+          :pad1, {size: 2, type: :uint8},
+          :name, {length_field: :name_len, type: :char, kind: :string}
     end
 
     class GetAtomName < Xrb::Message
@@ -239,10 +221,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :name_len, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :name, {length_field: :name_len, type: :char, kind: :string}
+          :atom, {type: :uint32}
     end
 
     class ChangeProperty < Xrb::Message
@@ -259,8 +240,7 @@ module Xrb
           :type, {type: :uint32},
           :format, {type: :uint8},
           :pad1, {size: 3, type: :uint8},
-          :data_len, {type: :uint32},
-          :data, {length_field: :data_len, type: :uint8, kind: :list}
+          :data_len, {type: :uint32}
     end
 
     class DeleteProperty < Xrb::Message
@@ -283,12 +263,13 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :type, {type: :uint32},
+          :delete, {type: :bool},
           :length, {type: :uint16},
-          :bytes_after, {type: :uint32},
-          :value_len, {type: :uint32},
-          :pad1, {size: 12, type: :uint8},
-          :value, {length_field: :format, type: :uint8, kind: :list}
+          :window, {type: :uint32},
+          :property, {type: :uint32},
+          :type, {type: :uint32},
+          :long_offset, {type: :uint32},
+          :long_length, {type: :uint32}
     end
 
     class ListProperties < Xrb::Message
@@ -298,10 +279,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :atoms_len, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :atoms, {length_field: :atoms_len, type: :uint32, kind: :list}
+          :window, {type: :uint32}
     end
 
     class SetSelectionOwner < Xrb::Message
@@ -325,8 +305,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :owner, {type: :uint32},
-          :length, {type: :uint16}
+          :pad1, {size: 1, type: :uint8},
+          :length, {type: :uint16},
+          :selection, {type: :uint32}
     end
 
     class ConvertSelection < Xrb::Message
@@ -366,8 +347,15 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad0, {size: 1, type: :uint8},
-          :length, {type: :uint16}
+          :owner_events, {type: :bool},
+          :length, {type: :uint16},
+          :grab_window, {type: :uint32},
+          :event_mask, {type: :uint16},
+          :pointer_mode, {type: :uint8},
+          :keyboard_mode, {type: :uint8},
+          :confine_to, {type: :uint32},
+          :cursor, {type: :uint32},
+          :time, {type: :uint32}
     end
 
     class UngrabPointer < Xrb::Message
@@ -438,8 +426,13 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad0, {size: 1, type: :uint8},
-          :length, {type: :uint16}
+          :owner_events, {type: :bool},
+          :length, {type: :uint16},
+          :grab_window, {type: :uint32},
+          :time, {type: :uint32},
+          :pointer_mode, {type: :uint8},
+          :keyboard_mode, {type: :uint8},
+          :pad1, {size: 2, type: :uint8}
     end
 
     class UngrabKeyboard < Xrb::Message
@@ -526,15 +519,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :root, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :child, {type: :uint32},
-          :root_x, {type: :int16},
-          :root_y, {type: :int16},
-          :win_x, {type: :int16},
-          :win_y, {type: :int16},
-          :mask, {type: :uint16},
-          :pad1, {size: 2, type: :uint8}
+          :window, {type: :uint32}
     end
 
     class GetMotionEvents < Xrb::Message
@@ -544,10 +531,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :events_len, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 20, type: :uint8},
-          :events, {length_field: :events_len, type: TimeCoord, kind: :list}
+          :window, {type: :uint32},
+          :start, {type: :uint32},
+          :stop, {type: :uint32}
     end
 
     class TranslateCoordinates < Xrb::Message
@@ -557,10 +545,12 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :child, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :dst_x, {type: :int16},
-          :dst_y, {type: :int16}
+          :src_window, {type: :uint32},
+          :dst_window, {type: :uint32},
+          :src_x, {type: :int16},
+          :src_y, {type: :int16}
     end
 
     class WarpPointer < Xrb::Message
@@ -602,7 +592,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :focus, {type: :uint32},
+          :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
     end
 
@@ -613,7 +603,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :keys, {type: :uint8, size: 32},
+          :pad0, {size: 1, type: :uint8},
           :length, {type: :uint16}
     end
 
@@ -651,24 +641,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :min_bounds, {type: :CHARINFO},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 4, type: :uint8},
-          :max_bounds, {type: :CHARINFO},
-          :pad3, {size: 4, type: :uint8},
-          :min_char_or_byte2, {type: :uint16},
-          :max_char_or_byte2, {type: :uint16},
-          :default_char, {type: :uint16},
-          :properties_len, {type: :uint16},
-          :draw_direction, {type: :uint8},
-          :min_byte1, {type: :uint8},
-          :max_byte1, {type: :uint8},
-          :all_chars_exist, {type: :bool},
-          :font_ascent, {type: :int16},
-          :font_descent, {type: :int16},
-          :char_infos_len, {type: :uint32},
-          :properties, {length_field: :properties_len, type: FontProp, kind: :list},
-          :char_infos, {length_field: :char_infos_len, type: CharInfo, kind: :list}
+          :font, {type: :uint32}
     end
 
     class QueryTextExtents < Xrb::Message
@@ -678,14 +653,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :font_ascent, {type: :int16},
           :length, {type: :uint16},
-          :font_descent, {type: :int16},
-          :overall_ascent, {type: :int16},
-          :overall_descent, {type: :int16},
-          :overall_width, {type: :int32},
-          :overall_left, {type: :int32},
-          :overall_right, {type: :int32}
+          :font, {type: :uint32},
+          :string, {type: Char2b, kind: :list}
     end
 
     class ListFonts < Xrb::Message
@@ -695,10 +665,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :names_len, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :names, {length_field: :names_len, type: Str, kind: :list}
+          :max_names, {type: :uint16},
+          :pattern_len, {type: :uint16},
+          :pattern, {length_field: :pattern_len, type: :char, kind: :string}
     end
 
     class ListFontsWithInfo < Xrb::Message
@@ -708,24 +679,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :min_bounds, {type: :CHARINFO},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad1, {size: 4, type: :uint8},
-          :max_bounds, {type: :CHARINFO},
-          :pad2, {size: 4, type: :uint8},
-          :min_char_or_byte2, {type: :uint16},
-          :max_char_or_byte2, {type: :uint16},
-          :default_char, {type: :uint16},
-          :properties_len, {type: :uint16},
-          :draw_direction, {type: :uint8},
-          :min_byte1, {type: :uint8},
-          :max_byte1, {type: :uint8},
-          :all_chars_exist, {type: :bool},
-          :font_ascent, {type: :int16},
-          :font_descent, {type: :int16},
-          :replies_hint, {type: :uint32},
-          :properties, {length_field: :properties_len, type: FontProp, kind: :list},
-          :name, {length_field: :name_len, type: :char, kind: :string}
+          :max_names, {type: :uint16},
+          :pattern_len, {type: :uint16},
+          :pattern, {length_field: :pattern_len, type: :char, kind: :string}
     end
 
     class SetFontPath < Xrb::Message
@@ -749,10 +707,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :path_len, {type: :uint16},
-          :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :path, {length_field: :path_len, type: Str, kind: :list}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class CreatePixmap < Xrb::Message
@@ -1065,10 +1021,14 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :visual, {type: :uint32},
+          :format, {type: :uint8},
           :length, {type: :uint16},
-          :pad1, {size: 20, type: :uint8},
-          :data, {length_field: :length, type: :uint8, kind: :list}
+          :drawable, {type: :uint32},
+          :x, {type: :int16},
+          :y, {type: :int16},
+          :width, {type: :uint16},
+          :height, {type: :uint16},
+          :plane_mask, {type: :uint32}
     end
 
     class PolyText_8 < Xrb::Message
@@ -1205,10 +1165,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :cmaps_len, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :cmaps, {length_field: :cmaps_len, type: :uint32, kind: :list}
+          :window, {type: :uint32}
     end
 
     class AllocColor < Xrb::Message
@@ -1218,12 +1177,13 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :red, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
+          :cmap, {type: :uint32},
+          :red, {type: :uint16},
           :green, {type: :uint16},
           :blue, {type: :uint16},
-          :pad2, {size: 2, type: :uint8},
-          :pixel, {type: :uint32}
+          :pad2, {size: 2, type: :uint8}
     end
 
     class AllocNamedColor < Xrb::Message
@@ -1233,14 +1193,12 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pixel, {type: :uint32},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :exact_red, {type: :uint16},
-          :exact_green, {type: :uint16},
-          :exact_blue, {type: :uint16},
-          :visual_red, {type: :uint16},
-          :visual_green, {type: :uint16},
-          :visual_blue, {type: :uint16}
+          :cmap, {type: :uint32},
+          :name_len, {type: :uint16},
+          :pad2, {size: 2, type: :uint8},
+          :name, {length_field: :name_len, type: :char, kind: :string}
     end
 
     class AllocColorCells < Xrb::Message
@@ -1250,12 +1208,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pixels_len, {type: :uint16},
+          :contiguous, {type: :bool},
           :length, {type: :uint16},
-          :masks_len, {type: :uint16},
-          :pad2, {size: 20, type: :uint8},
-          :pixels, {length_field: :pixels_len, type: :uint32, kind: :list},
-          :masks, {length_field: :masks_len, type: :uint32, kind: :list}
+          :cmap, {type: :uint32},
+          :colors, {type: :uint16},
+          :planes, {type: :uint16}
     end
 
     class AllocColorPlanes < Xrb::Message
@@ -1265,14 +1222,13 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pixels_len, {type: :uint16},
+          :contiguous, {type: :bool},
           :length, {type: :uint16},
-          :pad2, {size: 2, type: :uint8},
-          :red_mask, {type: :uint32},
-          :green_mask, {type: :uint32},
-          :blue_mask, {type: :uint32},
-          :pad3, {size: 8, type: :uint8},
-          :pixels, {length_field: :pixels_len, type: :uint32, kind: :list}
+          :cmap, {type: :uint32},
+          :colors, {type: :uint16},
+          :reds, {type: :uint16},
+          :greens, {type: :uint16},
+          :blues, {type: :uint16}
     end
 
     class FreeColors < Xrb::Message
@@ -1325,10 +1281,10 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :colors_len, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :pad2, {size: 22, type: :uint8},
-          :colors, {length_field: :colors_len, type: RGB, kind: :list}
+          :cmap, {type: :uint32},
+          :pixels, {type: :uint32, kind: :list}
     end
 
     class LookupColor < Xrb::Message
@@ -1338,13 +1294,12 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :exact_red, {type: :uint16},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :exact_green, {type: :uint16},
-          :exact_blue, {type: :uint16},
-          :visual_red, {type: :uint16},
-          :visual_green, {type: :uint16},
-          :visual_blue, {type: :uint16}
+          :cmap, {type: :uint32},
+          :name_len, {type: :uint16},
+          :pad2, {size: 2, type: :uint8},
+          :name, {length_field: :name_len, type: :char, kind: :string}
     end
 
     class CreateCursor < Xrb::Message
@@ -1428,8 +1383,10 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :width, {type: :uint16},
+          :class, {type: :uint8},
           :length, {type: :uint16},
+          :drawable, {type: :uint32},
+          :width, {type: :uint16},
           :height, {type: :uint16}
     end
 
@@ -1440,11 +1397,11 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :present, {type: :bool},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :major_opcode, {type: :uint8},
-          :first_event, {type: :uint8},
-          :first_error, {type: :uint8}
+          :name_len, {type: :uint16},
+          :pad2, {size: 2, type: :uint8},
+          :name, {length_field: :name_len, type: :char, kind: :string}
     end
 
     class ListExtensions < Xrb::Message
@@ -1454,9 +1411,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad1, {size: 24, type: :uint8},
-          :length, {type: :uint16},
-          :names, {length_field: :names_len, type: Str, kind: :list}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class ChangeKeyboardMapping < Xrb::Message
@@ -1470,8 +1426,7 @@ module Xrb
           :length, {type: :uint16},
           :first_keycode, {type: :uint8},
           :keysyms_per_keycode, {type: :uint8},
-          :pad1, {size: 2, type: :uint8},
-          :keysyms, {length_field: :keycode_count, type: :uint32, kind: :list}
+          :pad1, {size: 2, type: :uint8}
     end
 
     class GetKeyboardMapping < Xrb::Message
@@ -1481,9 +1436,10 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad1, {size: 24, type: :uint8},
+          :pad1, {size: 1, type: :uint8},
           :length, {type: :uint16},
-          :keysyms, {length_field: :length, type: :uint32, kind: :list}
+          :first_keycode, {type: :uint8},
+          :count, {type: :uint8}
     end
 
     class ChangeKeyboardControl < Xrb::Message
@@ -1505,14 +1461,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :led_mask, {type: :uint32},
-          :length, {type: :uint16},
-          :key_click_percent, {type: :uint8},
-          :bell_percent, {type: :uint8},
-          :bell_pitch, {type: :uint16},
-          :bell_duration, {type: :uint16},
-          :pad1, {size: 2, type: :uint8},
-          :auto_repeats, {type: :uint8, size: 32}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class Bell < Xrb::Message
@@ -1549,11 +1499,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :acceleration_numerator, {type: :uint16},
-          :length, {type: :uint16},
-          :acceleration_denominator, {type: :uint16},
-          :threshold, {type: :uint16},
-          :pad2, {size: 18, type: :uint8}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class SetScreenSaver < Xrb::Message
@@ -1578,12 +1525,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :timeout, {type: :uint16},
-          :length, {type: :uint16},
-          :interval, {type: :uint16},
-          :prefer_blanking, {type: :uint8},
-          :allow_exposures, {type: :uint8},
-          :pad2, {size: 18, type: :uint8}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class ChangeHosts < Xrb::Message
@@ -1608,10 +1551,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :hosts_len, {type: :uint16},
-          :length, {type: :uint16},
-          :pad1, {size: 22, type: :uint8},
-          :hosts, {length_field: :hosts_len, type: Host, kind: :list}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class SetAccessControl < Xrb::Message
@@ -1681,8 +1622,9 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad0, {size: 1, type: :uint8},
-          :length, {type: :uint16}
+          :map_len, {type: :uint8},
+          :length, {type: :uint16},
+          :map, {length_field: :map_len, type: :uint8, kind: :list}
     end
 
     class GetPointerMapping < Xrb::Message
@@ -1692,9 +1634,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad1, {size: 24, type: :uint8},
-          :length, {type: :uint16},
-          :map, {length_field: :map_len, type: :uint8, kind: :list}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class SetModifierMapping < Xrb::Message
@@ -1704,7 +1645,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad0, {size: 1, type: :uint8},
+          :keycodes_per_modifier, {type: :uint8},
           :length, {type: :uint16}
     end
 
@@ -1715,9 +1656,8 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :pad1, {size: 24, type: :uint8},
-          :length, {type: :uint16},
-          :keycodes, {length_field: :keycodes_per_modifier, type: :uint8, kind: :list}
+          :pad0, {size: 1, type: :uint8},
+          :length, {type: :uint16}
     end
 
     class NoOperation < Xrb::Message
