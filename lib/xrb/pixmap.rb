@@ -5,11 +5,9 @@ module Xrb
       @id = @conn.generate_id
 
       o = opts.merge!({pid: @id})
-      o[:drawable] = o.delete(:window).id
-
-      if o[:depth].nil?
-        o[:depth] = @conn.setup.pixmap_formats.last.depth
-      end
+      win = o.delete(:window)
+      o[:drawable] = win.id
+      o[:depth] = win.depth if o[:depth].nil?
 
       @conn.send(Xrb::Request::CreatePixmap.new(o))
     end
