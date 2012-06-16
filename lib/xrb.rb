@@ -11,6 +11,7 @@ require 'xrb/gc'
 require 'xrb/image'
 require 'xrb/pixmap'
 require 'xrb/colormap'
+require 'xrb/rectangle'
 require 'xrb/window'
 
 module Xrb
