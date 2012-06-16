@@ -54,15 +54,17 @@ module Xrb
       # schedule for the sooner of the two times
       tv = @timers.empty? ? 99999 : @timers.first[:delay] - @current_time
       sleep_time = [@next_tick - @current_time, tv].min
-
       sleep(sleep_time)
+
       @current_time = Time.now.to_f
 
       if (@next_tick <= @current_time)
         @next_tick = @current_time + @quantum
 
-        @next_ticks.each { |p| p.call }
-        @next_ticks.clear
+        ticks = @next_ticks
+        @next_ticks = []
+
+        ticks.each { |tick| tick.call }
       end
     end
   end
