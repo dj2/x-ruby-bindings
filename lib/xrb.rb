@@ -14,8 +14,6 @@ require 'xrb/colormap'
 require 'xrb/window'
 
 module Xrb
-  DEFAULT_SLEEP = 0.1
-
   # Start the main run loop.
   # This will connect to the X server and does not return until
   # {Xrb#quit} is called.
@@ -33,8 +31,11 @@ module Xrb
     @readers = []
     @next_ticks = []
 
-    @timer_mutex = Mutex.new
     @current_time = Time.now.to_f
+    @quantum = 1 / 60.0
+    @next_tick = @current_time + @quantum
+
+    @timer_mutex = Mutex.new
     @thread_pool = ThreadPool.new(@thread_pool_size || 10)
 
     @conn = Xrb::Connection.new(display)
@@ -48,12 +49,20 @@ module Xrb
       fire_timers
       check_sockets
 
-      sleep(@timers.empty? ? DEFAULT_SLEEP :
-          (@timers.first[:delay] - @current_time))
+      # determine if the timer fires before the next quantum expires
+      # schedule for the sooner of the two times
+      tv = @timers.empty? ? 99999 : @timers.first[:delay] - @current_time
+      sleep_time = [@next_tick - @current_time, tv].min
+
+      sleep(sleep_time)
       @current_time = Time.now.to_f
 
-      @next_ticks.each { |p| p.call }
-      @next_ticks.clear
+      if (@next_tick <= @current_time)
+        @next_tick = @current_time + @quantum
+
+        @next_ticks.each { |p| p.call }
+        @next_ticks.clear
+      end
     end
   end
 
