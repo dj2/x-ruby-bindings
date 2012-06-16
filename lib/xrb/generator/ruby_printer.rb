@@ -346,6 +346,11 @@ module Xrb
               @p.print
               @p.print("layout \\")
               @p.inc(4) { Field.new(type.fields, @p).process }
+              @p.print
+              @p.print("def to_sym") do
+                n = @p.type_name(name).split("::").last
+                @p.print(":#{n}")
+              end
             end
             @p.print
           end
