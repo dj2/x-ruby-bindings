@@ -1,6 +1,7 @@
 require 'socket'
 require 'xrb/constants'
 require 'xrb/auth'
+require 'xrb/cookie'
 
 module Xrb
   class Connection
@@ -14,6 +15,10 @@ module Xrb
 
       display_name =~ /^([\w.-]*):(\d+)(?:.(\d+))?$/
       @host, @display, @screen = $1, $2.to_i, $3
+
+      @id_mutex = Mutex.new
+      @sequence_mutex = Mutex.new
+      @sequence_num = 1
 
       @windows = []
       @event_handlers = []
@@ -44,7 +49,7 @@ module Xrb
         last: 0,
         base: @server_data.resource_id_base,
         max: @server_data.resource_id_mask,
-        inc: @server_data.resource_id_mask & ~@server_data.resource_id_mask
+        inc: @server_data.resource_id_mask & -@server_data.resource_id_mask
       }
     end
 
@@ -69,7 +74,17 @@ module Xrb
     end
 
     def send(data)
+      seq = next_sequence_num
       @socket.write(data)
+      Cookie.new(seq)
+    end
+
+    def next_sequence_num
+      @sequence_mutex.synchronize do
+        val = @sequence_num
+        @sequence_num += 1
+        val
+      end
     end
 
     def push(val)
@@ -84,6 +99,7 @@ module Xrb
       push(v2)
       push(v1)
 
+p [kind, type]
       case kind
       when Xrb::Connection::ERROR then
         klass = Xrb::Error.find(type)
@@ -95,7 +111,7 @@ module Xrb
       when Xrb::Connection::REPLY then
         puts "Reply for ..."
         nil
-      else 
+      else
         klass = Xrb::Event.find(kind)
         if klass.nil?
           $stderr.puts("Failed to find #{kind}")
@@ -147,13 +163,15 @@ module Xrb
     def generate_id
       # TODO(dj2): Use XC Misc to retrieve released IDs and reuse them.
 
-      @xid[:last] += @xid[:inc]
+      @id_mutex.synchronize do
+        @xid[:last] += @xid[:inc]
 
-      if @xid[:last] >= (@xid[:max] - @xid[:inc] + 1)
-        puts "CRAP ... OUT OF XIDs"
+        if @xid[:last] >= (@xid[:max] - @xid[:inc] + 1)
+          puts "CRAP ... OUT OF XIDs"
+        end
+
+        @xid[:last] | @xid[:base]
       end
-
-      @xid[:last] | @xid[:base]
     end
 
     def next_event(&blk)
