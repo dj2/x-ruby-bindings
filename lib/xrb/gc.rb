@@ -11,7 +11,7 @@ module Xrb
         screen = o[:screen] || @conn.setup.roots.first
         o[:drawable] = screen.root
       else
-        o[:drawable] = o.delete(:window)
+        o[:drawable] = o.delete(:window).id
       end
 
       @conn.send(Xrb::Request::CreateGc.new(o).pack)
