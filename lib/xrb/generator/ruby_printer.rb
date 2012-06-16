@@ -134,7 +134,7 @@ module Xrb
             file(ns, "#{ns.header}/constants") do
               constants.each do |constant|
                 print("# #{constant.name}")
-                Field.new(constant.fields, self).process
+                Field.new(constant.fields, self, '').process
                 print
               end
             end
@@ -183,9 +183,10 @@ module Xrb
       end
 
       class Field
-        def initialize(fields, printer)
+        def initialize(fields, printer, joiner = ',')
           @p = printer
           @data = fields
+          @joiner = joiner
         end
 
         def process
@@ -203,7 +204,7 @@ module Xrb
 
           if !output.empty?
             output[0].strip!
-            @p.print(output.join(",\n"))
+            @p.print(output.join("#{@joiner}\n"))
           end
         end
 
