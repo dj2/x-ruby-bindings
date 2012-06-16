@@ -5,7 +5,7 @@
 module Xrb
   module Test
     # Cursor
-    CURSOR_NONE = (0),
+    CURSOR_NONE = (0)
     CURSOR_CURRENT = (1)
 
   end
