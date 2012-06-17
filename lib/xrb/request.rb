@@ -9,11 +9,19 @@ module Xrb
 
     def calc_length
       s = self.ruby_class.size
-      unless self.ruby_class.fields[:value].nil?
-        val = self.ruby_class.fields[:value]
-        s += ((val.has_key?(:size) ? val[:size] : val[:type].size) * value.length)
+      self.ruby_class.fields.each_pair do |key, val|
+        next unless val[:kind]
+
+        if val[:kind].is_map?
+          s += ((val.has_key?(:size) ? val[:size] : val[:type].size) * send(key).length)
+        elsif val[:kind].is_list?
+          send(key).each { |v| s+= v.size }
+        elsif val[:kind].is_string?
+          s += send(key).length
+        end
       end
-      @length = s / 4
+
+      @length = (s >> 2)
     end
   end
 end
