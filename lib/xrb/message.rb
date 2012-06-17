@@ -32,11 +32,21 @@ module Xrb
 
     def self.unpack(data, padded = true)
       ret = self.new
+      ret.unpack(data, padded, @fields)
+      ret
+    end
 
-      @fields.each_pair do |key, v|
+    def unpack(data, padded, fields)
+      fields.each_pair do |key, v|
+
         type = v[:type]
         kind = v[:kind]
         size = v[:size] || type.size
+
+        if v.has_key?(:length_expr)
+          bind = Proc.new {}
+          size = eval(v[:length_expr], bind.binding)
+        end
 
         if key =~ /^pad[0-9]*/
           data.read(type.size * size)
@@ -46,11 +56,11 @@ module Xrb
           if kind.is_list?
             if type.is_a?(Class)
               data_value = []
-              ret.send(v[:length_field]).times do
+              send(v[:length_field]).times do
                 data_value << type.unpack(data, padded)
               end
             else
-              tmp = data.read(ret.send(v[:length_field]) * size)
+              tmp = data.read(send(v[:length_field]) * size)
 
               data_value = []
               idx = 0
@@ -62,7 +72,7 @@ module Xrb
             end
 
           elsif kind.is_string?
-            len = ret.send(v[:length_field])
+            len = send(v[:length_field])
             data_value = data.read(len)
 
             if padded
@@ -77,12 +87,13 @@ module Xrb
           end
         else
           data_value = data.read(size)
-          data_value = data_value.unpack(type.directive).first
+          if type.is_packed?
+            data_value = data_value.unpack(type.directive).first
+          end
         end
 
-        ret.send("#{key}=", data_value)
+        send("#{key}=", data_value)
       end
-      ret
     end
 
     def self.fields
@@ -109,6 +120,10 @@ module Xrb
         str << if key =~ /^pad[0-9]*/
           "\x00" * size
 
+        elsif v.has_key?(:value_expr)
+          bind = Proc.new {}
+          eval(v[:value_expr], bind.binding)
+
         elsif kind
           if kind.is_list?
             self.send(key).collect { |obj| obj.pack }.join
@@ -129,7 +144,11 @@ module Xrb
           end
 
         else
-          [self.send(key)].pack(type.directive)
+          if type.is_packed?
+            [self.send(key)].pack(type.directive)
+          else
+            self.send(key)
+          end
         end
       end
       str
