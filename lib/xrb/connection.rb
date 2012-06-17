@@ -1,6 +1,7 @@
 require 'socket'
 require 'xrb/constants'
 require 'xrb/auth'
+require 'xrb/cookie'
 
 module Xrb
   class Connection
@@ -14,6 +15,12 @@ module Xrb
 
       display_name =~ /^([\w.-]*):(\d+)(?:.(\d+))?$/
       @host, @display, @screen = $1, $2.to_i, $3
+
+      @id_mutex = Mutex.new
+      @sequence_mutex = Mutex.new
+      @sequence_num = 1
+
+      @cookie_jar = {}
 
       @windows = []
       @event_handlers = []
@@ -40,11 +47,13 @@ module Xrb
 
       @server_data = auth.handshake
 
+      @sequence_num = 1
+
       @xid = {
         last: 0,
         base: @server_data.resource_id_base,
         max: @server_data.resource_id_mask,
-        inc: @server_data.resource_id_mask & ~@server_data.resource_id_mask
+        inc: @server_data.resource_id_mask & -@server_data.resource_id_mask
       }
     end
 
@@ -68,8 +77,25 @@ module Xrb
       @socket.close
     end
 
-    def send(data)
-      @socket.write(data)
+    def send(request)
+      seq = next_sequence_num
+      @socket.write(request.pack)
+
+p [seq, request.ruby_class]
+
+      if request.has_reply?
+        cookie = Cookie.new(seq, request)
+        @cookie_jar[seq] = cookie
+        cookie
+      end
+    end
+
+    def next_sequence_num
+      @sequence_mutex.synchronize do
+        val = @sequence_num
+        @sequence_num += 1
+        val
+      end
     end
 
     def push(val)
@@ -83,7 +109,7 @@ module Xrb
       type = v2.unpack('w').first
       push(v2)
       push(v1)
-    
+
       case kind
       when Xrb::Connection::ERROR then
         klass = Xrb::Error.find(type)
@@ -93,9 +119,25 @@ module Xrb
         handle_message(error, :error, @error_handlers)
 
       when Xrb::Connection::REPLY then
-        puts "Reply for ..."
-        nil
-      else 
+        v1 = read(1)
+        v2 = read(1)
+        v3 = read(1)
+        v4 = read(1)
+        seq = "#{v3}#{v4}".unpack('S').first
+        push(v4)
+        push(v3)
+        push(v2)
+        push(v1)
+
+        cookie = @cookie_jar.delete(seq)
+        reply = cookie.reply(self)
+        if reply.ruby_class.size < 32
+          read(32 - reply.ruby_class.size)
+        end
+
+        cookie.callback
+
+      else
         klass = Xrb::Event.find(kind)
         if klass.nil?
           $stderr.puts("Failed to find #{kind}")
@@ -130,7 +172,6 @@ module Xrb
         nil
       end
 
-      
       if window_id
         window = @windows.select { |w| w.id == window_id }.first
         if window
@@ -148,13 +189,15 @@ module Xrb
     def generate_id
       # TODO(dj2): Use XC Misc to retrieve released IDs and reuse them.
 
-      @xid[:last] += @xid[:inc]
+      @id_mutex.synchronize do
+        @xid[:last] += @xid[:inc]
 
-      if @xid[:last] >= (@xid[:max] - @xid[:inc] + 1)
-        puts "CRAP ... OUT OF XIDs"
+        if @xid[:last] >= (@xid[:max] - @xid[:inc] + 1)
+          puts "CRAP ... OUT OF XIDs"
+        end
+
+        @xid[:last] | @xid[:base]
       end
-
-      @xid[:last] | @xid[:base]
     end
 
     def next_event(&blk)

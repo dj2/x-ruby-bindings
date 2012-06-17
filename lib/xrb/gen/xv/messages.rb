@@ -7,33 +7,33 @@ module Xrb
     class Message
       class Port
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Encoding
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Rational < Xrb::Message
         layout \
             :numerator, {type: :int32},
             :denominator, {type: :int32}
       end
-      
+
       class Format < Xrb::Message
         layout \
             :visual, {type: :uint32},
             :depth, {type: :uint8},
             :pad1, {size: 3, type: :uint8}
       end
-      
+
       class AdaptorInfo < Xrb::Message
         layout \
             :base_id, {type: :uint32},
@@ -45,7 +45,7 @@ module Xrb
             :name, {length_field: :name_size, type: :char, kind: :string},
             :formats, {length_field: :num_formats, type: Format, kind: :list}
       end
-      
+
       class EncodingInfo < Xrb::Message
         layout \
             :encoding, {type: :uint32},
@@ -56,7 +56,7 @@ module Xrb
             :rate, {type: :Rational},
             :name, {length_field: :name_size, type: :char, kind: :string}
       end
-      
+
       class Image < Xrb::Message
         layout \
             :id, {type: :uint32},
@@ -68,7 +68,7 @@ module Xrb
             :offsets, {length_field: :num_planes, type: :uint32, kind: :list},
             :data, {length_field: :data_size, type: :uint8, kind: :list}
       end
-      
+
       class AttributeInfo < Xrb::Message
         layout \
             :flags, {type: :uint32},
@@ -77,7 +77,7 @@ module Xrb
             :size, {type: :uint32},
             :name, {length_field: :size, type: :char, kind: :string}
       end
-      
+
       class ImageFormatInfo < Xrb::Message
         layout \
             :id, {type: :uint32},
@@ -108,7 +108,7 @@ module Xrb
             :vscanline_order, {type: :uint8},
             :pad5, {size: 11, type: :uint8}
       end
-      
+
     end
   end
 end

@@ -12,7 +12,7 @@ module Xrb
             :width, {type: :uint16},
             :height, {type: :uint16}
       end
-      
+
     end
   end
 end

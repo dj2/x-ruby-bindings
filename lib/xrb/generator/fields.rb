@@ -5,7 +5,7 @@ module Xrb
 
       def initialize(node, type)
         @name = node.attr('name')
-        @type = type        
+        @type = type
         @enum = node.attr('enum')
         @altenum = node.attr('altenum')
         @mask = node.attr('mask')
@@ -60,6 +60,8 @@ module Xrb
     end
 
     class ExprField
+      attr_reader :name, :type, :members
+
       def initialize(node, parser)
         @name = node.attr('name')
         @type = parser.get_type(node.attr('type'))
@@ -93,13 +95,21 @@ module Xrb
     end
 
     class OpField
+      attr_reader :name, :members
+
       def initialize(node, parser)
-        @name = node.attr('op')
         @members = parser.parse_list(node.children)
+        @name = case node.attr('op')
+            when '&lt;&lt;' then '<<'
+            when '&amp;' then '&'
+            else node.attr('op')
+            end
       end
     end
 
     class UnopField
+      attr_reader :members
+
       def initialize(node, parser)
         @name = node.attr('op')
         @members = parser.parse_list(node.children)
@@ -131,7 +141,7 @@ module Xrb
 
     class EnumRefField
       def initialize(node, parser)
-        @name = :enumref 
+        @name = :enumref
         @field_name = node.attr('ref')
         @field_value = node.inner_text
       end

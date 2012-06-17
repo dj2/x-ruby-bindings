@@ -7,7 +7,7 @@ module Xrb
     module Event
       class DeviceValuator < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :device_id, {type: :uint8},
@@ -16,14 +16,18 @@ module Xrb
             :num_valuators, {type: :uint8},
             :first_valuator, {type: :uint8},
             :valuators, {type: :int32, size: 6}
+
+        def to_sym
+          :DeviceValuator
+        end
       end
-      
+
       class DeviceKeyPress < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -36,14 +40,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceKeyPress
+        end
       end
-      
+
       class DeviceKeyRelease < Xrb::Message
         OPCODE = 2
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -56,14 +64,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceKeyRelease
+        end
       end
-      
+
       class DeviceButtonPress < Xrb::Message
         OPCODE = 3
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -76,14 +88,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceButtonPress
+        end
       end
-      
+
       class DeviceButtonRelease < Xrb::Message
         OPCODE = 4
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -96,14 +112,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceButtonRelease
+        end
       end
-      
+
       class DeviceMotionNotify < Xrb::Message
         OPCODE = 5
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -116,14 +136,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :DeviceMotionNotify
+        end
       end
-      
+
       class ProximityIn < Xrb::Message
         OPCODE = 8
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -136,14 +160,18 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :ProximityIn
+        end
       end
-      
+
       class ProximityOut < Xrb::Message
         OPCODE = 9
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -156,42 +184,54 @@ module Xrb
             :state, {type: :uint16},
             :same_screen, {type: :bool},
             :device_id, {type: :uint8}
+
+        def to_sym
+          :ProximityOut
+        end
       end
-      
+
       class FocusIn < Xrb::Message
         OPCODE = 6
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :window, {type: :uint32},
-            :mode, {type: :uint8},
+            :mode, {type: :byte},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
+
+        def to_sym
+          :FocusIn
+        end
       end
-      
+
       class FocusOut < Xrb::Message
         OPCODE = 7
-        
+
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :window, {type: :uint32},
-            :mode, {type: :uint8},
+            :mode, {type: :byte},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
+
+        def to_sym
+          :FocusOut
+        end
       end
-      
+
       class DeviceStateNotify < Xrb::Message
         OPCODE = 10
-        
+
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :num_keys, {type: :uint8},
@@ -201,14 +241,18 @@ module Xrb
             :buttons, {type: :uint8, size: 4},
             :keys, {type: :uint8, size: 4},
             :valuators, {type: :uint32, size: 3}
+
+        def to_sym
+          :DeviceStateNotify
+        end
       end
-      
+
       class DeviceMappingNotify < Xrb::Message
         OPCODE = 11
-        
+
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :request, {type: :uint8},
             :first_keycode, {type: :uint8},
@@ -216,54 +260,74 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :time, {type: :uint32},
             :pad2, {size: 20, type: :uint8}
+
+        def to_sym
+          :DeviceMappingNotify
+        end
       end
-      
+
       class ChangeDeviceNotify < Xrb::Message
         OPCODE = 12
-        
+
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :request, {type: :uint8},
             :pad1, {size: 23, type: :uint8}
+
+        def to_sym
+          :ChangeDeviceNotify
+        end
       end
-      
+
       class DeviceKeyStateNotify < Xrb::Message
         OPCODE = 13
-        
+
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :keys, {type: :uint8, size: 28}
+
+        def to_sym
+          :DeviceKeyStateNotify
+        end
       end
-      
+
       class DeviceButtonStateNotify < Xrb::Message
         OPCODE = 14
-        
+
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :buttons, {type: :uint8, size: 28}
+
+        def to_sym
+          :DeviceButtonStateNotify
+        end
       end
-      
+
       class DevicePresenceNotify < Xrb::Message
         OPCODE = 15
-        
+
         layout \
             :response_type, {type: :uint8},
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
-            :devchange, {type: :uint8},
-            :device_id, {type: :uint8},
+            :devchange, {type: :byte},
+            :device_id, {type: :byte},
             :control, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
+
+        def to_sym
+          :DevicePresenceNotify
+        end
       end
-      
+
       @op_map = {
         0 => DeviceValuator,
 1 => DeviceKeyPress,

@@ -7,28 +7,28 @@ module Xrb
     class Message
       class Context
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Surface
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Subpicture
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class SurfaceInfo < Xrb::Message
         layout \
             :id, {type: :uint32},
@@ -41,7 +41,7 @@ module Xrb
             :mc_type, {type: :uint32},
             :flags, {type: :uint32}
       end
-      
+
     end
   end
 end

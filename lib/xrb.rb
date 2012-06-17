@@ -1,16 +1,20 @@
 require 'xrb/thread_pool'
 require 'xrb/constants'
 require 'xrb/message'
+require 'xrb/cookie'
 require 'xrb/request'
-require 'xrb/generic_types'
 require 'xrb/gen/xproto'
 require 'xrb/connection'
 require 'xrb/setup'
+
+require 'xrb/gc'
+require 'xrb/image'
+require 'xrb/pixmap'
+require 'xrb/colormap'
+require 'xrb/rectangle'
 require 'xrb/window'
 
 module Xrb
-  DEFAULT_SLEEP = 0.1
-
   # Start the main run loop.
   # This will connect to the X server and does not return until
   # {Xrb#quit} is called.
@@ -26,9 +30,13 @@ module Xrb
 
     @timers = []
     @readers = []
+    @next_ticks = []
+
+    @current_time = Time.now.to_f
+    @quantum = 1 / 60.0
+    @next_tick = @current_time + @quantum
 
     @timer_mutex = Mutex.new
-    @current_time = Time.now.to_f
     @thread_pool = ThreadPool.new(@thread_pool_size || 10)
 
     @conn = Xrb::Connection.new(display)
@@ -42,9 +50,22 @@ module Xrb
       fire_timers
       check_sockets
 
-      sleep(@timers.empty? ? DEFAULT_SLEEP :
-          (@timers.first[:delay] - @current_time))
+      # determine if the timer fires before the next quantum expires
+      # schedule for the sooner of the two times
+      tv = @timers.empty? ? 99999 : @timers.first[:delay] - @current_time
+      sleep_time = [@next_tick - @current_time, tv].min
+      sleep(sleep_time)
+
       @current_time = Time.now.to_f
+
+      if (@next_tick <= @current_time)
+        @next_tick = @current_time + @quantum
+
+        ticks = @next_ticks
+        @next_ticks = []
+
+        ticks.each { |tick| tick.call }
+      end
     end
   end
 
@@ -99,6 +120,11 @@ module Xrb
       @timers << {:delay => @current_time + delay, :block => blk}
       @timers.sort! { |a, b| a[:delay] <=> b[:delay] }
     end
+  end
+
+  # Add a block to execut on the next tick of the reactor.
+  def self.next_tick(&blk)
+    @next_ticks << blk
   end
 
   # Execute block on a background thread.

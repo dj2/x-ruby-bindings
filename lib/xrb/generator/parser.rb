@@ -21,14 +21,14 @@ module Xrb
             char: Type.new(:char, 1),
             float: Type.new(:float, 4),
             double: Type.new(:double, 8),
-            BOOL: Type.new(:bool, 1)
+            BOOL: Type.new(:bool, 1),
+            BYTE: Type.new(:byte, 1)
         })
 
         @types.merge!({
           CARD8: @types[:UINT8],
           CARD16: @types[:UINT16],
           CARD32: @types[:UINT32],
-          BYTE: @types[:UINT8],
           void: @types[:UINT8]
         })
 
@@ -70,8 +70,8 @@ module Xrb
       end
 
       def parse_fields(nodes)
-        @fields = []
-        @reply = nil
+        fields = []
+        reply = nil
 
         pad_index = 1
 
@@ -80,48 +80,48 @@ module Xrb
 
           case (node.name)
           when 'field' then
-            @fields << Field.new(node, get_type(node.attr('type')))
+            fields << Field.new(node, get_type(node.attr('type')))
 
           when 'pad' then
-            @fields << PadField.new(node.attr('bytes').to_i,
+            fields << PadField.new(node.attr('bytes').to_i,
                 get_type(:CARD8), pad_index)
             pad_index += 1
 
-          when 'list' then @fields << ListField.new(node, self)
-          when 'reply' then @reply = Reply.new(node, self)
-          when 'valueparam' then @fields << ValueParamField.new(node, self)
-          when 'exprfield' then @fields << ExprField.new(node, self)
-          when 'switch' then @fields << SwitchField.new(node, self)
-          when 'item' then @fields << ItemField.new(node)
-          when 'enumref' then @members << EnumRefField.new(node, self)
+          when 'list' then fields << ListField.new(node, self)
+          when 'reply' then reply = Reply.new(node, self)
+          when 'valueparam' then fields << ValueParamField.new(node, self)
+          when 'exprfield' then fields << ExprField.new(node, self)
+          when 'switch' then fields << SwitchField.new(node, self)
+          when 'item' then fields << ItemField.new(node)
+          when 'enumref' then fields << EnumRefField.new(node, self)
           else
             puts "Unknown field: #{node.name}"
           end
         end
 
-        [@fields, @reply]
+        [fields, reply]
       end
 
       def parse_list(nodes)
-        @members = []
+        members = []
 
         nodes.each do |node|
           next unless node.element?
 
           case (node.name)
-          when 'fieldref' then @members << FieldRefField.new(node.inner_text)
-          when 'op' then @members << OpField.new(node, self)
-          when 'unop' then @members << UnopField.new(node, self)
-          when 'value' then @members << ValueField.new(node.inner_text.to_i)
-          when 'popcount' then @members << PopcountField.new(node, self)
-          when 'bitcase' then @members << BitcaseField.new(node, self)
-          when 'sumof' then @members << SumOfField.new(node, self)
+          when 'fieldref' then members << FieldRefField.new(node.inner_text)
+          when 'op' then members << OpField.new(node, self)
+          when 'unop' then members << UnopField.new(node, self)
+          when 'value' then members << ValueField.new(node.inner_text.to_i)
+          when 'popcount' then members << PopcountField.new(node, self)
+          when 'bitcase' then members << BitcaseField.new(node, self)
+          when 'sumof' then members << SumOfField.new(node, self)
           else
             puts "Unknown list member #{node.name}"
           end
         end
 
-        @members
+        members
       end
 
       private
@@ -156,7 +156,8 @@ module Xrb
 
       def handle_xidtype(node)
         add_cardinal_type(node.attr('name').to_sym, get_type(:CARD32))
-        @current_namespace.types << [node.attr('name').to_sym, get_type(:CARD32)]
+        @current_namespace.types << [node.attr('name').to_sym,
+            get_type(:CARD32)]
       end
 
       def handle_xidunion(node)
@@ -164,8 +165,10 @@ module Xrb
       end
 
       def handle_typedef(node)
-        add_cardinal_type(node.attr('newname').to_sym, get_type(node.attr('oldname')))
-        @current_namespace.types << [node.attr('newname').to_sym, get_type(node.attr('newname').to_sym)]
+        add_cardinal_type(node.attr('newname').to_sym,
+            get_type(node.attr('oldname')))
+        @current_namespace.types << [node.attr('newname').to_sym,
+            get_type(node.attr('newname').to_sym)]
       end
 
       def handle_enum(node)

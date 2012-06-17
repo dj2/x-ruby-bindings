@@ -18,7 +18,7 @@ module Xrb
             :pixmap_format, {type: :uint8},
             :pad1, {size: 15, type: :uint8}
       end
-      
+
       class GetImage < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -28,7 +28,7 @@ module Xrb
             :visual, {type: :uint32},
             :size, {type: :uint32}
       end
-      
+
     end
   end
 end

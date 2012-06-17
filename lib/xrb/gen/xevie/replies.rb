@@ -15,7 +15,7 @@ module Xrb
             :server_minor_version, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class Start < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -24,7 +24,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 24, type: :uint8}
       end
-      
+
       class End < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -33,7 +33,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 24, type: :uint8}
       end
-      
+
       class Send < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -42,7 +42,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 24, type: :uint8}
       end
-      
+
       class SelectInput < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -51,7 +51,7 @@ module Xrb
             :length, {type: :uint32},
             :pad2, {size: 24, type: :uint8}
       end
-      
+
     end
   end
 end

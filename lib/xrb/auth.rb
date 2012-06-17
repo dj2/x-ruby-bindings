@@ -50,7 +50,7 @@ module Xrb
         hs.auth_data = data || ""
         hs.auth_name = name || ""
 
-        connection.send(hs.pack)
+        connection.send(hs)
         status = connection.read(1).unpack('w').first
         connection.push(status)
 

@@ -3,7 +3,6 @@
 $: << '../lib' << './lib'
 
 require 'xrb'
-require 'xrb/util'
 
 WINDOW_WIDTH = 640
 WINDOW_HEIGHT = 480
@@ -16,26 +15,24 @@ class Julia
   WIDTH = 3.6
   HEIGHT = 2.4
 
-  COLORS = 2#316
+  COLORS = 316
 
   def initialize(conn, window)
     @conn = conn
     @window = window
     @format = Xrb::IMAGE_FORMAT_Z_PIXMAP
 
+    @colors_setup = false
     @palette = []
   end
 
   def setup_graphics(screen)
-    @gc = Xrb.generate_id(@conn)
+    screen = @conn.setup.roots.first
+    @gc = Xrb::Gc.new(@conn, window: @window, value: {
+        Xrb::GC_FOREGROUND => screen.black_pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
 
-    mask = Xrb::GC_FOREGROUND | Xrb::GC_GRAPHICS_EXPOSURES
-    values = [screen[:black_pixel], 0]
-    Xrb.create_gc(@conn, @gc, @window, mask, Xrb.uint32_pointer(values))
-
-    @color_map = Xrb.generate_id(@conn)
-    Xrb.create_colormap(@conn, Xrb::COLORMAP_ALLOC_NONE, @color_map,
-        @window, screen[:root_visual])
+    @color_map = Xrb::Colormap.new(@conn, window: @window)
   end
 
   def palette
@@ -49,103 +46,111 @@ class Julia
         [65535, 65535, ((i - 255) << 10)]
       end
 
-      cookie = Xrb.alloc_color(@conn, @color_map, r, g, b)
-      p cookie
-      cookies << cookie
-    end
-
-    cookies.each do |cookie|
-      rep = Xrb.alloc_color_reply(@conn, cookie, nil)
-      color = Xrb::AllocColorReply.new(rep)
-
-      @palette << (color.null? ? 0 : color[:pixel])
-    end
-  end
-
-  def draw
-    @image = Xrb::Util.image_get(@conn, @window, 0, 0, WINDOW_WIDTH,
-        WINDOW_HEIGHT, ~0, @format)
-    @image = Xrb::Util::Image.new(@image)
-
-    @image[:width].times do |i|
-      @image[:height].times do |j|
-        zr = ORIGIN_X + WIDTH * (i / @image[:width])
-        zi = ORIGIN_Y + HEIGHT * (j / @image[:height])
-        c = 0
-
-        while (((zr ** 2) + (zi ** 2)) < 4.0) && c < (COLORS - 1)
-          t = zr
-          zr = (zr ** 2) - (zi ** 2) + cr
-          zi = 2 * t * zi + ci
-          c += 1
-        end
-
-        Xrb::Util.image_put_pixel(@image, i, j, @palette[c])
+      cookies << @color_map.allocate_color(r, g, b) do |color|
+        @palette << color.pixel
       end
     end
 
-    Xrb::Util.image_put(@conn, @window, @gc, @image, 0, 0, 0)
+    check_cookies = Proc.new do
+      @colors_setup = true
+      cookies.each do |cookie|
+        if !cookie.replied?
+          @colors_setup = false
+          break
+        end
+      end
+
+      Xrb.next_tick { check_cookies.call } if !@colors_setup
+    end
+    Xrb.next_tick { check_cookies.call }
+  end
+
+  def draw
+    return unless @colors_setup
+
+    Xrb::Image.new(@conn, drawable: @window, x: 0, y: 0,
+        width: WINDOW_WIDTH, height: WINDOW_HEIGHT, plane_mask: ~0,
+        format: @format) do |img|
+      @image = img
+      img.width.times do |i|
+        img.height.times do |j|
+          zr = ORIGIN_X + WIDTH * (i / img.width)
+          zi = ORIGIN_Y + HEIGHT * (j / img.height)
+          c = 0
+
+          while (((zr ** 2) + (zi ** 2)) < 4.0) && c < (COLORS - 1)
+            t = zr
+            zr = (zr ** 2) - (zi ** 2) + cr
+            zi = 2 * t * zi + ci
+            c += 1
+          end
+
+          img.pixel(i, j, @palette[c])
+        end
+      end
+
+      img.put(gc: @gc, x: 0, y:0, left_padding: 0)
+    end
   end
 
   def cleanup
-    Xrb::Util.image_destroy(@image)
+    @image.destroy
+    @image = nil
   end
 end
 
-conn = Xrb.connect(nil, nil)
-setup = Xrb.get_setup(conn)
-iter = Xrb.setup_roots_iterator(setup)
-screen = Xrb::Screen.new(iter)
+Xrb.run do |conn|
+  screen = conn.setup.roots.first
 
-bg_color = Xrb.generate_id(conn)
-mask = Xrb::GC_FOREGROUND | Xrb::GC_GRAPHICS_EXPOSURES
-values = [screen[:white_pixel], 0]
-Xrb.create_gc(conn, bg_color, screen[:root], mask,
-    Xrb.uint32_pointer(values))
+  bg_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => screen.white_pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
 
-window = Xrb.generate_id(conn)
-mask = Xrb::CW_BACK_PIXEL | Xrb::CW_EVENT_MASK | Xrb::CW_DONT_PROPAGATE
-values = [screen[:white_pixel],
-    Xrb::EVENT_MASK_BUTTON_PRESS | Xrb::EVENT_MASK_EXPOSURE,
-    Xrb::EVENT_MASK_BUTTON_PRESS]
-Xrb.create_window(conn, 0, window, screen[:root], 0, 0, WINDOW_WIDTH,
-    WINDOW_HEIGHT, 10, Xrb::WINDOW_CLASS_INPUT_OUTPUT, screen[:root_visual],
-    mask, Xrb.uint32_pointer(values))
+  window = Xrb::Window.new(conn, width: WINDOW_WIDTH, height: WINDOW_HEIGHT,
+      border_width: 10, value: {
+          Xrb::CW_BACK_PIXEL => screen.white_pixel,
+          Xrb::CW_EVENT_MASK =>
+              Xrb::EVENT_MASK_EXPOSURE | Xrb::EVENT_MASK_BUTTON_PRESS,
+          Xrb::CW_DONT_PROPAGATE => Xrb::EVENT_MASK_BUTTON_PRESS})
 
-rect = Xrb.generate_id(conn)
-Xrb.create_pixmap(conn, screen[:root_depth], rect, window,
-    WINDOW_WIDTH, WINDOW_WIDTH)
-coords = [0, 0, WINDOW_WIDTH, WINDOW_HEIGHT]
-Xrb.poly_fill_rectangle(conn, rect, bg_color, 1, Xrb.uint32_pointer(coords))
+  rect = Xrb::Pixmap.new(conn, window: window, width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT)
 
-Xrb.map_window(conn, window)
+  bounds = Xrb::Rectangle.new(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
+  rect.poly_fill_rectangle(bg_color, [bounds])
 
-julia = Julia.new(conn, window)
-julia.setup_graphics(screen)
-julia.palette
+  julia = Julia.new(conn, window)
+  julia.setup_graphics(screen)
+  julia.palette
 
-Xrb.flush(conn)
+  window.on_event do |event|
+    case event.to_sym
+    when :Expose then
+      rect.copy_area(dest: window, gc: bg_color, from: [0, 0], to: [0, 0],
+          size: [WINDOW_WIDTH, WINDOW_HEIGHT])
 
-while true
-  e = Xrb.wait_for_event(conn)
-  next if e.null?
+      julia.draw
+      conn.flush
 
-  event = Xrb::GenericEvent.new(e)
-
-  case event[:response_type]
-  when 12 then  # Xrb::EXPOSE
-    puts "EXPOSE"
-    Xrb.copy_area(conn, rect, window, bg_color, 0, 0, 0, 0,
-        WINDOW_WIDTH, WINDOW_HEIGHT)
-    julia.draw
-    Xrb.flush(conn)
-
-  when 33 then # Xrb::CLIENT_MESSAGE
-    puts "CLIENT MESSAGE"
-  when 4 then # Xrb::BUTTON_PRESS
-    break;
+    when :ButtonPress then
+      Xrb.stop
+    when :ClientMessage then
+      puts "Client Message?"
+    else
+      puts "Unhandled event #{event.ruby_class}"
+    end
   end
-end
 
-julia.cleanup
-Xrb.disconnect(conn)
+  conn.on_event do |event|
+    p event
+  end
+
+  conn.on_error do |error|
+    p error
+  end
+
+  window.show
+
+  conn.flush
+end

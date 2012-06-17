@@ -20,6 +20,10 @@ module Xrb
       name == :map
     end
 
+    def is_packed?
+      !directive.nil?
+    end
+
     def self.all
       return @cardinals unless @cardinals.nil?
 
@@ -29,7 +33,7 @@ module Xrb
           uint8: Cardinal.new(:uint8, 1, 'C'),
           int8: Cardinal.new(:int8, 1, 'c'),
           card8: Cardinal.new(:card8, 1, 'C'),
-          byte: Cardinal.new(:byte, 1, 'C'),
+          byte: Cardinal.new(:byte, 1, nil),
           void: Cardinal.new(:void, 1, 'C'),
           uint16: Cardinal.new(:uint16, 2, 'S'),
           card16: Cardinal.new(:card16, 2, 'S'),

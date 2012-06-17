@@ -1,6 +1,6 @@
 module Xrb
   class Window
-    attr_reader :id
+    attr_reader :id, :depth
 
     DEFAULT_OPTS = {x: 0, y: 0, border_width: 2, depth: Xrb::COPY_FROM_PARENT,
         class: Xrb::WINDOW_CLASS_INPUT_OUTPUT}
@@ -17,15 +17,18 @@ module Xrb
         o[:visual] = screen.root_visual
       end
 
+      @depth = if o[:depth] == Xrb::COPY_FROM_PARENT
+        @conn.setup.roots.first.root_depth
+      else
+        o[:depth]
+      end
+
       @id = @conn.generate_id
       o[:wid] = @id
 
-      @handlers = {
-        error: [],
-        event: []
-      }
+      @handlers = {error: [], event: []}
 
-      @conn.send(Xrb::Request::CreateWindow.new(o).pack)
+      @conn.send(Xrb::Request::CreateWindow.new(o))
       @conn.register_window(self)
     end
 
@@ -45,7 +48,7 @@ module Xrb
 
 
     def show(flush = true)
-      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id).pack)
+      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id))
       @conn.flush if flush
       cookie
     end
