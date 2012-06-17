@@ -26,7 +26,12 @@ module Xrb
 
     def self.size
       @fields.values.inject(0) do |sum, val|
-        sum + (val.has_key?(:size) ? val[:size] : val[:type].size)
+        if !val[:kind].nil? &&
+            (val[:kind].is_list? || val[:kind].is_string?)
+          sum
+        else
+          sum + (val.has_key?(:size) ? val[:size] : val[:type].size)
+        end
       end
     end
 
@@ -149,7 +154,6 @@ module Xrb
 
         else
           if type.is_packed?
-p key
             [self.send(key)].pack(type.directive)
           else
             self.send(key)
