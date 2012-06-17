@@ -134,7 +134,7 @@ Xrb.run do |conn|
       conn.flush
 
     when :ButtonPress then
-      Xrb.stop
+      Xrb.quit
     when :ClientMessage then
       puts "Client Message?"
     else
