@@ -281,7 +281,7 @@ module Xrb
         def process_list_op_field(field)
           expr = process_op_expression(field.members.first)
 
-          @p.format(":#{field.name},{type: #{field.type.name}, " +
+          @p.format(":#{field.name}, {type: :#{field.type.name}, " +
               "length_expr: '#{expr}'}")
         end
 
