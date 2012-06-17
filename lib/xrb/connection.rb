@@ -129,7 +129,6 @@ module Xrb
 
         cookie = @cookie_jar.delete(seq)
         reply = cookie.reply(self)
-p reply
         if reply.ruby_class.size < 32
           read(32 - reply.ruby_class.size)
         end
