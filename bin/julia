@@ -68,7 +68,7 @@ class Julia
   def draw
     return unless @colors_setup
 
-    @image = Xrb::Image.new(@conn, drawable: @window, gc: @gc, x: 0, y: 0,
+    @image = Xrb::Image.new(@conn, drawable: @window, x: 0, y: 0,
         width: WINDOW_WIDTH, height: WINDOW_HEIGHT, plane_mask: ~0,
         format: @format) do
       @image.width.times do |i|
