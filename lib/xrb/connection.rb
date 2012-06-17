@@ -81,6 +81,8 @@ module Xrb
       seq = next_sequence_num
       @socket.write(request.pack)
 
+p [seq, request.ruby_class]
+
       if request.has_reply?
         cookie = Cookie.new(seq, request)
         @cookie_jar[seq] = cookie

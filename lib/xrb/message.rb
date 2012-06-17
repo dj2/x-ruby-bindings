@@ -126,7 +126,11 @@ module Xrb
 
         elsif kind
           if kind.is_list?
-            self.send(key).collect { |obj| obj.pack }.join
+            if type.respond_to?(:is_packed?) && !type.is_packed?
+              self.send(key)
+            else
+              self.send(key).collect { |obj| obj.pack }.join
+            end
 
           elsif kind.is_string?
             v = self.send(key)
@@ -145,6 +149,7 @@ module Xrb
 
         else
           if type.is_packed?
+p key
             [self.send(key)].pack(type.directive)
           else
             self.send(key)

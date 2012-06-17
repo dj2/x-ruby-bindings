@@ -11,14 +11,12 @@ module Xrb
 
     def callback
       return unless @callback
-
       @callback.call(@reply)
     end
 
     def reply(data)
       klass_name = @request.ruby_class.to_s.split("::").last
       klass = Xrb::Reply.const_get(klass_name.to_sym)
-p klass_name.to_sym
       @reply = klass.unpack(data)
     end
 

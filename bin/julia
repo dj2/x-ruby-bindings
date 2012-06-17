@@ -15,7 +15,7 @@ class Julia
   WIDTH = 3.6
   HEIGHT = 2.4
 
-  COLORS = 2#316
+  COLORS = 316
 
   def initialize(conn, window)
     @conn = conn
@@ -68,13 +68,14 @@ class Julia
   def draw
     return unless @colors_setup
 
-    @image = Xrb::Image.new(@conn, drawable: @window, x: 0, y: 0,
+    Xrb::Image.new(@conn, drawable: @window, x: 0, y: 0,
         width: WINDOW_WIDTH, height: WINDOW_HEIGHT, plane_mask: ~0,
-        format: @format) do
-      @image.width.times do |i|
-        @image.height.times do |j|
-          zr = ORIGIN_X + WIDTH * (i / @image.width)
-          zi = ORIGIN_Y + HEIGHT * (j / @image.height)
+        format: @format) do |img|
+      @image = img
+      img.width.times do |i|
+        img.height.times do |j|
+          zr = ORIGIN_X + WIDTH * (i / img.width)
+          zi = ORIGIN_Y + HEIGHT * (j / img.height)
           c = 0
 
           while (((zr ** 2) + (zi ** 2)) < 4.0) && c < (COLORS - 1)
@@ -84,11 +85,11 @@ class Julia
             c += 1
           end
 
-          @image.pixel(i, j, @palette[c])
+          img.pixel(i, j, @palette[c])
         end
       end
 
-      @image.put(x: 0, y:0, left_padding: 0)
+      img.put(gc: @gc, x: 0, y:0, left_padding: 0)
     end
   end
 
