@@ -216,6 +216,12 @@ module Xrb
           process_field(field)
         end
 
+        def process_exprfield(field)
+          expr = process_op_expression(field.members.first)
+          @p.format(":#{field.name}, {type: :#{field.type.name}, " +
+            "value_expr: '#{expr}'}")
+        end
+
         def process_valueparamfield(field)
           name = field.name.gsub(/_mask/, '')
           @p.format(":#{name}, {type: :#{field.type.name}, kind: :map}")
@@ -223,38 +229,79 @@ module Xrb
 
         def process_listfield(field)
           if field.members.empty?
-
-            type = @p.cardinals[field.type.name]
-            type = if type.nil?
-              @p.type_name(field.type.name)
-            else
-              ":#{type.name}"
-            end
-
-            @p.format(":#{field.name}, " +
-                "{type: #{type}, kind: :list}")
+            process_list_empty(field)
 
           elsif field.members.first.is_a?(ValueField)
-            @p.format(":#{field.name}, " +
-                "{type: :#{field.type.name}, " +
-                "size: #{field.members.first.size}}")
+            process_list_value_field(field)
 
           elsif field.members.first.is_a?(FieldRefField)
-            # We want [:len_field_name, :type, :[string | list]]
-            type = field.type.name == :char ? ':string' : ':list'
+            process_list_field_ref_field(field)
 
-            if type == ':string' || !@p.cardinals[field.type.name].nil?
-              @p.format(":#{field.name}, " +
-                  "{length_field: :#{field.members.first.name}, " +
-                  "type: :#{field.type.name}, kind: #{type}}")
-            else
-              @p.format(":#{field.name}, " +
-                  "{length_field: :#{field.members.first.name}, " +
-                  "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
-            end
+          elsif field.members.first.is_a?(OpField)
+            process_list_op_field(field)
+
           else
             puts "Unhandled list type: #{field.members.first.to_s}"
           end
+        end
+
+        def process_list_empty(field)
+          type = @p.cardinals[field.type.name]
+          type = if type.nil?
+            @p.type_name(field.type.name)
+          else
+            ":#{type.name}"
+          end
+
+          @p.format(":#{field.name}, " +
+              "{type: #{type}, kind: :list}")
+        end
+
+        def process_list_value_field(field)
+          @p.format(":#{field.name}, " +
+              "{type: :#{field.type.name}, " +
+              "size: #{field.members.first.size}}")
+        end
+
+        def process_list_field_ref_field(field)
+          # We want [:len_field_name, :type, :[string | list]]
+          type = field.type.name == :char ? ':string' : ':list'
+
+          if type == ':string' || !@p.cardinals[field.type.name].nil?
+            @p.format(":#{field.name}, " +
+                "{length_field: :#{field.members.first.name}, " +
+                "type: :#{field.type.name}, kind: #{type}}")
+          else
+            @p.format(":#{field.name}, " +
+                "{length_field: :#{field.members.first.name}, " +
+                "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
+          end
+        end
+
+        def process_list_op_field(field)
+          expr = process_op_expression(field.members.first)
+
+          @p.format(":#{field.name},{type: #{field.type.name}, " +
+              "length_expr: '#{expr}'}")
+        end
+
+        def process_op_expression(op)
+          if op.is_a?(FieldRefField)
+            return op.name
+          elsif op.is_a?(ValueField)
+            return op.size
+          elsif op.is_a?(OpField)
+            lhs = process_op_expression(op.members.first)
+            rhs = process_op_expression(op.members.last)
+
+            return "(#{lhs} #{op.name} #{rhs})"
+          elsif op.is_a?(UnopField)
+            rhs = process_op_expression(op.members.first)
+            return "(~#{rhs})"
+          else
+            puts "OP expression found unknown type #{op.class}"
+          end
+          return nil
         end
 
         def process_padfield(field)

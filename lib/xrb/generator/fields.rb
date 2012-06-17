@@ -60,6 +60,8 @@ module Xrb
     end
 
     class ExprField
+      attr_reader :name, :type, :members
+
       def initialize(node, parser)
         @name = node.attr('name')
         @type = parser.get_type(node.attr('type'))
@@ -93,13 +95,21 @@ module Xrb
     end
 
     class OpField
+      attr_reader :name, :members
+
       def initialize(node, parser)
-        @name = node.attr('op')
         @members = parser.parse_list(node.children)
+        @name = case node.attr('op')
+            when '&lt;&lt;' then '<<'
+            when '&amp;' then '&'
+            else node.attr('op')
+            end
       end
     end
 
     class UnopField
+      attr_reader :members
+
       def initialize(node, parser)
         @name = node.attr('op')
         @members = parser.parse_list(node.children)
