@@ -96,7 +96,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :mode, {type: :uint8},
+          :mode, {type: :byte},
           :length, {type: :uint16},
           :window, {type: :uint32}
       def has_reply?
@@ -427,8 +427,8 @@ module Xrb
           :length, {type: :uint16},
           :grab_window, {type: :uint32},
           :event_mask, {type: :uint16},
-          :pointer_mode, {type: :uint8},
-          :keyboard_mode, {type: :uint8},
+          :pointer_mode, {type: :byte},
+          :keyboard_mode, {type: :byte},
           :confine_to, {type: :uint32},
           :cursor, {type: :uint32},
           :time, {type: :uint32}
@@ -521,8 +521,8 @@ module Xrb
           :length, {type: :uint16},
           :grab_window, {type: :uint32},
           :time, {type: :uint32},
-          :pointer_mode, {type: :uint8},
-          :keyboard_mode, {type: :uint8},
+          :pointer_mode, {type: :byte},
+          :keyboard_mode, {type: :byte},
           :pad1, {size: 2, type: :uint8}
       def has_reply?
         true
@@ -977,7 +977,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :ordering, {type: :uint8},
+          :ordering, {type: :byte},
           :length, {type: :uint16},
           :gc, {type: :uint32},
           :clip_x_origin, {type: :int16},
@@ -1076,7 +1076,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :coordinate_mode, {type: :uint8},
+          :coordinate_mode, {type: :byte},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
@@ -1093,7 +1093,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :coordinate_mode, {type: :uint8},
+          :coordinate_mode, {type: :byte},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
@@ -1226,7 +1226,7 @@ module Xrb
           :left_pad, {type: :uint8},
           :depth, {type: :uint8},
           :pad1, {size: 2, type: :uint8},
-          :data, {type: :uint8, kind: :list}
+          :data, {type: :byte, kind: :list}
       def has_reply?
         false
       end
@@ -1265,7 +1265,7 @@ module Xrb
           :gc, {type: :uint32},
           :x, {type: :int16},
           :y, {type: :int16},
-          :items, {type: :uint8, kind: :list}
+          :items, {type: :byte, kind: :list}
       def has_reply?
         false
       end
@@ -1284,7 +1284,7 @@ module Xrb
           :gc, {type: :uint32},
           :x, {type: :int16},
           :y, {type: :int16},
-          :items, {type: :uint8, kind: :list}
+          :items, {type: :byte, kind: :list}
       def has_reply?
         false
       end
@@ -1297,7 +1297,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :string_len, {type: :uint8},
+          :string_len, {type: :byte},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
@@ -1316,7 +1316,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :string_len, {type: :uint8},
+          :string_len, {type: :byte},
           :length, {type: :uint16},
           :drawable, {type: :uint32},
           :gc, {type: :uint32},
@@ -1335,7 +1335,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
-          :alloc, {type: :uint8},
+          :alloc, {type: :byte},
           :length, {type: :uint16},
           :mid, {type: :uint32},
           :window, {type: :uint32},
@@ -1868,7 +1868,7 @@ module Xrb
           :family, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
           :address_len, {type: :uint16},
-          :address, {length_field: :address_len, type: :uint8, kind: :list}
+          :address, {length_field: :address_len, type: :byte, kind: :list}
       def has_reply?
         false
       end

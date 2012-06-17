@@ -10,7 +10,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :reason, {type: :uint8},
+            :reason, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :drawable, {type: :uint32},

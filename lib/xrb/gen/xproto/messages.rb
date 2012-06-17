@@ -189,7 +189,7 @@ module Xrb
           :min_installed_maps, {type: :uint16},
           :max_installed_maps, {type: :uint16},
           :root_visual, {type: :uint32},
-          :backing_stores, {type: :uint8},
+          :backing_stores, {type: :byte},
           :save_unders, {type: :bool},
           :root_depth, {type: :uint8},
           :allowed_depths_len, {type: :uint8},
@@ -304,7 +304,7 @@ module Xrb
           :red, {type: :uint16},
           :green, {type: :uint16},
           :blue, {type: :uint16},
-          :flags, {type: :uint8},
+          :flags, {type: :byte},
           :pad1, {size: 1, type: :uint8}
     end
 
@@ -321,7 +321,7 @@ module Xrb
           :family, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
           :address_len, {type: :uint16},
-          :address, {length_field: :address_len, type: :uint8, kind: :list}
+          :address, {length_field: :address_len, type: :byte, kind: :list}
     end
 
   end

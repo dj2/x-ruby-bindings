@@ -30,7 +30,7 @@ module Xrb
             :length, {type: :uint16},
             :operation, {type: :uint8},
             :destination_kind, {type: :uint8},
-            :ordering, {type: :uint8},
+            :ordering, {type: :byte},
             :pad1, {size: 1, type: :uint8},
             :destination_window, {type: :uint32},
             :x_offset, {type: :int16},

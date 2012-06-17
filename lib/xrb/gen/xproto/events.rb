@@ -105,7 +105,7 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :detail, {type: :uint8},
+          :detail, {type: :byte},
           :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
@@ -129,7 +129,7 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :detail, {type: :uint8},
+          :detail, {type: :byte},
           :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
@@ -140,8 +140,8 @@ module Xrb
           :event_x, {type: :int16},
           :event_y, {type: :int16},
           :state, {type: :uint16},
-          :mode, {type: :uint8},
-          :same_screen_focus, {type: :uint8}
+          :mode, {type: :byte},
+          :same_screen_focus, {type: :byte}
 
       def to_sym
         :EnterNotify
@@ -153,7 +153,7 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :detail, {type: :uint8},
+          :detail, {type: :byte},
           :sequence, {type: :uint16},
           :time, {type: :uint32},
           :root, {type: :uint32},
@@ -164,8 +164,8 @@ module Xrb
           :event_x, {type: :int16},
           :event_y, {type: :int16},
           :state, {type: :uint16},
-          :mode, {type: :uint8},
-          :same_screen_focus, {type: :uint8}
+          :mode, {type: :byte},
+          :same_screen_focus, {type: :byte}
 
       def to_sym
         :LeaveNotify
@@ -177,10 +177,10 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :detail, {type: :uint8},
+          :detail, {type: :byte},
           :sequence, {type: :uint16},
           :event, {type: :uint32},
-          :mode, {type: :uint8},
+          :mode, {type: :byte},
           :pad1, {size: 3, type: :uint8}
 
       def to_sym
@@ -193,10 +193,10 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :detail, {type: :uint8},
+          :detail, {type: :byte},
           :sequence, {type: :uint16},
           :event, {type: :uint32},
-          :mode, {type: :uint8},
+          :mode, {type: :byte},
           :pad1, {size: 3, type: :uint8}
 
       def to_sym
@@ -283,7 +283,7 @@ module Xrb
           :pad1, {size: 1, type: :uint8},
           :sequence, {type: :uint16},
           :window, {type: :uint32},
-          :state, {type: :uint8},
+          :state, {type: :byte},
           :pad2, {size: 3, type: :uint8}
 
       def to_sym
@@ -425,7 +425,7 @@ module Xrb
 
       layout \
           :response_type, {type: :uint8},
-          :stack_mode, {type: :uint8},
+          :stack_mode, {type: :byte},
           :sequence, {type: :uint16},
           :parent, {type: :uint32},
           :window, {type: :uint32},
@@ -485,7 +485,7 @@ module Xrb
           :event, {type: :uint32},
           :window, {type: :uint32},
           :pad2, {size: 4, type: :uint8},
-          :place, {type: :uint8},
+          :place, {type: :byte},
           :pad3, {size: 3, type: :uint8}
 
       def to_sym
@@ -503,7 +503,7 @@ module Xrb
           :event, {type: :uint32},
           :window, {type: :uint32},
           :pad2, {size: 4, type: :uint8},
-          :place, {type: :uint8},
+          :place, {type: :byte},
           :pad3, {size: 3, type: :uint8}
 
       def to_sym
@@ -521,7 +521,7 @@ module Xrb
           :window, {type: :uint32},
           :atom, {type: :uint32},
           :time, {type: :uint32},
-          :state, {type: :uint8},
+          :state, {type: :byte},
           :pad2, {size: 3, type: :uint8}
 
       def to_sym
@@ -592,7 +592,7 @@ module Xrb
           :window, {type: :uint32},
           :colormap, {type: :uint32},
           :new, {type: :bool},
-          :state, {type: :uint8},
+          :state, {type: :byte},
           :pad2, {size: 2, type: :uint8}
 
       def to_sym
@@ -623,7 +623,7 @@ module Xrb
           :response_type, {type: :uint8},
           :pad1, {size: 1, type: :uint8},
           :sequence, {type: :uint16},
-          :request, {type: :uint8},
+          :request, {type: :byte},
           :first_keycode, {type: :uint8},
           :count, {type: :uint8},
           :pad2, {size: 1, type: :uint8}

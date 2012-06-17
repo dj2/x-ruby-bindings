@@ -77,7 +77,7 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
-            :names, {length_field: :names_len, type: :uint8, kind: :list}
+            :names, {length_field: :names_len, type: :byte, kind: :list}
       end
 
       class GetOutputInfo < Xrb::Message
@@ -100,7 +100,7 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: :uint32, kind: :list},
             :clones, {length_field: :num_clones, type: :uint32, kind: :list},
-            :name, {length_field: :name_len, type: :uint8, kind: :list}
+            :name, {length_field: :name_len, type: :byte, kind: :list}
       end
 
       class ListOutputProperties < Xrb::Message
@@ -137,7 +137,7 @@ module Xrb
             :bytes_after, {type: :uint32},
             :num_items, {type: :uint32},
             :pad1, {size: 12, type: :uint8},
-            :data, {type: :uint8, length_expr: '(num_items * (format / 8))'}
+            :data, {type: :byte, length_expr: '(num_items * (format / 8))'}
       end
 
       class CreateMode < Xrb::Message
@@ -219,7 +219,7 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
-            :names, {length_field: :names_len, type: :uint8, kind: :list}
+            :names, {length_field: :names_len, type: :byte, kind: :list}
       end
 
       class GetCrtcTransform < Xrb::Message

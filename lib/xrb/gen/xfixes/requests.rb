@@ -30,9 +30,9 @@ module Xrb
             :major_opcode, {type: :uint8},
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
-            :mode, {type: :uint8},
-            :target, {type: :uint8},
-            :map, {type: :uint8},
+            :mode, {type: :byte},
+            :target, {type: :byte},
+            :map, {type: :byte},
             :pad1, {size: 1, type: :uint8},
             :window, {type: :uint32}
         def has_reply?

@@ -40,7 +40,7 @@ module Xrb
       class GrabPort < Xrb::Message
         layout \
             :response_type, {type: :uint8},
-            :result, {type: :uint8},
+            :result, {type: :byte},
             :sequence, {type: :uint16},
             :length, {type: :uint32}
       end

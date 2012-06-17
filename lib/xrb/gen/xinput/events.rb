@@ -27,7 +27,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -51,7 +51,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -75,7 +75,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -99,7 +99,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -123,7 +123,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -147,7 +147,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -171,7 +171,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :root, {type: :uint32},
@@ -195,11 +195,11 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :window, {type: :uint32},
-            :mode, {type: :uint8},
+            :mode, {type: :byte},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
 
@@ -213,11 +213,11 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :detail, {type: :uint8},
+            :detail, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :window, {type: :uint32},
-            :mode, {type: :uint8},
+            :mode, {type: :byte},
             :device_id, {type: :uint8},
             :pad1, {size: 18, type: :uint8}
 
@@ -231,7 +231,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :num_keys, {type: :uint8},
@@ -252,7 +252,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :request, {type: :uint8},
             :first_keycode, {type: :uint8},
@@ -271,7 +271,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
             :request, {type: :uint8},
@@ -287,7 +287,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :keys, {type: :uint8, size: 28}
 
@@ -301,7 +301,7 @@ module Xrb
 
         layout \
             :response_type, {type: :uint8},
-            :device_id, {type: :uint8},
+            :device_id, {type: :byte},
             :sequence, {type: :uint16},
             :buttons, {type: :uint8, size: 28}
 
@@ -318,8 +318,8 @@ module Xrb
             :pad1, {size: 1, type: :uint8},
             :sequence, {type: :uint16},
             :time, {type: :uint32},
-            :devchange, {type: :uint8},
-            :device_id, {type: :uint8},
+            :devchange, {type: :byte},
+            :device_id, {type: :byte},
             :control, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
 

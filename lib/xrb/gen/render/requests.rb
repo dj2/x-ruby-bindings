@@ -292,7 +292,7 @@ module Xrb
             :glyphs_len, {type: :uint32},
             :glyphids, {length_field: :glyphs_len, type: :uint32, kind: :list},
             :glyphs, {length_field: :glyphs_len, type: Glyphinfo, kind: :list},
-            :data, {type: :uint8, kind: :list}
+            :data, {type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -331,7 +331,7 @@ module Xrb
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
             :src_y, {type: :int16},
-            :glyphcmds, {type: :uint8, kind: :list}
+            :glyphcmds, {type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -354,7 +354,7 @@ module Xrb
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
             :src_y, {type: :int16},
-            :glyphcmds, {type: :uint8, kind: :list}
+            :glyphcmds, {type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -377,7 +377,7 @@ module Xrb
             :glyphset, {type: :uint32},
             :src_x, {type: :int16},
             :src_y, {type: :int16},
-            :glyphcmds, {type: :uint8, kind: :list}
+            :glyphcmds, {type: :byte, kind: :list}
         def has_reply?
           false
         end

@@ -111,7 +111,7 @@ module Xrb
     class GrabPointer < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :status, {type: :uint8},
+          :status, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
@@ -119,7 +119,7 @@ module Xrb
     class GrabKeyboard < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :status, {type: :uint8},
+          :status, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
@@ -194,7 +194,7 @@ module Xrb
           :max_char_or_byte2, {type: :uint16},
           :default_char, {type: :uint16},
           :properties_len, {type: :uint16},
-          :draw_direction, {type: :uint8},
+          :draw_direction, {type: :byte},
           :min_byte1, {type: :uint8},
           :max_byte1, {type: :uint8},
           :all_chars_exist, {type: :bool},
@@ -208,7 +208,7 @@ module Xrb
     class QueryTextExtents < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :draw_direction, {type: :uint8},
+          :draw_direction, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32},
           :font_ascent, {type: :int16},
@@ -245,7 +245,7 @@ module Xrb
           :max_char_or_byte2, {type: :uint16},
           :default_char, {type: :uint16},
           :properties_len, {type: :uint16},
-          :draw_direction, {type: :uint8},
+          :draw_direction, {type: :byte},
           :min_byte1, {type: :uint8},
           :max_byte1, {type: :uint8},
           :all_chars_exist, {type: :bool},
@@ -275,7 +275,7 @@ module Xrb
           :length, {type: :uint32},
           :visual, {type: :uint32},
           :pad1, {size: 20, type: :uint8},
-          :data, {type: :uint8, length_expr: '(length * 4)'}
+          :data, {type: :byte, length_expr: '(length * 4)'}
     end
 
     class ListInstalledColormaps < Xrb::Message
@@ -405,7 +405,7 @@ module Xrb
     class GetKeyboardMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :keysyms_per_keycode, {type: :uint8},
+          :keysyms_per_keycode, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32},
           :pad1, {size: 24, type: :uint8},
@@ -415,7 +415,7 @@ module Xrb
     class GetKeyboardControl < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :global_auto_repeat, {type: :uint8},
+          :global_auto_repeat, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32},
           :led_mask, {type: :uint32},
@@ -447,15 +447,15 @@ module Xrb
           :length, {type: :uint32},
           :timeout, {type: :uint16},
           :interval, {type: :uint16},
-          :prefer_blanking, {type: :uint8},
-          :allow_exposures, {type: :uint8},
+          :prefer_blanking, {type: :byte},
+          :allow_exposures, {type: :byte},
           :pad2, {size: 18, type: :uint8}
     end
 
     class ListHosts < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :mode, {type: :uint8},
+          :mode, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32},
           :hosts_len, {type: :uint16},
@@ -466,7 +466,7 @@ module Xrb
     class SetPointerMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :status, {type: :uint8},
+          :status, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end
@@ -484,7 +484,7 @@ module Xrb
     class SetModifierMapping < Xrb::Message
       layout \
           :response_type, {type: :uint8},
-          :status, {type: :uint8},
+          :status, {type: :byte},
           :sequence, {type: :uint16},
           :length, {type: :uint32}
     end

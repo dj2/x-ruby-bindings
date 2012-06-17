@@ -45,7 +45,7 @@ module Xrb
       class GetRectangles < Xrb::Message
         layout \
             :response_type, {type: :uint8},
-            :ordering, {type: :uint8},
+            :ordering, {type: :byte},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :rectangles_len, {type: :uint32},

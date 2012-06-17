@@ -54,7 +54,7 @@ module Xrb
             :finished_flag, {type: :uint32},
             :dataLen, {type: :uint32},
             :pad2, {size: 12, type: :uint8},
-            :data, {length_field: :dataLen, type: :uint8, kind: :list}
+            :data, {length_field: :dataLen, type: :byte, kind: :list}
       end
 
       class PrintInputSelected < Xrb::Message

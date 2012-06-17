@@ -18,7 +18,7 @@ module Xrb
       class GetState < Xrb::Message
         layout \
             :response_type, {type: :uint8},
-            :state, {type: :uint8},
+            :state, {type: :byte},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :window, {type: :uint32}
@@ -27,7 +27,7 @@ module Xrb
       class GetScreenCount < Xrb::Message
         layout \
             :response_type, {type: :uint8},
-            :screen_count, {type: :uint8},
+            :screen_count, {type: :byte},
             :sequence, {type: :uint16},
             :length, {type: :uint32},
             :window, {type: :uint32}

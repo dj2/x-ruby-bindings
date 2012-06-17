@@ -15,7 +15,7 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :context_tag, {type: :uint32},
-            :data, {type: :uint8, kind: :list}
+            :data, {type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -34,7 +34,7 @@ module Xrb
             :request_num, {type: :uint16},
             :request_total, {type: :uint16},
             :data_len, {type: :uint32},
-            :data, {length_field: :data_len, type: :uint8, kind: :list}
+            :data, {length_field: :data_len, type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -265,7 +265,7 @@ module Xrb
             :length, {type: :uint16},
             :vendor_code, {type: :uint32},
             :context_tag, {type: :uint32},
-            :data, {type: :uint8, kind: :list}
+            :data, {type: :byte, kind: :list}
         def has_reply?
           false
         end
@@ -282,7 +282,7 @@ module Xrb
             :length, {type: :uint16},
             :vendor_code, {type: :uint32},
             :context_tag, {type: :uint32},
-            :data, {type: :uint8, kind: :list}
+            :data, {type: :byte, kind: :list}
         def has_reply?
           true
         end

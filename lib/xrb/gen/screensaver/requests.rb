@@ -68,7 +68,7 @@ module Xrb
             :width, {type: :uint16},
             :height, {type: :uint16},
             :border_width, {type: :uint16},
-            :class, {type: :uint8},
+            :class, {type: :byte},
             :depth, {type: :uint8},
             :visual, {type: :uint32},
             :value, {type: :uint32, kind: :map}
