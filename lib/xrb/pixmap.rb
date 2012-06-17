@@ -12,9 +12,14 @@ module Xrb
       @conn.send(Xrb::Request::CreatePixmap.new(o))
     end
 
-    def poly_fill_rectangle(color, rect)
-      o = {gc: color.id, drawable: @id, rectangles: rect}
+    def poly_fill_rectangle(color, rects)
+      o = {gc: color.id, drawable: @id, rectangles: rects}
       @conn.send(Xrb::Request::PolyFillRectangle.new(o))
+    end
+
+    def poly_fill_arc(color, arcs)
+      o = {gc: color.id, drawable: @id, arcs: arcs}
+      @conn.send(Xrb::Request::PolyFillArc.new(o))
     end
 
     def copy_area(opts)

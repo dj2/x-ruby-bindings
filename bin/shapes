@@ -1,0 +1,110 @@
+#!/usr/bin/env ruby
+
+$: << '../lib' << './lib'
+
+require 'xrb'
+
+WINDOW_WIDTH = 640
+WINDOW_HEIGHT = 480
+
+def draw_rect(rect)
+  bounds = Xrb::Rectangle.new(x: 0, y: 0, width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT)
+  rect.poly_fill_rectangle(@bg_color, [bounds])
+
+  bounds = Xrb::Rectangle.new(x: 50, y: 50, width: 50, height: 50)
+  rect.poly_fill_rectangle(@red_color, [bounds])
+
+  bounds = [
+      Xrb::Rectangle.new(x: 150, y: 150, width: 50, height: 50),
+      Xrb::Rectangle.new(x: 210, y: 150, width: 50, height: 50)
+  ]
+  rect.poly_fill_rectangle(@green_color, bounds)
+
+  bounds = Xrb::Rectangle.new(x: 250, y: 250, width: 50, height: 50)
+  rect.poly_fill_rectangle(@blue_color, [bounds])
+
+  arcs = [
+    Xrb::Arc.new(x: 100, y: 20, width: 30, height: 40, angle1: 50, angle2: 60),
+    Xrb::Arc.new(x: 70, y: 80, width: 90, height: 100, angle1: 110, angle2: 120),
+    Xrb::Arc.new(x: 100, y: 20, width: 30, height: 40, angle1: 50, angle2: -30)
+  ]
+  rect.poly_fill_arc(@blue_color, arcs)
+
+# poly line
+# poly segment
+# poly rectangle
+# poly arc
+# fill poly
+# poly fill rectangle
+# poly fill arc
+# poly text 8
+# poly text 16
+end
+
+Xrb.run do |conn|
+  screen = conn.setup.roots.first
+
+  @bg_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => screen.white_pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
+
+  window = Xrb::Window.new(conn, width: WINDOW_WIDTH, height: WINDOW_HEIGHT,
+      border_width: 10, value: {
+          Xrb::CW_BACK_PIXEL => screen.white_pixel,
+          Xrb::CW_EVENT_MASK =>
+              Xrb::EVENT_MASK_EXPOSURE | Xrb::EVENT_MASK_BUTTON_PRESS,
+          Xrb::CW_DONT_PROPAGATE => Xrb::EVENT_MASK_BUTTON_PRESS})
+
+  color_map = Xrb::Colormap.new(conn, window: window)
+  color_map.allocate_color(65535, 0, 0) do |color|
+    @red_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => color.pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
+  end
+  color_map.allocate_color(0, 65535, 0) do |color|
+    @green_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => color.pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
+  end
+  color_map.allocate_color(0, 0, 65535) do |color|
+    @blue_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => color.pixel,
+        Xrb::GC_GRAPHICS_EXPOSURES => 0})
+  end
+
+  rect = Xrb::Pixmap.new(conn, window: window, width: WINDOW_WIDTH,
+      height: WINDOW_HEIGHT)
+
+  window.on_event do |event|
+    case event.to_sym
+    when :Expose then
+      draw_rect(rect)
+      rect.copy_area(dest: window, gc: @bg_color, from: [0, 0], to: [0, 0],
+          size: [WINDOW_WIDTH, WINDOW_HEIGHT])
+
+      conn.flush
+
+    when :ButtonPress then
+      Xrb.quit
+    else
+      puts "Unhandled event #{event.ruby_class}"
+    end
+  end
+
+  conn.on_event do |event|
+    p event
+  end
+
+  conn.on_error do |error|
+    p error
+  end
+
+  window.show
+
+  conn.flush
+end
