@@ -9,7 +9,7 @@ module Xrb
         layout \
             :pad1, {size: 32, type: :uint8}
       end
-      
+
     end
   end
 end

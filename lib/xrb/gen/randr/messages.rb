@@ -7,28 +7,28 @@ module Xrb
     class Message
       class Mode
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Crtc
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class Output
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
       class ScreenSize < Xrb::Message
         layout \
             :width, {type: :uint16},
@@ -36,13 +36,13 @@ module Xrb
             :mwidth, {type: :uint16},
             :mheight, {type: :uint16}
       end
-      
+
       class RefreshRates < Xrb::Message
         layout \
             :nRates, {type: :uint16},
             :rates, {length_field: :nRates, type: :uint16, kind: :list}
       end
-      
+
       class ModeInfo < Xrb::Message
         layout \
             :id, {type: :uint32},
@@ -59,7 +59,7 @@ module Xrb
             :name_len, {type: :uint16},
             :mode_flags, {type: :uint32}
       end
-      
+
       class CrtcChange < Xrb::Message
         layout \
             :timestamp, {type: :uint32},
@@ -73,7 +73,7 @@ module Xrb
             :width, {type: :uint16},
             :height, {type: :uint16}
       end
-      
+
       class OutputChange < Xrb::Message
         layout \
             :timestamp, {type: :uint32},
@@ -86,7 +86,7 @@ module Xrb
             :connection, {type: :uint8},
             :subpixel_order, {type: :uint8}
       end
-      
+
       class OutputProperty < Xrb::Message
         layout \
             :window, {type: :uint32},
@@ -96,14 +96,14 @@ module Xrb
             :status, {type: :uint8},
             :pad1, {size: 11, type: :uint8}
       end
-      
+
       class NotifyData < Xrb::Message
         union \
             :cc, {type: :CrtcChange},
             :oc, {type: :OutputChange},
             :op, {type: :OutputProperty}
       end
-      
+
     end
   end
 end

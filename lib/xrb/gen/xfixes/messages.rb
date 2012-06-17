@@ -7,12 +7,12 @@ module Xrb
     class Message
       class Region
         attr_accessor :id
-        
+
         def to_wire
           [id].pack('L')
         end
       end
-      
+
     end
   end
 end

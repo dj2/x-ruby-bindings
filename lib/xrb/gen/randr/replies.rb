@@ -15,7 +15,7 @@ module Xrb
             :minor_version, {type: :uint32},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class SetScreenConfig < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -28,7 +28,7 @@ module Xrb
             :subpixel_order, {type: :uint16},
             :pad1, {size: 10, type: :uint8}
       end
-      
+
       class GetScreenInfo < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -45,9 +45,9 @@ module Xrb
             :nInfo, {type: :uint16},
             :pad1, {size: 2, type: :uint8},
             :sizes, {length_field: :nSizes, type: ScreenSize, kind: :list},
-            :rates, {length_field: :nInfo, type: RefreshRates, kind: :list}
+            :rates, {type: :RefreshRates, length_expr: '(nInfo - nSizes)'}
       end
-      
+
       class GetScreenSizeRange < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -60,7 +60,7 @@ module Xrb
             :max_height, {type: :uint16},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class GetScreenResources < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -77,9 +77,9 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
-            :names, {length_field: :names_len, type: :uint8, kind: :list}
+            :names, {length_field: :names_len, type: :byte, kind: :list}
       end
-      
+
       class GetOutputInfo < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -100,9 +100,9 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: :uint32, kind: :list},
             :clones, {length_field: :num_clones, type: :uint32, kind: :list},
-            :name, {length_field: :name_len, type: :uint8, kind: :list}
+            :name, {length_field: :name_len, type: :byte, kind: :list}
       end
-      
+
       class ListOutputProperties < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -113,7 +113,7 @@ module Xrb
             :pad2, {size: 22, type: :uint8},
             :atoms, {length_field: :num_atoms, type: :uint32, kind: :list}
       end
-      
+
       class QueryOutputProperty < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -126,7 +126,7 @@ module Xrb
             :pad2, {size: 21, type: :uint8},
             :validValues, {length_field: :length, type: :int32, kind: :list}
       end
-      
+
       class GetOutputProperty < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -137,9 +137,9 @@ module Xrb
             :bytes_after, {type: :uint32},
             :num_items, {type: :uint32},
             :pad1, {size: 12, type: :uint8},
-            :data, {length_field: :format, type: :uint8, kind: :list}
+            :data, {type: :byte, length_expr: '(num_items * (format / 8))'}
       end
-      
+
       class CreateMode < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -149,7 +149,7 @@ module Xrb
             :mode, {type: :uint32},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class GetCrtcInfo < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -169,7 +169,7 @@ module Xrb
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :possible, {length_field: :num_possible_outputs, type: :uint32, kind: :list}
       end
-      
+
       class SetCrtcConfig < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -179,7 +179,7 @@ module Xrb
             :timestamp, {type: :uint32},
             :pad1, {size: 20, type: :uint8}
       end
-      
+
       class GetCrtcGammaSize < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -189,7 +189,7 @@ module Xrb
             :size, {type: :uint16},
             :pad2, {size: 22, type: :uint8}
       end
-      
+
       class GetCrtcGamma < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -202,7 +202,7 @@ module Xrb
             :green, {length_field: :size, type: :uint16, kind: :list},
             :blue, {length_field: :size, type: :uint16, kind: :list}
       end
-      
+
       class GetScreenResourcesCurrent < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -219,9 +219,9 @@ module Xrb
             :crtcs, {length_field: :num_crtcs, type: :uint32, kind: :list},
             :outputs, {length_field: :num_outputs, type: :uint32, kind: :list},
             :modes, {length_field: :num_modes, type: ModeInfo, kind: :list},
-            :names, {length_field: :names_len, type: :uint8, kind: :list}
+            :names, {length_field: :names_len, type: :byte, kind: :list}
       end
-      
+
       class GetCrtcTransform < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -242,7 +242,7 @@ module Xrb
             :current_filter_name, {length_field: :current_len, type: :char, kind: :string},
             :current_params, {length_field: :current_nparams, type: :int32, kind: :list}
       end
-      
+
       class GetPanning < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -263,7 +263,7 @@ module Xrb
             :border_right, {type: :int16},
             :border_bottom, {type: :int16}
       end
-      
+
       class SetPanning < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -272,7 +272,7 @@ module Xrb
             :length, {type: :uint32},
             :timestamp, {type: :uint32}
       end
-      
+
       class GetOutputPrimary < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -281,7 +281,7 @@ module Xrb
             :length, {type: :uint32},
             :output, {type: :uint32}
       end
-      
+
     end
   end
 end

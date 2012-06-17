@@ -12,7 +12,7 @@ module Xrb
             :x2, {type: :int16},
             :x3, {type: :int16}
       end
-      
+
     end
   end
 end

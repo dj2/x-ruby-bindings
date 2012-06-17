@@ -15,7 +15,7 @@ module Xrb
             :server_minor_version, {type: :uint16},
             :pad2, {size: 20, type: :uint8}
       end
-      
+
       class QueryInfo < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -26,10 +26,10 @@ module Xrb
             :ms_until_server, {type: :uint32},
             :ms_since_user_input, {type: :uint32},
             :event_mask, {type: :uint32},
-            :kind, {type: :uint8},
+            :kind, {type: :byte},
             :pad1, {size: 7, type: :uint8}
       end
-      
+
     end
   end
 end

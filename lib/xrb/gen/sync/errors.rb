@@ -7,7 +7,7 @@ module Xrb
     module Error
       class Counter < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :error_code, {type: :uint8},
@@ -16,10 +16,10 @@ module Xrb
             :minor_opcode, {type: :uint16},
             :major_opcode, {type: :uint8}
       end
-      
+
       class Alarm < Xrb::Message
         OPCODE = 1
-        
+
         layout \
             :response_type, {type: :uint8},
             :error_code, {type: :uint8},
@@ -28,7 +28,7 @@ module Xrb
             :minor_opcode, {type: :uint16},
             :major_opcode, {type: :uint8}
       end
-      
+
       @op_map = {
         0 => Counter,
 1 => Alarm

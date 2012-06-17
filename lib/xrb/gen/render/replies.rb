@@ -15,7 +15,7 @@ module Xrb
             :minor_version, {type: :uint32},
             :pad2, {size: 16, type: :uint8}
       end
-      
+
       class QueryPictFormats < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -32,7 +32,7 @@ module Xrb
             :screens, {length_field: :num_screens, type: Pictscreen, kind: :list},
             :subpixels, {length_field: :num_subpixel, type: :uint32, kind: :list}
       end
-      
+
       class QueryPictIndexValues < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -43,7 +43,7 @@ module Xrb
             :pad2, {size: 20, type: :uint8},
             :values, {length_field: :num_values, type: Indexvalue, kind: :list}
       end
-      
+
       class QueryFilters < Xrb::Message
         layout \
             :response_type, {type: :uint8},
@@ -56,7 +56,7 @@ module Xrb
             :aliases, {length_field: :num_aliases, type: :uint16, kind: :list},
             :filters, {length_field: :num_filters, type: Str, kind: :list}
       end
-      
+
     end
   end
 end

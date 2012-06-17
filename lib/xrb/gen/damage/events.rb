@@ -7,7 +7,7 @@ module Xrb
     module Event
       class Notify < Xrb::Message
         OPCODE = 0
-        
+
         layout \
             :response_type, {type: :uint8},
             :level, {type: :uint8},
@@ -17,8 +17,12 @@ module Xrb
             :timestamp, {type: :uint32},
             :area, {type: :RECTANGLE},
             :geometry, {type: :RECTANGLE}
+
+        def to_sym
+          :Notify
+        end
       end
-      
+
       @op_map = {
         0 => Notify
       }

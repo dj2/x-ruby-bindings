@@ -45,6 +45,7 @@ module Xrb
       end
 
       def format(str = '')
+        return str if str.empty?
         "#{' ' * @indent}#{str}"
       end
 
@@ -109,7 +110,6 @@ module Xrb
           constants.delete_if { |r| r.nil? }
 
           imports = Proc.new do
-            print("require 'xrb/generic_types'")
             ns.imports.each { |import| print("require 'xrb/#{import}'") }
 
             name = "xrb/gen/#{ns.header}"
@@ -119,7 +119,6 @@ module Xrb
             print("require '#{name}/errors'") unless ns.errors.empty?
             if !ns.requests.empty?
               print("require '#{name}/requests'")
-              print("require '#{name}/cookies'")
             end
             print("require '#{name}/replies'") unless replies.empty?
           end
@@ -135,7 +134,7 @@ module Xrb
             file(ns, "#{ns.header}/constants") do
               constants.each do |constant|
                 print("# #{constant.name}")
-                Field.new(constant.fields, self).process
+                Field.new(constant.fields, self, '').process
                 print
               end
             end
@@ -171,12 +170,6 @@ module Xrb
                 Request.new(ns.requests, self).process
               end
             end
-
-            file(ns, "#{ns.header}/cookies") do
-              print("module Cookie") do |variable|
-                Cookie.new(ns.requests, self).process
-              end
-            end
           end
 
           if !replies.empty?
@@ -190,9 +183,10 @@ module Xrb
       end
 
       class Field
-        def initialize(fields, printer)
+        def initialize(fields, printer, joiner = ',')
           @p = printer
           @data = fields
+          @joiner = joiner
         end
 
         def process
@@ -210,7 +204,7 @@ module Xrb
 
           if !output.empty?
             output[0].strip!
-            @p.print(output.join(",\n"))
+            @p.print(output.join("#{@joiner}\n"))
           end
         end
 
@@ -222,32 +216,92 @@ module Xrb
           process_field(field)
         end
 
+        def process_exprfield(field)
+          expr = process_op_expression(field.members.first)
+          @p.format(":#{field.name}, {type: :#{field.type.name}, " +
+            "value_expr: '#{expr}'}")
+        end
+
         def process_valueparamfield(field)
           name = field.name.gsub(/_mask/, '')
           @p.format(":#{name}, {type: :#{field.type.name}, kind: :map}")
         end
 
         def process_listfield(field)
-          return if field.members.empty?
+          if field.members.empty?
+            process_list_empty(field)
 
-          if field.members.first.is_a?(ValueField)
-            @p.format(":#{field.name}, " +
-                "{type: :#{field.type.name}, size: #{field.members.first.size}}")
+          elsif field.members.first.is_a?(ValueField)
+            process_list_value_field(field)
 
           elsif field.members.first.is_a?(FieldRefField)
-            # We want [:len_field_name, :type, :[string | list]]
-            type = field.type.name == :char ? ':string' : ':list'
+            process_list_field_ref_field(field)
 
-            if type == ':string' || !@p.cardinals[field.type.name].nil?
-              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
-                  "type: :#{field.type.name}, kind: #{type}}")
-            else
-              @p.format(":#{field.name}, {length_field: :#{field.members.first.name}, " +
-                  "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
-            end
+          elsif field.members.first.is_a?(OpField)
+            process_list_op_field(field)
+
           else
             puts "Unhandled list type: #{field.members.first.to_s}"
           end
+        end
+
+        def process_list_empty(field)
+          type = @p.cardinals[field.type.name]
+          type = if type.nil?
+            @p.type_name(field.type.name)
+          else
+            ":#{type.name}"
+          end
+
+          @p.format(":#{field.name}, " +
+              "{type: #{type}, kind: :list}")
+        end
+
+        def process_list_value_field(field)
+          @p.format(":#{field.name}, " +
+              "{type: :#{field.type.name}, " +
+              "size: #{field.members.first.size}}")
+        end
+
+        def process_list_field_ref_field(field)
+          # We want [:len_field_name, :type, :[string | list]]
+          type = field.type.name == :char ? ':string' : ':list'
+
+          if type == ':string' || !@p.cardinals[field.type.name].nil?
+            @p.format(":#{field.name}, " +
+                "{length_field: :#{field.members.first.name}, " +
+                "type: :#{field.type.name}, kind: #{type}}")
+          else
+            @p.format(":#{field.name}, " +
+                "{length_field: :#{field.members.first.name}, " +
+                "type: #{@p.type_name(field.type.name)}, kind: #{type}}")
+          end
+        end
+
+        def process_list_op_field(field)
+          expr = process_op_expression(field.members.first)
+
+          @p.format(":#{field.name}, {type: :#{field.type.name}, " +
+              "length_expr: '#{expr}'}")
+        end
+
+        def process_op_expression(op)
+          if op.is_a?(FieldRefField)
+            return op.name
+          elsif op.is_a?(ValueField)
+            return op.size
+          elsif op.is_a?(OpField)
+            lhs = process_op_expression(op.members.first)
+            rhs = process_op_expression(op.members.last)
+
+            return "(#{lhs} #{op.name} #{rhs})"
+          elsif op.is_a?(UnopField)
+            rhs = process_op_expression(op.members.first)
+            return "(~#{rhs})"
+          else
+            puts "OP expression found unknown type #{op.class}"
+          end
+          return nil
         end
 
         def process_padfield(field)
@@ -339,6 +393,11 @@ module Xrb
               @p.print
               @p.print("layout \\")
               @p.inc(4) { Field.new(type.fields, @p).process }
+              @p.print
+              @p.print("def to_sym") do
+                n = @p.type_name(name).split("::").last
+                @p.print(":#{n}")
+              end
             end
             @p.print
           end
@@ -401,24 +460,10 @@ module Xrb
             @p.print
             @p.print("layout \\")
             @p.inc(4) { Field.new(type.fields, @p).process }
-          end
-          @p.print
-        end
-      end
 
-      class Cookie
-        def initialize(requests, printer)
-          @p = printer
-          @data = requests
-        end
-
-        def process
-          @data.each { |type| process_cookie(type) }
-        end
-
-        def process_cookie(type)
-          @p.print("class #{@p.type_name(type.name)} < Xrb::Message") do
-            @p.print("layout :sequence, {type: :int}")
+            @p.print("def has_reply?") do
+              @p.print(type.reply.nil? ? "false" : "true")
+            end
           end
           @p.print
         end

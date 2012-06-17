@@ -2,7 +2,6 @@
 # This file was auto-generated. Do not edit.
 #
 
-require 'xrb/generic_types'
 require 'xrb/xproto'
 require 'xrb/render'
 require 'xrb/shape'
@@ -11,7 +10,6 @@ require 'xrb/gen/xfixes/messages'
 require 'xrb/gen/xfixes/events'
 require 'xrb/gen/xfixes/errors'
 require 'xrb/gen/xfixes/requests'
-require 'xrb/gen/xfixes/cookies'
 require 'xrb/gen/xfixes/replies'
 
 module Xrb
