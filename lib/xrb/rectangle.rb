@@ -1,11 +1,12 @@
 module Xrb
   class Rectangle
-    def initialize(x, y, w, h)
-      @rect = Xrb::Message::Rectangle.new()
-      @rect.x = x
-      @rect.y = y
-      @rect.width = w
-      @rect.height = h
+    def initialize(o)
+      @rect = Xrb::Message::Rectangle.new
+      o.each_pair { |k, v| @rect.send("#{k}=", v) }
+    end
+
+    def size
+      Xrb::Message::Rectangle.size
     end
 
     def pack
