@@ -37,7 +37,6 @@ module Xrb
         type = v[:type]
         kind = v[:kind]
         size = v[:size] || type.size
-p [key, type, kind, size]
 
         if key =~ /^pad[0-9]*/
           data.read(type.size * size)
