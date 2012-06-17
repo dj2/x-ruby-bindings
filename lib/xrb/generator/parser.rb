@@ -21,14 +21,14 @@ module Xrb
             char: Type.new(:char, 1),
             float: Type.new(:float, 4),
             double: Type.new(:double, 8),
-            BOOL: Type.new(:bool, 1)
+            BOOL: Type.new(:bool, 1),
+            BYTE: Type.new(:byte, 1)
         })
 
         @types.merge!({
           CARD8: @types[:UINT8],
           CARD16: @types[:UINT16],
           CARD32: @types[:UINT32],
-          BYTE: @types[:UINT8],
           void: @types[:UINT8]
         })
 

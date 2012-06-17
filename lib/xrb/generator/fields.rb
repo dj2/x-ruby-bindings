@@ -5,7 +5,7 @@ module Xrb
 
       def initialize(node, type)
         @name = node.attr('name')
-        @type = type        
+        @type = type
         @enum = node.attr('enum')
         @altenum = node.attr('altenum')
         @mask = node.attr('mask')
@@ -141,7 +141,7 @@ module Xrb
 
     class EnumRefField
       def initialize(node, parser)
-        @name = :enumref 
+        @name = :enumref
         @field_name = node.attr('ref')
         @field_value = node.inner_text
       end
