@@ -156,7 +156,7 @@ module Xrb
             :length, {type: :uint32},
             :keycodes_per_modifier, {type: :uint8},
             :pad2, {size: 23, type: :uint8},
-            :keymaps,{type: uint8, length_expr: '(keycodes_per_modifier * 8)'}
+            :keymaps, {type: :uint8, length_expr: '(keycodes_per_modifier * 8)'}
       end
 
       class SetDeviceModifierMapping < Xrb::Message

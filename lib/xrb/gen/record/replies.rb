@@ -41,7 +41,7 @@ module Xrb
             :server_time, {type: :uint32},
             :rec_sequence_num, {type: :uint32},
             :pad2, {size: 8, type: :uint8},
-            :data,{type: uint8, length_expr: '(length * 4)'}
+            :data, {type: :uint8, length_expr: '(length * 4)'}
       end
 
     end

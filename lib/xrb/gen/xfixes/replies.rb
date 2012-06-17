@@ -30,7 +30,7 @@ module Xrb
             :yhot, {type: :uint16},
             :cursor_serial, {type: :uint32},
             :pad2, {size: 8, type: :uint8},
-            :cursor_image,{type: uint32, length_expr: '(width * height)'}
+            :cursor_image, {type: :uint32, length_expr: '(width * height)'}
       end
 
       class FetchRegion < Xrb::Message
@@ -41,7 +41,7 @@ module Xrb
             :length, {type: :uint32},
             :extents, {type: :RECTANGLE},
             :pad2, {size: 16, type: :uint8},
-            :rectangles,{type: RECTANGLE, length_expr: '(length / 2)'}
+            :rectangles, {type: :RECTANGLE, length_expr: '(length / 2)'}
       end
 
       class GetCursorName < Xrb::Message
@@ -73,7 +73,7 @@ module Xrb
             :nbytes, {type: :uint16},
             :pad2, {size: 2, type: :uint8},
             :name, {length_field: :nbytes, type: :char, kind: :string},
-            :cursor_image,{type: uint32, length_expr: '(width * height)'}
+            :cursor_image, {type: :uint32, length_expr: '(width * height)'}
       end
 
     end
