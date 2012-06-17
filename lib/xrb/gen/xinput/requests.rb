@@ -426,7 +426,8 @@ module Xrb
             :device_id, {type: :uint8},
             :first_keycode, {type: :uint8},
             :keysyms_per_keycode, {type: :uint8},
-            :keycode_count, {type: :uint8}
+            :keycode_count, {type: :uint8},
+            :keysyms,{type: uint32, length_expr: '(keycode_count * keysyms_per_keycode)'}
         def has_reply?
           false
         end
@@ -459,7 +460,8 @@ module Xrb
             :length, {type: :uint16},
             :device_id, {type: :uint8},
             :keycodes_per_modifier, {type: :uint8},
-            :pad1, {size: 1, type: :uint8}
+            :pad1, {size: 1, type: :uint8},
+            :keymaps,{type: uint8, length_expr: '(keycodes_per_modifier * 8)'}
         def has_reply?
           true
         end
@@ -530,6 +532,7 @@ module Xrb
             :num_classes, {type: :uint16},
             :num_events, {type: :uint8},
             :pad1, {size: 3, type: :uint8},
+            :events,{type: char, length_expr: '(num_events * 32)'},
             :classes, {length_field: :num_classes, type: :uint32, kind: :list}
         def has_reply?
           false

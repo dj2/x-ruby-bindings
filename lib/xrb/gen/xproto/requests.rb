@@ -291,7 +291,8 @@ module Xrb
           :type, {type: :uint32},
           :format, {type: :uint8},
           :pad1, {size: 3, type: :uint8},
-          :data_len, {type: :uint32}
+          :data_len, {type: :uint32},
+          :data,{type: uint8, length_expr: '((data_len * format) / 8)'}
       def has_reply?
         false
       end
@@ -794,6 +795,7 @@ module Xrb
 
       layout \
           :major_opcode, {type: :uint8},
+          :odd_length, {type: :bool, value_expr: '(string_len & 1)'},
           :length, {type: :uint16},
           :font, {type: :uint32},
           :string, {type: Char2b, kind: :list}
@@ -1723,7 +1725,8 @@ module Xrb
           :length, {type: :uint16},
           :first_keycode, {type: :uint8},
           :keysyms_per_keycode, {type: :uint8},
-          :pad1, {size: 2, type: :uint8}
+          :pad1, {size: 2, type: :uint8},
+          :keysyms,{type: uint32, length_expr: '(keycode_count * keysyms_per_keycode)'}
       def has_reply?
         false
       end
@@ -1997,7 +2000,8 @@ module Xrb
       layout \
           :major_opcode, {type: :uint8},
           :keycodes_per_modifier, {type: :uint8},
-          :length, {type: :uint16}
+          :length, {type: :uint16},
+          :keycodes,{type: uint8, length_expr: '(keycodes_per_modifier * 8)'}
       def has_reply?
         true
       end

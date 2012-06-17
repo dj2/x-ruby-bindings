@@ -205,7 +205,8 @@ module Xrb
             :format, {type: :uint8},
             :mode, {type: :uint8},
             :pad1, {size: 2, type: :uint8},
-            :num_units, {type: :uint32}
+            :num_units, {type: :uint32},
+            :data,{type: uint8, length_expr: '((num_units * format) / 8)'}
         def has_reply?
           false
         end

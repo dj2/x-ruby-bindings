@@ -365,7 +365,8 @@ module Xrb
             :fbconfig, {type: :uint32},
             :pixmap, {type: :uint32},
             :glx_pixmap, {type: :uint32},
-            :num_attribs, {type: :uint32}
+            :num_attribs, {type: :uint32},
+            :attribs,{type: uint32, length_expr: '(num_attribs * 2)'}
         def has_reply?
           false
         end
@@ -452,7 +453,8 @@ module Xrb
             :screen, {type: :uint32},
             :fbconfig, {type: :uint32},
             :pbuffer, {type: :uint32},
-            :num_attribs, {type: :uint32}
+            :num_attribs, {type: :uint32},
+            :attribs,{type: uint32, length_expr: '(num_attribs * 2)'}
         def has_reply?
           false
         end
@@ -498,7 +500,8 @@ module Xrb
             :minor_opcode, {type: :uint8},
             :length, {type: :uint16},
             :drawable, {type: :uint32},
-            :num_attribs, {type: :uint32}
+            :num_attribs, {type: :uint32},
+            :attribs,{type: uint32, length_expr: '(num_attribs * 2)'}
         def has_reply?
           false
         end
@@ -517,7 +520,8 @@ module Xrb
             :fbconfig, {type: :uint32},
             :window, {type: :uint32},
             :glx_window, {type: :uint32},
-            :num_attribs, {type: :uint32}
+            :num_attribs, {type: :uint32},
+            :attribs,{type: uint32, length_expr: '(num_attribs * 2)'}
         def has_reply?
           false
         end
@@ -552,6 +556,7 @@ module Xrb
             :num_versions, {type: :uint32},
             :gl_str_len, {type: :uint32},
             :glx_str_len, {type: :uint32},
+            :gl_versions,{type: uint32, length_expr: '(num_versions * 2)'},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
         def has_reply?
@@ -574,7 +579,8 @@ module Xrb
             :share_list, {type: :uint32},
             :is_direct, {type: :bool},
             :pad1, {size: 3, type: :uint8},
-            :num_attribs, {type: :uint32}
+            :num_attribs, {type: :uint32},
+            :attribs,{type: uint32, length_expr: '(num_attribs * 2)'}
         def has_reply?
           false
         end
@@ -594,6 +600,7 @@ module Xrb
             :num_versions, {type: :uint32},
             :gl_str_len, {type: :uint32},
             :glx_str_len, {type: :uint32},
+            :gl_versions,{type: uint32, length_expr: '(num_versions * 3)'},
             :gl_extension_string, {length_field: :gl_str_len, type: :char, kind: :string},
             :glx_extension_string, {length_field: :glx_str_len, type: :char, kind: :string}
         def has_reply?
