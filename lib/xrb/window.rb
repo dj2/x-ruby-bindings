@@ -199,5 +199,11 @@ module Xrb
       o = opts.merge(window: @id)
       @conn.send(Xrb::Request::ClearArea.new(o))
     end
+
+    def list_installed_colormaps(&blk)
+      cookie = @conn.send(Xrb::Request::ListInstalledColormaps.new(window: @id))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end

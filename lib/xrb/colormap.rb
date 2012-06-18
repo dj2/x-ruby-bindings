@@ -24,5 +24,32 @@ module Xrb
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def allocate_named_color(name, &blk)
+      cookie = @conn.send(Xrb::Request::AllocNamedColor.new(cmap: @id,
+          name: name))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def free_colors(colors)
+      @conn.send(Xrb::Request::FreeColors.new(cmap: @id, pixels: colors))
+    end
+
+    def copy_and_free(to)
+      @conn.send(Xrb::Request::CopyColormapAndFree.new(src_cmap: @id, mid: to))
+    end
+
+    def install
+      @conn.send(Xrb::Request::InstallColormap.new(cmap: @id))
+    end
+
+    def uninstall
+      @conn.send(xrb::Request::UninstallColormap.new(cmap: @id))
+    end
+
+    def free
+      @conn.send(Xrb::Request::FreeColormap.new(cmap: @id))
+    end
   end
 end
