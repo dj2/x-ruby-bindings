@@ -50,8 +50,16 @@ module Xrb
       @conn.send(Xrb::Request::MapWindow.new(window: @id))
     end
 
+    def hide
+      @conn.send(Xrb::Request::UnmapWindow.new(window: @id))
+    end
+
     def show_subwindows
       @conn.send(Xrb::Request::MapSubwindows.new(window: @id))
+    end
+
+    def hide_subwindows
+      @conn.send(Xrb::Request::UnmapSubwindows.new(window: @id))
     end
 
     def attributes(&blk)
