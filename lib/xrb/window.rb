@@ -58,5 +58,9 @@ module Xrb
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def destroy
+      @conn.send(Xrb::Request::DestroyWindow.new(window: @id))
+    end
   end
 end
