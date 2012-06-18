@@ -234,9 +234,13 @@ p [seq, request.ruby_class]
     end
 
     def translate_coordinates(opts, &blk)
-      cookie = @conn.send(Xrb::Request::TranslateCoordinates.new(opts))
+      cookie = send(Xrb::Request::TranslateCoordinates.new(opts))
       cookie.callback = blk if block_given?
       cookie
+    end
+
+    def warp_pointer(opts)
+      send(Xrb::Request::WarpPointer.new(opts))
     end
   end
 end
