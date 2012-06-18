@@ -1,5 +1,7 @@
 module Xrb
   class Window
+    include Xrb::Drawable
+
     attr_reader :id, :depth
 
     DEFAULT_OPTS = {x: 0, y: 0, border_width: 2, depth: Xrb::COPY_FROM_PARENT,
@@ -98,7 +100,7 @@ module Xrb
 
     def circulate(direction)
       @conn.send(Xrb::Request::CirculateWindow.new(window: @id,
-          direction: direction)
+          direction: direction))
     end
   end
 end
