@@ -242,5 +242,15 @@ p [seq, request.ruby_class]
     def warp_pointer(opts)
       send(Xrb::Request::WarpPointer.new(opts))
     end
+
+    def set_input_focus(opts)
+      send(Xrb::Request::SetInputFoucs.new(opts))
+    end
+
+    def input_focus(opts, &blk)
+      cookie = send(Xrb::Request::GetInputFocus.new(opts))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
