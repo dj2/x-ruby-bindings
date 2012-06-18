@@ -95,5 +95,10 @@ module Xrb
       o = opts.merge(window: @id)
       @conn.send(Xrb::Request::ReparentWindow.new(o))
     end
+
+    def circulate(direction)
+      @conn.send(Xrb::Request::CirculateWindow.new(window: @id,
+          direction: direction)
+    end
   end
 end
