@@ -271,5 +271,99 @@ p [seq, request.ruby_class]
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def kill_client(client)
+      send(Xrb::Request::KillClient(resource: client))
+    end
+
+    def set_close_down_mode(mode)
+      send(Xrb::Request::SetCloseDownMode.new(mode: mode))
+    end
+
+    def set_access_control(mode)
+      send(Xrb::Request::SetAccessControl.new(mode: mode))
+    end
+
+    def list_hosts(&blk)
+      cookie = send(Xrb::Request::ListHosts.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def change_hosts(opts)
+      send(Xrb::Request::ChangeHosts.new(opts))
+    end
+
+    def force_screensave(mode)
+      send(Xrb::Request::ForceScreensaver.new(mode: mode))
+    end
+
+    def get_screensaver(&blk)
+      cookie = send(Xrb::Request::GetScreenSaver)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def set_screensaver(opts)
+      send(Xrb::Request::SetScreenSaver.new(opts))
+    end
+
+    def get_pointer_control(&blk)
+      cookie = send(Xrb::Request::GetPointerControl.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def change_pointer_control(opts)
+      send(Xrb::Request::ChangePointerControl.new(opts))
+    end
+
+    def get_pointer_mapping(&blk)
+      cookie = send(Xrb::Request::GetPointerMapping.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def set_pointer_mapping(map, &blk)
+      cookie = send(Xrb::Request::SetPointerMapping.new(map: map))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def bell(percent)
+      send(Xrb::Request::Bell.new(percent: percent))
+    end
+
+    def get_keyboard_control(&blk)
+      cookie = send(Xrb::Request::GetKeyboardControl.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def change_keyboard_control(values)
+      send(Xrb::Requets::ChangeKeyboardControl.new(value: values))
+    end
+
+    def get_keyboard_mapping(opts, &blk)
+      cookie = send(Xrb::Request::GetKeyboardMapping.new(opts))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def change_keyboard_mapping(opts)
+      send(Xrb::Request::ChangeKeyboardMapping.new(opts))
+    end
+
+    def get_modifier_map(&blk)
+      cookie = send(Xrb::Request::GetModifierMap.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def set_modifier_map(opts, &blk)
+      cookie = send(Xrb::Request::SetModifierMap.new(opts))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
