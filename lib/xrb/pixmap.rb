@@ -56,8 +56,16 @@ module Xrb
     end
 
     def draw_text8(color, x, y, text)
-      o = {gc: color.id, drawable: @id, x: x, y: y, items: [text]}
-      @conn.send(Xrb::Request::PolyText_8(o))
+      chars = []
+      text.split('').each do |b|
+        char2b = Xrb::Message::Char2b.new
+        char2b.byte1 = 0
+        char2b.byte2 = b.ord
+        chars << char2b
+      end
+
+      o = {gc: color.id, drawable: @id, x: x, y: y, items: chars}
+      @conn.send(Xrb::Request::PolyText_8.new(o))
     end
 
     def copy_area(opts)

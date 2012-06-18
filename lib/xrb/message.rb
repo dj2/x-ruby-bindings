@@ -35,6 +35,10 @@ module Xrb
       end
     end
 
+    def size
+      ruby_class.size
+    end
+
     def self.unpack(data, padded = true)
       ret = self.new
       ret.unpack(data, padded, @fields)
@@ -117,7 +121,7 @@ module Xrb
 
       calc_length
 
-      self.ruby_class.fields.each_pair do |key, v|
+      ruby_class.fields.each_pair do |key, v|
         type = v[:type]
         kind = v[:kind]
         size = v[:size] || type.size
@@ -132,18 +136,18 @@ module Xrb
         elsif kind
           if kind.is_list?
             if type.respond_to?(:is_packed?) && !type.is_packed?
-              self.send(key)
+              send(key).join
             else
-              self.send(key).collect { |obj| obj.pack }.join
+              send(key).collect { |obj| obj.pack }.join
             end
 
           elsif kind.is_string?
-            v = self.send(key)
+            v = send(key)
             v += "\x00" * (-v.length & 3)
 
           elsif kind.is_map?
             bits, bytes = 0, []
-            self.send(key).each_pair do |k, v|
+            send(key).each_pair do |k, v|
               bits |= k
               bytes << [v].pack(type.directive)
             end
@@ -154,9 +158,9 @@ module Xrb
 
         else
           if type.is_packed?
-            [self.send(key)].pack(type.directive)
+            [send(key)].pack(type.directive)
           else
-            self.send(key)
+            send(key)
           end
         end
       end

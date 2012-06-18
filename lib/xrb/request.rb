@@ -13,7 +13,13 @@ module Xrb
         next unless val[:kind]
 
         if val[:kind].is_map?
-          s += ((val.has_key?(:size) ? val[:size] : val[:type].size) * send(key).length)
+          t = if val.has_key?(:size)
+            val[:size]
+          else
+            val[:type].size
+          end
+          s += t * send(key).length
+
         elsif val[:kind].is_list?
           send(key).each { |v| s+= v.size }
         elsif val[:kind].is_string?

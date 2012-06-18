@@ -66,9 +66,8 @@ def draw_rect(rect)
   ]
   rect.draw_line_segments(@green_color, segments)
 
-  rect.draw_text8(@black_color, 300, 300, "Hello X11")
-# poly text 8
-# poly text 16
+  # TODO(dj2): Make poly text work ...
+#  rect.draw_text8(@black_color, 300, 300, "Hello X11")
 end
 
 Xrb.run do |conn|
