@@ -90,8 +90,8 @@ Xrb.run do |conn|
     p reply
   end
 
-  window.attributes = {Xrb::CW_EVENT_MASK => Xrb::EVENT_MASK_EXPOSURE |
-      Xrb::EVENT_MASK_BUTTON_PRESS | Xrb::EVENT_MASK_KEY_PRESS}
+  window.change_attributes({Xrb::CW_EVENT_MASK => Xrb::EVENT_MASK_EXPOSURE |
+      Xrb::EVENT_MASK_BUTTON_PRESS | Xrb::EVENT_MASK_KEY_PRESS})
 
   window.geometry do |reply|
     p reply

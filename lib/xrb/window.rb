@@ -82,7 +82,7 @@ module Xrb
       @conn.send(Xrb::Request::DestroySubwindows.new(window: @id))
     end
 
-    def attributes=(attrs)
+    def change_attributes(attrs)
       o = {window: @id, value: attrs}
       @conn.send(Xrb::Request::ChangeWindowAttributes.new(o))
     end
@@ -105,6 +105,33 @@ module Xrb
 
     def query_tree(&blk)
       cookie = @conn.send(Xrb::Request::QueryTree.new(window: @id))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def change_property(name, opts = {})
+      o = opts.merge(window: @id, property: name)
+      @conn.send(Xrb::Request::ChangeProperty.new(o))
+    end
+
+    def delete_property(name)
+      @conn.send(Xrb::Request::DeleteProperty.new(window: @id, property: name))
+    end
+
+    def property(name, opts = {}, &blk)
+      o = opts.merge(window: @id, property: name)
+      cookie = @conn.send(Xrb::Request::GetProperty.new(o))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def rotate_properties(opts = {})
+      o = opts.merge(window: @id)
+      @conn.send(Xrb::Request::RotateProperties.new(o))
+    end
+
+    def properties(&blk)
+      cookie = @conn.send(Xrb::Request::ListProperties.new(window: @id))
       cookie.callback = blk if block_given?
       cookie
     end
