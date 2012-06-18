@@ -9,3 +9,8 @@ These bindings are very incomplete. I've been filling in
 pieces as I need them, currently working on getting the
 Julia example working from the XCB demos.
 
+
+Currently Broken
+===
+ - The PolyText methods are not working (draw\_text).
+ - The GetImage/PutImage do not work.
