@@ -97,6 +97,10 @@ Xrb.run do |conn|
     p reply
   end
 
+  window.query_tree do |reply|
+    p reply
+  end
+
   color_map = Xrb::Colormap.new(conn, window: window)
   color_map.allocate_color(65535, 0, 0) do |color|
     @red_color = Xrb::Gc.new(conn,

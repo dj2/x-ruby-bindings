@@ -102,5 +102,11 @@ module Xrb
       @conn.send(Xrb::Request::CirculateWindow.new(window: @id,
           direction: direction))
     end
+
+    def query_tree(&blk)
+      cookie = @conn.send(Xrb::Request::QueryTree.new(window: @id))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
