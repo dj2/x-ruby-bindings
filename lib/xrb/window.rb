@@ -46,11 +46,12 @@ module Xrb
       @handlers[type].each { |h| h.call(event) }
     end
 
+    def show
+      @conn.send(Xrb::Request::MapWindow.new(window: @id))
+    end
 
-    def show(flush = true)
-      cookie = @conn.send(Xrb::Request::MapWindow.new(window: @id))
-      @conn.flush if flush
-      cookie
+    def show_subwindows
+      @conn.send(Xrb::Request::MapSubwindows.new(window: @id))
     end
 
     def attributes(&blk)
