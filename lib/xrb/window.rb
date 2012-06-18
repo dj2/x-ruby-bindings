@@ -62,6 +62,10 @@ module Xrb
       @conn.send(Xrb::Request::UnmapSubwindows.new(window: @id))
     end
 
+    def configure(values)
+      @conn.send(Xrb::Request::ConfigureWindow.new(window: @id, value: values))
+    end
+
     def attributes(&blk)
       cookie = @conn.send(Xrb::Request::GetWindowAttributes.new(window: @id))
       cookie.callback = blk if block_given?
