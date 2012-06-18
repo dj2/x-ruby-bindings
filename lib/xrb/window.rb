@@ -71,5 +71,11 @@ module Xrb
       o = {window: @id, value: attrs}
       @conn.send(Xrb::Request::ChangeWindowAttributes.new(o))
     end
+
+    def change_save_set(op)
+      mode = (op == :insert ? Xrb::SET_MODE_INSERT : Xrb::SET_MODE_DELETE)
+      o = {window: @id, mode: mode}
+      @conn.send(Xrb::Request::ChangeSaveSet.new(o))
+    end
   end
 end
