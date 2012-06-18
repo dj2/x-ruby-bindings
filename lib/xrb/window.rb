@@ -52,5 +52,11 @@ module Xrb
       @conn.flush if flush
       cookie
     end
+
+    def attributes(&blk)
+      cookie = @conn.send(Xrb::Request::GetWindowAttributes.new(window: @id))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
