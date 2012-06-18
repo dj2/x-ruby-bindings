@@ -202,5 +202,19 @@ p [seq, request.ruby_class]
 
     def next_event(&blk)
     end
+
+    def set_selection_owner(opts)
+      send(Xrb::Request::SetSelectionOwner.new(opts))
+    end
+
+    def selection_owner(&blk)
+      cookie = send(Xrb::Request::GetSelectionOwner.new(opts))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def convert_selection(opts)
+      send(Xrb::Request::ConvertSelection.new(opts))
+    end
   end
 end
