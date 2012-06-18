@@ -252,5 +252,11 @@ p [seq, request.ruby_class]
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def query_keymap(&blk)
+      cookie = send(Xrb::Request::QueryKeymap.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
