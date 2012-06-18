@@ -64,7 +64,6 @@ module Xrb
 
     def draw_image_text8(color, txt, opts)
       o = opts.merge(gc: color.id, drawable: @id, string: txt)
-p o
       @conn.send(Xrb::Request::ImageText_8.new(o))
     end
 
@@ -76,6 +75,13 @@ p o
     def copy_plane(opts)
       o = opts.merge(src_drawable: @id)
       @conn.send(Xrb::Request::CopyPlane.new(o))
+    end
+
+    def query_best_size(opts, &blk)
+      o = opts.merge(drawable: @id)
+      cookie = @conn.send(Xrb::Request::QueryBestSize.new(o))
+      cookie.callback = blk if block_given?
+      cookie
     end
   end
 end
