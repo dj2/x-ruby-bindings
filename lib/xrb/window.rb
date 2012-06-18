@@ -77,5 +77,10 @@ module Xrb
       o = {window: @id, mode: mode}
       @conn.send(Xrb::Request::ChangeSaveSet.new(o))
     end
+
+    def reparent(opts)
+      o = opts.merge(window: @id)
+      @conn.send(Xrb::Request::ReparentWindow.new(o))
+    end
   end
 end
