@@ -62,5 +62,14 @@ module Xrb
     def destroy
       @conn.send(Xrb::Request::DestroyWindow.new(window: @id))
     end
+
+    def destroy_subwindows
+      @conn.send(Xrb::Request::DestroySubwindows.new(window: @id))
+    end
+
+    def attributes=(attrs)
+      o = {window: @id, value: attrs}
+      @conn.send(Xrb::Request::ChangeWindowAttributes.new(o))
+    end
   end
 end

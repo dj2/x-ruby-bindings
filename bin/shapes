@@ -85,9 +85,13 @@ Xrb.run do |conn|
               Xrb::EVENT_MASK_EXPOSURE | Xrb::EVENT_MASK_BUTTON_PRESS,
           Xrb::CW_DONT_PROPAGATE => Xrb::EVENT_MASK_BUTTON_PRESS})
 
+  mask = 0
   window.attributes do |reply|
     p reply
   end
+
+  window.attributes = {Xrb::CW_EVENT_MASK => Xrb::EVENT_MASK_EXPOSURE |
+      Xrb::EVENT_MASK_BUTTON_PRESS | Xrb::EVENT_MASK_KEY_PRESS}
 
   color_map = Xrb::Colormap.new(conn, window: window)
   color_map.allocate_color(65535, 0, 0) do |color|
