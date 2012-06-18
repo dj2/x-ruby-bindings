@@ -181,5 +181,18 @@ module Xrb
       o = opts.merge(grab_window: @id)
       @conn.send(Xrb::Request::UngrabKey.new(o))
     end
+
+    def query_pointer(&blk)
+      cookie = @conn.send(Xrb::Request::QueryPointer.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def get_motion_events(opts, &blk)
+      o = opts.merge(window: @id)
+      cookie = @conn.send(Xrb::Request::GetMotionEvents.new(o))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
