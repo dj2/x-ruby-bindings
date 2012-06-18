@@ -232,5 +232,11 @@ p [seq, request.ruby_class]
     def allow_events(opts)
       send(Xrb::Request::AllowEvents.new(opts))
     end
+
+    def translate_coordinates(opts, &blk)
+      cookie = @conn.send(Xrb::Request::TranslateCoordinates.new(opts))
+      cookie.callback = blk if block_given?
+      cookie
+    end
   end
 end
