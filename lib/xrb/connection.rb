@@ -216,5 +216,9 @@ p [seq, request.ruby_class]
     def convert_selection(opts)
       send(Xrb::Request::ConvertSelection.new(opts))
     end
+
+    def send_event(opts)
+      send(Xrb::Request::SendEvent.new(opts))
+    end
   end
 end
