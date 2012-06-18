@@ -13,5 +13,9 @@ module Xrb
 
       @conn.send(Xrb::Request::CreatePixmap.new(o))
     end
+
+    def free
+      @conn.send(Xrb::Request::FreePixmap.new(pixmap: @id))
+    end
   end
 end
