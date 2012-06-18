@@ -13,4 +13,5 @@ Julia example working from the XCB demos.
 Currently Broken
 ===
  - The PolyText methods are not working (draw\_text).
+ - The ImageText methods are not working (draw\_image_text).
  - The GetImage/PutImage do not work.

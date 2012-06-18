@@ -62,20 +62,20 @@ module Xrb
       @conn.send(Xrb::Request::PolyText_8.new(o))
     end
 
-    def copy_area(opts)
-      o = {
-        src_drawable: @id,
-        dst_drawable: opts[:dest].id,
-        gc: opts[:gc].id,
-        src_x: opts[:from].first,
-        src_y: opts[:from].last,
-        dst_x: opts[:to].first,
-        dst_y: opts[:to].last,
-        width: opts[:size].first,
-        height: opts[:size].last
-      }
+    def draw_image_text8(color, txt, opts)
+      o = opts.merge(gc: color.id, drawable: @id, string: txt)
+p o
+      @conn.send(Xrb::Request::ImageText_8.new(o))
+    end
 
+    def copy_area(opts)
+      o = opts.merge(src_drawable: @id)
       @conn.send(Xrb::Request::CopyArea.new(o))
+    end
+
+    def copy_plane(opts)
+      o = opts.merge(src_drawable: @id)
+      @conn.send(Xrb::Request::CopyPlane.new(o))
     end
   end
 end

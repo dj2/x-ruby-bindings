@@ -5,6 +5,12 @@ module Xrb
     def initialize(opts = {})
       self.major_opcode = self.ruby_class.const_get(:OPCODE)
       opts.each_pair { |k, v| send("#{k}=", v) }
+
+      self.ruby_class.fields.each_pair do |k, v|
+        if v.has_key?(:length_field) && v[:kind] && v[:kind].is_string?
+          send("#{v[:length_field]}=", send(k).length)
+        end
+      end
     end
 
     def calc_length
