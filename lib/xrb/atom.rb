@@ -70,5 +70,30 @@ module Xrb
         WM_CLASS: 67,
         WM_TRANSIENT_FOR: 68
     }
+
+    @ids = {}
+    @atoms.each_pair { |k, v| @ids[v] = k }
+
+    def create(name, create = false)
+      cookie = @conn.send(Xrb::Request::InternAtom.new(name: name,
+          only_if_exists: !create))
+      cookie.callback = Proc.new do |reply|
+        @atoms[name.to_sym] = reply.atom
+        @ids[reply.atom] = name.to_sym
+      end
+      cookie
+    end
+
+    def get(id, &blk)
+      return @atoms[name.to_sym] if atoms.has_key?(name.to_sym)
+
+      cookie = @conn.send(Xrb::Request::GetAtomName.new(atom: id))
+      cookie.callback = Proc.new do |reply|
+        @atoms[reply.name] = id
+        @ids[id] = reply.name
+        blk.call(reply) if block_given?
+      end
+      nil
+    end
   end
 end
