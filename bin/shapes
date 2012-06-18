@@ -10,19 +10,19 @@ WINDOW_HEIGHT = 480
 def draw_rect(rect)
   bounds = Xrb::Rectangle.new(x: 0, y: 0, width: WINDOW_WIDTH,
       height: WINDOW_HEIGHT)
-  rect.poly_fill_rectangle(@bg_color, [bounds])
+  rect.draw_filled_rectangles(@bg_color, [bounds])
 
   bounds = Xrb::Rectangle.new(x: 50, y: 50, width: 50, height: 50)
-  rect.poly_fill_rectangle(@red_color, [bounds])
+  rect.draw_filled_rectangles(@red_color, [bounds])
 
   bounds = [
       Xrb::Rectangle.new(x: 150, y: 150, width: 50, height: 50),
       Xrb::Rectangle.new(x: 210, y: 150, width: 50, height: 50)
   ]
-  rect.poly_fill_rectangle(@green_color, bounds)
+  rect.draw_filled_rectangles(@green_color, bounds)
 
   bounds = Xrb::Rectangle.new(x: 250, y: 250, width: 50, height: 50)
-  rect.poly_fill_rectangle(@blue_color, [bounds])
+  rect.draw_rectangles(@blue_color, [bounds])
 
   arcs = [
     Xrb::Arc.new(x: 10, y: 100, width: 60, height: 40,
@@ -30,15 +30,42 @@ def draw_rect(rect)
     Xrb::Arc.new(x: 90, y: 100, width: 55, height: 40,
         angle1: 0, angle2: (270 << 6))
   ]
-  rect.poly_fill_arc(@blue_color, arcs)
+  rect.draw_filled_arcs(@blue_color, arcs)
 
-# poly line
-# poly segment
-# poly rectangle
-# poly arc
-# fill poly
-# poly fill rectangle
-# poly fill arc
+  arc = Xrb::Arc.new(x: 300, y: 100, width: 60, height: 40,
+        angle1: 0, angle2: (270 << 6))
+  rect.draw_arcs(@red_color, [arc])
+
+  points = [
+      Xrb::Point.new(x: 630, y: 440),
+      Xrb::Point.new(x: 635, y: 440),
+      Xrb::Point.new(x: 630, y: 445),
+      Xrb::Point.new(x: 635, y: 445)
+  ]
+  rect.draw_points(@red_color, Xrb::COORD_MODE_ORIGIN, points)
+
+  points = [
+      Xrb::Point.new(x: 200, y: 300),
+      Xrb::Point.new(x: 200, y: 350),
+      Xrb::Point.new(x: 150, y: 360),
+      Xrb::Point.new(x: 100, y: 360),
+      Xrb::Point.new(x: 175, y: 360)
+  ]
+  rect.draw_filled_shape(@green_color, Xrb::POLY_SHAPE_CONVEX,
+      Xrb::COORD_MODE_ORIGIN, points)
+
+  points = [
+      Xrb::Point.new(x: 300, y: 300),
+      Xrb::Point.new(x: 200, y: 200)
+  ]
+  rect.draw_lines(@blue_color, Xrb::COORD_MODE_ORIGIN, points)
+
+  segments = [
+      Xrb::Segment.new(x1: 500, y1: 450, x2: 600, y2: 400),
+      Xrb::Segment.new(x1: 380, y1: 500, x2: 420, y2: 550)
+  ]
+  rect.draw_line_segments(@green_color, segments)
+
 # poly text 8
 # poly text 16
 end

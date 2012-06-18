@@ -12,14 +12,47 @@ module Xrb
       @conn.send(Xrb::Request::CreatePixmap.new(o))
     end
 
-    def poly_fill_rectangle(color, rects)
+    def draw_filled_rectangles(color, rects)
       o = {gc: color.id, drawable: @id, rectangles: rects}
       @conn.send(Xrb::Request::PolyFillRectangle.new(o))
     end
 
-    def poly_fill_arc(color, arcs)
+    def draw_filled_arcs(color, arcs)
       o = {gc: color.id, drawable: @id, arcs: arcs}
       @conn.send(Xrb::Request::PolyFillArc.new(o))
+    end
+
+    def draw_filled_shape(color, shape, coordinate_mode, points)
+      o = {gc: color.id, drawable: @id, points: points,
+           shape: shape, coordinate_mode: coordinate_mode}
+      @conn.send(Xrb::Request::FillPoly.new(o))
+    end
+
+    def draw_points(color, coordinate_mode, points)
+      o = {gc: color.id, drawable: @id, points: points,
+           coordinate_mode: coordinate_mode}
+      @conn.send(Xrb::Request::PolyPoint.new(o))
+    end
+
+    def draw_lines(color, coordinate_mode, points)
+      o = {gc: color.id, drawable: @id, points: points,
+           coordinate_mode: coordinate_mode}
+      @conn.send(Xrb::Request::PolyLine.new(o))
+    end
+
+    def draw_line_segments(color, segments)
+      o = {gc: color.id, drawable: @id, segments: segments}
+      @conn.send(Xrb::Request::PolySegment.new(o))
+    end
+
+    def draw_rectangles(color, rectangles)
+      o = {gc: color.id, drawable: @id, rectangles: rectangles}
+      @conn.send(Xrb::Request::PolyRectangle.new(o))
+    end
+
+    def draw_arcs(color, arcs)
+      o = {gc: color.id, drawable: @id, arcs: arcs}
+      @conn.send(Xrb::Request::PolyArc.new(o))
     end
 
     def copy_area(opts)
