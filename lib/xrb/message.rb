@@ -39,13 +39,13 @@ module Xrb
       ruby_class.size
     end
 
-    def self.unpack(data, padded = true)
+    def self.unpack(data)
       ret = self.new
-      ret.unpack(data, padded, @fields)
+      ret.unpack(data, @fields)
       ret
     end
 
-    def unpack(data, padded, fields)
+    def unpack(data, fields)
       fields.each_pair do |key, v|
 
         type = v[:type]
@@ -65,8 +65,9 @@ module Xrb
           if kind.is_list?
             if type.is_a?(Class)
               data_value = []
+
               send(v[:length_field]).times do
-                data_value << type.unpack(data, padded)
+                data_value << type.unpack(data)
               end
             else
               tmp = data.read(send(v[:length_field]) * size)
@@ -84,10 +85,6 @@ module Xrb
             len = send(v[:length_field])
             data_value = data.read(len)
 
-            if padded
-              padding = (4 - (len % 4)) % 4
-              data.read(padding)
-            end
 
           elsif kind.is_map?
             puts "Don't know how to unpack map's yet ..."

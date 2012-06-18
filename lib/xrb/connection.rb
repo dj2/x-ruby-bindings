@@ -131,6 +131,7 @@ p [seq, request.ruby_class]
 
         cookie = @cookie_jar.delete(seq)
         reply = cookie.reply(self)
+
         if reply.ruby_class.size < 32
           read(32 - reply.ruby_class.size)
         end
@@ -255,6 +256,18 @@ p [seq, request.ruby_class]
 
     def query_keymap(&blk)
       cookie = send(Xrb::Request::QueryKeymap.new)
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def query_extension(name, &blk)
+      cookie = send(Xrb::Request::QueryExtension.new(name: name))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def list_extensions(&blk)
+      cookie = send(Xrb::Request::ListExtensions.new)
       cookie.callback = blk if block_given?
       cookie
     end

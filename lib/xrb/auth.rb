@@ -84,7 +84,7 @@ module Xrb
       end
 
       File.open(file) do |f|
-        auth = Xrb::Auth::Info.unpack(f, false)
+        auth = Xrb::Auth::Info.unpack(f)
         return auth if auth.host == host && auth.display.to_i == display
       end
 

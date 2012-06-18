@@ -74,6 +74,10 @@ def draw_rect(rect)
 end
 
 Xrb.run do |conn|
+  conn.list_extensions do |reply|
+    reply.names.each { |n| p n.name }
+  end
+
   screen = conn.setup.roots.first
 
   @bg_color = Xrb::Gc.new(conn,
