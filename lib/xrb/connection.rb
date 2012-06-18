@@ -228,5 +228,9 @@ p [seq, request.ruby_class]
     def ungrab_server
       send(Xrb::Request::UngrabServer.new)
     end
+
+    def allow_events(opts)
+      send(Xrb::Request::AllowEvents.new(opts))
+    end
   end
 end
