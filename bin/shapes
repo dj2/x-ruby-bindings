@@ -62,7 +62,7 @@ def draw_rect(rect)
 
   segments = [
       Xrb::Segment.new(x1: 500, y1: 450, x2: 600, y2: 400),
-      Xrb::Segment.new(x1: 380, y1: 500, x2: 420, y2: 550)
+      Xrb::Segment.new(x1: 380, y1: 480, x2: 420, y2: 450)
   ]
   rect.draw_line_segments(@green_color, segments)
 
