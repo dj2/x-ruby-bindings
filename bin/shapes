@@ -25,9 +25,10 @@ def draw_rect(rect)
   rect.poly_fill_rectangle(@blue_color, [bounds])
 
   arcs = [
-    Xrb::Arc.new(x: 100, y: 20, width: 30, height: 40, angle1: 50, angle2: 60),
-    Xrb::Arc.new(x: 70, y: 80, width: 90, height: 100, angle1: 110, angle2: 120),
-    Xrb::Arc.new(x: 100, y: 20, width: 30, height: 40, angle1: 50, angle2: -30)
+    Xrb::Arc.new(x: 10, y: 100, width: 60, height: 40,
+        angle1: 0, angle2: (90 << 6)),
+    Xrb::Arc.new(x: 90, y: 100, width: 55, height: 40,
+        angle1: 0, angle2: (270 << 6))
   ]
   rect.poly_fill_arc(@blue_color, arcs)
 
