@@ -32,6 +32,28 @@ module Xrb
       cookie
     end
 
+    def store_colors(items)
+      @conn.send(Xrb::Request::StoreColors.new(cmap: @id, items: items))
+    end
+
+    def store_named_color(opts)
+      o = opts.merge(cmap: @id)
+      @conn.send(Xrb::Request::StoreNamedColor.new(o))
+    end
+
+    def query(pixels, &blk)
+      cookie = @conn.send(Xrb::Request::QueryColors.new(cmap: @id,
+          pixels: pixels))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def lookup(name, &blk)
+      cookie = @conn.send(Xrb::Request::LookupColor.new(cmap: @id, name: name))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
     def free_colors(colors)
       @conn.send(Xrb::Request::FreeColors.new(cmap: @id, pixels: colors))
     end
