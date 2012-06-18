@@ -220,5 +220,13 @@ p [seq, request.ruby_class]
     def send_event(opts)
       send(Xrb::Request::SendEvent.new(opts))
     end
+
+    def grab_server
+      send(Xrb::Request::GrabServer.new)
+    end
+
+    def ungrab_server
+      send(Xrb::Request::UngrabServer.new)
+    end
   end
 end

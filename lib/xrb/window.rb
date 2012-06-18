@@ -135,5 +135,51 @@ module Xrb
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def grab_pointer(opts, &blk)
+      o = opts.merge(grab_window: @id)
+      cookie = @conn.send(Xrb::Request::GrabPointer.new(o))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def ungrab_pointer(opts)
+      @conn.send(Xrb::Request::UngrabPointer.new(opts))
+    end
+
+    def grab_button(opts)
+      o = opts.merge(grab_window: @id)
+      @conn.send(Xrb::Request::GrabButton.new(o))
+    end
+
+    def ungrab_button(opts)
+      o = opts.merge(grab_window: @id)
+      @conn.send(Xrb::Request::UngrabButton.new(o))
+    end
+
+    def change_pointer_grab(opts)
+      @conn.send(Xrb::Request::ChangeActivePointerGrab.new(opts))
+    end
+
+    def grab_keyboard(opts, &blk)
+      o = opts.merge(grab_window: @id)
+      cookie = @conn.send(Xrb::Request::GrabKeyboard.new(o))
+      cookie.callback = blk if block_given?
+      cookie
+    end
+
+    def ungrab_keyboard(opts)
+      @conn.send(Xrb::Request::UngrabKeyboard.new(opts))
+    end
+
+    def grab_key(opts)
+      o = opts.merge(grab_window: @id)
+      @conn.send(Xrb::Request::GrabKey.new(o))
+    end
+
+    def ungrab_key(opts)
+      o = opts.merge(grab_window: @id)
+      @conn.send(Xrb::Request::UngrabKey.new(o))
+    end
   end
 end
