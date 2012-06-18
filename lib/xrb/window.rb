@@ -194,5 +194,10 @@ module Xrb
       cookie.callback = blk if block_given?
       cookie
     end
+
+    def clear_area(opts)
+      o = opts.merge(window: @id)
+      @conn.send(Xrb::Request::ClearArea.new(o))
+    end
   end
 end
