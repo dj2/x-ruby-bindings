@@ -15,6 +15,7 @@ require 'xrb/arc'
 require 'xrb/rectangle'
 require 'xrb/point'
 require 'xrb/segment'
+require 'xrb/font'
 require 'xrb/window'
 
 module Xrb

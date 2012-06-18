@@ -55,6 +55,11 @@ module Xrb
       @conn.send(Xrb::Request::PolyArc.new(o))
     end
 
+    def draw_text8(color, x, y, text)
+      o = {gc: color.id, drawable: @id, x: x, y: y, items: [text]}
+      @conn.send(Xrb::Request::PolyText_8(o))
+    end
+
     def copy_area(opts)
       o = {
         src_drawable: @id,

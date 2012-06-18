@@ -66,6 +66,7 @@ def draw_rect(rect)
   ]
   rect.draw_line_segments(@green_color, segments)
 
+  rect.draw_text8(@black_color, 300, 300, "Hello X11")
 # poly text 8
 # poly text 16
 end
@@ -104,6 +105,12 @@ Xrb.run do |conn|
         Xrb::GC_FOREGROUND => color.pixel,
         Xrb::GC_GRAPHICS_EXPOSURES => 0})
   end
+
+  font = Xrb::Font.new(conn, "7x13")
+  @black_color = Xrb::Gc.new(conn,
+      value: {
+        Xrb::GC_FOREGROUND => screen.black_pixel,
+        Xrb::GC_FONT => font.id})
 
   rect = Xrb::Pixmap.new(conn, window: window, width: WINDOW_WIDTH,
       height: WINDOW_HEIGHT)
