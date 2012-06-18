@@ -8,6 +8,7 @@ require 'xrb/connection'
 require 'xrb/setup'
 
 require 'xrb/atom'
+require 'xrb/cursor'
 require 'xrb/drawable'
 require 'xrb/gc'
 require 'xrb/image'
