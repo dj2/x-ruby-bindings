@@ -7,7 +7,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     nokogiri (1.5.3)
-    redcarpet (2.1.1)
+    redcarpet (3.5.1)
     yard (0.9.25)
 
 PLATFORMS
