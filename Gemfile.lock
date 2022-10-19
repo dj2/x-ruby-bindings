@@ -6,7 +6,9 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    nokogiri (1.5.3)
+    mini_portile2 (2.1.0)
+    nokogiri (1.6.8.1)
+      mini_portile2 (~> 2.1.0)
     redcarpet (2.1.1)
     yard (0.9.25)
 
